@@ -23,7 +23,7 @@ REDIS
 ##TSQL Commands
 DDL TSQL :  
 1. show cluster :   
-   Storm cluster current status infomation, topology information getting TSQL.  
+   : Storm cluster current status infomation, topology information getting TSQL.  
 
 2. show jobs | job JOB_NAME : job information stored in metastore getting TSQL.  
 3. show streams | stream STREAM_NAME : stream information stored in metastore getting TSQL.  
