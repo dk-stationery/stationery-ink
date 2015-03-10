@@ -87,11 +87,19 @@ where
 
 
 2. insert/ upsert/ upsert increase / delete / update :  
-: 일반적인 쿼리문법을 따름  
-: ex>  
+: generic sql syntax.  
+: ex>  upsert into [TEST_REPORT:phoenix](
+	DT
+	,MKRSEQ
+	,SCORE
+) 
+values( 
+	[:DT]
+	,[:MKRSEQ] 
+	,[:SCORE] );  
 
 3. lookup :  
-: 해당 쿼리이전의 스트림에 lookup데이터를 붙여사용할때 사용하는 TSQL  
+: lookup - generic sql select syntax.  
 : ex>  lookup 
 	EXPOSELOG_MKR as MKRSEQ
 	, MATCHLOG_ATP as AREATYPE
