@@ -138,18 +138,17 @@ where
 8. set COMMIT_INTERVAL='NUMERIC' :  
 > : output sql commit interval (default: 5)  
 
-		aaaa
-		aaaa
+
 #EXAMPLE TSQL
 ex> 
-set JOB_NAME='INK_TEST';
-set WORKER_CNT='14';
-set SPOUT_THREAD_CNT='9';
-set ESPER_THREAD_CNT='9';
-set LOOKUP_THREAD_CNT='9';
-set OUTPUT_THREAD_CNT='18';
-set COMMIT_INTERVAL='5';
-set STORM_MAXSPOUTPENDING_NUM='9';
+		set JOB_NAME='INK_TEST';
+		set WORKER_CNT='14';
+		set SPOUT_THREAD_CNT='9';
+		set ESPER_THREAD_CNT='9';
+		set LOOKUP_THREAD_CNT='9';
+		set OUTPUT_THREAD_CNT='18';
+		set COMMIT_INTERVAL='5';
+		set STORM_MAXSPOUTPENDING_NUM='9';
 select 
 	incom_date.substring(0, 10) as _DT
 	,account_id as ACCOUNTID
