@@ -72,8 +72,19 @@ REDIS
 ####DML TSQL :  
 
 1. select  :  
-: esper의 EPL쿼리문법을 따름  
-: ex>  
+: esper's EPL  
+: ex>  select (case when DMP_LOG.payload.message = 'HBASE_VALIDATE' then
+		sendNotiRealtimeReport('disable','noti_group_id','test-hbase-m2','est-m1,srchad-hbase-m2,test-hbase-m3', {'expose', 'bizcashprice', 'indirect_cnt'}, {'expose', 'settlement', 'cts'}, {'PETTER', 'ELIN', 'SUAREZ'}, DMP_LOG.host)
+	else 
+		sendNoti('bizdt.sa-batch.real','TEST REPORT MONITORING', 'ERROR', DMP_LOG.host,DMP_LOG.path,DMP_LOG.payload.message)
+	end) as MM
+from 
+ 	[dmp_app_log:kafka] as DMP_LOG 
+where 
+	isFiltered(DMP_LOG.payload.message, {'SQL*LOADER-281: WARNING:', 'ERROR ON TABLE', 'MYPEOPLE NOTIFICATION', 'Bad file de', 'retry.RetryInvocationHandler'}) = 'NO_FILTER'
+	AND
+	isFiltered(DMP_LOG.payload.message, {'HBASE_VALIDATE', 'tommy', '(stderr) SQL*Loader',  'Unexpected error', ' ERROR ', 'Exception', 'Job_Retry'}) = 'FILTER';}
+
 
 2. insert/ upsert/ upsert increase / delete / update :  
 : 일반적인 쿼리문법을 따름  
