@@ -61,6 +61,7 @@ DDL TSQL :
 
 10. create stream STREAM_NAME (STREAM_COLUMN STRING|INTEGER|LONG|FLOAT|DOUBLE (PARTITION_KEY) (COMMENT), ...)  meta (TOPIC 'STREAM_QUEUE_CHANNEL_NAME') :  
 : create stream TSQL.  
+: ex> create stream dmp_app_log ( host STRING PARTITION_KEY , path STRING PARTITION_KEY , payload.message STRING  ) meta (TOPIC 'dmp_app_log');  
 
 DML TSQL:
 1. select 쿼리 : esper의 EPL쿼리문법을 따름  
