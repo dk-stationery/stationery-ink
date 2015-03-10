@@ -100,41 +100,42 @@ REDIS
 
 1. select  :  
 > : esper's EPL  
-> : ex>  select (case when DMP_LOG.payload.message = 'HBASE_VALIDATE' then
-		sendNotiRealtimeReport('disable','noti_group_id','test-hbase-m2','est-m1,srchad-hbase-m2,test-hbase-m3', {'expose', 'bizcashprice', 'indirect_cnt'}, {'expose', 'settlement', 'cts'}, {'PETTER', 'ELIN', 'SUAREZ'}, DMP_LOG.host)
-	else 
-		sendNoti('bizdt.sa-batch.real','TEST REPORT MONITORING', 'ERROR', DMP_LOG.host,DMP_LOG.path,DMP_LOG.payload.message)
-	end) as MM
-from 
- 	[dmp_app_log:kafka] as DMP_LOG 
-where 
-	isFiltered(DMP_LOG.payload.message, {'SQL*LOADER-281: WARNING:', 'ERROR ON TABLE', 'MYPEOPLE NOTIFICATION', 'Bad file de', 'retry.RetryInvocationHandler'}) = 'NO_FILTER'
-	AND
-	isFiltered(DMP_LOG.payload.message, {'HBASE_VALIDATE', 'tommy', '(stderr) SQL*Loader',  'Unexpected error', ' ERROR ', 'Exception', 'Job_Retry'}) = 'FILTER';}
+> : ex>  
+
+		select 
+			DMP_LOG.host
+			,DMP_LOG.path
+			,DMP_LOG.payload.message
+		from 
+ 			[dmp_app_log:kafka] as DMP_LOG 
+		where 
+			DMP_LOG.payload.message is not null;
 
 
 2. insert/ upsert/ upsert increase / delete / update :  
 > : generic sql syntax.  
-> : ex>  upsert into [TEST_REPORT:phoenix](
-	DT
-	,MKRSEQ
-	,SCORE
-) 
-values( 
-	[:DT]
-	,[:MKRSEQ] 
-	,[:SCORE] );  
+> : ex>  
+
+		upsert into [TEST_REPORT:phoenix](
+			DT
+			,MKRSEQ
+			,SCORE
+		) values( 
+			[:DT]
+			,[:MKRSEQ] 
+			,[:SCORE] );  
 
 3. lookup :  
 > : lookup - generic sql select syntax.  
-> : ex>  lookup 
-	EXPOSELOG_MKR as MKRSEQ
-	, MATCHLOG_ATP as AREATYPE
-from 
-	[test_click:phoenix]
-where
-	PAYLOAD_CTSA = '[:ACCOUNTID]' AND PAYLOAD_CTSU = '[:UNIQUE_ID]';  
+> : ex>  
 
+		lookup 
+			EXPOSELOG_MKR as MKRSEQ
+			, MATCHLOG_ATP as AREATYPE
+		from 
+			[test_click:phoenix]
+		where
+			PAYLOAD_CTSA = '[:ACCOUNTID]' AND PAYLOAD_CTSU = '[:UNIQUE_ID]';  
 
 
 #### SET TSQL :  
