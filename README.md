@@ -116,23 +116,23 @@ where
 > : launch storm topology job. at JOB_NAME name   
 
 2. set WORKER_CNT='NUMERIC' :  
-> : storm topology process cnt  
+> : storm topology process cnt (default: 1) 
 
 3. set SPOUT_THREAD_CNT='NUMERIC' :  
-> : spout's thread cnt   
+> : spout's thread cnt  (default: 1) 
 
 4. set ESPER_THREAD_CNT='NUMERIC' :  
-> : esper's thread cnt   
+> : esper's thread cnt  (default: 1) 
 
 5. set LOOKUP_THREAD_CNT='NUMERIC' :  
-> : lookup's thread cnt  
+> : lookup's thread cnt  (default: 1)
 
 6. set OUTPUT_THREAD_CNT='NUMERIC' :  
-> : output's thread cnt  
+> : output's thread cnt  (default: 1)
 
 7. set IS_DEBUG='Y' | 'N' :  
-> : debug mode   
+> : debug mode   (default: N)
 
 8. set COMMIT_INTERVAL='NUMERIC' :  
-> : output sql commit interval  
+> : output sql commit interval (default: 5)  
 
