@@ -214,3 +214,10 @@ ex>
 			,[:INDIRECTCNT] 
 			,[:INDIRECTAMT] 
 		);
+
+#INK JDBC DRIVER EXAMPLE
+![GitHub Logo](/screenshot1.png)
+![GitHub Logo](/screenshot1.png)
+![GitHub Logo](/screenshot1.png)
+![GitHub Logo](/screenshot1.png)
+![GitHub Logo](/screenshot1.png)
