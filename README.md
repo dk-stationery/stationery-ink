@@ -17,3 +17,5 @@ REDIS
 1. INK DAEMON : TSQL parsing and Execution DDL, DML query, generation storm topology base on TSQL, jdbc connector.  
 2. INK JDBC DRIVER : INK's JDBC driver (type 2)  
 3. INK DYNAMIC API : Rest api transported client to Aggerationed dataset by INK.  
+
+http://wiki.daumkakao.com/download/attachments/318975046/ink.png?version=1&modificationDate=1424930126000&api=v2
