@@ -23,16 +23,31 @@ REDIS
 ##TSQL Commands
 DDL TSQL :  
 1. show cluster :   
-   : Storm cluster current status infomation, topology information getting TSQL.  
+: Storm cluster current status infomation, topology information getting TSQL.  
 
-2. show jobs | job JOB_NAME : job information stored in metastore getting TSQL.  
-3. show streams | stream STREAM_NAME : stream information stored in metastore getting TSQL.  
-4. show sources | source SOURCE_NAME : source information stored in metastore getting TSQL.  
-5. drop job JOB_NAME : removing job stored in metastore TSQL.  
-6. drop stream STREAM_NAME : removing stream stored in metastore TSQL.  
-7. drop source SOURCE_NAME : removing source stored in metastore TSQL.  
-8. kill job JOB_NAME : shutdown job in apache storm cluster TSQL.
-9  snapshot job JOB_NAME : display resultset job executed to TSQL.  
+2. show jobs | job JOB_NAME :  
+: job information stored in metastore getting TSQL.  
+
+3. show streams | stream STREAM_NAME :   
+: stream information stored in metastore getting TSQL.  
+
+4. show sources | source SOURCE_NAME :  
+: source information stored in metastore getting TSQL.  
+
+5. drop job JOB_NAME :  
+: removing job stored in metastore TSQL.  
+
+6. drop stream STREAM_NAME :  
+: removing stream stored in metastore TSQL.  
+
+7. drop source SOURCE_NAME :  
+: removing source stored in metastore TSQL.  
+
+8. kill job JOB_NAME :  
+: shutdown job in apache storm cluster TSQL.  
+
+9  snapshot job JOB_NAME :  
+: display resultset job executed to TSQL.  
  
 DML TSQL:
 1. select 쿼리 : esper의 EPL쿼리문법을 따름  
