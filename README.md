@@ -69,11 +69,21 @@ DDL TSQL :
 : ex> create source phoenix meta (CATALOG 'PHOENIX', URL 'jdbc:phoenix:test-hbase-m1.com,test-hbase-m2.com,test-hbase-m3.com:2181', DRIVER 'org.apache.phoenix.jdbc.PhoenixDriver');  
 : ex> create source rabbitmq meta (CATALOG 'RABBITMQ', URL '127.0.0.1', ID 'test', PW 'testpw', PORT '5672', VHOST 'TEST_VHOST');  
 
-DML TSQL:
-1. select 쿼리 : esper의 EPL쿼리문법을 따름  
-2. insert/ upsert/ upsert increase / delete / update 쿼리 : 일반적인 쿼리문법을 따름  
-3. lookup 쿼리 : 해당 쿼리이전의 스트림에 lookup데이터를 붙여사용할때 사용하는 TSQL  
- 
+DML TSQL :  
+1. select  :  
+: esper의 EPL쿼리문법을 따름  
+: ex>  
+
+2. insert/ upsert/ upsert increase / delete / update :  
+: 일반적인 쿼리문법을 따름  
+: ex>  
+
+3. lookup :  
+: 해당 쿼리이전의 스트림에 lookup데이터를 붙여사용할때 사용하는 TSQL  
+: ex>  
+
+
+
 SET :  
 1. set JOB_NAME='잡이름' : 쿼리에 해당 set이 있으면, 해당 쿼리를 스톰잡으로 구동시킴.  
 2. set REGIST_JOB='Y' | 'N' : 쿼리에 해당 set이 있으면, 해당 쿼리문을 메타스토어에 JOB_NAME명으로 job을 저장함. (1번과 같이 사용 필수)   
