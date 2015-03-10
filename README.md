@@ -139,7 +139,9 @@ where
 > : output sql commit interval (default: 5)  
 
 #EXAMPLE TSQL
-ex> set JOB_NAME='INK_TEST';
+ex> 
+"'
+set JOB_NAME='INK_TEST';
 set WORKER_CNT='14';
 set SPOUT_THREAD_CNT='9';
 set ESPER_THREAD_CNT='9';
@@ -184,4 +186,4 @@ increase values(
 	,[:INDIRECTCNT] 
 	,[:INDIRECTAMT] 
 );
-
+"'
