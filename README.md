@@ -215,7 +215,7 @@ ex>
 			,[:INDIRECTAMT] 
 		);
 
-#INK JDBC DRIVER EXAMPLE
+#INK JDBC DRIVER EXAMPLE - SQuirrelSQL
 ![GitHub Logo](/screenshot3.png)
 ![GitHub Logo](/screenshot2.png)
 ![GitHub Logo](/screenshot8.png)
