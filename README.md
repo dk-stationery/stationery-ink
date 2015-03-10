@@ -1,5 +1,5 @@
 # stationery-ink
-Distribute Sql base Streaming Aggregation Framework On Storm
+Distribute Sql base Streaming Aggregation Framework On Apache Storm
 
 ##Required System)    
 HBASE : 0.98.1-cdh5.1.3 above    
