@@ -59,6 +59,9 @@ DDL TSQL :
 : display resultset job executed to TSQL.  
 : ex> snapshot job testjob;  
 
+10. create stream STREAM_NAME (STREAM_COLUMN STRING|INTEGER|LONG|FLOAT|DOUBLE (PARTITION_KEY) (COMMENT), ...)  meta (TOPIC 'STREAM_QUEUE_CHANNEL_NAME') :  
+: create stream TSQL.  
+
 DML TSQL:
 1. select 쿼리 : esper의 EPL쿼리문법을 따름  
 2. insert/ upsert/ upsert increase / delete / update 쿼리 : 일반적인 쿼리문법을 따름  
