@@ -138,3 +138,50 @@ where
 8. set COMMIT_INTERVAL='NUMERIC' :  
 > : output sql commit interval (default: 5)  
 
+#EXAMPLE TSQL
+ex> set JOB_NAME='INK_TEST';
+set WORKER_CNT='14';
+set SPOUT_THREAD_CNT='9';
+set ESPER_THREAD_CNT='9';
+set LOOKUP_THREAD_CNT='9';
+set OUTPUT_THREAD_CNT='18';
+set COMMIT_INTERVAL='5';
+set STORM_MAXSPOUTPENDING_NUM='9';
+select 
+	incom_date.substring(0, 10) as _DT
+	,account_id as ACCOUNTID
+	,(case when (indirect_unique_id <> null) then direct_unique_id else indirect_unique_id end) as UNIQUE_ID
+	, dir_amount as DIRECTAMT
+	, dir_cnt as DIRECTCNT
+	, in_amount as INDIRECTAMT
+	, in_cnt as INDIRECTCNT
+from 
+	[test:rabbitmq];
+	
+lookup 
+	LOG_MKR as MKRSEQ
+	, LOG_ATP as AREATYPE
+from 
+	[test_click:phoenix]
+where
+	PAYLOAD_CTSA = '[:ACCOUNTID]' AND PAYLOAD_CTSU = '[:UNIQUE_ID]';
+
+upsert into [TEST_REPORT:phoenix](
+	DT
+	,MKRSEQ
+	,AREATYPE
+	,DIRECTCNT
+	,DIRECTAMT
+	,INDIRECTCNT
+	,INDIRECTAMT
+) 
+increase values( 
+	[:_DT]
+	,[:MKRSEQ] 
+	,'[:AREATYPE]'
+	,[:DIRECTCNT] 
+	,[:DIRECTAMT] 
+	,[:INDIRECTCNT] 
+	,[:INDIRECTAMT] 
+);
+
