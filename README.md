@@ -112,33 +112,27 @@ where
 
 #### SET TSQL :  
 
-1. set JOB_NAME='잡이름' :  
-> : 쿼리에 해당 set이 있으면, 해당 쿼리를 스톰잡으로 구동시킴.  
+1. set JOB_NAME='TEXT' :  
+> : launch storm topology job. at JOB_NAME name   
 
-2. set REGIST_JOB='Y' | 'N' :  
-> : 쿼리에 해당 set이 있으면, 해당 쿼리문을 메타스토어에 JOB_NAME명으로 job을 저장함. (1번과 같이 사용 필수)  
+2. set WORKER_CNT='NUMERIC' :  
+> : storm topology process cnt  
 
-3. set WORKER_CNT='숫자' :  
-> : 쿼리에 해당 set이 있으면, 해당 스톰잡의 프로세스 갯수를 정의하여 구동시킴.  
+3. set SPOUT_THREAD_CNT='NUMERIC' :  
+> : spout's thread cnt   
 
-4. set SPOUT_THREAD_CNT='숫자' :  
-> : 쿼리에 해당 set이 있으면, spout에 해당하는 프로세스의 쓰레드 사용수를 정의하여 구동시킴.  
+4. set ESPER_THREAD_CNT='NUMERIC' :  
+> : esper's thread cnt   
 
-5. set ESPER_THREAD_CNT='숫자' :  
-> : 쿼리에 해당 set이 있으면, esper에 해당하는 프로세스의 쓰레드 사용수를 정의하여 구동시킴.  
+5. set LOOKUP_THREAD_CNT='NUMERIC' :  
+> : lookup's thread cnt  
 
-6. set LOOKUP_THREAD_CNT='숫자' :  
-> : 쿼리에 해당 set이 있으면, lookup에 해당하는 프로세스의 쓰레드 사용수를 정의하여 구동시킴.  
+6. set OUTPUT_THREAD_CNT='NUMERIC' :  
+> : output's thread cnt  
 
-7. set OUTPUT_THREAD_CNT='숫자' :  
-> : 쿼리에 해당 set이 있으면, output에 해당하는 프로세스의 쓰레드 사용수를 정의하여 구동시킴.  
+7. set IS_DEBUG='Y' | 'N' :  
+> : debug mode   
 
-8. set IS_DEBUG='Y' | 'N' :  
-> : 쿼리에 해당 set이 있으면, 디버그 모드로 잡을 구동시킴 (로그확인가능).    
-
-9. set COMMIT_INTERVAL='숫자' :  
-> : 쿼리에 해당 set이 있으면, output쿼리에서 해당 commit갯수로 커밋하여 저장함.  
-
-10. set JOB_NAME='잡이름 :  
-> : 쿼리에 해당 set이 있으면, 해당 잡이름이름으로 스톰잡을 구동시킴.  
+8. set COMMIT_INTERVAL='NUMERIC' :  
+> : output sql commit interval  
 
