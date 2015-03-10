@@ -21,7 +21,7 @@ REDIS
 ![GitHub Logo](/ink.png)
 
 ##TSQL Commands
-DDL TSQL : 
+####DDL TSQL : 
 
 1. show cluster :   
 : Storm cluster current status infomation, topology information getting TSQL.  
@@ -69,7 +69,7 @@ DDL TSQL :
 : ex> create source phoenix meta (CATALOG 'PHOENIX', URL 'jdbc:phoenix:test-hbase-m1.com,test-hbase-m2.com,test-hbase-m3.com:2181', DRIVER 'org.apache.phoenix.jdbc.PhoenixDriver');  
 : ex> create source rabbitmq meta (CATALOG 'RABBITMQ', URL '127.0.0.1', ID 'test', PW 'testpw', PORT '5672', VHOST 'TEST_VHOST');  
 
-DML TSQL :  
+####DML TSQL :  
 
 1. select  :  
 : esper의 EPL쿼리문법을 따름  
@@ -85,7 +85,8 @@ DML TSQL :
 
 
 
-SET :  
+#### SET TSQL :  
+
 1. set JOB_NAME='잡이름' : 쿼리에 해당 set이 있으면, 해당 쿼리를 스톰잡으로 구동시킴.  
 2. set REGIST_JOB='Y' | 'N' : 쿼리에 해당 set이 있으면, 해당 쿼리문을 메타스토어에 JOB_NAME명으로 job을 저장함. (1번과 같이 사용 필수)   
 3. set WORKER_CNT='숫자' : 쿼리에 해당 set이 있으면, 해당 스톰잡의 프로세스 갯수를 정의하여 구동시킴.  
