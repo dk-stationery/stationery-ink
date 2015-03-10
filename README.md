@@ -20,4 +20,3 @@ REDIS
 
 ![GitHub Logo](/ink.png)
 
-http://wiki.daumkakao.com/download/attachments/318975046/ink.png?version=1&modificationDate=1424930126000&api=v2
