@@ -53,7 +53,7 @@ DDL TSQL :
 8. kill job JOB_NAME :  
 : shutdown job in apache storm cluster TSQL.  
 : ex> kill job testjob;  
-
+ 
 9. snapshot job JOB_NAME :  
 : display resultset job executed to TSQL.  
 : ex> snapshot job testjob;  
