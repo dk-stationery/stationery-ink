@@ -12,6 +12,8 @@ REDIS
 2. Esper integration.    
 3. Launch Strom topology.    
 4. Ink JDBC driver supported.    
+5. UDF function supported.  
+6. Stream partition computation supported.  
 
 ##Ink Architecture
 1. INK DAEMON : TSQL parsing and Execution DDL, DML query, generation storm topology base on TSQL, jdbc connector.  
