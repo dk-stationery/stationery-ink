@@ -24,15 +24,19 @@ REDIS
 DDL TSQL :  
 1. show cluster :   
 : Storm cluster current status infomation, topology information getting TSQL.  
+: ex> show cluster;  
 
 2. show jobs | job JOB_NAME :  
 : job information stored in metastore getting TSQL.  
+: ex> show jobs; OR show job testjob;  
 
 3. show streams | stream STREAM_NAME :   
 : stream information stored in metastore getting TSQL.  
+: ex> show streams; OR show stream teststream;  
 
 4. show sources | source SOURCE_NAME :  
 : source information stored in metastore getting TSQL.  
+: ex> show sources; OR show source testsource;  
 
 5. drop job JOB_NAME :  
 : removing job stored in metastore TSQL.  
