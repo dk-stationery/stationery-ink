@@ -40,19 +40,24 @@ DDL TSQL :
 
 5. drop job JOB_NAME :  
 : removing job stored in metastore TSQL.  
+: ex> drop job testjob;  
 
 6. drop stream STREAM_NAME :  
 : removing stream stored in metastore TSQL.  
+: ex> drop stream teststream;  
 
 7. drop source SOURCE_NAME :  
 : removing source stored in metastore TSQL.  
+: ex> drop source testsource;  
 
 8. kill job JOB_NAME :  
 : shutdown job in apache storm cluster TSQL.  
+: ex> kill job testjob;  
 
 9  snapshot job JOB_NAME :  
 : display resultset job executed to TSQL.  
- 
+: ex> snapshot job testjob;  
+
 DML TSQL:
 1. select 쿼리 : esper의 EPL쿼리문법을 따름  
 2. insert/ upsert/ upsert increase / delete / update 쿼리 : 일반적인 쿼리문법을 따름  
