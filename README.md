@@ -92,7 +92,13 @@ where
 
 3. lookup :  
 : 해당 쿼리이전의 스트림에 lookup데이터를 붙여사용할때 사용하는 TSQL  
-: ex>  
+: ex>  lookup 
+	EXPOSELOG_MKR as MKRSEQ
+	, MATCHLOG_ATP as AREATYPE
+from 
+	[test_click:phoenix]
+where
+	PAYLOAD_CTSA = '[:ACCOUNTID]' AND PAYLOAD_CTSU = '[:UNIQUE_ID]';  
 
 
 
