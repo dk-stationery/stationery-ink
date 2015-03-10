@@ -63,13 +63,38 @@ REDIS
 
 10. create stream STREAM_NAME (STREAM_COLUMN STRING|INTEGER|LONG|FLOAT|DOUBLE (PARTITION_KEY) (COMMENT), ...)  meta (TOPIC 'STREAM_QUEUE_CHANNEL_NAME') :  
 > : create stream TSQL.  
-> : ex> create stream dmp_app_log ( host STRING PARTITION_KEY , path STRING PARTITION_KEY , payload.message STRING  ) meta (TOPIC 'dmp_app_log');  
+> : ex> 
+
+		create stream dmp_app_log ( 
+			host STRING PARTITION_KEY 
+			, path STRING PARTITION_KEY 
+			, payload.message STRING  ) meta (TOPIC 'dmp_app_log');  
 
 11. create source SOURCE_NAME 
 > : create source TSQL.  
-> : ex> create source kafka meta (CATALOG 'KAFKA', URL '127.0.0.1:2181,127.0.0.2:2181,127.0.0.3:2181,127.0.0.4:2181');  
-> : ex> create source phoenix meta (CATALOG 'PHOENIX', URL 'jdbc:phoenix:test-hbase-m1.com,test-hbase-m2.com,test-hbase-m3.com:2181', DRIVER 'org.apache.phoenix.jdbc.PhoenixDriver');  
-> : ex> create source rabbitmq meta (CATALOG 'RABBITMQ', URL '127.0.0.1', ID 'test', PW 'testpw', PORT '5672', VHOST 'TEST_VHOST');  
+> : ex> 
+
+		create source kafka meta (
+			CATALOG 'KAFKA'
+			, URL '127.0.0.1:2181,127.0.0.2:2181,127.0.0.3:2181,127.0.0.4:2181');
+			
+> : ex> 
+
+		create source phoenix meta (
+			CATALOG 'PHOENIX'
+			, URL 'jdbc:phoenix:test-hbase-m1.com,test-hbase-m2.com,test-hbase-m3.com:2181'
+			, DRIVER 'org.apache.phoenix.jdbc.PhoenixDriver');
+			
+> : ex> 
+
+		create source rabbitmq meta (
+			CATALOG 'RABBITMQ'
+			, URL '127.0.0.1'
+			, ID 'test'
+			, PW 'testpw'
+			, PORT '5672'
+			, VHOST 'TEST_VHOST'); 
+			
 
 ####DML TSQL :  
 
