@@ -18,7 +18,7 @@ REDIS
 2. INK JDBC DRIVER : INK's JDBC driver (type 2)  
 3. INK DYNAMIC API : Rest api transported client to Aggerationed dataset by INK.  
 
-![GitHub Logo](/images/logo.png)
+![GitHub Logo](/ink.png)
 Format: ![Alt Text](url)
 
 http://wiki.daumkakao.com/download/attachments/318975046/ink.png?version=1&modificationDate=1424930126000&api=v2
