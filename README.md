@@ -20,17 +20,17 @@ REDIS
 
 ![GitHub Logo](/ink.png)
 
-##TSQL Example
+##TSQL Commands
 DDL TSQL :  
-1. show cluster : 스톰 클러스터의 현재 상태 및 잡의 상태등의 정보를 가져올수있는 TSQL.  
-2. show jobs | job 잡이름 : 메타스토어에 저장되어있는 잡쿼리를 볼수있는 TSQL.  
-3. show streams | stream 스트림이름 : 메타스토어에 저장되어있는 스트리밍 정보를 볼수있는 TSQL.  
-4. show sources | source 소스이름 : 메타스토어에 저장되어있는 소스 (접속정보)를 볼수있는 TSQL.  
-5. drop job 잡이름 : 메타스토어에 저장되어있는 잡을 삭제하는 TSQL.  
-6. drop stream 스트림이름 : 메타스토어에 저장되어있는 스트림을 삭제하는 TSQL.  
-7. drop source 소스 이름 : 메타스토어에 저장되어있는 소스를 삭제하는 TSQL.  
-8. kill job 잡이름 : 스톰클러스터에서 구동중인 잡을 shutdown하는 TSQL.  
-9  snapshot job 잡이름 : 실행한 잡의 결과를 볼수있는 TSQL.  
+1. show cluster : Storm cluster current status infomation, topology information getting TSQL.  
+2. show jobs | job JOB_NAME : job information stored in metastore getting TSQL.  
+3. show streams | stream STREAM_NAME : stream information stored in metastore getting TSQL.  
+4. show sources | source SOURCE_NAME : source information stored in metastore getting TSQL.  
+5. drop job JOB_NAME : removing job stored in metastore TSQL.  
+6. drop stream STREAM_NAME : removing stream stored in metastore TSQL.  
+7. drop source SOURCE_NAME : removing source stored in metastore TSQL.  
+8. kill job JOB_NAME : shutdown job in apache storm cluster TSQL.
+9  snapshot job JOB_NAME : display resultset job executed to TSQL.  
  
 DML TSQL:
 1. select 쿼리 : esper의 EPL쿼리문법을 따름  
