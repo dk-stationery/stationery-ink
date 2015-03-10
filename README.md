@@ -180,7 +180,7 @@ ex>
 		select 
 			incom_date.substring(0, 10) as _DT
 			,account_id as ACCOUNTID
-			,(case when (indirect_unique_id <> null) then direct_unique_id else indirect_unique_id 		end) as UNIQUE_ID
+			,(case when (indirect_unique_id <> null) then direct_unique_id else indirect_unique_id end) as UNIQUE_ID
 			, dir_amount as DIRECTAMT
 			, dir_cnt as DIRECTCNT
 			, in_amount as INDIRECTAMT
