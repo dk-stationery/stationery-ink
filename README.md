@@ -1,25 +1,25 @@
 # stationery-ink
-Distribute Sql base Streaming Aggregation Framework On Apache Storm
+Distributed real-time streaming aggregation framework using the SQL-based 'Apache Storm'
 
-##Required System    
+##System Requirements   
 HBASE : 0.98.1-cdh5.1.3 above    
 PHOENIX : 4.0.0-incubation (custom version) above    
 STORM : 0.9.0.1 above    
 REDIS    
 
-##Ink features
-1. SQL supported. (Tommy's SQL = TSQL)    
-2. Esper integration.    
-3. Launch Strom topology.    
-4. Ink JDBC driver supported.    
-5. UDF function supported.  
-6. Stream partition computation supported.  
-7. Multi tenants supported.
+##Ink Features
+1. SQL support. (Tommy's SQL = TSQL)    
+2. CEP Framework Esper integration.    
+3. Storm topology optimizer automatically generated and executed   
+4. Ink JDBC driver support.    
+5. UDF function support.  
+6. Stream partition computation support.  
+7. Multi tenants support.
 
 ##Ink Architecture
-1. INK DAEMON : TSQL parsing and Execution DDL, DML query, generation storm topology base on TSQL, jdbc connector.  
-2. INK JDBC DRIVER : INK's JDBC driver (type 2)  
-3. INK DYNAMIC API : Rest api transported client to Aggerationed dataset by INK.  
+1. INK DAEMON : Optimayijing the TSQL received from the user, performs, and serves to create a running topology storm, Communicate with Ink JDBC driver.  
+2. INK JDBC DRIVER : Driver that can be used by the driver in the third-party program Ink (type 2)  
+3. INK DYNAMIC API : The result of performing the Ink you can get passed through the Rest api.  
 
 ![GitHub Logo](/ink.png)
 
