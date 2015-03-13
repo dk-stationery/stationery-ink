@@ -317,6 +317,9 @@ ex>
 		);
 
 #INK JDBC DRIVER EXAMPLE - SQuirrelSQL
+: > Caution!!!! In order to use the INK JDBC driver from the bus kworeol, Squirrel in the ';' Others do not use the separator character set (ex. Tommy, ;;;;) should be set to perform a multi-query.
+Squirrel program ';' Sueopda run in a multi-query because the query to be run separately to distinguish the characters.  
+
 ![GitHub Logo](/screenshot3.png)
 ![GitHub Logo](/screenshot2.png)
 ![GitHub Logo](/screenshot8.png)
