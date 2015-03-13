@@ -14,6 +14,7 @@ REDIS
 4. Ink JDBC driver supported.    
 5. UDF function supported.  
 6. Stream partition computation supported.  
+7. Multi tenants supported.
 
 ##Ink Architecture
 1. INK DAEMON : TSQL parsing and Execution DDL, DML query, generation storm topology base on TSQL, jdbc connector.  
@@ -95,6 +96,9 @@ REDIS
 			, PORT '5672'
 			, VHOST 'TEST_VHOST'); 
 			
+11. use NAME : 
+> : other ink daemon use.
+> : ex> use SA;
 
 ####DML TSQL :  
 
