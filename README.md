@@ -196,7 +196,7 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 			, PORT '5672'
 			, VHOST 'TEST_VHOST'); 
 			
-11. use NAME : 
+12. use NAME : 
 > : other ink daemon use.
 > : ex> use SA;
 
