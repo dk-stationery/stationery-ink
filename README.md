@@ -40,7 +40,7 @@ Summation : Connecting the streaming data defined in STREAM, based on the inform
 : > Reference : http://phoenix.apache.org/    
 4. Install Redis.    
 : > Reference : http://www.redis.io/    
-5. Install Ink-daemon.    
+5. Install Ink-api.    
 : > The clone the source code from github address, https://github.com/tommy-kwon/stationery-ink.git    
 : > 'mvn package -DskipTests' Execution.    
 : > 'stationery-ink-api/target' that was built in the folder 'stationery-ink-api-1.0-SNAPSHOT.jar' must copy the api server side.    
@@ -63,7 +63,36 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
     			host: Redis connection url (Ex. cache40.rc2.test.cc,cache42.rc2.test.cc,cache176.rc2.test.cc,cache177.rc2.test.cc,cache178.rc2.test.cc)
     			password: Redis password (Ex. test_redis_pw)
 
-6. Install Ink-api.
+6. Install Ink-daemon.    
+: > 'stationery-ink-daemon/target' that was built in the folder 'stationery-ink-daemon-1.0-SNAPSHOT.jar' must copy the daemon server side.  
+: > 'nohup java -Dserver.port=9292 -Dconfig=config-production.yml -Dlog4j.loglevel=INFO -server -Xmx2g -Xms2g -XX:PermSize=512m -XX:MaxPermSize=512m -XX:+UseParallelOldGC -jar stationery-ink-daemon.jar >> /daum/logs/ink-daemon.log  2>&1 &' command is carried out should drive the DAEMON server.   
+###### config-production.yml
+		inkconfig:
+    			filepath: /inkconfig.production.properties
+
+		phoenix:
+    			driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
+    			url: phoenix connection url (Ex. jdbc:phoenix:dmp-hbase-m2.h.test.com,dmp-hbase-m1.h.test.com,dmp-hbase-m3.h.test.com:2181)
+    			initPoolSize: 1
+    			maxPoolSize: 10
+    			minPoolSize: 1
+
+		auth:
+    			api:
+        			id: daemon user id (ex.test_user)
+        			password: daemon password (ex.test_pw)
+
+		redis:
+    			host: Redis connection url (Ex. cache40.rc2.test.cc,cache42.rc2.test.cc,cache176.rc2.test.cc,cache177.rc2.test.cc,cache178.rc2.test.cc)
+    			password: Redis password (Ex. test_redis_pw)
+
+		daemon_id:
+    			name: Current ink-daemon unique name (ex. TEST)
+
+		multi_tenants:
+    			-  name: 'USE command' using a different server when accessing other ink-daemon server daemon_id (ex. TEST2)
+       			url: Access to the other daemon server url (ex. http://{IP ADDRESS}:{PORT:defalut:9292}/sql/run)   
+ 
 7. Install Ink-stormclient.
 
 
