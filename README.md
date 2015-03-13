@@ -30,6 +30,21 @@ REDIS
 
 Summation : Connecting the streaming data defined in STREAM, based on the information of the meta data in the SOURCE, passing under the framework that is driven off the crossbar, the streaming data to the query definition as defined in TSQL delivered.
 
+##Getting started
+####Install the required system
+1. Install Apache Storm.
+: > Reference : https://storm.apache.org/
+2. Install Hbase.
+: > Reference : http://hbase.apache.org/
+3. Install Apache Phoenix.
+: > Reference : http://phoenix.apache.org/
+4. Install Redis.
+: > Reference : http://www.redis.io/
+5. Install Ink-daemon.
+6. Install Ink-api.
+7. Install Ink-stormclient.
+
+
 
 ##TSQL Commands
 ####DDL TSQL : 
