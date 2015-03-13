@@ -7,6 +7,9 @@ PHOENIX : 4.0.0-incubation (custom version) above
 STORM : 0.9.0.1 above    
 REDIS    
 
+##Main technology used in INK
+Antlr3, Apache Storm, Esper, Phoenix, Spring-boot
+
 ##Ink Features
 1. SQL support. (Tommy's SQL = TSQL)    
 2. CEP Framework Esper integration.    
