@@ -16,6 +16,11 @@ REDIS
 6. Stream partition computation support.  
 7. Multi tenants support.
 
+##Terms and concepts used in Ink
+1. STREAM : The format of the log of the streaming format that is infinitely delivery. Concepts such as table schema of the RDBMS.
+2. SOURCE : Metadata that defines the access connection that can access information on the STREAM.
+3. WINDOW : Concept to be aggregated to define the scope of the streaming data to the streaming time and the size.
+
 ##Ink Architecture
 1. INK DAEMON : Optimayijing the TSQL received from the user, performs, and serves to create a running topology storm, Communicate with Ink JDBC driver.  
 2. INK JDBC DRIVER : Driver that can be used by the driver in the third-party program Ink (type 2)  
