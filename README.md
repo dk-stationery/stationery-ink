@@ -68,7 +68,7 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 : > 'nohup java -Dserver.port=9292 -Dconfig=config-production.yml -Dlog4j.loglevel=INFO -server -Xmx2g -Xms2g -XX:PermSize=512m -XX:MaxPermSize=512m -XX:+UseParallelOldGC -jar stationery-ink-daemon.jar >> /daum/logs/ink-daemon.log  2>&1 &' command is carried out should drive the DAEMON server.   
 ###### config-production.yml
 		inkconfig:
-    			filepath: /inkconfig.production.properties
+    			filepath: Setting the file path of the ink framework (ex. /inkconfig.production.properties)
 
 		phoenix:
     			driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
