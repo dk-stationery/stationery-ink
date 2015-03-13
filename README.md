@@ -116,8 +116,8 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 		DUMP_CLEAR_API_URL : 127.0.0.1:9292/dump/api/clear (Dump api URL to confirm the results of the performed job at INK)
 		DUMP_API_URL : 127.0.0.1:9292/dump/api/dump (Dump api URL to confirm the results of the performed job at INK)
 
-7. Install Ink-stormclient.
-
+7. Install Ink-stormclient.  
+: > 'stationery-ink-stormclient/target' that was built in the folder 'stationery-ink-stormclient-1.0-SNAPSHOT.jar' must copy the daemon server side.    
 
 
 ##TSQL Commands
