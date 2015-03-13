@@ -28,6 +28,9 @@ REDIS
 
 ![GitHub Logo](/ink.png)
 
+Summation : Connecting the streaming data defined in STREAM, based on the information of the meta data in the SOURCE, passing under the framework that is driven off the crossbar, the streaming data to the query definition as defined in TSQL delivered.
+
+
 ##TSQL Commands
 ####DDL TSQL : 
 
