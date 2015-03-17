@@ -47,7 +47,7 @@ Summation : Connecting the streaming data defined in STREAM, based on the inform
 : > The clone the source code from github address, https://github.com/tommy-kwon/stationery-ink.git    
 : > 'mvn package -DskipTests' Execution.    
 : > 'stationery-ink-api/target' that was built in the folder 'stationery-ink-api-1.0-SNAPSHOT.jar' must copy the api server side.    
-In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.yml -Dlog4j.loglevel = INFO -server -Xmx2g -Xms2g -XX: PermSize = 512m -XX: MaxPermSize = 512m -XX: + UseParallelOldGC - jar stationery-ink-api.jar >> /daum/logs/ink-api.log 2> & 1 & ' command is carried out should drive the API server.    
+In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.yml -Dlog4j.loglevel = INFO -server -Xmx2g -Xms2g -XX: PermSize = 512m -XX: MaxPermSize = 512m -XX: + UseParallelOldGC - jar stationery-ink-api.jar >> ${PATH_TO_LOG}/ink-api.log 2> & 1 & ' command is carried out should drive the API server.    
 
 ###### config-production.yml
 		phoenix:
@@ -68,7 +68,7 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 
 6. Install Ink-daemon.    
 : > 'stationery-ink-daemon/target' that was built in the folder 'stationery-ink-daemon-1.0-SNAPSHOT.jar' must copy the daemon server side.  
-: > 'nohup java -Dserver.port=9292 -Dconfig=config-production.yml -Dlog4j.loglevel=INFO -server -Xmx2g -Xms2g -XX:PermSize=512m -XX:MaxPermSize=512m -XX:+UseParallelOldGC -jar stationery-ink-daemon.jar >> /daum/logs/ink-daemon.log  2>&1 &' command is carried out should drive the DAEMON server.   
+: > 'nohup java -Dserver.port=9292 -Dconfig=config-production.yml -Dlog4j.loglevel=INFO -server -Xmx2g -Xms2g -XX:PermSize=512m -XX:MaxPermSize=512m -XX:+UseParallelOldGC -jar stationery-ink-daemon.jar >> ${PATH_TO_LOG}/ink-daemon.log  2>&1 &' command is carried out should drive the DAEMON server.   
 ###### config-production.yml
 		inkconfig:
     			filepath: Setting the file path of the ink framework (ex. /inkconfig.production.properties)
