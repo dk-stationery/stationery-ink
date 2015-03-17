@@ -44,7 +44,7 @@ Summation : Connecting the streaming data defined in STREAM, based on the inform
 4. Install Redis.    
 : > Reference : http://www.redis.io/    
 5. Install Ink-api.    
-: > The clone the source code from github address, https://github.com/tommy-kwon/stationery-ink.git    
+: > The clone the source code from github address, https://github.com/dk-stationery/stationery-ink.git    
 : > 'mvn package -DskipTests' Execution.    
 : > 'stationery-ink-api/target' that was built in the folder 'stationery-ink-api-1.0-SNAPSHOT.jar' must copy the api server side.    
 In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.yml -Dlog4j.loglevel = INFO -server -Xmx2g -Xms2g -XX: PermSize = 512m -XX: MaxPermSize = 512m -XX: + UseParallelOldGC - jar stationery-ink-api.jar >> ${PATH_TO_LOG}/ink-api.log 2> & 1 & ' command is carried out should drive the API server.    
