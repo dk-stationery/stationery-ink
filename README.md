@@ -108,11 +108,11 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 		STORM_MESSAGE_TIMEOUT_SEC : 30
 		STORM_MAXSPOUTPENDING_NUM : 1
 		STORM_BATCH_SIZE : 10485760
-		STORM_CLIENT_FILEPATH : /daum/program/ink-stormclient/ (Location of deployment JAR to use the Storm)
+		STORM_CLIENT_FILEPATH : ${PATH_TO_PROGRAM}/ink-stormclient/ (Location of deployment JAR to use the Storm)
 		STORM_CLIENT_MAIN_CLASS : org.tommy.stationery.ink.stormclient.StormClient
 		STORM_CLIENT_JAR : stationery-ink-stormclient.jar (The name of the JAR for deployment)
-		STORM_HOME : /daum/program/storm/ (The home directory of the STORM program)
-		STORM_RUN_LOG_FULLPATH : /daum/logs/ink/run.log (STORM LOG settings directory)
+		STORM_HOME : ${PATH_TO_PROGRAM}/storm/ (The home directory of the STORM program)
+		STORM_RUN_LOG_FULLPATH : ${PATH_TO_LOG}/ink/run.log (STORM LOG settings directory)
 		STORM_URL : 10.11.99.149:8080 (STORM cluster URL of the web page)
 		REGIST_JOB : Y (When you do get in INK, a TSQL query is performed whether to store the metadata store)
 		DUMP_FLUSH_API_URL : 127.0.0.1:9292/dump/api/flush (Dump api URL to confirm the results of the performed job at INK)
