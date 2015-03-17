@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.tommy.stationery.ink.mapper.metastore.InkStreamMapper">
+
+    <select id="getInkStreams" resultType="org.tommy.stationery.ink.domain.meta.Stream">
+        SELECT
+        *
+        FROM
+        INK_STREAM
+    </select>
+
+    <select id="getInkStreamByName" parameterType="org.tommy.stationery.ink.domain.meta.Stream" resultType="org.tommy.stationery.ink.domain.meta.Stream">
+        SELECT
+        *
+        FROM
+        INK_STREAM
+        WHERE
+        NAME = #{name}
+    </select>
+
+    <update id="putInkStream" parameterType="org.tommy.stationery.ink.domain.meta.Stream">
+        UPSERT INTO
+        INK_STREAM(NAME, META)
+        VALUES(
+        #{name}
+        , #{meta}
+        )
+    </update>
+
+    <delete id="removeInkStream" parameterType="org.tommy.stationery.ink.domain.meta.Stream">
+        DELETE FROM
+        INK_STREAM
+        WHERE
+        NAME = #{name}
+    </delete>
+</mapper>

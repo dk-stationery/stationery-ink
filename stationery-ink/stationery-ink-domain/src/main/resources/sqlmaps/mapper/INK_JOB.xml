@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.tommy.stationery.ink.mapper.metastore.InkJobMapper">
+
+    <select id="getInkJobs" resultType="org.tommy.stationery.ink.domain.meta.Job">
+        SELECT
+        *
+        FROM
+        INK_JOB
+    </select>
+
+    <select id="getInkJobByName" parameterType="org.tommy.stationery.ink.domain.meta.Job" resultType="org.tommy.stationery.ink.domain.meta.Job">
+        SELECT
+            *
+        FROM
+            INK_JOB
+        WHERE
+            NAME = #{name}
+    </select>
+
+    <update id="putInkJob" parameterType="org.tommy.stationery.ink.domain.meta.Job">
+        UPSERT INTO
+          INK_JOB(NAME, META)
+        VALUES(
+          #{name}
+          , #{meta}
+        )
+    </update>
+
+    <delete id="removeInkJob" parameterType="org.tommy.stationery.ink.domain.meta.Job">
+        DELETE FROM
+          INK_JOB
+        WHERE
+            NAME = #{name}
+    </delete>
+</mapper>

@@ -1,0 +1,15 @@
+phoenix:
+    driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
+    url: #################################
+    initPoolSize: 30
+    maxPoolSize: 150
+    minPoolSize: 1
+
+auth:
+    api:
+        id: #################################
+        password: #################################
+
+redis:
+    host: #################################
+    password: #################################

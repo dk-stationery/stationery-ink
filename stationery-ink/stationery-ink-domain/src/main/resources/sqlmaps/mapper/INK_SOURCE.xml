@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.tommy.stationery.ink.mapper.metastore.InkSourceMapper">
+
+    <select id="getInkSources" resultType="org.tommy.stationery.ink.domain.meta.Source">
+        SELECT
+        *
+        FROM
+        INK_SOURCE
+    </select>
+
+    <select id="getInkSourceByName" parameterType="org.tommy.stationery.ink.domain.meta.Source" resultType="org.tommy.stationery.ink.domain.meta.Source">
+        SELECT
+        *
+        FROM
+        INK_SOURCE
+        WHERE
+        NAME = #{name}
+    </select>
+
+    <select id="getInkSourceByNameAndCatalog" parameterType="org.tommy.stationery.ink.domain.meta.Source" resultType="org.tommy.stationery.ink.domain.meta.Source">
+        SELECT
+          *
+        FROM
+          INK_SOURCE
+        WHERE
+        NAME = #{name}
+        AND CATALOG = #{catalog}
+    </select>
+
+    <update id="putInkSource" parameterType="org.tommy.stationery.ink.domain.meta.Source">
+        UPSERT INTO
+          INK_SOURCE(NAME, CATALOG, META)
+        VALUES(
+          #{name}
+          , #{catalog}
+          , #{meta}
+        )
+    </update>
+
+    <delete id="removeInkSource" parameterType="org.tommy.stationery.ink.domain.meta.Source">
+        DELETE FROM
+        INK_SOURCE
+        WHERE
+        NAME = #{name}
+    </delete>
+</mapper>

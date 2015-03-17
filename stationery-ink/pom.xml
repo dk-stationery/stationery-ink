@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>stationery-ink</groupId>
+    <artifactId>org.tommy.stationery.ink</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.6</java.version>
+    </properties>
+
+    <parent>
+        <groupId>com.daumcorp.maven.parent</groupId>
+        <artifactId>daum-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <scm>
+        <connection>scm:svn:http://source.daumcorp.com/private/sapd_clix/report/branches/RB2.0</connection>
+        <developerConnection>scm:svn:http://source.daumcorp.com/private/sapd_clix/report/branches/RB2.0</developerConnection>
+        <url>http://source.daumcorp.com/private/sapd_clix/report/branches/RB2.0</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>daum sapd</id>
+            <name>Daum DA Repository</name>
+            <url>http://maven.daumcorp.com/content/repositories/daum-da</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>daum-sapd-snapshots</id>
+            <name>Daum DA Snapshot Repository</name>
+            <url>http://maven.daumcorp.com/content/repositories/daum-da-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <modules>
+        <module>stationery-ink-core</module>
+        <module>stationery-ink-domain</module>
+        <module>stationery-ink-daemon</module>
+        <module>stationery-ink-udf</module>
+        <module>stationery-ink-jdbc</module>
+        <module>stationery-ink-stormclient</module>
+        <module>stationery-ink-api</module>
+        <module>stationery-ink-util</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>daum sapd</id>
+            <name>Daum DA Repository</name>
+            <url>http://maven.daumcorp.com/content/repositories/daum-da</url>
+        </repository>
+        <repository>
+            <id>daum-sapd</id>
+            <url>http://maven.daumcorp.com/content/groups/daum-sapd-group</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <tagNameFormat>REL-@{project.artifactId}-@{project.version}</tagNameFormat>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+                    <preparationGoals>clean</preparationGoals>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>
