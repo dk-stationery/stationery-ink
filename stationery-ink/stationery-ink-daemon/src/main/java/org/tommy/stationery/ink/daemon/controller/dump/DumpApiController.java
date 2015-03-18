@@ -42,17 +42,32 @@ public class DumpApiController {
         if (dumps == null || dumps.size() == 0) {
             localDump.put(jobName, deserializedDump);
         } else {
+            if (dumps.size() > 100) {
+                dumps.clear();
+            }
             dumps.addAll(deserializedDump);
             localDump.put(jobName, dumps);
         }
 
-        logger.info("dump flush : " + dumps.toString());
+        logger.info("dump flush ");
         return "SUCCEED";
     }
 
     @RequestMapping(value = "/dump", method = RequestMethod.POST)
     public List<Dump> dump(@RequestParam(value = "jobName", required = true) String jobName) throws Exception {
         logger.info("dump dump : " + jobName);
-        return localDump.get(jobName);
+        List<Dump> dump = localDump.get(jobName);
+        List<Dump> ret =  new ArrayList<Dump>();
+        if (dump != null) {
+            int begin = 0;
+            int end = 0;
+            int size = dump.size() - 9;
+            if (size > 0) {
+                begin = size;
+                end = dump.size() - 1;
+                ret =  dump.subList(begin, end);
+            }
+        }
+        return ret;
     }
 }

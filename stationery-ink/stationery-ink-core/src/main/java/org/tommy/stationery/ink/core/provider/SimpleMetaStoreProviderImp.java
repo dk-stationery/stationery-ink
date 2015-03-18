@@ -1,5 +1,6 @@
 package org.tommy.stationery.ink.core.provider;
 
+import backtype.storm.contrib.signals.client.SignalClient;
 import net.hydromatic.linq4j.Linq4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -107,6 +108,15 @@ public class SimpleMetaStoreProviderImp extends AbstractSimpleMetaStoreProvider 
     //SNAPSHOT_JOB
     public ResultStatement doSnapshotJobAction(InkConfig inkConfig, BaseStatement statement) throws Exception {
         DumpUtil dumpUtil = new DumpUtil();
+        SignalClient snapClient = new SignalClient(inkConfig.getString(SettingEnum.DUMP_ZOOKEEPER_SERVER), statement.getTable().getName());
+        snapClient.start();
+        try {
+            String messgae = statement.getTable().getName() + "_" + System.currentTimeMillis();
+            snapClient.send(messgae.getBytes());
+        } finally {
+            snapClient.close();
+        }
+        Thread.sleep(2000);
         List<Dump> info = dumpUtil.dump(statement.getTable().getName(), inkConfig.getString(SettingEnum.DUMP_API_URL));
         return generateResultStatement(info);
     }

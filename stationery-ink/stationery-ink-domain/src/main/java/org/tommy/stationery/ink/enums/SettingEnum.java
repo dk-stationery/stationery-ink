@@ -4,6 +4,7 @@ package org.tommy.stationery.ink.enums;
  * Created by kun7788 on 15. 2. 13..
  */
 public enum SettingEnum {
+    DUMP_ZOOKEEPER_SERVER("DUMP_ZOOKEEPER_SERVER"),
     DUMP_FLUSH_API_URL("DUMP_FLUSH_API_URL"),
     DUMP_CLEAR_API_URL("DUMP_CLEAR_API_URL"),
     DUMP_API_URL("DUMP_API_URL"),

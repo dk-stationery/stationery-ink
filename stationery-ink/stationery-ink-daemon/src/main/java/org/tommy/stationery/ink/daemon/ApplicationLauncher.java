@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 @EnableAutoConfiguration
 public class ApplicationLauncher {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         SpringApplication.run(RestApplicationConfig.class, args);
     }
 }

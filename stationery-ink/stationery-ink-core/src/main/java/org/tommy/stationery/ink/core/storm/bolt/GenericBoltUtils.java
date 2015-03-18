@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by kun7788 on 15. 2. 9..
  */
-public class GenericBoltUtils extends GenericDumpBoltUtils {
+public class GenericBoltUtils {
 
     public static Logger logger = LoggerFactory.getLogger(GenericBoltUtils.class);
 

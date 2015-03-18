@@ -8,7 +8,7 @@ import org.tommy.stationery.ink.core.config.CoordinateConfig;
 import org.tommy.stationery.ink.core.config.InkConfig;
 import org.tommy.stationery.ink.core.linq.LinqQuery;
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
-import org.tommy.stationery.ink.core.storm.bolt.LogConsoleBolt;
+import org.tommy.stationery.ink.core.storm.bolt.DumpAndLogBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.InsertPhoenixBolt;
 import org.tommy.stationery.ink.core.storm.bolt.lookup.LookupPhoenixBolt;
 import org.tommy.stationery.ink.core.storm.bolt.stream.EsperBolt;
@@ -18,8 +18,8 @@ import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.BaseTableDef;
 import org.tommy.stationery.ink.domain.meta.Source;
 import org.tommy.stationery.ink.domain.meta.Stream;
-import org.tommy.stationery.ink.enums.SettingEnum;
 import org.tommy.stationery.ink.enums.MessageEnum;
+import org.tommy.stationery.ink.enums.SettingEnum;
 import org.tommy.stationery.ink.enums.SourceCatalogEnum;
 import org.tommy.stationery.ink.enums.StatementTypeEnum;
 import org.tommy.stationery.ink.exception.InkException;
@@ -207,7 +207,7 @@ public class BoltBuilder {
         //last add debug bolt if isDebug = true
         if (isLast == true && inkConfig.getBoolean(SettingEnum.IS_DEBUG)) {
             String debugComponenetId = generateComponentId(generatePrefix(BOLT_NAME_PREFIX), "DEBUG", "CONSOLE");;
-            LogConsoleBolt logConsoleBolt = new LogConsoleBolt(DEFAULT_STREAM, inkConfig);
+            DumpAndLogBolt logConsoleBolt = new DumpAndLogBolt(DEFAULT_STREAM, inkConfig);
             stormTopologyBuilder.addBolt(debugComponenetId, logConsoleBolt, 5);
             stormTopologyBuilder.connect(previousComponentId, debugComponenetId, null);
         }

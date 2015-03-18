@@ -35,7 +35,7 @@ public class LogConsoleBolt extends GenericBoltUtils implements IRichBolt {
 		LogUtil.LOG("Displayer :: execute", input.toString(), true);
 
         //dump result data
-        dump(inkConfig, input);
+        //dump(inkConfig, input);
 
 		collector.ack(input);
 	}
