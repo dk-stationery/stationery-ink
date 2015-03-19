@@ -4,13 +4,17 @@ package org.tommy.stationery.ink.api.enums;
  * Created by kun7788 on 15. 3. 10..
  */
 public enum RealtimeReportTypeEnum {
-    RealtimeReportGroupByMkrSeq("getRealtimeReportGroupByMkrSeq"),
-    RealtimeReportGroupByMbrSeq("getRealtimeReportGroupByMbrSeq"),
-    RealtimeReportGroupByCampaignSeq("getRealtimeReportGroupByCampaignSeq"),
-    RealtimeReportGroupByAdgroupSeq("getRealtimeReportGroupByAdgroupSeq"),
-    RealtimeReportGroupByAdSeq("getRealtimeReportGroupByAdSeq"),
-    RealtimeReportGroupByAdcontentSeq("getRealtimeReportGroupByAdcontentSeq"),
-    RealtimeReportGroupByAreaType("getRealtimeReportGroupByAreaType")
+    RealtimeMemberReportGroupByCampaignByMbrseq("getRealtimeMemberReportGroupByCampaignByMbrseq"),
+    RealtimeMemberReportGroupByAdgroupByCampaignseq("getRealtimeMemberReportGroupByAdgroupByCampaignseq"),
+    RealtimeMemberReportGroupByAdByAdgroupseq("getRealtimeMemberReportGroupByAdByAdgroupseq"),
+    RealtimeMemberReportGroupByAdcontentByAdgroupseq("getRealtimeMemberReportGroupByAdcontentByAdgroupseq"),
+    RealtimeMemberReportGroupByAreatypeByCampaignseq("getRealtimeMemberReportGroupByAreatypeByCampaignseq"),
+    RealtimeMemberReportGroupByAreatypeByAdgroupseq("getRealtimeMemberReportGroupByAreatypeByAdgroupseq"),
+    RealtimeMemberReportGroupByAreatypeByAdseq("getRealtimeMemberReportGroupByAreatypeByAdseq"),
+    RealtimeMemberReportGroupByAreatypeByAdcontentseq("getRealtimeMemberReportGroupByAreatypeByAdcontentseq"),
+
+    RealtimeMarketerReportGroupByMkrByMkrseqs("getRealtimeMarketerReportGroupByMkrByMkrseqs"),
+    RealtimeMarketerReportGroupByAreatypeByMkrseqs("getRealtimeMarketerReportGroupByAreatypeByMkrseqs")
     ;
 
     private String name;

@@ -4,7 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.tommy.stationery.ink.api.dao.RealtimeReportApiDao;
+import org.tommy.stationery.ink.api.dao.RealtimeMarketerReportApiDao;
+import org.tommy.stationery.ink.api.dao.RealtimeMemberReportApiDao;
 import org.tommy.stationery.ink.api.domain.RealtimeReportData;
 import org.tommy.stationery.ink.api.domain.RealtimeReportParam;
 
@@ -24,11 +25,17 @@ public class ParallelPhoenixScanUtil {
 
     public static String GLOBALCACHED_PREFIX_KEY = "GLOBAL_CACHED_KEY";
 
+    public static int OLD_REPORT_DATA_CACHE_EXPIRE_TIME = 60*60*24;
+
     @Autowired
     CacheDataUtil cacheDataUtil;
 
     @Autowired
-    RealtimeReportApiDao realtimeReportApiDao;
+    RealtimeMemberReportApiDao realtimeMemberReportApiDao;
+
+    @Autowired
+    RealtimeMarketerReportApiDao realtimeMarketerReportApiDao;
+
 
     public List<Long> getBetweenDt(RealtimeReportParam realtimeReportParam) {
         Long current = DateUtil.getCurrentDate();
@@ -81,7 +88,7 @@ public class ParallelPhoenixScanUtil {
                 logger.info("DT_CACHED_CACHE HIT : " + cachedKey + " : getRealtimeCachedReportForParallels");
                 reports.addAll((List<HashMap<String, String>>)cacheDataUtil.getObject(cachedKey));
             } else {
-                Callable<RealtimeReportData> callable = new PhoenixScanCallable(realtimeReportApiDao, dt, cachedKey, realtimeReportParam);
+                Callable<RealtimeReportData> callable = new PhoenixScanCallable(realtimeMarketerReportApiDao, realtimeMemberReportApiDao, dt, cachedKey, realtimeReportParam);
                 Future<RealtimeReportData> future = phoenixScanThreadPool.submit(callable);
                 cachedSet.add(future);
             }
@@ -102,7 +109,7 @@ public class ParallelPhoenixScanUtil {
                 logger.info("DT_FRESHED_CACHE HIT : " + cachedKey + " : getRealtimeCachedReportForParallels");
                 reports.addAll((List<HashMap<String, String>>)cacheDataUtil.getObject(cachedKey));
             } else {
-                Callable<RealtimeReportData> callable = new PhoenixScanCallable(realtimeReportApiDao, dt, cachedKey, realtimeReportParam);
+                Callable<RealtimeReportData> callable = new PhoenixScanCallable(realtimeMarketerReportApiDao, realtimeMemberReportApiDao, dt, cachedKey, realtimeReportParam);
                 Future<RealtimeReportData> future = phoenixScanThreadPool.submit(callable);
                 freshSet.add(future);
             }

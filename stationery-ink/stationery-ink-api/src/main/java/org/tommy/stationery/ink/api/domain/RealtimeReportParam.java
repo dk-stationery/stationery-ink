@@ -6,18 +6,19 @@ import org.tommy.stationery.ink.api.enums.RealtimeReportTypeEnum;
  * Created by kun7788 on 15. 3. 9..
  */
 public class RealtimeReportParam {
-    private Long mkrSeq;
-    private Long mbrSeq;
-    private Long campaignSeq;
-    private Long adgroupSeq;
-    private Long adSeq;
-    private Long adcontentSeq;
-    private String areatype;
-    private Long beginDt;
-    private Long endDt;
-    private Long dt;
-    private String dtStr;
-    private RealtimeReportTypeEnum type;
+    private String inQuery = "";
+    private Long mkrSeq = 0l;
+    private Long mbrSeq = 0l;
+    private Long campaignSeq = 0l;
+    private Long adgroupSeq = 0l;
+    private Long adSeq = 0l;
+    private Long adcontentSeq = 0l;
+    private String areatype = "";
+    private Long beginDt = 0l;
+    private Long endDt = 0l;
+    private Long dt = 0l;
+    private String dtStr = "";
+    private RealtimeReportTypeEnum type = RealtimeReportTypeEnum.RealtimeMarketerReportGroupByAreatypeByMkrseqs;
 
     public Long getMkrSeq() {
         return mkrSeq;
@@ -142,5 +143,13 @@ public class RealtimeReportParam {
 
     public void setType(RealtimeReportTypeEnum type) {
         this.type = type;
+    }
+
+    public String getInQuery() {
+        return inQuery;
+    }
+
+    public void setInQuery(String inQuery) {
+        this.inQuery = inQuery;
     }
 }

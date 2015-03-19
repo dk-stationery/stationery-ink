@@ -31,7 +31,6 @@ public class DumpAndLogBolt extends BaseSignalBolt implements IRichBolt {
     private int dumpCnt = 0;
     private static int DUMP_LIMIT_CNT = 5;
     private boolean isDump = false;
-    private Map stormConf;
 
     public DumpAndLogBolt(String streamId, InkConfig inkConfig) {
         super(inkConfig.getString(SettingEnum.JOB_NAME));
@@ -44,7 +43,6 @@ public class DumpAndLogBolt extends BaseSignalBolt implements IRichBolt {
         super.prepare(stormConf, context, collector);
         dumpUtil = new DumpUtil();
         this.collector = collector;
-        this.stormConf = stormConf;
     }
 
     private void dump(Tuple tuple) {
@@ -87,11 +85,13 @@ public class DumpAndLogBolt extends BaseSignalBolt implements IRichBolt {
 
     @Override
     public void execute(Tuple tuple) {
-        if (isDump == false) {
-            dump(tuple);
+        try {
+            if (isDump == false) {
+                dump(tuple);
+            }
+        } finally {
+            collector.ack(tuple);
         }
-
-        collector.ack(tuple);
     }
 
     @Override
@@ -101,20 +101,22 @@ public class DumpAndLogBolt extends BaseSignalBolt implements IRichBolt {
 
     @Override
     public void onSignal(byte[] bytes) {
+        try {
+            logger.info("SIGNAL === RECEIVED");
+            isDump = true;
 
-        logger.info("SIGNAL === RECEIVED");
-        isDump = true;
-
-        //flush
-        String jobName = inkConfig.getString(SettingEnum.JOB_NAME);
-        if (jobName != null) {
-            String DUMP_FLUSH_API_URL = inkConfig.getString(SettingEnum.DUMP_FLUSH_API_URL);
-            if (cachedDumps.size() > 0) {
-                dumpUtil.flush(jobName, DUMP_FLUSH_API_URL, cachedDumps);
+            //flush
+            String jobName = inkConfig.getString(SettingEnum.JOB_NAME);
+            if (jobName != null) {
+                String DUMP_FLUSH_API_URL = inkConfig.getString(SettingEnum.DUMP_FLUSH_API_URL);
+                if (cachedDumps.size() > 0) {
+                    dumpUtil.flush(jobName, DUMP_FLUSH_API_URL, cachedDumps);
+                }
             }
+        } finally {
+            //clear
+            cachedDumps.clear();
+            isDump = false;
         }
-        //clear
-        cachedDumps.clear();
-        isDump = false;
     }
 }
