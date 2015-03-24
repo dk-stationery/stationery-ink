@@ -32,7 +32,7 @@ public class CoordinateConfig {
         topologyConfig.put(Config.TOPOLOGY_EXECUTOR_RECEIVE_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_EXECUTOR_RECEIVE_BUFFER_SIZE));
 		topologyConfig.setNumWorkers(inkConfig.getInteger(SettingEnum.WORKER_CNT));
 		topologyConfig.setMaxSpoutPending(inkConfig.getInteger(SettingEnum.STORM_MAXSPOUTPENDING_NUM));
-        topologyConfig.setNumAckers(inkConfig.getInteger(SettingEnum.WORKER_CNT)); //equal = NumWorkers
+        topologyConfig.setNumAckers(inkConfig.getInteger(SettingEnum.SPOUT_THREAD_CNT)); //equal = SPOUT_THREAD_CNT
 		return topologyConfig;
 	}
 
