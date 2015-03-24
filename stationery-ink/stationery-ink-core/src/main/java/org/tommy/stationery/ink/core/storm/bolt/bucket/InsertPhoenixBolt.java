@@ -106,6 +106,10 @@ public class InsertPhoenixBolt extends GenericBoltUtils implements IRichBolt, IB
     @Override
     public void cleanup() {
         globalDatabaseWriter.stopAndWait();
+        try {
+            globalDatabaseWriter.shutDown();
+        } catch (Exception e) {
+        }
     }
 
     @Override

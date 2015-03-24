@@ -26,8 +26,13 @@ public class CoordinateConfig {
 		topologyConfig.setDebug(false);
 		topologyConfig.setMessageTimeoutSecs(inkConfig.getInteger(SettingEnum.STORM_MESSAGE_TIMEOUT_SEC));
 		topologyConfig.put(RichSpoutBatchExecutor.MAX_BATCH_SIZE_CONF, inkConfig.getInteger(SettingEnum.STORM_BATCH_SIZE));
+        topologyConfig.put(Config.TOPOLOGY_RECEIVER_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_RECEIVER_BUFFER_SIZE));
+        topologyConfig.put(Config.TOPOLOGY_TRANSFER_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_TRANSFER_BUFFER_SIZE));
+        topologyConfig.put(Config.TOPOLOGY_EXECUTOR_SEND_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_EXECUTOR_SEND_BUFFER_SIZE));
+        topologyConfig.put(Config.TOPOLOGY_EXECUTOR_RECEIVE_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_EXECUTOR_RECEIVE_BUFFER_SIZE));
 		topologyConfig.setNumWorkers(inkConfig.getInteger(SettingEnum.WORKER_CNT));
 		topologyConfig.setMaxSpoutPending(inkConfig.getInteger(SettingEnum.STORM_MAXSPOUTPENDING_NUM));
+        topologyConfig.setNumAckers(inkConfig.getInteger(SettingEnum.WORKER_CNT)); //equal = NumWorkers
 		return topologyConfig;
 	}
 
@@ -51,7 +56,7 @@ public class CoordinateConfig {
 
 		ConsumerConfig consumerConfig = new ConsumerConfigBuilder().connection(connectionConfig)
 		                                                        .queue(topicMeta.getValue())
-		                                                        .prefetch(10485760)
+		                                                        .prefetch(1048576)
 		                                                        .requeueOnFail()
 		                                                        .build();
 		return consumerConfig;
@@ -62,7 +67,7 @@ public class CoordinateConfig {
 		Map conf = new HashMap();
         conf.put(Config.STORM_ZOOKEEPER_SESSION_TIMEOUT, 10000l);
         conf.put(Config.STORM_ZOOKEEPER_RETRY_TIMES, 4);
-        conf.put(Config.STORM_ZOOKEEPER_RETRY_INTERVAL, 5);
+        conf.put(Config.STORM_ZOOKEEPER_RETRY_INTERVAL, 10);
 
 		BaseMetaDef urlMeta = Linq4j.asEnumerable(inkSource.getStatement().getMetas()).where(LinqQuery.META_URL_FILTER).toList().get(0);
 		BaseMetaDef topicMeta = Linq4j.asEnumerable(inkStream.getStatement().getMetas()).where(LinqQuery.META_TOPIC_FILTER).toList().get(0);
@@ -75,12 +80,13 @@ public class CoordinateConfig {
 				brokerHost
 				, topicMeta.getValue()
 				, "/brokers"
-				, topicMeta.getValue()
-				+ "VERSION_" + System.currentTimeMillis()
+				, topicMeta.getValue()+ "_VERSION_" + System.currentTimeMillis()
 		);
 		
-		spoutConfig.bufferSizeBytes = 10485760;
-		spoutConfig.fetchSizeBytes= 10485760;
+		spoutConfig.bufferSizeBytes = 1048576;
+		spoutConfig.fetchSizeBytes= 1048576;
+        spoutConfig.forceFromStart = false;
+        spoutConfig.startOffsetTime = kafka.api.OffsetRequest.LatestTime();
 		return spoutConfig;
 	}
 }

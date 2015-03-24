@@ -129,7 +129,10 @@ public class LookupPhoenixBolt extends GenericBoltUtils implements IRichBolt, IL
     @Override
     public void cleanup() {
         try {
-            if (connection != null) connection.close();
+            if (connection != null) {
+                connection.commit();
+                connection.close();
+            }
         } catch (SQLException e) {
         }
     }

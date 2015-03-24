@@ -50,6 +50,10 @@ public class GlobalDatabaseWriter extends AbstractExecutionThreadService {
 	  
 	  @Override
 	  protected void shutDown() throws Exception {
+          if (connection != null) {
+              connection.commit();
+              connection.close();
+          }
 	  }
 	  
 	  @Override
