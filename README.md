@@ -107,7 +107,11 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 		COMMIT_INTERVAL: 5 (INSERT, UPSERT, UPDATE, DELETE query he default Commit interval)
 		STORM_MESSAGE_TIMEOUT_SEC : 30
 		STORM_MAXSPOUTPENDING_NUM : 1
-		STORM_BATCH_SIZE : 10485760
+		TOPOLOGY_RECEIVER_BUFFER_SIZE : 8
+		TOPOLOGY_TRANSFER_BUFFER_SIZE : 32
+		TOPOLOGY_EXECUTOR_SEND_BUFFER_SIZE : 1048576
+		TOPOLOGY_EXECUTOR_RECEIVE_BUFFER_SIZE : 1048576
+		STORM_BATCH_SIZE : 1048576
 		STORM_CLIENT_FILEPATH : ${PATH_TO_PROGRAM}/ink-stormclient/ (Location of deployment JAR to use the Storm)
 		STORM_CLIENT_MAIN_CLASS : org.tommy.stationery.ink.stormclient.StormClient
 		STORM_CLIENT_JAR : stationery-ink-stormclient.jar (The name of the JAR for deployment)
