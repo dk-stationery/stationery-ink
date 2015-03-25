@@ -2,7 +2,10 @@ package org.tommy.stationery.ink.core.config;
 
 import org.tommy.stationery.ink.enums.SettingEnum;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +20,17 @@ public class ConfigProperties {
 
     public ConfigProperties(String configFilePath) throws IOException {
         properties = new Properties();
-        properties.load(ConfigProperties.class.getResourceAsStream(configFilePath));
+        try {
+            properties.load(ConfigProperties.class.getResourceAsStream(configFilePath));
+        }catch(Exception ex) {
+            InputStream in = null;
+            try {
+                in = new FileInputStream(configFilePath);
+            } catch (FileNotFoundException e1) {
+                throw new IOException(e1.getMessage());
+            }
+            properties.load(in);
+        }
     }
 
     public InkConfig getDefaultInkConfig () {
