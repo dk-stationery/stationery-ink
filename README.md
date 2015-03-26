@@ -42,6 +42,27 @@ Summation : Connecting the streaming data defined in STREAM, based on the inform
 : > Reference : http://hbase.apache.org/    
 3. Install Apache Phoenix.    
 : > Reference : http://phoenix.apache.org/    
+: > Phoenix sqlline.py connected.  
+: > execute the query for making meta table.  
+		CREATE TABLE IF NOT EXISTS INK_JOB ( 
+			NAME VARCHAR not null,
+			META VARCHAR
+			CONSTRAINT PK PRIMARY KEY (NAME)
+		) ;
+
+		CREATE TABLE IF NOT EXISTS INK_SOURCE ( 
+			NAME VARCHAR not null,
+			CATALOG VARCHAR not null,
+			META VARCHAR
+			CONSTRAINT PK PRIMARY KEY (NAME)
+		);
+		
+		CREATE TABLE IF NOT EXISTS INK_STREAM ( 
+			NAME VARCHAR not null,
+			META VARCHAR
+			CONSTRAINT PK PRIMARY KEY (NAME)
+		);
+		
 4. Install Redis.    
 : > Reference : http://www.redis.io/    
 5. Install Ink-api.    
