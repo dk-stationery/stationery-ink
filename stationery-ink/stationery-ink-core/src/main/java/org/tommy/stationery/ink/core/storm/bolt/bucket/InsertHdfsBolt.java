@@ -12,8 +12,6 @@ import org.apache.storm.hdfs.bolt.format.FileNameFormat;
 import org.apache.storm.hdfs.bolt.format.RecordFormat;
 import org.apache.storm.hdfs.bolt.rotation.FileRotationPolicy;
 import org.apache.storm.hdfs.bolt.rotation.FileSizeRotationPolicy;
-import org.apache.storm.hdfs.bolt.sync.CountSyncPolicy;
-import org.apache.storm.hdfs.bolt.sync.SyncPolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tommy.stationery.ink.core.config.InkConfig;
@@ -51,20 +49,19 @@ public class InsertHdfsBolt extends HdfsBolt implements IRichBolt, IBucketBolt {
     @Override
     public void setting(String streamId, InkConfig inkConfig, List<String> previousEmitFileds, BaseStatement statement, Stream inkStream, Source inkSource) {
         this.streamId = streamId;
-        this.baseStatement = baseStatement;
+        this.baseStatement = statement;
         this.inkStream = inkStream;
         this.inkSource = inkSource;
         this.inkConfig = inkConfig;
         this.previousEmitFileds = previousEmitFileds;
         String hdfsFullpathFileName = MetaFinderUtil.findMeta(inkStream.getStatement().getMetas(), MetaFieldEnum.TOPIC).getValue();
         hdfsFilePath = hdfsFullpathFileName.substring(0, hdfsFullpathFileName.lastIndexOf("/"));
-        hdfsFileName = inkStream.getName() + ".txt";
+        hdfsFileName = hdfsFullpathFileName.substring(hdfsFullpathFileName.lastIndexOf("/") + 1, hdfsFullpathFileName.length());
     }
 
     @Override
     public void doPrepare(Map conf, TopologyContext topologyContext, OutputCollector collector) throws IOException {
         super.doPrepare(conf, topologyContext, collector);
-
 
         List<String> columns = new ArrayList<String>();
         if (baseStatement.getColumns() != null) {
@@ -77,7 +74,7 @@ public class InsertHdfsBolt extends HdfsBolt implements IRichBolt, IBucketBolt {
                 .withFieldDelimiter(",").withFields(new Fields(columns.toArray(new String[0])));
         this.withRecordFormat(format);
 
-        SyncPolicy syncPolicy = new CountSyncPolicy((inkConfig.getInteger(SettingEnum.COMMIT_INTERVAL) < 10) ? 100 : inkConfig.getInteger(SettingEnum.COMMIT_INTERVAL)); //performance issue.
+        HdfsCountSyncPolicy syncPolicy = new HdfsCountSyncPolicy((inkConfig.getInteger(SettingEnum.COMMIT_INTERVAL) < 10) ? 100 : inkConfig.getInteger(SettingEnum.COMMIT_INTERVAL)); //performance issue.
         this.withSyncPolicy(syncPolicy);
 
         FileRotationPolicy rotationPolicy = new FileSizeRotationPolicy(1024.0f, FileSizeRotationPolicy.Units.MB);
