@@ -70,7 +70,7 @@ public class MultiTenantProxyUtil {
         try {
             HttpPost post = new HttpPost(url);
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-            nameValuePairs.add(new BasicNameValuePair("sql", sql));
+            nameValuePairs.add(new BasicNameValuePair("sql", sql.replace("\n", "")));
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             HttpResponse response = client.execute(post);

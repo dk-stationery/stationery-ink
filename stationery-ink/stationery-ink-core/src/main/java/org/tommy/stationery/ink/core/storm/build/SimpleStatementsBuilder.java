@@ -158,6 +158,7 @@ public class SimpleStatementsBuilder implements ISimpleStatementsBuilder {
         this.settingValidator = settingValidator;
         this.ddlValidator = ddlValidator;
         this.dmlValidator = dmlValidator;
+        this.useValidator = useValidator;
     }
 
     @Override

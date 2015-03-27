@@ -6,6 +6,7 @@ package org.tommy.stationery.ink.enums;
 public enum SourceCatalogEnum {
     KAFKA("KAFKA"),
     RABBITMQ("RABBITMQ"),
+    HDFS("HDFS"),
     PHOENIX("PHOENIX");
 
     private String name;

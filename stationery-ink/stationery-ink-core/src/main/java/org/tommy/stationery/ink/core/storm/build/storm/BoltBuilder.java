@@ -1,5 +1,6 @@
 package org.tommy.stationery.ink.core.storm.build.storm;
 
+import backtype.storm.topology.IRichBolt;
 import backtype.storm.topology.IRichSpout;
 import io.latent.storm.rabbitmq.RabbitMQSpout;
 import net.hydromatic.linq4j.Linq4j;
@@ -9,6 +10,8 @@ import org.tommy.stationery.ink.core.config.InkConfig;
 import org.tommy.stationery.ink.core.linq.LinqQuery;
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.core.storm.bolt.DumpAndLogBolt;
+import org.tommy.stationery.ink.core.storm.bolt.bucket.IBucketBolt;
+import org.tommy.stationery.ink.core.storm.bolt.bucket.InsertHdfsBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.InsertPhoenixBolt;
 import org.tommy.stationery.ink.core.storm.bolt.lookup.LookupPhoenixBolt;
 import org.tommy.stationery.ink.core.storm.bolt.stream.EsperBolt;
@@ -164,10 +167,18 @@ public class BoltBuilder {
 
             componenetId = generateComponentId(generatePrefix(BOLT_NAME_PREFIX), statement.getType().getSubGroup().getName(), StringFromBindTablesAndSource(statement.getBindTables()));
 
-            InsertPhoenixBolt insertPhoenixBolt = new InsertPhoenixBolt();
-            insertPhoenixBolt.setting(DEFAULT_STREAM, inkConfig, previousEmitFileds, statement, inkStream, inkSource);
+            //bucket selection.
+            IRichBolt bolt = null;
+            if (SourceCatalogEnum.PHOENIX.getName().equals(inkSource.getCatalog())) {
+                bolt = new InsertPhoenixBolt();
+            } else if (SourceCatalogEnum.HDFS.getName().equals(inkSource.getCatalog())) {
+                bolt = new InsertHdfsBolt();
+            } else {
+                throw new InkException(MessageEnum.CATALOG_INVALID);
+            }
 
-            stormTopologyBuilder.addBolt(componenetId, insertPhoenixBolt, inkConfig.getInteger(SettingEnum.OUTPUT_THREAD_CNT));
+            ((IBucketBolt)bolt).setting(DEFAULT_STREAM, inkConfig, previousEmitFileds, statement, inkStream, inkSource);
+            stormTopologyBuilder.addBolt(componenetId, bolt, inkConfig.getInteger(SettingEnum.OUTPUT_THREAD_CNT));
 
         } else if (StatementTypeEnum.SubGroupTypeEnum.LOOKUP.equals(statement.getType().getSubGroup())) {
 
