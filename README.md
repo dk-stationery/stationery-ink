@@ -146,6 +146,7 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 		DUMP_FLUSH_API_URL : 127.0.0.1:9292/dump/api/flush (Dump api URL to confirm the results of the performed job at INK)
 		DUMP_CLEAR_API_URL : 127.0.0.1:9292/dump/api/clear (Dump api URL to confirm the results of the performed job at INK)
 		DUMP_API_URL : 127.0.0.1:9292/dump/api/dump (Dump api URL to confirm the results of the performed job at INK)
+		DUMP_ZOOKEEPER_SERVER : ink-storm-m1.h.test.com:2181,ink-storm-m2.h.test.com:2181,ink-storm-m3.h.test.com:2181 (Dump zookeeper server URL at INK)
 
 7. Install Ink-stormclient.  
 : > 'stationery-ink-stormclient/target' that was built in the folder 'stationery-ink-stormclient-1.0-SNAPSHOT.jar' must copy the daemon server side.    
