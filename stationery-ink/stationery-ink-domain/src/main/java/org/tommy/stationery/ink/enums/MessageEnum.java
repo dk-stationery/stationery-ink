@@ -4,6 +4,7 @@ package org.tommy.stationery.ink.enums;
  * Created by kun7788 on 15. 1. 27..
  */
 public enum MessageEnum {
+    DATA_TYPE_INVALID("DATA_TYPE_INVALID"),
     SHELL_EXECUTE_ERROR("SHELL_EXECUTE_ERROR"),
     STORM_DEPLOY_ERROR("STORM_DEPLOY_ERROR"),
     STORM_KILL_ERROR("STORM_KILL_ERROR"),

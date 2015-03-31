@@ -126,6 +126,9 @@ public class BoltBuilder {
                 aliasedInputBuilder = inputsBuilder.aliasComponent(parserComponentId);
                 //column
                 for (BaseColumnDef columnDef : inkStream.getStatement().getColumns()) {
+                    if (columnDef == null || columnDef.getType() == null || columnDef.getType().getZlass() == null) {
+                        throw new InkException(MessageEnum.DATA_TYPE_INVALID);
+                    }
                     aliasedInputBuilder.withField(columnDef.getName()).ofType(columnDef.getType().getZlass());
                 }
 
