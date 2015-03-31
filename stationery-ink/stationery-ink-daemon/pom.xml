@@ -52,9 +52,11 @@
         <zookeeper.version>3.4.6</zookeeper.version>
         <hbase.version>0.98.1-cdh5.1.0</hbase.version>
         <start-class>org.tommy.stationery.ink.daemon.ApplicationLauncher</start-class>
+        <hadoop.version>2.3.0-cdh5.1.0</hadoop.version>
     </properties>
 
     <dependencies>
+
 
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
@@ -175,6 +177,7 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+
 
         <!-- dependency 아래에 뒤야함 ;;phoenix-core와 충돌 -->
         <dependency>

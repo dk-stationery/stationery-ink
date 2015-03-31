@@ -185,7 +185,7 @@
         <dependency>
             <groupId>org.apache.phoenix</groupId>
             <artifactId>phoenix-core</artifactId>
-            <version>4.0.0-incubating</version>
+            <version>4.0.0-custom-hadoop1</version>
             <exclusions>
                 <exclusion>
                     <artifactId>log4j</artifactId>

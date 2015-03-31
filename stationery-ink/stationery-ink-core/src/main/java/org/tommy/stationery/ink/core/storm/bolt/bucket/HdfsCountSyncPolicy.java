@@ -1,7 +1,7 @@
 package org.tommy.stationery.ink.core.storm.bolt.bucket;
 
 import backtype.storm.tuple.Tuple;
-import org.apache.storm.hdfs.bolt.sync.SyncPolicy;
+import org.tommy.stationery.ink.core.storm.bolt.bucket.hdfs.bolt.sync.SyncPolicy;
 
 /**
  * Created by kun7788 on 15. 3. 27..

@@ -13,9 +13,6 @@
                                function-class="org.tommy.stationery.ink.udf.support.Monitoring" function-method="isFiltered" />
     <plugin-singlerow-function name="sendNoti"
                                function-class="org.tommy.stationery.ink.udf.support.Monitoring" function-method="sendNoti" />
-    <plugin-singlerow-function name="sendNotiRealtimeReport"
-                               function-class="org.tommy.stationery.ink.udf.support.Monitoring" function-method="sendNotiRealtimeReport" />
-
 
     <auto-import import-name="org.tommy.stationery.ink.udf.support.*"/>
     <engine-settings>

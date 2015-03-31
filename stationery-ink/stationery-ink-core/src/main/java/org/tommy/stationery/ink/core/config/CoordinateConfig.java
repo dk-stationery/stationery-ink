@@ -26,8 +26,8 @@ public class CoordinateConfig {
 		topologyConfig.setDebug(false);
 		topologyConfig.setMessageTimeoutSecs(inkConfig.getInteger(SettingEnum.STORM_MESSAGE_TIMEOUT_SEC));
 		topologyConfig.put(RichSpoutBatchExecutor.MAX_BATCH_SIZE_CONF, inkConfig.getInteger(SettingEnum.STORM_BATCH_SIZE));
-        topologyConfig.put(Config.TOPOLOGY_RECEIVER_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_RECEIVER_BUFFER_SIZE));
-        topologyConfig.put(Config.TOPOLOGY_TRANSFER_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_TRANSFER_BUFFER_SIZE));
+        //topologyConfig.put(Config.TOPOLOGY_RECEIVER_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_RECEIVER_BUFFER_SIZE));
+        //topologyConfig.put(Config.TOPOLOGY_TRANSFER_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_TRANSFER_BUFFER_SIZE));
         topologyConfig.put(Config.TOPOLOGY_EXECUTOR_SEND_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_EXECUTOR_SEND_BUFFER_SIZE));
         topologyConfig.put(Config.TOPOLOGY_EXECUTOR_RECEIVE_BUFFER_SIZE, inkConfig.getInteger(SettingEnum.TOPOLOGY_EXECUTOR_RECEIVE_BUFFER_SIZE));
 		topologyConfig.setNumWorkers(inkConfig.getInteger(SettingEnum.WORKER_CNT));
@@ -83,8 +83,8 @@ public class CoordinateConfig {
 				, topicMeta.getValue()+ "_VERSION_" + System.currentTimeMillis()
 		);
 		
-		spoutConfig.bufferSizeBytes = 1048576;
-		spoutConfig.fetchSizeBytes= 1048576;
+		spoutConfig.bufferSizeBytes = 10485760;
+		spoutConfig.fetchSizeBytes= 10485760;
         //spoutConfig.forceFromStart = false;
         //spoutConfig.startOffsetTime = kafka.api.OffsetRequest.LatestTime();
 		return spoutConfig;

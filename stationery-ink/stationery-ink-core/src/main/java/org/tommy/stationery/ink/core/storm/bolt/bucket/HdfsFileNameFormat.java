@@ -1,7 +1,7 @@
 package org.tommy.stationery.ink.core.storm.bolt.bucket;
 
 import backtype.storm.task.TopologyContext;
-import org.apache.storm.hdfs.bolt.format.FileNameFormat;
+import org.tommy.stationery.ink.core.storm.bolt.bucket.hdfs.bolt.format.FileNameFormat;
 
 import java.util.Map;
 

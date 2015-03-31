@@ -11,8 +11,8 @@ import org.tommy.stationery.ink.core.linq.LinqQuery;
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.core.storm.bolt.DumpAndLogBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.IBucketBolt;
-import org.tommy.stationery.ink.core.storm.bolt.bucket.InsertHdfsBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.InsertPhoenixBolt;
+import org.tommy.stationery.ink.core.storm.bolt.bucket.hdfs.bolt.InsertHdfsBolt;
 import org.tommy.stationery.ink.core.storm.bolt.lookup.LookupPhoenixBolt;
 import org.tommy.stationery.ink.core.storm.bolt.stream.EsperBolt;
 import org.tommy.stationery.ink.core.storm.bolt.stream.SpoutParserBolt;
@@ -73,7 +73,7 @@ public class BoltBuilder {
 
     public String generatePrefix(String prefix) {
 
-        return prefix + "[" + (componentIdx++) + "]";
+        return prefix + "-" + (componentIdx++) + "-";
     }
 
     public StormTopologyBuilder addInstance(StormTopologyBuilder stormTopologyBuilder, SimpleMetaStoreProviderImp simpleMetaStoreProvider, BaseStatement statement, InkConfig inkConfig, boolean isLast) throws Exception {
@@ -211,7 +211,6 @@ public class BoltBuilder {
         if (previousComponentId != null) {
             stormTopologyBuilder.connect(previousComponentId, componenetId, null);
         }
-
         previousComponentId = componenetId;
         previousEmitFileds = emitFileds;
 
