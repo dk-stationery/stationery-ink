@@ -43,7 +43,7 @@
         <hbase.version>0.98.1-cdh5.1.0</hbase.version>
         <zookeeper.version>3.4.6</zookeeper.version>
         <hadoop.version>2.3.0-cdh5.1.3</hadoop.version>
-        <elastic.search.version>0.90.0</elastic.search.version>
+        <elastic.search.version>1.1.2</elastic.search.version>
     </properties>
 
     <dependencies>
