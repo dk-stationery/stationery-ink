@@ -121,6 +121,7 @@ public class InsertHdfsBolt extends AbstractHdfsInsertBolt implements IRichBolt,
                 }
             }
 
+            collector.emit(streamId, tuple.getValues());
             this.collector.ack(tuple);
 
             if(this.rotationPolicy.mark(tuple, this.offset)){

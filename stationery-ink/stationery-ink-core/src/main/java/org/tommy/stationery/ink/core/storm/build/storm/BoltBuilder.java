@@ -12,6 +12,7 @@ import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.core.storm.bolt.DumpAndLogBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.IBucketBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.InsertPhoenixBolt;
+import org.tommy.stationery.ink.core.storm.bolt.bucket.elasticsearch.InsertElasticSearchBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.hdfs.bolt.InsertHdfsBolt;
 import org.tommy.stationery.ink.core.storm.bolt.lookup.LookupPhoenixBolt;
 import org.tommy.stationery.ink.core.storm.bolt.stream.EsperBolt;
@@ -176,6 +177,8 @@ public class BoltBuilder {
                 bolt = new InsertPhoenixBolt();
             } else if (SourceCatalogEnum.HDFS.getName().equals(inkSource.getCatalog())) {
                 bolt = new InsertHdfsBolt();
+            } else if (SourceCatalogEnum.ELASTICSEARCH.getName().equals(inkSource.getCatalog())) {
+                bolt = new InsertElasticSearchBolt();
             } else {
                 throw new InkException(MessageEnum.CATALOG_INVALID);
             }
@@ -218,7 +221,7 @@ public class BoltBuilder {
         previousEmitFileds = emitFileds;
 
         //last add debug bolt if isDebug = true
-        if (isLast == true && inkConfig.getBoolean(SettingEnum.IS_DEBUG)) {
+        if (isLast == true) {
             String debugComponenetId = generateComponentId(generatePrefix(BOLT_NAME_PREFIX), "DEBUG", "CONSOLE");;
             DumpAndLogBolt logConsoleBolt = new DumpAndLogBolt(DEFAULT_STREAM, inkConfig);
             stormTopologyBuilder.addBolt(debugComponenetId, logConsoleBolt, 5);

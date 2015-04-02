@@ -7,6 +7,7 @@ public enum SourceCatalogEnum {
     KAFKA("KAFKA"),
     RABBITMQ("RABBITMQ"),
     HDFS("HDFS"),
+    ELASTICSEARCH("ELASTICSEARCH"),
     PHOENIX("PHOENIX");
 
     private String name;
