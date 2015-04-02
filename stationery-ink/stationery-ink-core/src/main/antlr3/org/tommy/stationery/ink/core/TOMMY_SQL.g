@@ -373,7 +373,7 @@ kill_job_statement
     ;
 ///////////////////////////////////////////////////////////////////////////////////////
 source_meta_name returns [String ret]
-    :   n=('CATALOG'|'URL'|'DRIVER'|'ID'|'PW'|'VHOST'|'PORT') { $ret = n.getText(); }
+    :   n=('CATALOG'|'URL'|'DRIVER'|'ID'|'PW'|'VHOST'|'PORT'|'TOPIC'|'CLUSTER') { $ret = n.getText(); }
     ;
 
 source_meta_value returns [String ret]

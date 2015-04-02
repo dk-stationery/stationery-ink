@@ -11,6 +11,7 @@ public enum MetaFieldEnum {
     ID("ID"),
     PW("PW"),
     VHOST("VHOST"),
+    CLUSTER("CLUSTER"),
     PORT("PORT");
 
     private String name;

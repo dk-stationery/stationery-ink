@@ -64,7 +64,7 @@ public class InsertElasticSearchBolt implements IRichBolt, IBucketBolt {
         this.jsonSerde = new JsonSerde();
         String elasticSearchHost = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.URL).getValue();
         Integer elasticSearchPort =  Integer.valueOf(MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.PORT).getValue());
-        String elasticSearchCluster =  MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.TOPIC).getValue();
+        String elasticSearchCluster =  MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.CLUSTER).getValue();
         Settings settings = ImmutableSettings.settingsBuilder().put("cluster.name", elasticSearchCluster).build();
         client = new TransportClient(settings).addTransportAddress(new InetSocketTransportAddress(elasticSearchHost, elasticSearchPort));
 
