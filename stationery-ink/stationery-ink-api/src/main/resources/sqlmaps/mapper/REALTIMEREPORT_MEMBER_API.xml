@@ -221,12 +221,12 @@
         and CAMPAIGNSEQ = #{campaignSeq}
         and ADGROUPSEQ = #{adgroupSeq}
         GROUP BY
-        DT, MKRSEQ, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, ADCONTENTSEQ
+        DT, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, ADCONTENTSEQ
     </select>
 
     <select id="getRealtimeMemberReportGroupByAreatypeByCampaignseq" parameterType="org.tommy.stationery.ink.api.domain.RealtimeReportParam" resultType="java.util.HashMap">
         SELECT
-        DT, MKRSEQ, MBRSEQ, CAMPAIGNSEQ, AREATYPE
+        DT, MBRSEQ, CAMPAIGNSEQ, AREATYPE
         , (CASE WHEN SUM(EXPOSE) is null THEN 0 ELSE SUM(EXPOSE) END) as EXPOSE
         , (CASE WHEN SUM(EXPOSE_SPAM) is null THEN 0 ELSE SUM(EXPOSE_SPAM) END) as EXPOSE_SPAM
         , (CASE WHEN SUM(EXPOSE_EXT) is null THEN 0 ELSE SUM(EXPOSE_EXT) END) as EXPOSE_EXT
@@ -270,19 +270,18 @@
         , (CASE WHEN SUM(INDIRECTCNT) is null THEN 0 ELSE SUM(INDIRECTCNT) END) as INDIRECTCNT
         , (CASE WHEN SUM(INDIRECTAMT) is null THEN 0 ELSE SUM(INDIRECTAMT) END) as INDIRECTAMT
         FROM
-        REALTIME_SA_REPORT
+        REALTIME_SA_MEMBER_REPORT
         WHERE
         DT = #{dt}
-        and MKRSEQ = #{mkrSeq}
         and MBRSEQ = #{mbrSeq}
         and CAMPAIGNSEQ = #{campaignSeq}
         GROUP BY
-        DT, MKRSEQ, MBRSEQ, CAMPAIGNSEQ, AREATYPE
+        DT, MBRSEQ, CAMPAIGNSEQ, AREATYPE
     </select>
 
     <select id="getRealtimeMemberReportGroupByAreatypeByAdgroupseq" parameterType="org.tommy.stationery.ink.api.domain.RealtimeReportParam" resultType="java.util.HashMap">
         SELECT
-        DT, MKRSEQ, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, AREATYPE
+        DT, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, AREATYPE
         , (CASE WHEN SUM(EXPOSE) is null THEN 0 ELSE SUM(EXPOSE) END) as EXPOSE
         , (CASE WHEN SUM(EXPOSE_SPAM) is null THEN 0 ELSE SUM(EXPOSE_SPAM) END) as EXPOSE_SPAM
         , (CASE WHEN SUM(EXPOSE_EXT) is null THEN 0 ELSE SUM(EXPOSE_EXT) END) as EXPOSE_EXT
@@ -326,20 +325,19 @@
         , (CASE WHEN SUM(INDIRECTCNT) is null THEN 0 ELSE SUM(INDIRECTCNT) END) as INDIRECTCNT
         , (CASE WHEN SUM(INDIRECTAMT) is null THEN 0 ELSE SUM(INDIRECTAMT) END) as INDIRECTAMT
         FROM
-        REALTIME_SA_REPORT
+        REALTIME_SA_MEMBER_REPORT
         WHERE
         DT = #{dt}
-        and MKRSEQ = #{mkrSeq}
         and MBRSEQ = #{mbrSeq}
         and CAMPAIGNSEQ = #{campaignSeq}
         and ADGROUPSEQ  = #{adgroupSeq}
         GROUP BY
-        DT, MKRSEQ, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, AREATYPE
+        DT, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, AREATYPE
     </select>
 
     <select id="getRealtimeMemberReportGroupByAreatypeByAdseq" parameterType="org.tommy.stationery.ink.api.domain.RealtimeReportParam" resultType="java.util.HashMap">
         SELECT
-        DT, MKRSEQ, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, ADSEQ, AREATYPE
+        DT, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, ADSEQ, AREATYPE
         , (CASE WHEN SUM(EXPOSE) is null THEN 0 ELSE SUM(EXPOSE) END) as EXPOSE
         , (CASE WHEN SUM(EXPOSE_SPAM) is null THEN 0 ELSE SUM(EXPOSE_SPAM) END) as EXPOSE_SPAM
         , (CASE WHEN SUM(EXPOSE_EXT) is null THEN 0 ELSE SUM(EXPOSE_EXT) END) as EXPOSE_EXT
@@ -383,20 +381,20 @@
         , (CASE WHEN SUM(INDIRECTCNT) is null THEN 0 ELSE SUM(INDIRECTCNT) END) as INDIRECTCNT
         , (CASE WHEN SUM(INDIRECTAMT) is null THEN 0 ELSE SUM(INDIRECTAMT) END) as INDIRECTAMT
         FROM
-        REALTIME_SA_REPORT
+        REALTIME_SA_MEMBER_REPORT
         WHERE
         DT = #{dt}
-        and MKRSEQ = #{mkrSeq}
         and MBRSEQ = #{mbrSeq}
         and CAMPAIGNSEQ = #{campaignSeq}
         and ADGROUPSEQ  = #{adgroupSeq}
+        and ADSEQ = #{adSeq}
         GROUP BY
-        DT, MKRSEQ, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, ADSEQ, AREATYPE
+        DT, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, ADSEQ, AREATYPE
     </select>
 
     <select id="getRealtimeMemberReportGroupByAreatypeByAdcontentseq" parameterType="org.tommy.stationery.ink.api.domain.RealtimeReportParam" resultType="java.util.HashMap">
         SELECT
-        DT, MKRSEQ, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, ADCONTENTSEQ, AREATYPE
+        DT, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, ADCONTENTSEQ, AREATYPE
         , (CASE WHEN SUM(EXPOSE) is null THEN 0 ELSE SUM(EXPOSE) END) as EXPOSE
         , (CASE WHEN SUM(EXPOSE_SPAM) is null THEN 0 ELSE SUM(EXPOSE_SPAM) END) as EXPOSE_SPAM
         , (CASE WHEN SUM(EXPOSE_EXT) is null THEN 0 ELSE SUM(EXPOSE_EXT) END) as EXPOSE_EXT
@@ -440,14 +438,14 @@
         , (CASE WHEN SUM(INDIRECTCNT) is null THEN 0 ELSE SUM(INDIRECTCNT) END) as INDIRECTCNT
         , (CASE WHEN SUM(INDIRECTAMT) is null THEN 0 ELSE SUM(INDIRECTAMT) END) as INDIRECTAMT
         FROM
-        REALTIME_SA_REPORT
+        REALTIME_SA_MEMBER_REPORT
         WHERE
         DT = #{dt}
-        and MKRSEQ = #{mkrSeq}
         and MBRSEQ = #{mbrSeq}
         and CAMPAIGNSEQ = #{campaignSeq}
         and ADGROUPSEQ  = #{adgroupSeq}
+        and ADCONTENTSEQ = #{adcontentSeq}
         GROUP BY
-        DT, MKRSEQ, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, ADCONTENTSEQ, AREATYPE
+        DT, MBRSEQ, CAMPAIGNSEQ, ADGROUPSEQ, ADCONTENTSEQ, AREATYPE
     </select>
 </mapper>
