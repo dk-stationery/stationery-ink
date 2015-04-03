@@ -39,7 +39,7 @@ Summation : Connecting the streaming data defined in STREAM, based on the inform
 1. Install Apache Storm.    
 : > Reference : https://storm.apache.org/    
 2. Install Hbase.    
-: > Reference : http://hbase.apache.org/    
+: > Reference : http://www.cloudera.com/content/cloudera/en/documentation/core/v5-2-x/topics/cdh_ig_hbase_installation.html   
 3. Install Apache Phoenix.    
 : > Reference : http://phoenix.apache.org/    
 : > Reference : http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.3/bk_installing_manually_book/content/rpm-chap-phoenix.html   
