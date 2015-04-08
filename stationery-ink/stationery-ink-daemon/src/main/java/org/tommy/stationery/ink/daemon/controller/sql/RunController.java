@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.tommy.stationery.ink.daemon.service.metastore.StatementBuilderService;
 import org.tommy.stationery.ink.daemon.util.MultiTenantProxyUtil;
+import org.tommy.stationery.ink.daemon.util.SessionUtil;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.ResultStatement;
 import org.tommy.stationery.ink.domain.SqlResults;
+import org.tommy.stationery.ink.domain.cluster.Session;
 import org.tommy.stationery.ink.domain.cluster.Tenant;
 import org.tommy.stationery.ink.enums.StatementTypeEnum;
 
@@ -39,6 +41,9 @@ public class RunController {
     @Autowired
     MultiTenantProxyUtil multiTenantProxyUtil;
 
+    @Autowired
+    SessionUtil sessionUtil;
+
     @RequestMapping("/getDatabaseMetaData")
     public Object getDatabaseMetaData() throws SQLException {
         Connection connection = dataSource.getConnection();
@@ -47,10 +52,19 @@ public class RunController {
     }
 
     @RequestMapping(value = "/run", method = RequestMethod.POST)
-    public Object run(@RequestParam(value = "sql", required = true) String sql) throws Exception {
+    public Object run(@RequestParam(value = "sessionId", required = true) String sessionId, @RequestParam(value = "sql", required = true) String sql) throws Exception {
+        if (";".equals(sql.substring(sql.length() - 1, sql.length())) == false) {
+            sql+=";";
+        }
+
+        Session session = sessionUtil.getQueryBySession(sessionId, sql);
+        if (sessionUtil.isCommit(sessionId, sql)) {
+            sql = session.getSql();
+        }
 
         List<ResultStatement> resultStatements = new ArrayList<ResultStatement>();
         try {
+            logger.info("sessionId : " + sessionId);
             logger.info("sql : " + sql);
 
             List<BaseStatement> statements = statementBuilderService.prepare(sql);

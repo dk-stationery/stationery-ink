@@ -47,6 +47,7 @@ public class RestApplicationConfig {
         parametersConfig = parametersConfig();
     }
 
+
     @Bean
     public ParametersConfig parametersConfig() {
         ParametersConfig parametersConfig = new ParametersConfig("config");

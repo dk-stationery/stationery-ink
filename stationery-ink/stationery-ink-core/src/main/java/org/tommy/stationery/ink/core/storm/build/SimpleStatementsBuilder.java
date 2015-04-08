@@ -119,19 +119,22 @@ public class SimpleStatementsBuilder implements ISimpleStatementsBuilder {
         ISimpleStatementExecutor simpleDMLStatementExecutorImp = (((SimpleDMLStatementExecutorImp.Builder) dmlBuild(mergedCustomConfig)).build());
         simpleStatementExecutors.add(simpleDMLStatementExecutorImp);
 
-        if (mergedCustomConfig.getString(SettingEnum.JOB_NAME) != null) {
-            //dump clear
-            try {
-                DumpUtil dumpUtil = new DumpUtil();
-                dumpUtil.clear(mergedCustomConfig.getString(SettingEnum.JOB_NAME), mergedCustomConfig.getString(SettingEnum.DUMP_CLEAR_API_URL));
-            } catch (Exception ex) {}
+        if (simpleDMLStatementExecutorImp.getResultStatement().size() > 1) {
+            if (mergedCustomConfig.getString(SettingEnum.JOB_NAME) != null) {
+                //dump clear
+                try {
+                    DumpUtil dumpUtil = new DumpUtil();
+                    dumpUtil.clear(mergedCustomConfig.getString(SettingEnum.JOB_NAME), mergedCustomConfig.getString(SettingEnum.DUMP_CLEAR_API_URL));
+                } catch (Exception ex) {
+                }
 
-            //storm depoly
-            StormManager.depoly(mergedCustomConfig, ((SimpleDMLStatementExecutorImp) simpleDMLStatementExecutorImp).getStormTopologyBuilder().build());
-        }
+                //storm depoly
+                StormManager.depoly(mergedCustomConfig, ((SimpleDMLStatementExecutorImp) simpleDMLStatementExecutorImp).getStormTopologyBuilder().build());
+            }
 
-        if (mergedCustomConfig.getBoolean(SettingEnum.REGIST_JOB) == true && mergedCustomConfig.getString(SettingEnum.JOB_NAME) != null) {
-            simpleMetaStoreProvider.doRegistJobAction(mergedCustomConfig, sql);
+            if (mergedCustomConfig.getBoolean(SettingEnum.REGIST_JOB) == true && mergedCustomConfig.getString(SettingEnum.JOB_NAME) != null) {
+                simpleMetaStoreProvider.doRegistJobAction(mergedCustomConfig, sql);
+            }
         }
     }
 

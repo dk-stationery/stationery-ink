@@ -23,6 +23,7 @@ public class InkHttpClient {
 
     private static String API_SUB_PATH = "/sql/run";
     private static String API_SQL_PARAM = "sql";
+    private static String API_SESSION_PARAM = "sessionId";
 
     private static final Logger logger = LoggerFactory.getLogger(InkHttpClient.class);
 
@@ -37,13 +38,14 @@ public class InkHttpClient {
 
     }
 
-    public String send(String sql) {
+    public String send(String sessionId, String sql) {
         String result = "succeed";
         StringBuilder sb = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
         try {
             HttpPost post = new HttpPost(url + API_SUB_PATH);
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+            nameValuePairs.add(new BasicNameValuePair(API_SESSION_PARAM, sessionId));
             nameValuePairs.add(new BasicNameValuePair(API_SQL_PARAM, sql));
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
