@@ -128,6 +128,7 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 		LOOKUP_THREAD_CNT: 1 (LOOKUP query, the default number of threads)
 		OUTPUT_THREAD_CNT: 1 (INSERT, UPSERT, UPDATE, DELETE query, the default number of threads)
 		IS_DEBUG: Y (Whether the output logging in debug mode)
+		SESSION_TIME_OUT : 5000 (Query session timeout - ms)
 		COMMIT_INTERVAL: 5 (INSERT, UPSERT, UPDATE, DELETE query he default Commit interval)
 		STORM_MESSAGE_TIMEOUT_SEC : 30
 		STORM_MAXSPOUTPENDING_NUM : 1
