@@ -76,7 +76,7 @@ public class RunController {
             } else {
                 //other tenant
                 logger.info("multi_tenant is other. proxy start : " + otherTenant.getName() + " : " + otherTenant.getUrl());
-                SqlResults sqlResults = multiTenantProxyUtil.proxyCall(otherTenant.getUrl(), sql);
+                SqlResults sqlResults = multiTenantProxyUtil.proxyCall(otherTenant.getUrl(), sessionId, sql);
                 return sqlResults;
             }
 

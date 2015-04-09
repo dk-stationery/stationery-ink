@@ -62,7 +62,7 @@ public class MultiTenantProxyUtil {
 
 
 
-    public SqlResults proxyCall(String url, String sql) throws IOException {
+    public SqlResults proxyCall(String url, String sessionId, String sql) throws IOException {
         String result = "succeed";
         StringBuilder sb = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
@@ -70,6 +70,7 @@ public class MultiTenantProxyUtil {
         try {
             HttpPost post = new HttpPost(url);
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+            nameValuePairs.add(new BasicNameValuePair("sessionId", sessionId));
             nameValuePairs.add(new BasicNameValuePair("sql", sql.replace("\n", "")));
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
