@@ -1,14 +1,19 @@
 package org.tommy.stationery.ink.daemon.util;
 
+import net.hydromatic.linq4j.Linq4j;
+import org.antlr.runtime.RecognitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.tommy.stationery.ink.core.config.ConfigProperties;
+import org.tommy.stationery.ink.core.linq.LinqQuery;
+import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.cluster.Session;
 import org.tommy.stationery.ink.enums.MessageEnum;
 import org.tommy.stationery.ink.enums.SettingEnum;
 import org.tommy.stationery.ink.exception.InkException;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,7 +45,27 @@ public class SessionUtil {
         return false;
     }
 
-    public Session getQueryBySession(String sessionId, String sql) throws InkException {
+    //session sql process.
+    public String getSessionConvSql(String sessionId, List<BaseStatement> statements, String sql) throws InkException, RecognitionException {
+        List<BaseStatement> useStatements = Linq4j.asEnumerable(statements).where(LinqQuery.USE_STATEMENT_GROUP_FILTER).toList();
+        String useSql = null;
+        if (useStatements != null && useStatements.size() >= 1) {
+            BaseStatement baseStatement = useStatements.get(useStatements.size() - 1);
+            useSql = sql;
+        }
+
+        Session session = getQueryBySession(sessionId, sql, useSql);
+        if (isCommit(sessionId, sql)) {
+            sql = session.getSql();
+        } else {
+            if (!session.getUseSql().equals(sql)) {
+                sql = session.getUseSql() + sql;
+            }
+        }
+        return sql;
+    }
+    
+    public Session getQueryBySession(String sessionId, String sql, String useSql) throws InkException {
 
         Session session = null;
         if (sessions.containsKey(sessionId)) {
@@ -49,6 +74,9 @@ public class SessionUtil {
         } else {
             session = new Session();
             session.setSessionId(sessionId);
+            if (useSql != null) {
+                session.setUseSql(useSql);
+            }
             session.setSql(sql);
             session.setLifeTime(System.currentTimeMillis());
         }

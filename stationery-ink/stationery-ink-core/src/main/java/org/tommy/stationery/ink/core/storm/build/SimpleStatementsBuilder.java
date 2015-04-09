@@ -119,7 +119,7 @@ public class SimpleStatementsBuilder implements ISimpleStatementsBuilder {
         ISimpleStatementExecutor simpleDMLStatementExecutorImp = (((SimpleDMLStatementExecutorImp.Builder) dmlBuild(mergedCustomConfig)).build());
         simpleStatementExecutors.add(simpleDMLStatementExecutorImp);
 
-        if (simpleDMLStatementExecutorImp.getResultStatement().size() > 1) {
+        if (simpleDMLStatementExecutorImp.getResultStatement().size() >= 1) {
             if (mergedCustomConfig.getString(SettingEnum.JOB_NAME) != null) {
                 //dump clear
                 try {

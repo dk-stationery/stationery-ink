@@ -33,6 +33,10 @@ public class InkConnection implements Connection {
     // ---- state -----
 
     public void close(){
+        System.out.println("finalize close");
+        inkRestClient.send("commit");
+        inkRestClient.setSessionId(InkRestClient.initializeSession());
+
         if (isClosed() != true) {
             inkRestClient.close();
         }

@@ -13,7 +13,6 @@ import org.tommy.stationery.ink.daemon.util.SessionUtil;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.ResultStatement;
 import org.tommy.stationery.ink.domain.SqlResults;
-import org.tommy.stationery.ink.domain.cluster.Session;
 import org.tommy.stationery.ink.domain.cluster.Tenant;
 import org.tommy.stationery.ink.enums.StatementTypeEnum;
 
@@ -53,14 +52,13 @@ public class RunController {
 
     @RequestMapping(value = "/run", method = RequestMethod.POST)
     public Object run(@RequestParam(value = "sessionId", required = true) String sessionId, @RequestParam(value = "sql", required = true) String sql) throws Exception {
+
         if (";".equals(sql.substring(sql.length() - 1, sql.length())) == false) {
             sql+=";";
         }
 
-        Session session = sessionUtil.getQueryBySession(sessionId, sql);
-        if (sessionUtil.isCommit(sessionId, sql)) {
-            sql = session.getSql();
-        }
+        //session sql process.
+        sql = sessionUtil.getSessionConvSql(sessionId, statementBuilderService.prepare(sql), sql);
 
         List<ResultStatement> resultStatements = new ArrayList<ResultStatement>();
         try {

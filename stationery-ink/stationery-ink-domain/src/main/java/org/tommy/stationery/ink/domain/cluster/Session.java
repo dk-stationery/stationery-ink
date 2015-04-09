@@ -7,6 +7,7 @@ public class Session {
     private String sessionId;
     private long lifeTime;
     private String sql;
+    private String useSql = "";
 
     public String getSessionId() {
         return sessionId;
@@ -30,5 +31,13 @@ public class Session {
 
     public void setSql(String sql) {
         this.sql = sql;
+    }
+
+    public String getUseSql() {
+        return useSql;
+    }
+
+    public void setUseSql(String useSql) {
+        this.useSql = useSql;
     }
 }

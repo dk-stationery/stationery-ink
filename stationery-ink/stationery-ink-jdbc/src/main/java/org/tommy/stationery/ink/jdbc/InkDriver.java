@@ -2,8 +2,6 @@ package org.tommy.stationery.ink.jdbc;
 
 import org.tommy.stationery.ink.jdbc.client.InkRestClient;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.sql.*;
 import java.util.Properties;
 
@@ -31,18 +29,8 @@ public class InkDriver implements Driver {
         if ( url.startsWith( PREFIX ) )
             url = "http://" + url.substring( PREFIX.length());
 
-        InetAddress localIp = null;
-        try {
-            localIp = InetAddress.getLocalHost();
-        } catch (UnknownHostException e) {
-            System.out.println(e.getMessage());
-        }
-
-        String sessionId = localIp.toString() + "_" + System.currentTimeMillis();
-        System.out.println("sessionId : " + sessionId);
-
         InkRestClient inkRestClient = new InkRestClient(url);
-        inkRestClient.setSessionId(localIp.toString() + "_" + System.currentTimeMillis());
+        inkRestClient.setSessionId(InkRestClient.initializeSession());
         return new InkConnection(inkRestClient);
     }
 

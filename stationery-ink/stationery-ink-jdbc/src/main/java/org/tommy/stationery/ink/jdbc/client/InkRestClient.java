@@ -4,6 +4,8 @@ import org.tommy.stationery.ink.core.parser.InkSqlParser;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.jdbc.exception.InkSQLException;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 /**
@@ -27,6 +29,19 @@ public class InkRestClient {
 
     public InkRestClient() {
 
+    }
+
+    public static String initializeSession() {
+        InetAddress localIp = null;
+        try {
+            localIp = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            System.out.println(e.getMessage());
+        }
+
+        String sessionId = localIp.toString() + "_" + System.currentTimeMillis();
+        System.out.println("sessionId : " + sessionId);
+        return sessionId;
     }
 
     public String send(String sql) {
