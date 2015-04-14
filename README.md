@@ -35,6 +35,17 @@ Antlr3, Apache Storm, Esper, Phoenix, Spring-boot
 Summation : Connecting the streaming data defined in STREAM, based on the information of the meta data in the SOURCE, passing under the framework that is driven off the crossbar, the streaming data to the query definition as defined in TSQL delivered.
 
 ##Getting started
+####Standalone ink version install####
+		mkdir -p /daum/program
+		cd /daum/program
+		wget http://mud-kage.kakaocdn.net/dn/mEsVE/btqb1kmoVxs/Y4Q6oTkw9YxoTXy3GiFPZ0/ink-standalone.tar.gz?attach=1&knm=biz.gz
+		tar xvzf ink-standalone.tar.gz
+		su -
+		cd /daum/program/ink-standalone/
+		./setup.sh
+		./start-ink-all.sh
+
+
 ####Install the required system
 1. Install Apache Storm.    
 : > Reference : https://storm.apache.org/    
