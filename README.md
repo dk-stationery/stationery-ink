@@ -226,7 +226,7 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 			CATALOG 'PHOENIX'
 			, URL 'jdbc:phoenix:test-hbase-m1.com,test-hbase-m2.com,test-hbase-m3.com:2181'
 			, DRIVER 'org.apache.phoenix.jdbc.PhoenixDriver');
-			
+		==> CAUTION!! alter 'TABLENAME', {NAME => '0', VERSIONS => 3}; 	=> hbase shell
 > : ex> 
 
 		create source rabbitmq meta (
