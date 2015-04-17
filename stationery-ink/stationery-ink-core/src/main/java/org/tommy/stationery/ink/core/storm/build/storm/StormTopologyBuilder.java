@@ -30,6 +30,13 @@ public class StormTopologyBuilder {
         return this;
     }
 
+    public boolean isRegistAlready(String name) {
+        if (spoutMap.containsKey(name) == true) {
+            return true;
+        }
+        return false;
+    }
+
     public StormTopologyBuilder addSpout(String name, IRichSpout spout, int parallelism)
     {
         spoutMap.put(name, spout);

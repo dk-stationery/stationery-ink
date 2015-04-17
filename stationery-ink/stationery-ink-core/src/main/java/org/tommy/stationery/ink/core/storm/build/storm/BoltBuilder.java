@@ -22,17 +22,13 @@ import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.BaseTableDef;
 import org.tommy.stationery.ink.domain.meta.Source;
 import org.tommy.stationery.ink.domain.meta.Stream;
-import org.tommy.stationery.ink.enums.MessageEnum;
-import org.tommy.stationery.ink.enums.SettingEnum;
-import org.tommy.stationery.ink.enums.SourceCatalogEnum;
-import org.tommy.stationery.ink.enums.StatementTypeEnum;
+import org.tommy.stationery.ink.enums.*;
 import org.tommy.stationery.ink.exception.InkException;
 import org.tommy.stationery.ink.util.serde.JsonSerde;
 import storm.kafka.KafkaSpout;
 import storm.kafka.StringScheme;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by kun7788 on 15. 2. 3..
@@ -77,6 +73,19 @@ public class BoltBuilder {
         return prefix + "-" + (componentIdx++) + "-";
     }
 
+    public String generatePrefixNoIndexId(String prefix) {
+
+        return prefix + "-";
+    }
+
+    public List<String> removeDuplicatesEmitFileds(List<String> emitFileds) {
+        Set setItems = new LinkedHashSet(emitFileds);
+        emitFileds.clear();
+        emitFileds.addAll(setItems);
+        return emitFileds;
+    }
+
+
     public StormTopologyBuilder addInstance(StormTopologyBuilder stormTopologyBuilder, SimpleMetaStoreProviderImp simpleMetaStoreProvider, BaseStatement statement, InkConfig inkConfig, boolean isLast) throws Exception {
 
         JsonSerde jsonSerde = new JsonSerde();
@@ -103,42 +112,68 @@ public class BoltBuilder {
 
                 //add spout
                 IRichSpout spout = null;
-                String spoutComponentId = generateComponentId(generatePrefix(SPOUT_NAME_PREFIX), statement.getType().getSubGroup().getName(), inkSource.getName(), inkSource.getCatalog());
+                String spoutComponentId = generateComponentId(generatePrefixNoIndexId(SPOUT_NAME_PREFIX), statement.getType().getSubGroup().getName(), inkSource.getName(), inkSource.getCatalog());
+                String parserComponentId = null;
 
-                if (SourceCatalogEnum.KAFKA.getName().equals(inkSource.getCatalog())) {
-                    //spout
-                    spout = new KafkaSpout(CoordinateConfig.KafkaSpoutConfig(inkStream, inkSource));
-                } else if (SourceCatalogEnum.RABBITMQ.getName().equals(inkSource.getCatalog())) {
-                    //spout
-                    spout = new RabbitMQSpout(new StringScheme());
-                    stormTopologyBuilder.addConfigurations(spoutComponentId, CoordinateConfig.RabbitMqSpoutConfig(inkStream, inkSource).asMap());
-                } else {
-                    throw new InkException(MessageEnum.CATALOG_INVALID);
-                }
-                stormTopologyBuilder.addSpout(spoutComponentId, spout, inkConfig.getInteger(SettingEnum.SPOUT_THREAD_CNT));
-
-                //add parser bolt
-                String parserComponentId = generateComponentId(generatePrefix(BOLT_LINKED_SPOUT_NAME_PREFIX), statement.getType().getSubGroup().getName(), inkSource.getName(), inkSource.getCatalog());
-                SpoutParserBolt SpoutParser = new SpoutParserBolt(DEFAULT_STREAM, statement, inkStream, inkSource);
-                stormTopologyBuilder.addBolt(parserComponentId, SpoutParser, inkConfig.getInteger(SettingEnum.ESPER_THREAD_CNT));
-
-
-                //add esper bolt
-                aliasedInputBuilder = inputsBuilder.aliasComponent(parserComponentId);
-                //column
-                for (BaseColumnDef columnDef : inkStream.getStatement().getColumns()) {
-                    if (columnDef == null || columnDef.getType() == null || columnDef.getType().getZlass() == null) {
-                        throw new InkException(MessageEnum.DATA_TYPE_INVALID);
+                boolean isRegistAlready = stormTopologyBuilder.isRegistAlready(spoutComponentId);
+                if (isRegistAlready == false) {
+                    if (SourceCatalogEnum.KAFKA.getName().equals(inkSource.getCatalog())) {
+                        //spout
+                        spout = new KafkaSpout(CoordinateConfig.KafkaSpoutConfig(inkStream, inkSource));
+                    } else if (SourceCatalogEnum.RABBITMQ.getName().equals(inkSource.getCatalog())) {
+                        //spout
+                        spout = new RabbitMQSpout(new StringScheme());
+                        stormTopologyBuilder.addConfigurations(spoutComponentId, CoordinateConfig.RabbitMqSpoutConfig(inkStream, inkSource).asMap());
+                    } else {
+                        throw new InkException(MessageEnum.CATALOG_INVALID);
                     }
-                    aliasedInputBuilder.withField(columnDef.getName()).ofType(columnDef.getType().getZlass());
+                    stormTopologyBuilder.addSpout(spoutComponentId, spout, inkConfig.getInteger(SettingEnum.SPOUT_THREAD_CNT));
+
+                    //add parser bolt
+                    parserComponentId = generateComponentId(generatePrefix(BOLT_LINKED_SPOUT_NAME_PREFIX), statement.getType().getSubGroup().getName(), inkSource.getName(), inkSource.getCatalog());
+                    SpoutParserBolt SpoutParser = new SpoutParserBolt(DEFAULT_STREAM, statement, inkStream, inkSource);
+                    stormTopologyBuilder.addBolt(parserComponentId, SpoutParser, inkConfig.getInteger(SettingEnum.ESPER_THREAD_CNT));
+
+                    //add esper bolt
+                    aliasedInputBuilder = inputsBuilder.aliasComponent(parserComponentId);
+                    //column
+                    for (BaseColumnDef columnDef : inkStream.getStatement().getColumns()) {
+                        if (columnDef == null || columnDef.getType() == null || columnDef.getType().getZlass() == null) {
+                            throw new InkException(MessageEnum.DATA_TYPE_INVALID);
+                        }
+                        aliasedInputBuilder.withField(columnDef.getName()).ofType(columnDef.getType().getZlass());
+                    }
+                    inputsBuilder = aliasedInputBuilder.toEventType(tableDef.getName());
+
+                    //connect bolt to bolt or spout
+                    List<BaseColumnDef> partitionKeys = Linq4j.asEnumerable(inkStream.getStatement().getColumns()).where(LinqQuery.PARTITIONKEY_COLUMN_GROUP_FILTER).toList();
+                    stormTopologyBuilder.connect(spoutComponentId, DEFAULT_STREAM, parserComponentId, partitionKeys);
+                    stormTopologyBuilder.connect(parserComponentId, DEFAULT_STREAM, componenetId, partitionKeys);
+                } else {
+
+                    //add esper bolt
+                    aliasedInputBuilder = inputsBuilder.aliasComponent(previousComponentId);
+
+                    //column
+                    for (BaseColumnDef columnDef : inkStream.getStatement().getColumns()) {
+                        if (columnDef == null || columnDef.getType() == null || columnDef.getType().getZlass() == null) {
+                            throw new InkException(MessageEnum.DATA_TYPE_INVALID);
+                        }
+                        aliasedInputBuilder.withField(columnDef.getName()).ofType(columnDef.getType().getZlass());
+                    }
+
+                    if (previousEmitFileds != null) {
+                        for (String name : previousEmitFileds) {
+                            aliasedInputBuilder.withField(name).ofType(ColumnDataTypeEnum.STRING.getZlass());
+                        }
+                    }
+
+                    inputsBuilder = aliasedInputBuilder.toEventType(tableDef.getName());
+
+                    //connect bolt to bolt or spout
+                    List<BaseColumnDef> partitionKeys = Linq4j.asEnumerable(inkStream.getStatement().getColumns()).where(LinqQuery.PARTITIONKEY_COLUMN_GROUP_FILTER).toList();
+                    stormTopologyBuilder.connect(previousComponentId, DEFAULT_STREAM, componenetId, partitionKeys);
                 }
-
-                inputsBuilder = aliasedInputBuilder.toEventType(tableDef.getName());
-
-                //connect bolt to bolt or spout
-                List<BaseColumnDef> partitionKeys = Linq4j.asEnumerable(inkStream.getStatement().getColumns()).where(LinqQuery.PARTITIONKEY_COLUMN_GROUP_FILTER).toList();
-                stormTopologyBuilder.connect(spoutComponentId, DEFAULT_STREAM, parserComponentId, partitionKeys);
-                stormTopologyBuilder.connect(parserComponentId, DEFAULT_STREAM, componenetId, partitionKeys);
             }
 
             EsperBolt.OutputsBuilder outputsBuilder = inputsBuilder.outputs();
@@ -147,6 +182,7 @@ public class BoltBuilder {
                 emitFileds.addAll(previousEmitFileds);
             }
             emitFileds.addAll(ListFromColumns(statement.getColumns()));
+            emitFileds = removeDuplicatesEmitFileds(emitFileds);
 
             //outputs
             outputsBuilder = outputsBuilder.onStream(DEFAULT_STREAM).emit(emitFileds.toArray(new String[0]));
@@ -168,6 +204,7 @@ public class BoltBuilder {
                 emitFileds.addAll(previousEmitFileds);
             }
             emitFileds.addAll(ListFromColumns(statement.getColumns()));
+            emitFileds = removeDuplicatesEmitFileds(emitFileds);
 
             componenetId = generateComponentId(generatePrefix(BOLT_NAME_PREFIX), statement.getType().getSubGroup().getName(), StringFromBindTablesAndSource(statement.getBindTables()));
 
@@ -201,6 +238,7 @@ public class BoltBuilder {
                 emitFileds.addAll(previousEmitFileds);
             }
             emitFileds.addAll(ListFromColumns(statement.getColumns()));
+            emitFileds = removeDuplicatesEmitFileds(emitFileds);
 
             componenetId = generateComponentId(generatePrefix(BOLT_NAME_PREFIX), statement.getType().getSubGroup().getName(), StringFromBindTablesAndSource(statement.getBindTables()));
 

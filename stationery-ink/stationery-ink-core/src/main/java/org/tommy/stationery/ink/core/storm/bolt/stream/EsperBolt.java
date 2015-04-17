@@ -386,7 +386,6 @@ public class EsperBolt extends BaseRichBolt implements UpdateListener
         if (newEvents != null) {
             for (EventBean newEvent : newEvents) {
                 EventTypeDescriptor eventType = getEventType(newEvent.getEventType().getName());
-
                 if (eventType == null) {
                     // anonymous event ?
                     eventType = getEventType(null);
@@ -411,9 +410,14 @@ public class EsperBolt extends BaseRichBolt implements UpdateListener
             List<Object> tuple = new ArrayList<Object>(numFields);
 
             for (int idx = 0; idx < numFields; idx++) {
-                Object val = event.get(fields.get(idx));
-                if (val == null) return null;
-                tuple.add(val);
+                Object val = null;
+                try {
+                    val = event.get(fields.get(idx));
+                } catch (Exception ex) {
+
+                } finally {
+                    tuple.add(val);
+                }
             }
 
             return tuple;
