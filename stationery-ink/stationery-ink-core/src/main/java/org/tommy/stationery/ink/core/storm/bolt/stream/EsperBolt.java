@@ -357,14 +357,10 @@ public class EsperBolt extends BaseRichBolt implements UpdateListener
                     String name = fields.get(idx);
                     Object value = tuple.getValue(idx);
                     if (value == null) {
-                        synchronized (collector) {
-                            collector.ack(tuple);
-                        }
-                        return;
+                        value = "";
                     }
                     data.put(name, value);
                 }
-
                 runtime.sendEvent(data, eventType);
             }
 

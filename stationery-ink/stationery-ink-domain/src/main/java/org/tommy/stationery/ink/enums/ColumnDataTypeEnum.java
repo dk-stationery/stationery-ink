@@ -7,6 +7,7 @@ public enum ColumnDataTypeEnum {
     STRING("STRING", String.class),
     INTEGER("INTEGER", Integer.class),
     FLOAT("FLOAT", Float.class),
+    OBJECT("OBJECT", Object.class),
     DOUBLE("DOUBLE", Double.class);
 
     private String name;

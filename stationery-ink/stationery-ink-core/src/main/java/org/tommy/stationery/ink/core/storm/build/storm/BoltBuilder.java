@@ -150,7 +150,6 @@ public class BoltBuilder {
                     stormTopologyBuilder.connect(spoutComponentId, DEFAULT_STREAM, parserComponentId, partitionKeys);
                     stormTopologyBuilder.connect(parserComponentId, DEFAULT_STREAM, componenetId, partitionKeys);
                 } else {
-
                     //add esper bolt
                     aliasedInputBuilder = inputsBuilder.aliasComponent(previousComponentId);
 
@@ -164,7 +163,7 @@ public class BoltBuilder {
 
                     if (previousEmitFileds != null) {
                         for (String name : previousEmitFileds) {
-                            aliasedInputBuilder.withField(name).ofType(ColumnDataTypeEnum.STRING.getZlass());
+                            aliasedInputBuilder.withField(name).ofType(ColumnDataTypeEnum.OBJECT.getZlass());
                         }
                     }
 
