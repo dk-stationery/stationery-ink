@@ -171,7 +171,7 @@ public class BoltBuilder {
 
                     //connect bolt to bolt or spout
                     List<BaseColumnDef> partitionKeys = Linq4j.asEnumerable(inkStream.getStatement().getColumns()).where(LinqQuery.PARTITIONKEY_COLUMN_GROUP_FILTER).toList();
-                    stormTopologyBuilder.connect(previousComponentId, DEFAULT_STREAM, componenetId, partitionKeys);
+                    stormTopologyBuilder.connect(previousComponentId, DEFAULT_STREAM, componenetId, null);
                 }
             }
 

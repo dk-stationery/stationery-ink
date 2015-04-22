@@ -116,7 +116,7 @@ public class SimpleMetaStoreProviderImp extends AbstractSimpleMetaStoreProvider 
         } finally {
             snapClient.close();
         }
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         List<Dump> info = dumpUtil.dump(statement.getTable().getName(), inkConfig.getString(SettingEnum.DUMP_API_URL));
         return generateResultStatement(info);
     }
@@ -137,7 +137,7 @@ public class SimpleMetaStoreProviderImp extends AbstractSimpleMetaStoreProvider 
 
         Job job = new Job();
         job.setName(inkConfig.getString(SettingEnum.JOB_NAME));
-        job.setMeta(sql);
+        job.setMeta(sql.replace("commit;", ""));
         inkJobDao.putInkJob(job);
         return generateResultStatement(statement);
     }

@@ -15,6 +15,14 @@ public class EsperBolt extends BaseRichBolt implements UpdateListener
 {
     private static final long serialVersionUID = 1L;
 
+    public boolean isFirstEsper() {
+        return isFirstEsper;
+    }
+
+    public void setFirstEsper(boolean isFirstEsper) {
+        this.isFirstEsper = isFirstEsper;
+    }
+
     public static class Builder
     {
         protected final EsperBolt bolt;
@@ -210,6 +218,7 @@ public class EsperBolt extends BaseRichBolt implements UpdateListener
     private transient EPRuntime runtime;
     private transient EPAdministrator admin;
     private transient OutputCollector collector;
+    private boolean isFirstEsper;
 
     private EsperBolt()
     {
@@ -357,7 +366,9 @@ public class EsperBolt extends BaseRichBolt implements UpdateListener
                     String name = fields.get(idx);
                     Object value = tuple.getValue(idx);
                     if (value == null) {
-                        value = "";
+                        if (value == null) {
+                            value = null;
+                        }
                     }
                     data.put(name, value);
                 }
@@ -406,14 +417,9 @@ public class EsperBolt extends BaseRichBolt implements UpdateListener
             List<Object> tuple = new ArrayList<Object>(numFields);
 
             for (int idx = 0; idx < numFields; idx++) {
-                Object val = null;
-                try {
-                    val = event.get(fields.get(idx));
-                } catch (Exception ex) {
-
-                } finally {
-                    tuple.add(val);
-                }
+                Object val = event.get(fields.get(idx));
+                if (val == null) return null;
+                tuple.add(val);
             }
 
             return tuple;
