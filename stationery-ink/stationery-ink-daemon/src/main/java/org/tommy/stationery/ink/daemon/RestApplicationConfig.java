@@ -72,7 +72,7 @@ public class RestApplicationConfig {
         if (ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("driverClassName")) != null) {
             dataSource.setDriverClassName(ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("driverClassName")));
         }
-        dataSource.setDriverClassName(ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("driverClassName")));
+
         dataSource.setUrl(ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("url")));
         dataSource.setInitialSize(ParametersConfig.IntegerValue(parametersConfig.getConfig().get("metastore").get("initPoolSize")));
         dataSource.setMaxActive(ParametersConfig.IntegerValue(parametersConfig.getConfig().get("metastore").get("maxPoolSize")));

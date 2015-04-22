@@ -14,6 +14,12 @@
     <plugin-singlerow-function name="sendNoti"
                                function-class="org.tommy.stationery.ink.udf.support.Monitoring" function-method="sendNoti" />
 
+    <plugin-singlerow-function name="pushAPN"
+                               function-class="org.tommy.stationery.ink.udf.support.PushNotification" function-method="pushAPN" />
+
+    <plugin-singlerow-function name="pushGCM"
+                               function-class="org.tommy.stationery.ink.udf.support.PushNotification" function-method="pushGCM" />
+
     <auto-import import-name="org.tommy.stationery.ink.udf.support.*"/>
     <engine-settings>
         <defaults>
