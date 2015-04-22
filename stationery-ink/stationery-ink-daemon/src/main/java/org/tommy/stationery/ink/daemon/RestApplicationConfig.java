@@ -63,11 +63,20 @@ public class RestApplicationConfig {
     @Bean
     public DataSource dataSource() throws PropertyVetoException, SQLException {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(ParametersConfig.StringValue(parametersConfig.getConfig().get("phoenix").get("driverClassName")));
-        dataSource.setUrl(ParametersConfig.StringValue(parametersConfig.getConfig().get("phoenix").get("url")));
-        dataSource.setInitialSize(ParametersConfig.IntegerValue(parametersConfig.getConfig().get("phoenix").get("initPoolSize")));
-        dataSource.setMaxActive(ParametersConfig.IntegerValue(parametersConfig.getConfig().get("phoenix").get("maxPoolSize")));
-        dataSource.setMinIdle(ParametersConfig.IntegerValue(parametersConfig.getConfig().get("phoenix").get("minPoolSize")));
+        if (ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("id")) != null) {
+            dataSource.setUsername(ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("id")));
+        }
+        if (ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("password")) != null) {
+            dataSource.setPassword(ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("password")));
+        }
+        if (ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("driverClassName")) != null) {
+            dataSource.setDriverClassName(ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("driverClassName")));
+        }
+        dataSource.setDriverClassName(ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("driverClassName")));
+        dataSource.setUrl(ParametersConfig.StringValue(parametersConfig.getConfig().get("metastore").get("url")));
+        dataSource.setInitialSize(ParametersConfig.IntegerValue(parametersConfig.getConfig().get("metastore").get("initPoolSize")));
+        dataSource.setMaxActive(ParametersConfig.IntegerValue(parametersConfig.getConfig().get("metastore").get("maxPoolSize")));
+        dataSource.setMinIdle(ParametersConfig.IntegerValue(parametersConfig.getConfig().get("metastore").get("minPoolSize")));
         return dataSource;
     }
 

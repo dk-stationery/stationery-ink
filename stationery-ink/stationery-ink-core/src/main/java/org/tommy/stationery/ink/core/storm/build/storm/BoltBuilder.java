@@ -14,7 +14,7 @@ import org.tommy.stationery.ink.core.storm.bolt.bucket.IBucketBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.InsertJDBCBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.elasticsearch.InsertElasticSearchBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.hdfs.bolt.InsertHdfsBolt;
-import org.tommy.stationery.ink.core.storm.bolt.lookup.LookupPhoenixBolt;
+import org.tommy.stationery.ink.core.storm.bolt.lookup.LookupJDBCBolt;
 import org.tommy.stationery.ink.core.storm.bolt.stream.EsperBolt;
 import org.tommy.stationery.ink.core.storm.bolt.stream.SpoutParserBolt;
 import org.tommy.stationery.ink.domain.BaseColumnDef;
@@ -243,10 +243,10 @@ public class BoltBuilder {
 
             componenetId = generateComponentId(generatePrefix(BOLT_NAME_PREFIX), statement.getType().getSubGroup().getName(), StringFromBindTablesAndSource(statement.getBindTables()));
 
-            LookupPhoenixBolt lookupPhoenixBolt = new LookupPhoenixBolt();
-            lookupPhoenixBolt.setting(DEFAULT_STREAM, inkConfig, previousEmitFileds, statement, inkStream, inkSource);
+            LookupJDBCBolt lookupJDBCBolt = new LookupJDBCBolt();
+            lookupJDBCBolt.setting(DEFAULT_STREAM, inkConfig, previousEmitFileds, statement, inkStream, inkSource);
 
-            stormTopologyBuilder.addBolt(componenetId, lookupPhoenixBolt, inkConfig.getInteger(SettingEnum.LOOKUP_THREAD_CNT));
+            stormTopologyBuilder.addBolt(componenetId, lookupJDBCBolt, inkConfig.getInteger(SettingEnum.LOOKUP_THREAD_CNT));
 
 
         } else {

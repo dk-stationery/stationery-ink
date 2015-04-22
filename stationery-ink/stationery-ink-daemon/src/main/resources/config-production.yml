@@ -1,7 +1,9 @@
 inkconfig:
     filepath: /inkconfig.production.properties
 
-phoenix:
+metastore:
+    id:
+    password:
     driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
     url: #################################
     initPoolSize: 1

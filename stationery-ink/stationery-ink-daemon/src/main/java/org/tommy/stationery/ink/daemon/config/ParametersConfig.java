@@ -46,14 +46,17 @@ public class ParametersConfig {
     }
 
     public static Integer IntegerValue(Object value) {
+        if (value == null) return null;;
         return Integer.valueOf(value.toString());
     }
 
     public static String StringValue(Object value) {
+        if (value == null) return null;
         return value.toString();
     }
 
     public static List<Map<String, String>> ListValue(Object value) {
+        if (value == null) return null;
         return (List<Map<String, String>>)value;
     }
 }

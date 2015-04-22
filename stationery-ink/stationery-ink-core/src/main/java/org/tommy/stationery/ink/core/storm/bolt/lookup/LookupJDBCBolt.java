@@ -27,11 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class LookupPhoenixBolt extends GenericBoltUtils implements IRichBolt, ILookupBolt {
+public class LookupJDBCBolt extends GenericBoltUtils implements IRichBolt, ILookupBolt {
 
     private static final long serialVersionUID = -5887832622734426744L;
 
-    public static Logger logger = LoggerFactory.getLogger(LookupPhoenixBolt.class);
+    public static Logger logger = LoggerFactory.getLogger(LookupJDBCBolt.class);
 
     private OutputCollector collector;
     private String streamId;
@@ -66,7 +66,7 @@ public class LookupPhoenixBolt extends GenericBoltUtils implements IRichBolt, IL
 
     @Override
     public Object settingCommunicator() throws PropertyVetoException {
-        return getJDBCCommunication(inkSource);
+        return getJDBCCommunication(inkConfig, inkSource);
     }
 
     @Override
