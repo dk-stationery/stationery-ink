@@ -11,7 +11,7 @@ import org.tommy.stationery.ink.core.linq.LinqQuery;
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.core.storm.bolt.DumpAndLogBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.IBucketBolt;
-import org.tommy.stationery.ink.core.storm.bolt.bucket.InsertPhoenixBolt;
+import org.tommy.stationery.ink.core.storm.bolt.bucket.InsertJDBCBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.elasticsearch.InsertElasticSearchBolt;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.hdfs.bolt.InsertHdfsBolt;
 import org.tommy.stationery.ink.core.storm.bolt.lookup.LookupPhoenixBolt;
@@ -171,7 +171,7 @@ public class BoltBuilder {
 
                     //connect bolt to bolt or spout
                     List<BaseColumnDef> partitionKeys = Linq4j.asEnumerable(inkStream.getStatement().getColumns()).where(LinqQuery.PARTITIONKEY_COLUMN_GROUP_FILTER).toList();
-                    stormTopologyBuilder.connect(previousComponentId, DEFAULT_STREAM, componenetId, null);
+                    stormTopologyBuilder.connect(previousComponentId, DEFAULT_STREAM, componenetId, partitionKeys);
                 }
             }
 
@@ -210,7 +210,9 @@ public class BoltBuilder {
             //bucket selection.
             IRichBolt bolt = null;
             if (SourceCatalogEnum.PHOENIX.getName().equals(inkSource.getCatalog())) {
-                bolt = new InsertPhoenixBolt();
+                bolt = new InsertJDBCBolt();
+            } else if (SourceCatalogEnum.JDBC.getName().equals(inkSource.getCatalog())) {
+                bolt = new InsertJDBCBolt();
             } else if (SourceCatalogEnum.HDFS.getName().equals(inkSource.getCatalog())) {
                 bolt = new InsertHdfsBolt();
             } else if (SourceCatalogEnum.ELASTICSEARCH.getName().equals(inkSource.getCatalog())) {

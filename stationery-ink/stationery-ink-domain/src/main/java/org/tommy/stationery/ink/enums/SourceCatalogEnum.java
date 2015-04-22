@@ -8,6 +8,7 @@ public enum SourceCatalogEnum {
     RABBITMQ("RABBITMQ"),
     HDFS("HDFS"),
     ELASTICSEARCH("ELASTICSEARCH"),
+    JDBC("JDBC"),
     PHOENIX("PHOENIX");
 
     private String name;

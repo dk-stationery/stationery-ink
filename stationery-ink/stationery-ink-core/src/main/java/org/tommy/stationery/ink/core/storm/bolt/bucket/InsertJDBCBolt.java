@@ -22,8 +22,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-public class InsertPhoenixBolt extends GenericBoltUtils implements IRichBolt, IBucketBolt {
-    public static Logger logger = LoggerFactory.getLogger(InsertPhoenixBolt.class);
+public class InsertJDBCBolt extends GenericBoltUtils implements IRichBolt, IBucketBolt {
+    public static Logger logger = LoggerFactory.getLogger(InsertJDBCBolt.class);
 
     private OutputCollector collector;
     private String streamId;
@@ -56,7 +56,7 @@ public class InsertPhoenixBolt extends GenericBoltUtils implements IRichBolt, IB
 
     @Override
     public Object settingCommunicator() throws PropertyVetoException {
-        return getJDBCCommunication(inkSource);
+        return getJDBCCommunication(inkConfig, inkSource);
     }
 
     @Override

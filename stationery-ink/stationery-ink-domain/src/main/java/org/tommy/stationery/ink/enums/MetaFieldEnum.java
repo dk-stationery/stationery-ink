@@ -10,10 +10,12 @@ public enum MetaFieldEnum {
     DRIVER("DRIVER"),
     ID("ID"),
     PW("PW"),
+    INITIALPOOLSIZE("INITIALPOOLSIZE"),
+    MAXPOOLSIZE("MAXPOOLSIZE"),
+    MINPOOLSIZE("MINPOOLSIZE"),
     VHOST("VHOST"),
     CLUSTER("CLUSTER"),
     PORT("PORT");
-
     private String name;
 
     public String getName() {

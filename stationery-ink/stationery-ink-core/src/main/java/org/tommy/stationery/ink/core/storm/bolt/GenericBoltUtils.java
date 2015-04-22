@@ -6,11 +6,13 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tommy.stationery.ink.core.cache.ConcurrentLRUCache;
+import org.tommy.stationery.ink.core.config.InkConfig;
 import org.tommy.stationery.ink.core.util.MetaFinderUtil;
 import org.tommy.stationery.ink.domain.*;
 import org.tommy.stationery.ink.domain.meta.Source;
 import org.tommy.stationery.ink.domain.meta.Stream;
 import org.tommy.stationery.ink.enums.MetaFieldEnum;
+import org.tommy.stationery.ink.enums.SettingEnum;
 
 import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
@@ -35,13 +37,48 @@ public class GenericBoltUtils {
         concurrentLRUCache.put(key, val);
     }
 
-    public Object getJDBCCommunication(Source inkSource) throws PropertyVetoException {
+    public Object getJDBCCommunication(InkConfig inkConfig, Source inkSource) throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setDriverClass(MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.DRIVER).getValue());
-        dataSource.setJdbcUrl(MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.URL).getValue());
-        dataSource.setInitialPoolSize(10);
-        dataSource.setMaxPoolSize(50);
-        dataSource.setMinPoolSize(1);
+        BaseMetaDef driverMeta = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.DRIVER);
+        if (driverMeta != null) {
+            dataSource.setDriverClass(driverMeta.getValue());
+        }
+
+        BaseMetaDef urlMeta = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.URL);
+        if (urlMeta != null) {
+            dataSource.setJdbcUrl(urlMeta.getValue());
+        }
+
+        BaseMetaDef idMeta = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.ID);
+        if (idMeta != null) {
+            dataSource.setUser(idMeta.getValue());
+        }
+
+        BaseMetaDef passwdMeta = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.PW);
+        if (passwdMeta != null) {
+            dataSource.setPassword(passwdMeta.getValue());
+        }
+
+        BaseMetaDef initialPoolSizeMeta = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.INITIALPOOLSIZE);
+        if (initialPoolSizeMeta != null) {
+            dataSource.setInitialPoolSize(Integer.valueOf(initialPoolSizeMeta.getValue()));
+        } else {
+            dataSource.setInitialPoolSize(Integer.valueOf(inkConfig.getInteger(SettingEnum.BUCKET_CONNECTION_INITIALPOOLSIZE)));
+        }
+
+        BaseMetaDef maxPoolSizeMeta = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.MAXPOOLSIZE);
+        if (maxPoolSizeMeta != null) {
+            dataSource.setMaxPoolSize(Integer.valueOf(maxPoolSizeMeta.getValue()));
+        } else {
+            dataSource.setMaxPoolSize(Integer.valueOf(inkConfig.getInteger(SettingEnum.BUCKET_CONNECTION_MAXPOOLSIZE)));
+        }
+
+        BaseMetaDef minPoolSizeMeta = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.MINPOOLSIZE);
+        if (minPoolSizeMeta != null) {
+            dataSource.setMinPoolSize(Integer.valueOf(minPoolSizeMeta.getValue()));
+        } else {
+            dataSource.setMinPoolSize(Integer.valueOf(inkConfig.getInteger(SettingEnum.BUCKET_CONNECTION_MINPOOLSIZE)));
+        }
         return dataSource;
     }
 
