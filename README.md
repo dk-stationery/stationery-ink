@@ -219,7 +219,8 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 
 11. create source SOURCE_NAME 
 > : create source TSQL.  
-> : fields : 'CATALOG'|'URL'|'DRIVER'|'ID'|'PW'|'VHOST'|'PORT'|'TOPIC'|'CLUSTER'|'INITIALPOOLSIZE'|'MAXPOOLSIZE'|'MINPOOLSIZE'    
+> : fields : CATALOG|URL|DRIVER|ID|PW|VHOST|PORT|TOPIC|CLUSTER|INITIALPOOLSIZE|MAXPOOLSIZE|MINPOOLSIZE      
+> : catalogs : KAFKA|RABBITMQ|HDFS|ELASTICSEARCH|JDBC|PHOENIX    
 > : ex> 
 
 		create source kafka meta (
