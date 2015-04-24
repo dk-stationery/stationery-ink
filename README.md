@@ -246,6 +246,17 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 			, PORT '5672'
 			, VHOST 'TEST_VHOST'); 
 			
+		create source oracle meta (
+			CATALOG 'ORACLE'
+			, DRIVER 'driver name!!!',
+			, URL '127.0.0.1'
+			, ID 'test'
+			, PW 'testpw'
+			, INITIALPOOLSIZE '10'
+			, MAXPOOLSIZE '20'
+			, MINPOOLSIZE '1'
+			);   
+			
 12. use NAME :   
 > : other ink daemon use.    
 > : ex> use SA;    
