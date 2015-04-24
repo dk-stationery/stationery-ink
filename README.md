@@ -247,7 +247,7 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 			, VHOST 'TEST_VHOST'); 
 			
 		create source oracle meta (
-			CATALOG 'ORACLE'
+			CATALOG 'JDBC'
 			, DRIVER 'driver name!!!',
 			, URL '127.0.0.1'
 			, ID 'test'
