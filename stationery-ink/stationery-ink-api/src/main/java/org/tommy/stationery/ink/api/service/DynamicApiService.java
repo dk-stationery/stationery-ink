@@ -112,7 +112,7 @@ public class DynamicApiService {
             if (val == null) {
                 throw new Exception("param value is null");
             }
-            if ("VARCHAR".equals(column.getType())) {
+            if ("VARCHAR".equals(column.getType()) || "CHAR".equals(column.getType())) {
                 val = "'" + val + "'";
             }
             params.add(column.getName() + " = " + val);

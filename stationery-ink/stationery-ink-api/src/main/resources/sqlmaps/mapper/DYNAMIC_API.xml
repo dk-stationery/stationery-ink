@@ -10,6 +10,5 @@
             ${tableName}
         WHERE
             ${where}
-        LIMIT 10
     </select>
 </mapper>
