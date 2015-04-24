@@ -76,30 +76,23 @@ public class InsertJDBCBolt extends GenericBoltUtils implements IRichBolt, IBuck
 
     @Override
     public void execute(Tuple tuple) {
-
-        boolean isSucceed = true;
         String query = null;
         try {
 
             query = generateQuery(tuple);
             if (query == null) {
-                isSucceed = false;
+                collector.ack(tuple);
             } else {
                 //run sql
                 globalDatabaseWriter.writeAsync(query);
-                collector.emit(streamId, tuple.getValues());
-            }
-
-        } catch(Exception ex) {
-            isSucceed = false;
-            logger.error("InsertPhoenixBolt:execute:error = " + ex.getMessage());
-        } finally {
-            if (isSucceed == true) {
                 collector.ack(tuple);
-            } else {
-                collector.fail(tuple);
+                collector.emit(streamId, tuple.getValues());
+                logger.info("InsertPhoenixBolt:execute:query = " + query);
+
             }
-            logger.info("InsertPhoenixBolt:execute:query = " + query);
+        } catch(Exception ex) {
+            collector.fail(tuple);
+            logger.error("InsertPhoenixBolt:execute:error = " + ex.getMessage());
         }
     }
 

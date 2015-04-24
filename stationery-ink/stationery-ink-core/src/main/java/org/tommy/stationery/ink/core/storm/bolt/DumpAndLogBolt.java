@@ -55,7 +55,7 @@ public class DumpAndLogBolt extends BaseSignalBolt implements IRichBolt {
                 for (int i=0;i<tuple.getFields().size();i++) {
                     String field = tuple.getFields().get(i);
                     Object val = tuple.getValueByField(field);
-                    if (val == null) val = "null";
+                    if (val == null) continue;
                     rows.put(field, val.toString());
                 }
                 dump(rows);

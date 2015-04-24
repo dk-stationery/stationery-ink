@@ -161,6 +161,10 @@ public class BoltBuilder {
                         aliasedInputBuilder.withField(columnDef.getName()).ofType(columnDef.getType().getZlass());
                     }
 
+                    for (BaseColumnDef columnDef : statement.getColumns()) {
+                        aliasedInputBuilder.withField(columnDef.getName()).ofType(ColumnDataTypeEnum.OBJECT.getZlass());
+                    }
+
                     if (previousEmitFileds != null) {
                         for (String name : previousEmitFileds) {
                             aliasedInputBuilder.withField(name).ofType(ColumnDataTypeEnum.OBJECT.getZlass());

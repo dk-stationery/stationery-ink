@@ -366,12 +366,11 @@ public class EsperBolt extends BaseRichBolt implements UpdateListener
                     String name = fields.get(idx);
                     Object value = tuple.getValue(idx);
                     if (value == null) {
-                        if (value == null) {
-                            value = null;
-                        }
+                       value = null;
                     }
                     data.put(name, value);
                 }
+
                 runtime.sendEvent(data, eventType);
             }
 
@@ -417,8 +416,13 @@ public class EsperBolt extends BaseRichBolt implements UpdateListener
             List<Object> tuple = new ArrayList<Object>(numFields);
 
             for (int idx = 0; idx < numFields; idx++) {
-                Object val = event.get(fields.get(idx));
-                if (val == null) return null;
+                Object val = null;
+                try {
+                    val = event.get(fields.get(idx));
+                    //if (val == null) return null;
+                } catch (Exception ex) {
+
+                }
                 tuple.add(val);
             }
 
