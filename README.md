@@ -88,8 +88,8 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 
 ###### config-production.yml
 		metastore:
-			id: (optional)
-			password: (optional)
+		        id: (optional)
+		        password: (optional)
     			driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
     			url: phoenix connection url (Ex. jdbc:phoenix:dmp-hbase-m2.h.test.com,dmp-hbase-m1.h.test.com,dmp-hbase-m3.h.test.com:2181)
     			initPoolSize: 30
