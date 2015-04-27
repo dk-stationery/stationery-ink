@@ -48,11 +48,19 @@ public class RestApplicationConfig {
     @Bean
     public DataSource dataSource() throws PropertyVetoException, SQLException {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(ParametersConfig.StringValue(parameters.getConfig().get("phoenix").get("driverClassName")));
-        dataSource.setUrl(ParametersConfig.StringValue(parameters.getConfig().get("phoenix").get("url")));
-        dataSource.setInitialSize(ParametersConfig.IntegerValue(parameters.getConfig().get("phoenix").get("initPoolSize")));
-        dataSource.setMaxActive(ParametersConfig.IntegerValue(parameters.getConfig().get("phoenix").get("maxPoolSize")));
-        dataSource.setMinIdle(ParametersConfig.IntegerValue(parameters.getConfig().get("phoenix").get("minPoolSize")));
+        if (ParametersConfig.StringValue(parameters.getConfig().get("metastore").get("id")) != null) {
+            dataSource.setUsername(ParametersConfig.StringValue(parameters.getConfig().get("metastore").get("id")));
+        }
+        if (ParametersConfig.StringValue(parameters.getConfig().get("metastore").get("password")) != null) {
+            dataSource.setPassword(ParametersConfig.StringValue(parameters.getConfig().get("metastore").get("password")));
+        }
+        if (ParametersConfig.StringValue(parameters.getConfig().get("metastore").get("driverClassName")) != null) {
+            dataSource.setDriverClassName(ParametersConfig.StringValue(parameters.getConfig().get("metastore").get("driverClassName")));
+        }
+        dataSource.setUrl(ParametersConfig.StringValue(parameters.getConfig().get("metastore").get("url")));
+        dataSource.setInitialSize(ParametersConfig.IntegerValue(parameters.getConfig().get("metastore").get("initPoolSize")));
+        dataSource.setMaxActive(ParametersConfig.IntegerValue(parameters.getConfig().get("metastore").get("maxPoolSize")));
+        dataSource.setMinIdle(ParametersConfig.IntegerValue(parameters.getConfig().get("metastore").get("minPoolSize")));
         return dataSource;
     }
 

@@ -1,5 +1,7 @@
-phoenix:
+metastore:
     driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
+    id:
+    password:
     url: #################################
     initPoolSize: 30
     maxPoolSize: 150
