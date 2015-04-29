@@ -18,7 +18,7 @@ Antlr3, Apache Storm, Esper, Phoenix, Spring-boot
 4. Ink JDBC driver support.    
 5. UDF function support.  
 6. Stream partition computation support.  
-7. Multi tenants support.
+7. Multi tenants support. 
 
 ##Terms and concepts used in Ink
 1. STREAM : The format of the log of the streaming format that is infinitely delivery. Concepts such as table schema of the RDBMS.
