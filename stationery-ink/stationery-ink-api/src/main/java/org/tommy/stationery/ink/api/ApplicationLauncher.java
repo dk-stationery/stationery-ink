@@ -14,6 +14,6 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 public class ApplicationLauncher {
     public static void main(String[] args) {
-        SpringApplication.run(RestApplicationConfig.class, args);
+        SpringApplication.run(RestApplicationConfig.class,  args);
     }
 }
