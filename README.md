@@ -1,4 +1,4 @@
-# stationery-ink
+# stationery-ink 
 Distributed real-time streaming aggregation framework using the SQL-based 'Apache Storm'
 
 ##System Requirements   
@@ -87,7 +87,9 @@ Summation : Connecting the streaming data defined in STREAM, based on the inform
 In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.yml -Dlog4j.loglevel = INFO -server -Xmx2g -Xms2g -XX: PermSize = 512m -XX: MaxPermSize = 512m -XX: + UseParallelOldGC - jar stationery-ink-api.jar >> ${PATH_TO_LOG}/ink-api.log 2> & 1 & ' command is carried out should drive the API server.    
 
 ###### config-production.yml
-		phoenix:
+		metastore:
+		        id: (optional)
+		        password: (optional)
     			driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
     			url: phoenix connection url (Ex. jdbc:phoenix:dmp-hbase-m2.h.test.com,dmp-hbase-m1.h.test.com,dmp-hbase-m3.h.test.com:2181)
     			initPoolSize: 30
