@@ -1,4 +1,4 @@
-# stationery-ink
+# stationery-ink 
 Distributed real-time streaming aggregation framework using the SQL-based 'Apache Storm'
 
 ##System Requirements   
