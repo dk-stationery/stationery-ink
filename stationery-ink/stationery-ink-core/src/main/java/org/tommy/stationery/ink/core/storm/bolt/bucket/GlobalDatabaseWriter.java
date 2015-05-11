@@ -19,7 +19,7 @@ public class GlobalDatabaseWriter extends AbstractExecutionThreadService {
 	  }
 
 	  private int commitInteval = 500;
-	  private int commitCnt = 0;
+	  private Integer commitCnt = 0;
 	  private final DataSource dataSource;
 	  private final BlockingDeque<WriteCtx> deque = Queues.newLinkedBlockingDeque();
 	  private Statement statement = null;
@@ -69,12 +69,14 @@ public class GlobalDatabaseWriter extends AbstractExecutionThreadService {
 	      if (!"".equals(writeCtx.sql)) { // sentinel value
 	        try {
 	          // db write
-	        	commitCnt++;
-	        	statement.execute(sql);
-	        	if (commitCnt > commitInteval) {
-	        		commitCnt = 0;
-	        		connection.commit();
-	        	}
+                synchronized (commitCnt) {
+                    commitCnt++;
+                    statement.execute(sql);
+                    if (commitCnt > commitInteval) {
+                        commitCnt = 0;
+                        connection.commit();
+                    }
+                }
 	        } catch (Exception e) {
 	          //deque.putFirst(writeCtx); // undo
 	          Thread.sleep(1);
