@@ -2,6 +2,8 @@ package org.tommy.stationery.ink.core.storm.bolt.bucket;
 
 import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.AbstractExecutionThreadService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -10,7 +12,8 @@ import java.sql.Statement;
 import java.util.concurrent.BlockingDeque;
 
 public class GlobalDatabaseWriter extends AbstractExecutionThreadService {
-	  
+    public static Logger logger = LoggerFactory.getLogger(GlobalDatabaseWriter.class);
+
 	  static class WriteCtx {
 	    public final String sql;
 	    public WriteCtx(String sql) {
@@ -75,6 +78,7 @@ public class GlobalDatabaseWriter extends AbstractExecutionThreadService {
                     if (commitCnt > commitInteval) {
                         commitCnt = 0;
                         connection.commit();
+                        logger.info("DATABASE WRITER SIZE: " + deque.size());
                     }
                 }
 	        } catch (Exception e) {
