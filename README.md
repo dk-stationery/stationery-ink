@@ -168,6 +168,8 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 		BUCKET_CONNECTION_INITIALPOOLSIZE : 10 (bucket connection INITIALPOOLSIZE)    
 		BUCKET_CONNECTION_MAXPOOLSIZE : 50 (bucket connection MAXPOOLSIZE)    
 		BUCKET_CONNECTION_MINPOOLSIZE : 1 (bucket connection MINPOOLSIZE)    
+		STORM_CLUSTER_SLAVE_SYSTEM_LOG_PATH : /daum/logs/ink/
+		STORM_CLUSTER_SLAVE_HOSTS : ink-storm-s1,ink-storm-s2,ink-storm-s3
 
 7. Install Ink-stormclient.  
 : > 'stationery-ink-stormclient/target' that was built in the folder 'stationery-ink-stormclient-1.0-SNAPSHOT.jar' must copy the daemon server side.    
@@ -175,6 +177,9 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 
 ##TSQL Commands
 ####DDL TSQL : 
+0. show system :   
+> : Storm supervisor server system current status infomation, topology information getting TSQL.  
+> : ex> show system;
 
 1. show cluster :   
 > : Storm cluster current status infomation, topology information getting TSQL.  
