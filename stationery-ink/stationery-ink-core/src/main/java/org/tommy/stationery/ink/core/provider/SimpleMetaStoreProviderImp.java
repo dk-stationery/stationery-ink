@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 import org.tommy.stationery.ink.core.config.InkConfig;
 import org.tommy.stationery.ink.core.linq.LinqQuery;
 import org.tommy.stationery.ink.core.provider.action.IMetaStoreAction;
+import org.tommy.stationery.ink.core.util.AnalysticsSystemUtil;
 import org.tommy.stationery.ink.core.util.NimbusParser;
+import org.tommy.stationery.ink.core.util.ShellExecutor;
 import org.tommy.stationery.ink.core.util.StormManager;
 import org.tommy.stationery.ink.dao.metastore.InkJobDao;
 import org.tommy.stationery.ink.dao.metastore.InkSourceDao;
@@ -27,6 +29,7 @@ import org.tommy.stationery.ink.util.DumpUtil;
 import org.tommy.stationery.ink.util.domain.Dump;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -98,11 +101,29 @@ public class SimpleMetaStoreProviderImp extends AbstractSimpleMetaStoreProvider 
             resultStatement = doShowJobsAction(inkConfig, statement);
         } else if (StatementTypeEnum.SHOW_CLUSTER.equals(statement.getType())) {
             resultStatement = doShowClusterAction(inkConfig, statement);
+        } else if (StatementTypeEnum.SHOW_SYSTEM.equals(statement.getType())) {
+            resultStatement = doShowSystemAction(inkConfig, statement);
         } else {
             throw new InkException(MessageEnum.NO_SUPPORT_STATEMENT_GROUP);
         }
 
         return resultStatement;
+    }
+
+    //SHOW_SYSTEM
+    public ResultStatement doShowSystemAction(InkConfig inkConfig, BaseStatement statement) throws Exception {
+
+        String[] hosts = inkConfig.getString(SettingEnum.STORM_CLUSTER_SLAVE_HOSTS).split(",");
+        long systemLogFileNamePrefix = System.currentTimeMillis();
+
+        List<String> reports = new ArrayList<String>();
+        for (String host : hosts) {
+            String systemLogFileName = systemLogFileNamePrefix + "_" + host + ".log";
+            ShellExecutor.executeCommand("ssh " + host +  " 'vmstat 1 3' > " + inkConfig.getString(SettingEnum.STORM_CLUSTER_SLAVE_SYSTEM_LOG_PATH) + systemLogFileName);
+            String reportData = "[####" + host + " ####] \r\n" + AnalysticsSystemUtil.getAnalysticReportData(inkConfig.getString(SettingEnum.STORM_CLUSTER_SLAVE_SYSTEM_LOG_PATH) + systemLogFileName);
+            reports.add(reportData);
+        }
+        return generateResultStatement(reports);
     }
 
     //SNAPSHOT_JOB

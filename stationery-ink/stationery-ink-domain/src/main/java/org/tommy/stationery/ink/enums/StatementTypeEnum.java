@@ -21,6 +21,7 @@ public enum StatementTypeEnum {
     SHOW_JOB("SHOW_JOB", GroupTypeEnum.DDL, SubGroupTypeEnum.EMPTY),
     SHOW_JOBS("SHOW_JOBS", GroupTypeEnum.DDL, SubGroupTypeEnum.EMPTY),
     SHOW_CLUSTER("SHOW_CLUSTER", GroupTypeEnum.DDL, SubGroupTypeEnum.EMPTY),
+    SHOW_SYSTEM("SHOW_SYSTEM", GroupTypeEnum.DDL, SubGroupTypeEnum.EMPTY),
     SELECT("SELECT", GroupTypeEnum.DML, SubGroupTypeEnum.ESPER),
     LOOKUP("LOOKUP", GroupTypeEnum.DML, SubGroupTypeEnum.LOOKUP),
     INSERT("INSERT", GroupTypeEnum.DML, SubGroupTypeEnum.BUCKET),
