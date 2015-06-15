@@ -15,8 +15,8 @@ public class SimpleAnalyzer implements VmstatAnalyzer {
 	EnvironmentDescriptor machineDescriptor;
 
 	public SimpleAnalyzer(VmstatData data) {
-		this(data, new EnvironmentDescriptor(DEFAULT_CPU_COUNT, true));
-		builder.append("WARNING: Default CPU count (" + DEFAULT_CPU_COUNT
+		this(data, new EnvironmentDescriptor(Runtime.getRuntime().availableProcessors(), true));
+		builder.append("WARNING: Default CPU count (" + Runtime.getRuntime().availableProcessors()
 				+ ") is being used. Specify your actual number to have better results.\n");
 	}
 
