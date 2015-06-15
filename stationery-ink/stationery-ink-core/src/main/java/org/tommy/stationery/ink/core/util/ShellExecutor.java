@@ -43,7 +43,7 @@ public class ShellExecutor {
         StringBuffer output = new StringBuffer();
 
         try {
-            Runtime.getRuntime().exec(command);
+            Runtime.getRuntime().exec(new String[]{"bash", "-c", command});
         } catch (Exception e) {
             e.printStackTrace();
         }

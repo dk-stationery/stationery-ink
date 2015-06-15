@@ -118,8 +118,14 @@ public class SimpleMetaStoreProviderImp extends AbstractSimpleMetaStoreProvider 
 
         List<String> reports = new ArrayList<String>();
         for (String host : hosts) {
-            String systemLogFileName = systemLogFileNamePrefix + "_" + host + ".log";
-            ShellExecutor.executeCommand("ssh " + host +  " 'vmstat 1 3' > " + inkConfig.getString(SettingEnum.STORM_CLUSTER_SLAVE_SYSTEM_LOG_PATH) + systemLogFileName);
+            String systemLogFileName = systemLogFileNamePrefix + "_system_" + host + ".log";
+            ShellExecutor.executeSimpleCommand("ssh " + host +  " 'vmstat 1 5' > " + inkConfig.getString(SettingEnum.STORM_CLUSTER_SLAVE_SYSTEM_LOG_PATH) + systemLogFileName + " &");
+        }
+
+        Thread.sleep(10000);
+
+        for (String host : hosts) {
+            String systemLogFileName = systemLogFileNamePrefix + "_system_" + host + ".log";
             String reportData = "[####" + host + " ####] \r\n" + AnalysticsSystemUtil.getAnalysticReportData(inkConfig.getString(SettingEnum.STORM_CLUSTER_SLAVE_SYSTEM_LOG_PATH) + systemLogFileName);
             reports.add(reportData);
         }

@@ -88,7 +88,7 @@ public class DefaultVmstatDataLoader implements VmstatDataLoader {
 		boolean keep = line.trim().length() != 0
 				&& !IGNORE_LINES_PATTERN.matcher(line).matches();
 		if (!keep) {
-			System.out.println("IGNORED: " + line);
+			//System.out.println("IGNORED: " + line);
 		}
 		return keep;
 	}
