@@ -62,7 +62,7 @@ public class CoordinateConfig {
 		return consumerConfig;
 	}
 	
-	public static  SpoutConfig KafkaSpoutConfig(Stream inkStream, Source inkSource) throws Exception {
+	public static  SpoutConfig KafkaSpoutConfig(InkConfig inkConfig, Stream inkStream, Source inkSource) throws Exception {
 		//kafka zookeeper config
 		Map conf = new HashMap();
         conf.put(Config.STORM_ZOOKEEPER_SESSION_TIMEOUT, 10000l);
@@ -80,7 +80,7 @@ public class CoordinateConfig {
 				brokerHost
 				, topicMeta.getValue()
 				, "/brokers"
-				, topicMeta.getValue()+ "_VERSION_" + System.currentTimeMillis()
+				, inkConfig.getString(SettingEnum.JOB_NAME)+"_"+topicMeta.getValue()/*+ "_VERSION_" + System.currentTimeMillis()*/
 		);
 		
 		spoutConfig.bufferSizeBytes = 10485760;

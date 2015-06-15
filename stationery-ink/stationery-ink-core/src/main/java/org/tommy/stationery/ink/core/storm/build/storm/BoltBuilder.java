@@ -119,7 +119,7 @@ public class BoltBuilder {
                 if (isRegistAlready == false) {
                     if (SourceCatalogEnum.KAFKA.getName().equals(inkSource.getCatalog())) {
                         //spout
-                        spout = new KafkaSpout(CoordinateConfig.KafkaSpoutConfig(inkStream, inkSource));
+                        spout = new KafkaSpout(CoordinateConfig.KafkaSpoutConfig(inkConfig, inkStream, inkSource));
                     } else if (SourceCatalogEnum.RABBITMQ.getName().equals(inkSource.getCatalog())) {
                         //spout
                         spout = new RabbitMQSpout(new StringScheme());
