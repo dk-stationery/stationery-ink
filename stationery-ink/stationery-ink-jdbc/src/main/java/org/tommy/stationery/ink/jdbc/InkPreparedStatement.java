@@ -29,7 +29,7 @@ public class InkPreparedStatement extends InkStatement implements PreparedStatem
 
         inkRestClient = conn.getInkRestClient();
         inkRestClient.setSql(sql);
-        inkRestClient.parse(sql);
+        //inkRestClient.parse(sql);
     }
 
     public void addBatch(){

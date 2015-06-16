@@ -1,6 +1,5 @@
 package org.tommy.stationery.ink.jdbc.client;
 
-import org.tommy.stationery.ink.core.parser.InkSqlParser;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.jdbc.exception.InkSQLException;
 
@@ -61,7 +60,7 @@ public class InkRestClient {
             throws InkSQLException, Exception {
         this.url = url;
         this.sql = sql;
-        statements = parse( sql );
+        //statements = parse( sql );
 
         client = new InkHttpClient(url);
 
@@ -78,12 +77,12 @@ public class InkRestClient {
         return ret;
     }
 
-    public List<BaseStatement> parse( String sql ) throws InkSQLException, Exception {
+    /*public List<BaseStatement> parse( String sql ) throws InkSQLException, Exception {
         sql = sql.trim();
         InkSqlParser inkSqlParser = new InkSqlParser();
         List<BaseStatement> statements = inkSqlParser.prepare(sql);
         return statements;
-    }
+    }*/
 
     public String getUrl() {
         return url;
