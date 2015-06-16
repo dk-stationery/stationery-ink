@@ -1,5 +1,6 @@
 package org.tommy.stationery.ink.core.config;
 
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.enums.SettingEnum;
 
 import java.io.FileInputStream;

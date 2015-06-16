@@ -2,7 +2,7 @@ package org.tommy.stationery.ink.core.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tommy.stationery.ink.core.config.InkConfig;
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.enums.SettingEnum;
 
 public class LogUtil {

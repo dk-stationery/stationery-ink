@@ -5,6 +5,7 @@ import io.latent.storm.rabbitmq.config.ConnectionConfig;
 import io.latent.storm.rabbitmq.config.ConsumerConfig;
 import io.latent.storm.rabbitmq.config.ConsumerConfigBuilder;
 import net.hydromatic.linq4j.Linq4j;
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.core.linq.LinqQuery;
 import org.tommy.stationery.ink.domain.BaseMetaDef;
 import org.tommy.stationery.ink.domain.meta.Source;

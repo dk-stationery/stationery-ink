@@ -1,8 +1,8 @@
 package org.tommy.stationery.ink.core.provider.action;
 
-import org.tommy.stationery.ink.core.config.InkConfig;
-import org.tommy.stationery.ink.domain.ResultStatement;
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.domain.BaseStatement;
+import org.tommy.stationery.ink.domain.ResultStatement;
 import org.tommy.stationery.ink.exception.InkException;
 
 import java.io.IOException;

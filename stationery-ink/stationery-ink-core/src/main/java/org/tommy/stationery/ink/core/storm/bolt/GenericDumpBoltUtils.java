@@ -3,7 +3,7 @@ package org.tommy.stationery.ink.core.storm.bolt;
 import backtype.storm.tuple.Tuple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tommy.stationery.ink.core.config.InkConfig;
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.enums.SettingEnum;
 import org.tommy.stationery.ink.util.DumpUtil;
 import org.tommy.stationery.ink.util.domain.Dump;

@@ -13,7 +13,7 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tommy.stationery.ink.core.config.InkConfig;
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.core.storm.bolt.GenericBoltUtils;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.IBucketBolt;
 import org.tommy.stationery.ink.core.util.MetaFinderUtil;

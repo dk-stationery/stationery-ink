@@ -1,4 +1,4 @@
-package org.tommy.stationery.ink.core.config;
+package org.tommy.stationery.ink.config;
 
 import org.tommy.stationery.ink.enums.SettingEnum;
 

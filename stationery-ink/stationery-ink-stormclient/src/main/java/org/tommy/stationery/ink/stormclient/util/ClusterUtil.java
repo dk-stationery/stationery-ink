@@ -4,7 +4,7 @@ import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.generated.StormTopology;
-import org.tommy.stationery.ink.core.config.InkConfig;
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.enums.SettingEnum;
 import storm.trident.spout.RichSpoutBatchExecutor;
 

@@ -1,6 +1,6 @@
 package org.tommy.stationery.ink.core.storm.build.executor;
 
-import org.tommy.stationery.ink.core.config.InkConfig;
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.core.storm.ast.ASTDump;
 import org.tommy.stationery.ink.domain.BaseStatement;

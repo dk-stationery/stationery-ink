@@ -2,7 +2,7 @@ package org.tommy.stationery.ink.core.storm.bolt.bucket;
 
 
 import backtype.storm.tuple.Tuple;
-import org.tommy.stationery.ink.core.config.InkConfig;
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.meta.Source;
 import org.tommy.stationery.ink.domain.meta.Stream;

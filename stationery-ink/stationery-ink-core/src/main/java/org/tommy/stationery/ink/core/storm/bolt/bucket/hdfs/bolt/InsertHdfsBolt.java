@@ -17,7 +17,7 @@ import org.apache.hadoop.hdfs.client.HdfsDataOutputStream;
 import org.apache.hadoop.hdfs.client.HdfsDataOutputStream.SyncFlag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tommy.stationery.ink.core.config.InkConfig;
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.core.storm.bolt.GenericBoltUtils;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.HdfsCountSyncPolicy;
 import org.tommy.stationery.ink.core.storm.bolt.bucket.HdfsFileNameFormat;

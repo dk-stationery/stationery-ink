@@ -4,7 +4,7 @@ import backtype.storm.contrib.signals.client.SignalClient;
 import net.hydromatic.linq4j.Linq4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.tommy.stationery.ink.core.config.InkConfig;
+import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.core.linq.LinqQuery;
 import org.tommy.stationery.ink.core.provider.action.IMetaStoreAction;
 import org.tommy.stationery.ink.core.util.AnalysticsSystemUtil;
