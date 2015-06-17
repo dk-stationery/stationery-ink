@@ -1,7 +1,5 @@
 package org.tommy.stationery.ink.core.storm.build.validator;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.domain.BaseColumnDef;
 import org.tommy.stationery.ink.domain.BaseStatement;
@@ -18,13 +16,15 @@ import java.util.List;
  * Created by kun7788 on 15. 2. 2..
  */
 
-@Component
 public class SimpleDMLStatementMetaValidatorImp implements ISimpleStatementMetaValidator {
 
     private static int ONLY_ONE = 1;
 
-    @Autowired
     SimpleMetaStoreProviderImp simpleMetaStoreProviderImp;
+
+    public SimpleDMLStatementMetaValidatorImp(SimpleMetaStoreProviderImp simpleMetaStoreProviderImp) {
+        this.simpleMetaStoreProviderImp = simpleMetaStoreProviderImp;
+    }
 
     @Override
     public boolean validateBindTables(List<BaseTableDef> bindTables) throws InkException {

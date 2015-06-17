@@ -31,6 +31,9 @@ public enum MessageEnum {
     INVALID_TUPLE("INVALID_TUPLE"),
     NO_SUPPORT_STATEMENT_SUBGROUP("NO_SUPPORT_STATEMENT_SUBGROUP"),
     EMPTY_STATEMENTS("EMPTY_STATEMENTS"),
+    EMPTY_INKCONFIG("EMPTY_INKCONFIG"),
+    EMPTY_CONFIGURE("EMPTY_CONFIGURE"),
+    INVALID_INK_PROTOCOL("INVALID_INK_PROTOCOL"),
     NO_SUPPORT_STATEMENT_GROUP("NO_SUPPORT_STATEMENT_GROUP");
 
     private String messgae;
@@ -41,5 +44,10 @@ public enum MessageEnum {
 
     private MessageEnum(String messgae) {
         this.messgae = messgae;
+    }
+
+    @Override
+    public String toString() {
+        return messgae;
     }
 }

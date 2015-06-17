@@ -1,5 +1,6 @@
 package org.tommy.stationery.ink.jdbc;
 
+import org.tommy.stationery.ink.enums.MessageEnum;
 import org.tommy.stationery.ink.jdbc.client.InkRestClient;
 
 import java.sql.*;
@@ -25,9 +26,13 @@ public class InkDriver implements Driver {
     public Connection connect(String url, Properties info) throws SQLException {
         /*if ( info != null && info.size() > 0 )
             throw new UnsupportedOperationException( "properties not supported yet" );
-*/
-        if ( url.startsWith( PREFIX ) )
-            url = "http://" + url.substring( PREFIX.length());
+        */
+
+        if ( url.startsWith( PREFIX ) ) {
+            url = "http://" + url.substring(PREFIX.length());
+        } else {
+            throw new SQLException(MessageEnum.INVALID_INK_PROTOCOL.getMessage());
+        }
 
         InkRestClient inkRestClient = new InkRestClient(url);
         inkRestClient.setSessionId(InkRestClient.initializeSession());

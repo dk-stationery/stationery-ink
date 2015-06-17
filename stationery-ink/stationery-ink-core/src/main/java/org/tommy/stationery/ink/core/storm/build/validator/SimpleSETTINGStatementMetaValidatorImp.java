@@ -1,10 +1,9 @@
 package org.tommy.stationery.ink.core.storm.build.validator;
 
-import org.springframework.stereotype.Component;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.BaseTableDef;
-import org.tommy.stationery.ink.enums.SettingEnum;
 import org.tommy.stationery.ink.enums.MessageEnum;
+import org.tommy.stationery.ink.enums.SettingEnum;
 import org.tommy.stationery.ink.exception.InkException;
 
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
 /**
  * Created by kun7788 on 15. 2. 13..
  */
-@Component
 public class SimpleSETTINGStatementMetaValidatorImp implements ISimpleStatementMetaValidator {
 
     @Override

@@ -68,7 +68,7 @@ public class InsertJDBCBolt extends GenericBoltUtils implements IRichBolt, IBuck
         try {
             dataSource = (ComboPooledDataSource)settingCommunicator();
             globalDatabaseWriter = new GlobalDatabaseWriter(dataSource, inkConfig.getInteger(SettingEnum.COMMIT_INTERVAL));
-            globalDatabaseWriter.startAndWait();
+            globalDatabaseWriter.startAsync();
         } catch (PropertyVetoException e) {
         } catch (SQLException e) {
         }
@@ -98,7 +98,7 @@ public class InsertJDBCBolt extends GenericBoltUtils implements IRichBolt, IBuck
 
     @Override
     public void cleanup() {
-        globalDatabaseWriter.stopAndWait();
+        globalDatabaseWriter.stopAsync();
         try {
             globalDatabaseWriter.shutDown();
         } catch (Exception e) {

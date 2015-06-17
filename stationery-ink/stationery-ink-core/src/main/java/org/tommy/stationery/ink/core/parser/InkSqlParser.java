@@ -15,6 +15,7 @@ import java.util.List;
 public class InkSqlParser {
 
     public List<BaseStatement> prepare(String query) throws RecognitionException {
+        query = query.replace("\n", " ");
         ANTLRStringStream in = new ANTLRStringStream(query);
         TOMMY_SQLLexer lexer = new TOMMY_SQLLexer(in);
         CommonTokenStream tokens = new CommonTokenStream(lexer);

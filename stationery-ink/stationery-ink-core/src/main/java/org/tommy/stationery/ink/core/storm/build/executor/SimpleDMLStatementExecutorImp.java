@@ -7,6 +7,7 @@ import org.tommy.stationery.ink.core.storm.build.storm.BoltBuilder;
 import org.tommy.stationery.ink.core.storm.build.storm.StormTopologyBuilder;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.ResultStatement;
+import org.tommy.stationery.ink.enums.SettingEnum;
 import org.tommy.stationery.ink.exception.InkException;
 
 import java.util.ArrayList;
@@ -20,6 +21,13 @@ public class SimpleDMLStatementExecutorImp implements ISimpleStatementExecutor {
     private InkConfig inkConfig;
     private List<ResultStatement> resultStatement;
     private StormTopologyBuilder stormTopologyBuilder;
+
+    public boolean isRunable(InkConfig inkConfig) {
+        if (resultStatement.size() >= 1 && inkConfig.getString(SettingEnum.JOB_NAME) != null) {
+            return true;
+        }
+        return false;
+    }
 
     public SimpleDMLStatementExecutorImp(Builder builder, StormTopologyBuilder stormTopologyBuilder) {
         this.resultStatement = builder.resultStatement;

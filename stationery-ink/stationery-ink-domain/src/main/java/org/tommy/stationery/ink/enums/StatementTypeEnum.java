@@ -1,5 +1,9 @@
 package org.tommy.stationery.ink.enums;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by kun7788 on 15. 1. 22..
  */
@@ -61,6 +65,15 @@ public enum StatementTypeEnum {
         }
         private GroupTypeEnum(String name) {
             this.name = name;
+        }
+
+        public static List<GroupTypeEnum> GroupTypeList() {
+           return new ArrayList<GroupTypeEnum>(Arrays.asList(
+                   StatementTypeEnum.GroupTypeEnum.USE
+                   , StatementTypeEnum.GroupTypeEnum.SET
+                   , StatementTypeEnum.GroupTypeEnum.DML
+                   , StatementTypeEnum.GroupTypeEnum.DDL
+           ));
         }
     }
 

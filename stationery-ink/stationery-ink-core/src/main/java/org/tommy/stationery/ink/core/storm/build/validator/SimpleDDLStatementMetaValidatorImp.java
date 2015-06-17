@@ -1,6 +1,5 @@
 package org.tommy.stationery.ink.core.storm.build.validator;
 
-import org.springframework.stereotype.Component;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.BaseTableDef;
 import org.tommy.stationery.ink.exception.InkException;
@@ -10,7 +9,6 @@ import java.util.List;
 /**
  * Created by kun7788 on 15. 2. 2..
  */
-@Component
 public class SimpleDDLStatementMetaValidatorImp implements ISimpleStatementMetaValidator {
 
     @Override
