@@ -2,7 +2,7 @@
 Distributed real-time streaming aggregation framework using the SQL-based 'Apache Storm'
 
 ##System Requirements   
-JAVA : 1.6  
+JAVA : 1.6 above
 HBASE : 0.98.1-cdh5.1.3 above    
 PHOENIX : 4.0.0-incubation (custom version) above    
 STORM : 0.9.0.1 above    
