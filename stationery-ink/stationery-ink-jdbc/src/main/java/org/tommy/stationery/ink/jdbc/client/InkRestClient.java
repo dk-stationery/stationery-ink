@@ -21,6 +21,8 @@ public class InkRestClient {
     private String sql;
     private String sessionId;
     private List<BaseStatement> statements;
+    private String user;
+    private String password;
 
     public void close() {
 
@@ -44,11 +46,11 @@ public class InkRestClient {
     }
 
     public String send(String sql) {
-        return client.send(sessionId, sql);
+        return client.send(sessionId, user, password, sql);
     }
 
     public String send() {
-        return client.send(sessionId, sql);
+        return client.send(sessionId,user, password,  sql);
     }
 
     public InkRestClient(String url) {
@@ -73,7 +75,7 @@ public class InkRestClient {
     }
 
     public String query() throws InkSQLException {
-        String ret = client.send(sessionId, sql);
+        String ret = client.send(sessionId, user, password, sql);
         return ret;
     }
 
@@ -84,6 +86,9 @@ public class InkRestClient {
         return statements;
     }*/
 
+    public InkHttpClient getClient() {
+        return client;
+    }
     public String getUrl() {
         return url;
     }
@@ -106,5 +111,21 @@ public class InkRestClient {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

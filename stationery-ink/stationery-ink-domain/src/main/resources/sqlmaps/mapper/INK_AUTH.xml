@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.tommy.stationery.ink.mapper.metastore.InkAuthMapper">
+
+    <select id="getInkAuth" parameterType="org.tommy.stationery.ink.domain.meta.Auth" resultType="org.tommy.stationery.ink.domain.meta.Auth">
+        SELECT
+        *
+        FROM
+        INK_AUTH
+        WHERE
+          USER = #{user}
+          AND PASSWORD = #{password}
+    </select>
+</mapper>

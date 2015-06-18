@@ -21,9 +21,12 @@ import java.util.List;
  */
 public class InkHttpClient {
 
+    private static String API_AUTH_PATH = "/auth/check";
     private static String API_SUB_PATH = "/sql/run";
     private static String API_SQL_PARAM = "sql";
     private static String API_SESSION_PARAM = "sessionId";
+    private static String API_USER_PARAM = "user";
+    private static String API_PASSWORD_PARAM = "password";
 
     private static final Logger logger = LoggerFactory.getLogger(InkHttpClient.class);
 
@@ -38,7 +41,30 @@ public class InkHttpClient {
 
     }
 
-    public String send(String sessionId, String sql) {
+    public String authCheck(String user, String password) {
+        String result = "succeed";
+        StringBuilder sb = new StringBuilder();
+        HttpClient client = new DefaultHttpClient();
+        try {
+            HttpPost post = new HttpPost(url + API_AUTH_PATH);
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+            nameValuePairs.add(new BasicNameValuePair(API_USER_PARAM, user));
+            nameValuePairs.add(new BasicNameValuePair(API_PASSWORD_PARAM, password));
+            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+            HttpResponse response = client.execute(post);
+            return response.getStatusLine().getStatusCode() + "";
+        } catch (Exception e) {
+            result = e.getMessage();
+        } finally {
+            if (client != null) {
+                client.getConnectionManager().shutdown();
+            }
+        }
+        return result;
+    }
+
+    public String send(String sessionId, String user, String password, String sql) {
         String result = "succeed";
         StringBuilder sb = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
@@ -47,6 +73,8 @@ public class InkHttpClient {
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
             nameValuePairs.add(new BasicNameValuePair(API_SESSION_PARAM, sessionId));
             nameValuePairs.add(new BasicNameValuePair(API_SQL_PARAM, sql));
+            nameValuePairs.add(new BasicNameValuePair(API_USER_PARAM, user));
+            nameValuePairs.add(new BasicNameValuePair(API_PASSWORD_PARAM, password));
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             HttpResponse response = client.execute(post);

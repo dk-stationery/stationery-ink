@@ -4,6 +4,7 @@ import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.domain.BaseColumnDef;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.BaseTableDef;
+import org.tommy.stationery.ink.domain.meta.Auth;
 import org.tommy.stationery.ink.domain.meta.Source;
 import org.tommy.stationery.ink.domain.meta.Stream;
 import org.tommy.stationery.ink.enums.MessageEnum;
@@ -20,10 +21,12 @@ public class SimpleDMLStatementMetaValidatorImp implements ISimpleStatementMetaV
 
     private static int ONLY_ONE = 1;
 
-    SimpleMetaStoreProviderImp simpleMetaStoreProviderImp;
+    private SimpleMetaStoreProviderImp simpleMetaStoreProviderImp;
+    private Auth auth;
 
-    public SimpleDMLStatementMetaValidatorImp(SimpleMetaStoreProviderImp simpleMetaStoreProviderImp) {
+    public SimpleDMLStatementMetaValidatorImp(Auth auth, SimpleMetaStoreProviderImp simpleMetaStoreProviderImp) {
         this.simpleMetaStoreProviderImp = simpleMetaStoreProviderImp;
+        this.auth = auth;
     }
 
     @Override
@@ -56,6 +59,10 @@ public class SimpleDMLStatementMetaValidatorImp implements ISimpleStatementMetaV
 
     @Override
     public boolean isValidate(BaseStatement statement) throws InkException {
+        if (simpleMetaStoreProviderImp.isGrantAuth(auth, statement.getType().getGroupAuth()) == false) {
+            throw new InkException(MessageEnum.NOT_ENOUGH_AUTH_GRANT);
+        }
+
         if (statement.getType().getSubGroup().equals(StatementTypeEnum.SubGroupTypeEnum.LOOKUP)) {
             if (statement.getBindTables() == null || statement.getBindTables().size() != ONLY_ONE) {
                 throw new InkException(MessageEnum.LOOKUP_STATEMENT_MUST_HAS_ONLY_ONE_STREAM);

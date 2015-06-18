@@ -15,7 +15,7 @@ public class ValidateEventHandler {
     @Subscribe
     @AllowConcurrentEvents
     public void onValidateStatement(ValidateEvent event) throws InkException {
-        ISimpleStatementMetaValidator simpleStatementMetaValidator = SimpleStatementValidatorFactory.getInstance(event.getStatementGroupTypeEnum(), event.getSimpleMetaStoreProviderImp());
+        ISimpleStatementMetaValidator simpleStatementMetaValidator = SimpleStatementValidatorFactory.getInstance(event.getAuth(), event.getStatementGroupTypeEnum(), event.getSimpleMetaStoreProviderImp());
         boolean isValidate = simpleStatementMetaValidator.isValidate(event.getStatement());
         event.setValidate(isValidate);
     }

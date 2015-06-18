@@ -13,6 +13,7 @@ import org.tommy.stationery.ink.daemon.util.SqlResultsGenerator;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.ResultStatement;
 import org.tommy.stationery.ink.domain.SqlResults;
+import org.tommy.stationery.ink.domain.meta.Auth;
 
 import java.util.List;
 
@@ -30,15 +31,17 @@ public class StatementBuilderService {
     @Autowired
     SimpleMetaStoreProviderImp simpleMetaStoreProvider;
 
+    private Auth auth;
     private AdvancedStatementsBuilder advancedStatementsBuilder;
 
-    public List<BaseStatement> prepare(String sql) throws RecognitionException {
+    public List<BaseStatement> prepare(Auth auth, String sql) throws RecognitionException {
+        this.auth = auth;
         return new InkSqlParser().prepare(sql);
     }
 
     public List<ResultStatement> run(String sql, List<BaseStatement> statements) throws Exception {
         advancedStatementsBuilder = new AdvancedStatementsBuilder();
-        advancedStatementsBuilder.init(configProperties, simpleMetaStoreProvider);
+        advancedStatementsBuilder.init(configProperties, simpleMetaStoreProvider, auth);
         advancedStatementsBuilder.build(statements, sql);
         return advancedStatementsBuilder.getResultStatements();
     }

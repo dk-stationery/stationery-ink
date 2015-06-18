@@ -11,12 +11,14 @@ import org.tommy.stationery.ink.core.util.AnalysticsSystemUtil;
 import org.tommy.stationery.ink.core.util.NimbusParser;
 import org.tommy.stationery.ink.core.util.ShellExecutor;
 import org.tommy.stationery.ink.core.util.StormManager;
+import org.tommy.stationery.ink.dao.metastore.InkAuthDao;
 import org.tommy.stationery.ink.dao.metastore.InkJobDao;
 import org.tommy.stationery.ink.dao.metastore.InkSourceDao;
 import org.tommy.stationery.ink.dao.metastore.InkStreamDao;
 import org.tommy.stationery.ink.domain.BaseMetaDef;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.ResultStatement;
+import org.tommy.stationery.ink.domain.meta.Auth;
 import org.tommy.stationery.ink.domain.meta.Job;
 import org.tommy.stationery.ink.domain.meta.Source;
 import org.tommy.stationery.ink.domain.meta.Stream;
@@ -49,6 +51,20 @@ public class SimpleMetaStoreProviderImp extends AbstractSimpleMetaStoreProvider 
 
     @Autowired
     InkStreamDao inkStreamDao;
+
+    @Autowired
+    InkAuthDao inkAuthDao;
+
+    public boolean isGrantAuth(Auth auth, StatementTypeEnum.GroupTypeAuthEnum groupTypeAuthEnum) throws InkException {
+        int src = StatementTypeEnum.GroupTypeAuthEnum.valueOf(auth.getGrant()).getBit();
+        int desc = groupTypeAuthEnum.getBit();
+        int op = (src & desc);
+        return (op > 0 ? true : false);
+    }
+
+    public Auth getInkAuth(Auth auth) throws InkException {
+        return inkAuthDao.getInkAuth(auth);
+    }
 
     public boolean isOnlyOneInkSourceByName(Source inkSource) throws InkException {
         inkSourceDao.getOnlyInkSourceByName(inkSource);

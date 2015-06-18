@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.tommy.stationery.ink.daemon.service.metastore.AuthService;
 import org.tommy.stationery.ink.daemon.service.metastore.StatementBuilderService;
 import org.tommy.stationery.ink.daemon.util.MultiTenantProxyUtil;
 import org.tommy.stationery.ink.daemon.util.SessionUtil;
@@ -14,7 +15,10 @@ import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.ResultStatement;
 import org.tommy.stationery.ink.domain.SqlResults;
 import org.tommy.stationery.ink.domain.cluster.Tenant;
+import org.tommy.stationery.ink.domain.meta.Auth;
+import org.tommy.stationery.ink.enums.MessageEnum;
 import org.tommy.stationery.ink.enums.StatementTypeEnum;
+import org.tommy.stationery.ink.exception.InkException;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -30,6 +34,9 @@ import java.util.List;
 @RequestMapping("/sql")
 public class RunController {
     private static final Logger logger = LoggerFactory.getLogger(RunController.class);
+
+    @Autowired
+    AuthService authService;
 
     @Autowired
     StatementBuilderService statementBuilderService;
@@ -51,21 +58,25 @@ public class RunController {
     }
 
     @RequestMapping(value = "/run", method = RequestMethod.POST)
-    public Object run(@RequestParam(value = "sessionId", required = true) String sessionId, @RequestParam(value = "sql", required = true) String sql) throws Exception {
+    public Object run(@RequestParam(value = "sessionId", required = true) String sessionId, @RequestParam(value = "user", required = true) String user, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "sql", required = true) String sql) throws Exception {
+        Auth auth = authService.getInkAuth(new Auth(user, password));
+        if (auth == null) {
+            throw new InkException(MessageEnum.INVALID_AUTH_INFO);
+        }
 
         if (";".equals(sql.substring(sql.length() - 1, sql.length())) == false) {
             sql+=";";
         }
 
         //session sql process.
-        sql = sessionUtil.getSessionConvSql(sessionId, statementBuilderService.prepare(sql), sql);
+        sql = sessionUtil.getSessionConvSql(sessionId, statementBuilderService.prepare(auth, sql), sql);
 
         List<ResultStatement> resultStatements = new ArrayList<ResultStatement>();
         try {
             logger.info("sessionId : " + sessionId);
             logger.info("sql : " + sql);
 
-            List<BaseStatement> statements = statementBuilderService.prepare(sql);
+            List<BaseStatement> statements = statementBuilderService.prepare(auth, sql);
             Tenant otherTenant = multiTenantProxyUtil.getOtherTenantInfo(statements);
 
             //my tenant

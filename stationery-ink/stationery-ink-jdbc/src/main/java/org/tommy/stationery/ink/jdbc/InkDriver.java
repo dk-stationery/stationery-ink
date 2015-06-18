@@ -12,7 +12,9 @@ import java.util.logging.Logger;
  */
 public class InkDriver implements Driver {
 
-    static final String PREFIX = "ink://";
+    static final String PREFIX = "jdbc:ink://";
+    public static final String DATABASE_USER = "user";
+    public static final String DATABASE_PASSWORD = "password";
 
     static {
         try {
@@ -30,18 +32,30 @@ public class InkDriver implements Driver {
 
     @Override
     public Connection connect(String url, Properties info) throws SQLException {
-        /*if ( info != null && info.size() > 0 )
-            throw new UnsupportedOperationException( "properties not supported yet" );
-        */
-
         if ( url.startsWith( PREFIX ) ) {
             url = "http://" + url.substring(PREFIX.length());
         } else {
             throw new SQLException(MessageEnum.INVALID_INK_PROTOCOL.getMessage());
         }
 
+        String user = info.getProperty(DATABASE_USER);
+        String password = info.getProperty(DATABASE_PASSWORD);
+
+        if ((user == null || password == null) || (user.length() <= 0 || password.length() <= 0)) {
+            throw new SQLException(MessageEnum.INVALID_AUTH_INFO.getMessage());
+        }
+
         InkRestClient inkRestClient = new InkRestClient(url);
         inkRestClient.setSessionId(InkRestClient.initializeSession());
+        inkRestClient.setUser(user);
+        inkRestClient.setPassword(password);
+
+        //auth check.
+        String ret = inkRestClient.getClient().authCheck(user, password);
+        if (!"200".equals(ret)) {
+            throw new SQLException(MessageEnum.INVALID_AUTH_INFO.getMessage());
+        }
+
         return new InkConnection(inkRestClient);
     }
 

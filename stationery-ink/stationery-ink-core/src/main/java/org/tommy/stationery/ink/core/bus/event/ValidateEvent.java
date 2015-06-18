@@ -2,6 +2,7 @@ package org.tommy.stationery.ink.core.bus.event;
 
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.domain.BaseStatement;
+import org.tommy.stationery.ink.domain.meta.Auth;
 import org.tommy.stationery.ink.enums.StatementTypeEnum;
 
 /**
@@ -10,11 +11,13 @@ import org.tommy.stationery.ink.enums.StatementTypeEnum;
 public class ValidateEvent {
 
     private boolean isValidate;
+    private Auth auth;
     private StatementTypeEnum.GroupTypeEnum statementGroupTypeEnum;
     private BaseStatement statement;
     private SimpleMetaStoreProviderImp simpleMetaStoreProviderImp;
 
-    public ValidateEvent(StatementTypeEnum.GroupTypeEnum statementGroupTypeEnum, BaseStatement statement, SimpleMetaStoreProviderImp simpleMetaStoreProviderImp) {
+    public ValidateEvent(Auth auth, StatementTypeEnum.GroupTypeEnum statementGroupTypeEnum, BaseStatement statement, SimpleMetaStoreProviderImp simpleMetaStoreProviderImp) {
+        this.auth = auth;
         this.statementGroupTypeEnum = statementGroupTypeEnum;
         this.statement = statement;
         this.simpleMetaStoreProviderImp = simpleMetaStoreProviderImp;
@@ -50,5 +53,13 @@ public class ValidateEvent {
 
     public void setValidate(boolean isValidate) {
         this.isValidate = isValidate;
+    }
+
+    public Auth getAuth() {
+        return auth;
+    }
+
+    public void setAuth(Auth auth) {
+        this.auth = auth;
     }
 }

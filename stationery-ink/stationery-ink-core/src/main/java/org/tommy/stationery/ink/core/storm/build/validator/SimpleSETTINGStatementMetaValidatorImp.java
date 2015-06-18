@@ -1,7 +1,9 @@
 package org.tommy.stationery.ink.core.storm.build.validator;
 
+import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.BaseTableDef;
+import org.tommy.stationery.ink.domain.meta.Auth;
 import org.tommy.stationery.ink.enums.MessageEnum;
 import org.tommy.stationery.ink.enums.SettingEnum;
 import org.tommy.stationery.ink.exception.InkException;
@@ -12,6 +14,14 @@ import java.util.List;
  * Created by kun7788 on 15. 2. 13..
  */
 public class SimpleSETTINGStatementMetaValidatorImp implements ISimpleStatementMetaValidator {
+
+    private SimpleMetaStoreProviderImp simpleMetaStoreProviderImp;
+    private Auth auth;
+
+    public SimpleSETTINGStatementMetaValidatorImp(Auth auth, SimpleMetaStoreProviderImp simpleMetaStoreProviderImp) {
+        this.simpleMetaStoreProviderImp = simpleMetaStoreProviderImp;
+        this.auth = auth;
+    }
 
     @Override
     public boolean validateBindTables(List<BaseTableDef> bindTables) throws InkException {
@@ -27,6 +37,10 @@ public class SimpleSETTINGStatementMetaValidatorImp implements ISimpleStatementM
 
     @Override
     public boolean isValidate(BaseStatement statement) throws InkException {
+        if (simpleMetaStoreProviderImp.isGrantAuth(auth, statement.getType().getGroupAuth()) == false) {
+            throw new InkException(MessageEnum.NOT_ENOUGH_AUTH_GRANT);
+        }
+
         if (statement.getSettingDef() == null) {
             throw new InkException(MessageEnum.SETTING_IS_NULL);
         }

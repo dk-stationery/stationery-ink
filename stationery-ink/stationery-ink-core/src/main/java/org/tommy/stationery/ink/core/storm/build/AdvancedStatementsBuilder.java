@@ -18,6 +18,7 @@ import org.tommy.stationery.ink.core.storm.build.filter.SimpleStatementFilterFac
 import org.tommy.stationery.ink.core.util.StormManager;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.ResultStatement;
+import org.tommy.stationery.ink.domain.meta.Auth;
 import org.tommy.stationery.ink.enums.MessageEnum;
 import org.tommy.stationery.ink.enums.SettingEnum;
 import org.tommy.stationery.ink.enums.StatementTypeEnum;
@@ -38,6 +39,7 @@ public class AdvancedStatementsBuilder {
     private ConfigProperties configProperties;
     private SimpleMetaStoreProviderImp simpleMetaStoreProvider;
     private NavigableMap<StatementTypeEnum.GroupTypeEnum, ISimpleBuilder> simpleStatementBuilders = new TreeMap<StatementTypeEnum.GroupTypeEnum, ISimpleBuilder>();
+    private Auth auth;
 
     private void registerEventHandlersFromEventBus() {
         eventBus = new AdvancedEventBus();
@@ -82,7 +84,7 @@ public class AdvancedStatementsBuilder {
                 indexCnt++;
 
                 //validate
-                ValidateEvent validateEvent = new ValidateEvent(statementGroupTypeEnum, statement, simpleMetaStoreProvider);
+                ValidateEvent validateEvent = new ValidateEvent(auth, statementGroupTypeEnum, statement, simpleMetaStoreProvider);
                 validateEvent = (ValidateEvent)eventBus.fireEvent(validateEvent);
                 if (!validateEvent.isValidate()) {
                     throw new InkException(MessageEnum.META_VALIDATION_ERROR);
@@ -114,10 +116,13 @@ public class AdvancedStatementsBuilder {
         }
     }
 
-    public void init(ConfigProperties configProperties,SimpleMetaStoreProviderImp simpleMetaStoreProvider) {
+    public void init(ConfigProperties configProperties,SimpleMetaStoreProviderImp simpleMetaStoreProvider, Auth auth) {
         Preconditions.checkNotNull(configProperties, MessageEnum.EMPTY_CONFIGURE);
         this.configProperties = configProperties;
         this.simpleMetaStoreProvider = simpleMetaStoreProvider;
+
+        Preconditions.checkNotNull(auth, MessageEnum.INVALID_AUTH_INFO);
+        this.auth = auth;
 
         //registing event handler.(eventbus)
         registerEventHandlersFromEventBus();
