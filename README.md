@@ -58,6 +58,7 @@ Summation : Connecting the streaming data defined in STREAM, based on the inform
 : > Reference : http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.3/bk_installing_manually_book/content/rpm-chap-phoenix.html   
 : > Phoenix sqlline.py connected.  
 : > execute the query for making meta table.  
+
 		CREATE TABLE IF NOT EXISTS INK_AUTH ( 
 			USER VARCHAR not null,
 			PASSWORD VARCHAR,
