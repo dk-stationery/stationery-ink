@@ -65,6 +65,7 @@ Summation : Connecting the streaming data defined in STREAM, based on the inform
 			GRANT VARCHAR /*---READ_ONLY, READ_WRITE, READ_WRITE_DEPLOY--*/
 			CONSTRAINT PK PRIMARY KEY (USER)
 		) ;
+		UPSERT INTO INK_AUTH(USER, PASSWORD, GRANT) VALUES('ADMIN', 'ADMIN', 'READ_WRITE_DEPLOY');   
 
 		CREATE TABLE IF NOT EXISTS INK_JOB ( 
 			NAME VARCHAR not null,
