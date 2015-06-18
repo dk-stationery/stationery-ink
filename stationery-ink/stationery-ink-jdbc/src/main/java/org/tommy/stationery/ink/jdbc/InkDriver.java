@@ -5,6 +5,7 @@ import org.tommy.stationery.ink.jdbc.client.InkRestClient;
 
 import java.sql.*;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 /**
  * Created by kun7788 on 15. 1. 30..
@@ -20,6 +21,11 @@ public class InkDriver implements Driver {
         catch ( SQLException e ){
             throw new RuntimeException( e );
         }
+    }
+
+    public Logger getParentLogger()
+            throws SQLFeatureNotSupportedException {
+        return null;
     }
 
     @Override

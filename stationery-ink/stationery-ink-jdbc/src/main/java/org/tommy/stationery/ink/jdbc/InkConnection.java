@@ -7,6 +7,7 @@ import org.tommy.stationery.ink.jdbc.client.InkRestClient;
 import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.Executor;
 
 /**
  * Created by kun7788 on 15. 1. 30..
@@ -237,6 +238,32 @@ public class InkConnection implements Connection {
     public boolean isWrapperFor(Class<?> iface)
             throws SQLException {
         throw new UnsupportedOperationException();
+    }
+
+    public int getNetworkTimeout()
+            throws SQLException {
+        return 0;
+    }
+
+    public void setNetworkTimeout(Executor executor,
+                                  int milliseconds)
+            throws SQLException {
+
+    }
+
+    public void abort(Executor executor)
+            throws SQLException {
+
+    }
+
+    public String getSchema()
+            throws SQLException {
+        return null;
+    }
+
+    public void setSchema(String s)
+            throws SQLException {
+
     }
 
     public InkRestClient getInkRestClient(){
