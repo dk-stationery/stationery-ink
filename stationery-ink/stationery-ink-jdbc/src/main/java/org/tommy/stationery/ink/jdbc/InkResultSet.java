@@ -155,8 +155,9 @@ public class InkResultSet implements ResultSet {
 
             @Override
             public String getTableName(int i) throws SQLException {
-                logger.info("##############################");
-                return "cluster";
+                //logger.info("##############################");
+                //return "cluster";
+                return null;
             }
 
             @Override

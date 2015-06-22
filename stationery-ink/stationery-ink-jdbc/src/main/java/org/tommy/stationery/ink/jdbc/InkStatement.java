@@ -217,7 +217,8 @@ public class InkStatement implements Statement {
 
 
     public SQLWarning getWarnings(){
-        throw new UnsupportedOperationException( "warning not supported yet" );
+        //throw new UnsupportedOperationException( "warning not supported yet" );
+        return null;
     }
 
     public void setCursorName(String name){

@@ -24,7 +24,8 @@ public class InkConnection implements Connection {
     }
 
     public SQLWarning getWarnings(){
-        throw new RuntimeException( "should do get last error" );
+       // throw new RuntimeException( "should do get last error" );
+        return null;
     }
 
     public void clearWarnings(){
@@ -83,7 +84,7 @@ public class InkConnection implements Connection {
     }
 
     public void setTransactionIsolation(int level){
-        throw new RuntimeException( "no TransactionIsolation" );
+       // throw new RuntimeException( "no TransactionIsolation" );
     }
 
     // --- create ----
@@ -138,7 +139,8 @@ public class InkConnection implements Connection {
     }
 
     public int getTransactionIsolation(){
-        throw new RuntimeException( "not dont yet" );
+        return 1;
+        //throw new RuntimeException( "not dont yet" );
     }
 
     public DatabaseMetaData getMetaData() throws SQLException {
