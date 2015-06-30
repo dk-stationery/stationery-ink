@@ -27,7 +27,8 @@ public class StormManager {
     private static String WHITESPACE = " ";
     private static String DOUBLE_QUOTE = "\"";
 
-    public static String depoly(InkConfig inkConfig, StormTopology stormTopology) throws Exception {
+    public static String depoly(InkConfig inkConfig, Object topology) throws Exception {
+        StormTopology stormTopology = (StormTopology)topology;
         JavaStringSerde javaStringSerde = new JavaStringSerde();
 
         String jobName = inkConfig.getString(SettingEnum.JOB_NAME);

@@ -22,4 +22,5 @@ public interface IStatementBuilder {
     public void init(ConfigProperties configProperties, SimpleMetaStoreProviderImp simpleMetaStoreProvider, Auth auth);
     public List<ResultStatement> getResultStatements();
     public String toAST();
+    public void deploy(InkConfig inkConfig, Object topology) throws Exception;
 }

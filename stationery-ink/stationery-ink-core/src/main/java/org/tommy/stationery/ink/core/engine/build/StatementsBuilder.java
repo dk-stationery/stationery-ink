@@ -13,7 +13,6 @@ import org.tommy.stationery.ink.core.engine.build.filter.SimpleStatementFilterFa
 import org.tommy.stationery.ink.core.engine.storm.build.executor.SimpleDMLStatementExecutorImp;
 import org.tommy.stationery.ink.core.engine.storm.build.executor.SimpleSETTINGStatementExecutorImp;
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
-import org.tommy.stationery.ink.core.util.StormManager;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.ResultStatement;
 import org.tommy.stationery.ink.domain.meta.Auth;
@@ -106,8 +105,8 @@ public class StatementsBuilder implements IStatementBuilder {
             //snapshot data clear
             clearSnapshotWastedData(inkConfig);
 
-            //storm depoly
-            StormManager.depoly(inkConfig, ((SimpleDMLStatementExecutorImp) simpleDMLStatementExecutorImp).getStormTopologyBuilder().build());
+            //deploy
+            deploy(inkConfig, ((SimpleDMLStatementExecutorImp) simpleDMLStatementExecutorImp).getStormTopologyBuilder().build());
 
             //store sql query on metastore.
             registSQLOnMetastore(inkConfig, sql);
@@ -142,5 +141,10 @@ public class StatementsBuilder implements IStatementBuilder {
             astSb.append(simpleBuilder.build().toAST());
         }
         return astSb.toString();
+    }
+
+    @Override
+    public void deploy(InkConfig inkConfig, Object topology) throws Exception {
+
     }
 }
