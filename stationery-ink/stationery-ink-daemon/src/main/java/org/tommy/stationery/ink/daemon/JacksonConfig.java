@@ -1,4 +1,4 @@
-package org.tommy.stationery.ink.daemon.config;
+package org.tommy.stationery.ink.daemon;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

@@ -11,48 +11,8 @@
     <artifactId>stationery-ink-daemon</artifactId>
     <packaging>jar</packaging>
 
-    <repositories>
-        <repository>
-            <id>daum sapd</id>
-            <name>Daum DA Repository</name>
-            <url>http://maven.daumcorp.com/content/repositories/daum-da</url>
-        </repository>
-        <repository>
-            <id>daum-sapd</id>
-            <url>http://maven.daumcorp.com/content/groups/daum-sapd-group</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>cloudera</id>
-            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
-        </repository>
-    </repositories>
-
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.6</java.version>
-        <sd.rest>1.1.0.M1</sd.rest>
-        <org.springframework-version>3.1.2.RELEASE</org.springframework-version>
-        <org.aspectj-version>1.6.10</org.aspectj-version>
-        <org.slf4j-version>1.6.6</org.slf4j-version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>3.2.2.RELEASE</spring.version>
-        <spring.ws.version>2.1.1.RELEASE</spring.ws.version>
-        <storm.version>0.9.0.1</storm.version>
-        <hibernate.version>4.1.12.Final</hibernate.version>
-        <mybatis.version>3.2.7</mybatis.version>
-        <mybatis.spring.version>1.2.2</mybatis.spring.version>
-        <zookeeper.version>3.4.6</zookeeper.version>
-        <hbase.version>0.98.1-cdh5.1.0</hbase.version>
         <start-class>org.tommy.stationery.ink.daemon.ApplicationLauncher</start-class>
-        <hadoop.version>2.3.0-cdh5.1.0</hadoop.version>
     </properties>
 
     <dependencies>
@@ -159,18 +119,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- jedis -->
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>0.9.9</version>
-        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>

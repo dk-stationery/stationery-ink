@@ -1,7 +1,6 @@
 package org.tommy.stationery.ink.daemon;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import org.apache.commons.pool.impl.GenericObjectPool;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -19,16 +18,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.tommy.stationery.ink.core.config.ConfigProperties;
-import org.tommy.stationery.ink.daemon.component.CacheDataUtil;
 import org.tommy.stationery.ink.daemon.config.ParametersConfig;
-import redis.clients.jedis.JedisShardInfo;
-import redis.clients.jedis.ShardedJedisPool;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Created by kun7788 on 15. 1. 28..
@@ -92,19 +87,6 @@ public class RestApplicationConfig {
         factoryBean.setConfigLocation(applicationContext.getResource("/sqlmaps/sqlmap-config.xml"));
         factoryBean.setMapperLocations(applicationContext.getResources("/sqlmaps/mapper/**/*.xml"));
         return factoryBean;
-    }
-
-    @Bean
-    public ShardedJedisPool shardedJedisPool() {
-        List<JedisShardInfo> shards = CacheDataUtil.generateShardInfo(
-                ParametersConfig.StringValue(parametersConfig.getConfig().get("redis").get("host"))
-                , ParametersConfig.StringValue(parametersConfig.getConfig().get("redis").get("password"))
-                , 10000
-        );
-        GenericObjectPool.Config config = new GenericObjectPool.Config();
-        config.whenExhaustedAction = GenericObjectPool.WHEN_EXHAUSTED_GROW;
-        config.maxActive = 100;
-        return new ShardedJedisPool(config, shards);
     }
 
     @Bean
