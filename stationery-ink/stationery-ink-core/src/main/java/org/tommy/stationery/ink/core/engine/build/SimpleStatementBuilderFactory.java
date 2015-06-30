@@ -20,21 +20,30 @@ public class SimpleStatementBuilderFactory {
 
     public static IStatementBuilder getInstance(ConfigProperties configProperties, List<BaseStatement> statements) throws InkException {
         List<BaseStatement> settingStatements = Linq4j.asEnumerable(statements).where(LinqQuery.SETTING_STATEMENT_GROUP_FILTER).toList();
+
         EngineTypeEnum engineTypeEnum = null;
-        for (BaseStatement settingStatement : settingStatements) {
-            if (SettingEnum.ENGINE.equals(settingStatement.getSettingDef())) {
-                engineTypeEnum = EngineTypeEnum.valueOf(settingStatement.getSettingDef().getValue());
-                break;
+        if (settingStatements == null || settingStatements.size() <= 0) {
+            engineTypeEnum = EngineTypeEnum.valueOf(configProperties.getDefaultInkConfig().getString(SettingEnum.ENGINE));
+        } else {
+            for (BaseStatement settingStatement : settingStatements) {
+                if (SettingEnum.ENGINE.getName().equals(settingStatement.getSettingDef().getName())) {
+                    try {
+                        engineTypeEnum = EngineTypeEnum.valueOf(settingStatement.getSettingDef().getValue());
+                    } catch (Exception ex) {
+                        throw new InkException(MessageEnum.NO_ENGINE_SUPPORT);
+                    }
+                    break;
+                }
             }
         }
 
         if (engineTypeEnum == null) {
-            engineTypeEnum = EngineTypeEnum.valueOf(configProperties.getDefaultInkConfig().getString(SettingEnum.ENGINE));
+            throw new InkException(MessageEnum.NO_ENGINE_SUPPORT);
         }
 
         if (EngineTypeEnum.STORM.equals(engineTypeEnum)) {
             return new StormStatementsBuilder();
-        } else if (EngineTypeEnum.STORM.equals(engineTypeEnum)) {
+        } else if (EngineTypeEnum.SPARK.equals(engineTypeEnum)) {
             return new SparkStatementBuilder();
         } else {
             throw new InkException(MessageEnum.NO_ENGINE_SUPPORT);
