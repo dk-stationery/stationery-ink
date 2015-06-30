@@ -1,6 +1,6 @@
 package org.tommy.stationery.ink.core.bus.event;
 
-import org.tommy.stationery.ink.core.storm.build.executor.ISimpleBuilder;
+import org.tommy.stationery.ink.core.engine.build.ISimpleBuilder;
 import org.tommy.stationery.ink.domain.BaseStatement;
 
 /**

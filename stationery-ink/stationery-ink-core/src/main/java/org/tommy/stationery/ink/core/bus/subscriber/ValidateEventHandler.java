@@ -3,8 +3,8 @@ package org.tommy.stationery.ink.core.bus.subscriber;
 import com.google.common.eventbus.AllowConcurrentEvents;
 import com.google.common.eventbus.Subscribe;
 import org.tommy.stationery.ink.core.bus.event.ValidateEvent;
-import org.tommy.stationery.ink.core.storm.build.validator.ISimpleStatementMetaValidator;
-import org.tommy.stationery.ink.core.storm.build.validator.SimpleStatementValidatorFactory;
+import org.tommy.stationery.ink.core.engine.build.validator.ISimpleStatementMetaValidator;
+import org.tommy.stationery.ink.core.engine.build.validator.SimpleStatementValidatorFactory;
 import org.tommy.stationery.ink.exception.InkException;
 
 /**

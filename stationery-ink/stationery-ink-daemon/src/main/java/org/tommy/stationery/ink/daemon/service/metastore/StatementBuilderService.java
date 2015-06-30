@@ -6,9 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tommy.stationery.ink.core.config.ConfigProperties;
+import org.tommy.stationery.ink.core.engine.build.IStatementBuilder;
+import org.tommy.stationery.ink.core.engine.build.SimpleStatementBuilderFactory;
 import org.tommy.stationery.ink.core.parser.InkSqlParser;
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
-import org.tommy.stationery.ink.core.storm.build.AdvancedStatementsBuilder;
 import org.tommy.stationery.ink.daemon.util.SqlResultsGenerator;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.ResultStatement;
@@ -32,7 +33,7 @@ public class StatementBuilderService {
     SimpleMetaStoreProviderImp simpleMetaStoreProvider;
 
     private Auth auth;
-    private AdvancedStatementsBuilder advancedStatementsBuilder;
+    private IStatementBuilder statementsBuilder;
 
     public List<BaseStatement> prepare(Auth auth, String sql) throws RecognitionException {
         this.auth = auth;
@@ -40,14 +41,14 @@ public class StatementBuilderService {
     }
 
     public List<ResultStatement> run(String sql, List<BaseStatement> statements) throws Exception {
-        advancedStatementsBuilder = new AdvancedStatementsBuilder();
-        advancedStatementsBuilder.init(configProperties, simpleMetaStoreProvider, auth);
-        advancedStatementsBuilder.build(statements, sql);
-        return advancedStatementsBuilder.getResultStatements();
+        statementsBuilder = SimpleStatementBuilderFactory.getInstance(configProperties, statements);
+        statementsBuilder.init(configProperties, simpleMetaStoreProvider, auth);
+        statementsBuilder.build(statements, sql);
+        return statementsBuilder.getResultStatements();
     }
 
     public String toAST() {
-        return advancedStatementsBuilder.toAST();
+        return statementsBuilder.toAST();
     }
 
     public SqlResults FromResultStatements(List<ResultStatement> resultStatements) throws Exception {

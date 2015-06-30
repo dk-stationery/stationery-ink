@@ -12,7 +12,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.tommy.stationery.ink.core.linq.LinqQuery;
+import org.tommy.stationery.ink.core.util.LinqQuery;
 import org.tommy.stationery.ink.daemon.config.ParametersConfig;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.SqlResults;

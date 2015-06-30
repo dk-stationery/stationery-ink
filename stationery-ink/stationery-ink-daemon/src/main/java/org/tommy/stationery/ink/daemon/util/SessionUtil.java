@@ -5,7 +5,7 @@ import org.antlr.runtime.RecognitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.tommy.stationery.ink.core.config.ConfigProperties;
-import org.tommy.stationery.ink.core.linq.LinqQuery;
+import org.tommy.stationery.ink.core.util.LinqQuery;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.cluster.Session;
 import org.tommy.stationery.ink.enums.MessageEnum;
