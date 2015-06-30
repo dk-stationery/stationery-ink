@@ -178,7 +178,8 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 		BUCKET_CONNECTION_MINPOOLSIZE : 1 (bucket connection MINPOOLSIZE)    
 		STORM_CLUSTER_SLAVE_SYSTEM_LOG_PATH : /daum/logs/ink/
 		STORM_CLUSTER_SLAVE_HOSTS : ink-storm-s1,ink-storm-s2,ink-storm-s3
-
+		ENGINE : STORM or SPARK		
+		
 7. Install Ink-stormclient.  
 : > 'stationery-ink-stormclient/target' that was built in the folder 'stationery-ink-stormclient-1.0-SNAPSHOT.jar' must copy the daemon server side.    
 
@@ -344,6 +345,9 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 
 8. set COMMIT_INTERVAL='NUMERIC' :  
 > : output sql commit interval (default: 5)  
+
+9. set ENGINE='STORM' | 'SPARK' :   
+> : engine mode (default : STORM)   
 
 
 #EXAMPLE TSQL
