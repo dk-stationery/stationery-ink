@@ -12,19 +12,21 @@ import java.util.List;
  */
 public class DateUtil {
 
-    private static SimpleDateFormat hourFormat = new SimpleDateFormat("yyyyMMddHH");
+    private static String hourFormat = "yyyyMMddHH";
 
     public static Long getCurrentDate() {
         Calendar cal = Calendar.getInstance();
-        String dt = hourFormat.format(cal.getTime());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(hourFormat);
+        String dt = simpleDateFormat.format(cal.getTime());
         return Long.valueOf(dt);
     }
 
     public static List<Long> getBetweenDateList(Long beginDt, Long endDt) {
         Calendar cal = Calendar.getInstance();
         Date date = null;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(hourFormat);
         try {
-            date = hourFormat.parse(String.valueOf(beginDt));
+            date = simpleDateFormat.parse(String.valueOf(beginDt));
         } catch (ParseException e) {
         }
         cal.setTime(date);
@@ -32,7 +34,7 @@ public class DateUtil {
         List<Long> dateList = new ArrayList<Long>();
 
         for (int i=0;i<24*2;i++) {
-            String dt = hourFormat.format(cal.getTime());
+            String dt = simpleDateFormat.format(cal.getTime());
             dateList.add(Long.valueOf(dt));
 
             cal.add(Calendar.HOUR_OF_DAY, 1);
