@@ -20,7 +20,7 @@
     </select>
 
     <update id="putInkJob" parameterType="org.tommy.stationery.ink.domain.meta.Job">
-        UPSERT INTO
+        INSERT INTO
           INK_JOB(NAME, META)
         VALUES(
           #{name}

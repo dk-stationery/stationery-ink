@@ -49,7 +49,11 @@ public class NimbusParser {
 
             Document doc = Jsoup.parse(lines);
             Elements elements = doc.select("table");
-
+            if (elements == null) {
+                info.add(cluster);
+                info.add(topologys);
+                return info;
+            }
             Elements statusElements = elements.get(0).select("tbody").select("tr").select("td");
 
             for (int i=0; i<statusElements.size() / 8;i++) {

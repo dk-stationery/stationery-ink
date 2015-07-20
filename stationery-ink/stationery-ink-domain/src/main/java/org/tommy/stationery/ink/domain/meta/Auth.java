@@ -6,40 +6,40 @@ import java.io.Serializable;
  * Created by kun7788 on 15. 6. 18..
  */
 public class Auth implements Serializable {
-    private String user;
-    private String password;
-    private String grant;
+    private String authuser;
+    private String authpassword;
+    private String authgrant;
 
     public Auth() {
 
     }
 
-    public Auth(String user, String password) {
-        this.user = user;
-        this.password = password;
+    public Auth(String authuser, String authpassword) {
+        this.authuser = authuser;
+        this.authpassword = authpassword;
     }
 
-    public String getUser() {
-        return user;
+    public String getAuthuser() {
+        return authuser;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setAuthuser(String authuser) {
+        this.authuser = authuser;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAuthpassword() {
+        return authpassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAuthpassword(String authpassword) {
+        this.authpassword = authpassword;
     }
 
-    public String getGrant() {
-        return grant;
+    public String getAuthgrant() {
+        return authgrant;
     }
 
-    public void setGrant(String grant) {
-        this.grant = grant;
+    public void setAuthgrant(String authgrant) {
+        this.authgrant = authgrant;
     }
 }

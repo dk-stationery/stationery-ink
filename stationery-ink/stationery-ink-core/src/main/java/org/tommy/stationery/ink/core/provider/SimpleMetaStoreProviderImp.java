@@ -52,7 +52,7 @@ public class SimpleMetaStoreProviderImp extends AbstractSimpleMetaStoreProvider 
     InkAuthDao inkAuthDao;
 
     public boolean isGrantAuth(Auth auth, StatementTypeEnum.GroupTypeAuthEnum groupTypeAuthEnum) throws InkException {
-        int src = StatementTypeEnum.GroupTypeAuthEnum.valueOf(auth.getGrant()).getBit();
+        int src = StatementTypeEnum.GroupTypeAuthEnum.valueOf(auth.getAuthgrant()).getBit();
         int desc = groupTypeAuthEnum.getBit();
         int op = (src & desc);
         return (op > 0 ? true : false);

@@ -20,7 +20,7 @@
     </select>
 
     <update id="putInkStream" parameterType="org.tommy.stationery.ink.domain.meta.Stream">
-        UPSERT INTO
+        INSERT INTO
         INK_STREAM(NAME, META)
         VALUES(
         #{name}

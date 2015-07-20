@@ -30,7 +30,7 @@
     </select>
 
     <update id="putInkSource" parameterType="org.tommy.stationery.ink.domain.meta.Source">
-        UPSERT INTO
+        INSERT INTO
           INK_SOURCE(NAME, CATALOG, META)
         VALUES(
           #{name}

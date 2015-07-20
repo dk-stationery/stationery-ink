@@ -19,6 +19,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>stationery-ink-domain</artifactId>
             <version>${project.version}</version>
@@ -119,10 +125,10 @@
         </dependency>
 
         <dependency>
-            <groupId>storm</groupId>
+            <groupId>org.apache.storm</groupId>
             <artifactId>storm-core</artifactId>
             <version>${storm.version}</version>
-            <scope>provided</scope>
+            <!--<scope>provided</scope>-->
             <exclusions>
                 <exclusion>
                     <groupId>javax.servlet</groupId>
@@ -131,11 +137,10 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>storm</groupId>
+       <!-- <dependency>
+            <groupId>org.apache.storm</groupId>
             <artifactId>storm</artifactId>
             <version>${storm.version}</version>
-            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <artifactId>log4j-over-slf4j</artifactId>
@@ -150,7 +155,7 @@
                     <artifactId>logback-core</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>net.wurstmeister.storm</groupId>

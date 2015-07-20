@@ -9,7 +9,7 @@
         FROM
         INK_AUTH
         WHERE
-          USER = #{user}
-          AND PASSWORD = #{password}
+          AUTHUSER = #{authuser}
+          AND AUTHPASSWORD = #{authpassword}
     </select>
 </mapper>
