@@ -177,6 +177,7 @@ public class SimpleMetaStoreProviderImp extends AbstractSimpleMetaStoreProvider 
         Job job = new Job();
         job.setName(inkConfig.getString(SettingEnum.JOB_NAME));
         job.setMeta(sql.replace("commit;", ""));
+        inkJobDao.removeInkJob(job);
         inkJobDao.putInkJob(job);
         return generateResultStatement(statement);
     }
