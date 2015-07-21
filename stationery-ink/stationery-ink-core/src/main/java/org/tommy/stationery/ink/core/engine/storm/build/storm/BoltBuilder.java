@@ -37,6 +37,7 @@ import java.util.Set;
  * Created by kun7788 on 15. 2. 3..
  */
 public class BoltBuilder {
+    private static int DUMP_AND_LOG_BOLT_THREAD_CNT = 5;
     private static String BOLT_LINKED_SPOUT_NAME_PREFIX = "BOLT_LINKED_SPOUT";
     private static String BOLT_NAME_PREFIX = "BOLT";
     private static String SPOUT_NAME_PREFIX = "SPOUT";
@@ -270,7 +271,7 @@ public class BoltBuilder {
         if (isLast == true) {
             String debugComponenetId = generateComponentId(generatePrefix(BOLT_NAME_PREFIX), "DEBUG", "CONSOLE");;
             DumpAndLogBolt logConsoleBolt = new DumpAndLogBolt(DEFAULT_STREAM, inkConfig);
-            stormTopologyBuilder.addBolt(debugComponenetId, logConsoleBolt, 5);
+            stormTopologyBuilder.addBolt(debugComponenetId, logConsoleBolt, DUMP_AND_LOG_BOLT_THREAD_CNT);
             stormTopologyBuilder.connect(previousComponentId, debugComponenetId, null);
         }
         return stormTopologyBuilder;

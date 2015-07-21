@@ -54,7 +54,7 @@ public class DumpUtil {
             post.abort();
 
             result = sb.toString();
-
+System.out.println("http://" + url + "        result ================================ " + result);
         } catch (Exception e) {
             result = e.getMessage();
         } finally {

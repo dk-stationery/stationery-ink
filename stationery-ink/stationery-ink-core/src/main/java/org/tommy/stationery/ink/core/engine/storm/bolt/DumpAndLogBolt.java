@@ -31,6 +31,7 @@ public class DumpAndLogBolt extends BaseSignalBolt implements IRichBolt {
     private int dumpCnt = 0;
     private static int DUMP_LIMIT_CNT = 5;
     private boolean isDump = false;
+    private Tuple tuple = null;
 
     public DumpAndLogBolt(String streamId, InkConfig inkConfig) {
         super(inkConfig.getString(SettingEnum.JOB_NAME));
@@ -64,13 +65,11 @@ public class DumpAndLogBolt extends BaseSignalBolt implements IRichBolt {
     }
 
     private void dump(HashMap<String, String> data) {
-
         //collect
         if (dumpCnt == -1) {
             return;
         } else if (dumpCnt != -1 && dumpCnt < DUMP_LIMIT_CNT) {
             dumpCnt++;
-
             String jobName = inkConfig.getString(SettingEnum.JOB_NAME);
             if (jobName != null) {
                 Dump dump = new Dump();
@@ -86,8 +85,11 @@ public class DumpAndLogBolt extends BaseSignalBolt implements IRichBolt {
 
     @Override
     public void execute(Tuple tuple) {
+        if (this.tuple == null) {
+            this.tuple = tuple;
+        }
         try {
-            if (isDump == false) {
+            if (isDump == true) {
                 dump(tuple);
             }
         } finally {
@@ -103,8 +105,10 @@ public class DumpAndLogBolt extends BaseSignalBolt implements IRichBolt {
     @Override
     public void onSignal(byte[] bytes) {
         try {
-            logger.info("SIGNAL === RECEIVED");
+            logger.info("SNAPSHOT SIGNAL === RECEIVED");
             isDump = true;
+
+            dump(tuple);
 
             //flush
             String jobName = inkConfig.getString(SettingEnum.JOB_NAME);
@@ -113,11 +117,14 @@ public class DumpAndLogBolt extends BaseSignalBolt implements IRichBolt {
                 if (cachedDumps.size() > 0) {
                     dumpUtil.flush(jobName, DUMP_FLUSH_API_URL, cachedDumps);
                 }
+
+
             }
         } finally {
             //clear
             cachedDumps.clear();
             isDump = false;
+            tuple = null;
         }
     }
 }

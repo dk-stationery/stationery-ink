@@ -67,15 +67,11 @@ public class StatementsBuilder implements IStatementBuilder {
         }
     }
 
-    public void build(List<BaseStatement> statements, String sql) throws Exception {
-        //setting config and statements.
-        Preconditions.checkNotNull(statements, MessageEnum.EMPTY_STATEMENTS);
-
-        //build process.
-        for (StatementTypeEnum.GroupTypeEnum statementGroupTypeEnum : StatementTypeEnum.GroupTypeEnum.GroupTypeList()) {
+    public void onBuild(List<BaseStatement> statements, String sql, InkConfig inkConfig, List<StatementTypeEnum.GroupTypeEnum> groups)  throws Exception {
+        for (StatementTypeEnum.GroupTypeEnum statementGroupTypeEnum : groups/*StatementTypeEnum.GroupTypeEnum.GroupTypeList()*/) {
             List<BaseStatement> filteredStatements = Linq4j.asEnumerable(statements).where(SimpleStatementFilterFactory.getInstance(statementGroupTypeEnum)).toList();
 
-            ISimpleBuilder builder = org.tommy.stationery.ink.core.engine.build.executor.SimpleStatementBuilderFactory.getInstance(statementGroupTypeEnum, configProperties.getDefaultInkConfig(), simpleMetaStoreProvider);
+            ISimpleBuilder builder = org.tommy.stationery.ink.core.engine.build.executor.SimpleStatementBuilderFactory.getInstance(statementGroupTypeEnum, inkConfig, simpleMetaStoreProvider);
             int indexCnt = 0;
             for (BaseStatement statement : filteredStatements) {
                 indexCnt++;
@@ -95,9 +91,27 @@ public class StatementsBuilder implements IStatementBuilder {
 
             simpleStatementBuilders.put(statementGroupTypeEnum, builder);
         }
+    }
+
+    public void build(List<BaseStatement> statements, String sql) throws Exception {
+        //setting config and statements.
+        Preconditions.checkNotNull(statements, MessageEnum.EMPTY_STATEMENTS);
+
+        //build process.
+        //'SET' PROCESS
+        List<StatementTypeEnum.GroupTypeEnum> groups = new ArrayList<StatementTypeEnum.GroupTypeEnum>();
+        groups.add(StatementTypeEnum.GroupTypeEnum.SET);
+        onBuild(statements, sql, configProperties.getDefaultInkConfig(), groups);
 
         //merged InkConfig
         InkConfig inkConfig = mergedInkConfig(simpleStatementBuilders.get(StatementTypeEnum.GroupTypeEnum.SET));
+
+        //'without 'SET' PROCESS
+        groups = new ArrayList<StatementTypeEnum.GroupTypeEnum>();
+        groups.add(StatementTypeEnum.GroupTypeEnum.USE);
+        groups.add(StatementTypeEnum.GroupTypeEnum.DDL);
+        groups.add(StatementTypeEnum.GroupTypeEnum.DML);
+        onBuild(statements, sql, inkConfig, groups);
 
         //storm topology run launch.
         SimpleDMLStatementExecutorImp simpleDMLStatementExecutorImp = (SimpleDMLStatementExecutorImp)simpleStatementBuilders.get(StatementTypeEnum.GroupTypeEnum.DML).build();
