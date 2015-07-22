@@ -21,8 +21,12 @@ public class AdvancedEventBus extends EventBus {
         return handlers.get(name);
     }
 
-    public Object fireEvent(Object event) {
-        super.post(event);
+    public Object fireEvent(Object event) throws Exception {
+        try {
+            super.post(event);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
         return event;
     }
 }

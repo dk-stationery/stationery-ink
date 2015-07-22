@@ -9,7 +9,10 @@ public enum SourceCatalogEnum {
     HDFS("HDFS"),
     ELASTICSEARCH("ELASTICSEARCH"),
     JDBC("JDBC"),
-    PHOENIX("PHOENIX");
+    PHOENIX("PHOENIX"),
+    REDIS("REDIS"),
+    REST("REST")
+    ;
 
     private String name;
 

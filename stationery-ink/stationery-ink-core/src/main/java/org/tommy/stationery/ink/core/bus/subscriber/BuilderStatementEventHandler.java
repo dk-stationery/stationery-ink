@@ -1,5 +1,6 @@
 package org.tommy.stationery.ink.core.bus.subscriber;
 
+import com.google.common.eventbus.AllowConcurrentEvents;
 import com.google.common.eventbus.Subscribe;
 import org.tommy.stationery.ink.core.bus.event.BuilderStatementEvent;
 import org.tommy.stationery.ink.core.engine.build.ISimpleBuilder;
@@ -10,7 +11,7 @@ import org.tommy.stationery.ink.core.engine.build.ISimpleBuilder;
 public class BuilderStatementEventHandler {
 
     @Subscribe
-    //@AllowConcurrentEvents
+    @AllowConcurrentEvents
     public void onBuild(BuilderStatementEvent event) throws Exception {
         ISimpleBuilder builder = event.getProcessedBuilder().execute(event.getStatement(), event.isLast());
         event.setProcessedBuilder(builder);
