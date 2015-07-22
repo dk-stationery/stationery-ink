@@ -209,11 +209,11 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
             for (int i = 0; i < columns.size(); i++) {
                 BaseColumnDef columnDef = columns.get(i);
                 String columnKey = columnDef.getName();
-                if (StatementTypeEnum.INSERT.equals(queryType) || StatementTypeEnum.UPSERT.equals(queryType)) {
+                if (StatementTypeEnum.INSERT.equals(queryType)) {
                     shardedJedis.hset(key, columnKey, (String) input.getValue(i));
-                } else if (StatementTypeEnum.UPDATE.equals(queryType)) {
+                } else if (StatementTypeEnum.UPSERT.equals(queryType) || StatementTypeEnum.UPDATE.equals(queryType)) {
                     if (ColumnDataTypeEnum.DOUBLE.equals(columnDef.getType()) || ColumnDataTypeEnum.FLOAT.equals(columnDef.getType()) || ColumnDataTypeEnum.INTEGER.equals(columnDef.getType())) {
-                        shardedJedis.hincrBy(key, columnKey, (Long) input.getValue(i));
+                        shardedJedis.hincrBy(key, columnKey, Long.valueOf(input.getValue(i).toString()));
                     } else if (ColumnDataTypeEnum.OBJECT.equals(columnDef.getType()) || ColumnDataTypeEnum.STRING.equals(columnDef.getType())) {
                         shardedJedis.hset(key, columnKey, (String) input.getValue(i));
                     } else {
