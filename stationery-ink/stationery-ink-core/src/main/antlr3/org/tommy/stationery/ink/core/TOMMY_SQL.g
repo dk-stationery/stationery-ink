@@ -100,7 +100,7 @@ tokens
 
 
 create_statement
-    : (show_system_statement|commit_statement|use_statement|snapshot_job_statement|kill_job_statement|set_statement|show_sources_statement|show_streams_statement|show_cluster_statement|show_jobs_statement|update_statement|upsert_statement|lookup_statement|select_statement|create_stream_statement|create_source_statement|show_stream_statement|show_source_statement|drop_stream_statement|drop_source_statement|drop_job_statement|show_job_statement|delete_statement)+
+    : (show_system_statement|commit_statement|use_statement|snapshot_job_statement|kill_job_statement|set_statement|show_sources_statement|show_streams_statement|show_cluster_statement|show_jobs_statement|insert_statement|update_statement|upsert_statement|lookup_statement|select_statement|create_stream_statement|create_source_statement|show_stream_statement|show_source_statement|drop_stream_statement|drop_source_statement|drop_job_statement|show_job_statement|delete_statement)+
     {
 
     }
@@ -199,6 +199,20 @@ select_statement
             BaseStatement statement = esperParser.parse($text);
             statement.setQuery($text);
             statement.setType(StatementTypeEnum.valueOf("SELECT"));
+            statements.add(statement);
+        }
+
+    }
+    ;
+insert_statement
+    : INSERT INTO body1 = dml_lookup_select_where_body (VALUES body2 = dml_lookup_select_where_body2|INCREASE VALUES body2 = dml_lookup_select_where_body2|SEMICOLON)
+    {
+        if (body1 != null) {
+
+            QueryParser esperParser = new QueryParser();
+            BaseStatement statement = esperParser.parseWithoutInsertEPL($text);
+            statement.setQuery($text);
+            statement.setType(StatementTypeEnum.valueOf("INSERT"));
             statements.add(statement);
         }
 

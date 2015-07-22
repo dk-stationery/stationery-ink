@@ -11,12 +11,14 @@ import org.slf4j.LoggerFactory;
 import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.core.engine.storm.bolt.GenericBoltUtils;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.IBucketBolt;
+import org.tommy.stationery.ink.core.util.MetaFinderUtil;
 import org.tommy.stationery.ink.domain.BaseColumnDef;
 import org.tommy.stationery.ink.domain.BaseStatement;
 import org.tommy.stationery.ink.domain.BaseTableDef;
 import org.tommy.stationery.ink.domain.meta.Source;
 import org.tommy.stationery.ink.domain.meta.Stream;
 import org.tommy.stationery.ink.enums.ColumnDataTypeEnum;
+import org.tommy.stationery.ink.enums.MetaFieldEnum;
 import org.tommy.stationery.ink.enums.StatementTypeEnum;
 import org.tommy.stationery.ink.util.serde.JsonSerde;
 import redis.clients.jedis.JedisShardInfo;
@@ -61,6 +63,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
     private BaseStatement statement;
     private JsonSerde jsonSerde;
     private List<BaseColumnDef> columns;
+    private List<Integer> pkColumnsIndexs = new ArrayList<Integer>();
 
     private List<JedisShardInfo> generateShardInfo(String hosts, String password, int timeout) {
         List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
@@ -69,7 +72,9 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
             String host = hostname.indexOf(":") == -1 ? hostname : hostname.split(":")[0];
 
             JedisShardInfo si = new JedisShardInfo(host, port);
-            si.setPassword(password);
+            if (password != null) {
+                si.setPassword(password);
+            }
             si.setTimeout(timeout);
             shards.add(si);
         }
@@ -77,14 +82,21 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
     }
 
     private ShardedJedisPool shardedJedisPool() {
+        String hosts = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.URL).getValue();
+
+        String pw = null;
+        if (MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.PW) != null) {
+            pw = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.PW).getValue();
+        }
+
         List<JedisShardInfo> shards = generateShardInfo(
-                "host"
-                , "passwd"
+                hosts
+                , pw
                 , 10000
         );
         GenericObjectPool.Config config = new GenericObjectPool.Config();
         config.whenExhaustedAction = GenericObjectPool.WHEN_EXHAUSTED_GROW;
-        config.maxActive = 100;
+        config.maxActive = 20;
         return new ShardedJedisPool(config, shards);
     }
 
@@ -95,12 +107,21 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
         shardedJedisPool = shardedJedisPool();
     }
 
+    private String generationRedisMainKey(Tuple tuple) {
+        String key = inkStream.getName();
+        for (Integer index : pkColumnsIndexs) {
+            key+=":"+tuple.getValue(index).toString();
+        }
+        return key;
+    }
+
     private List<BaseColumnDef> extractColumns() {
         BaseTableDef tableDef = statement.getBindTables().get(0);
         String bindTableTag = "\\[" + tableDef.getName() + ":" + tableDef.getSource() + "\\]";
 
         String[] columnsArrys = null;
         String query = statement.getQuery();
+
         Pattern pattern = Pattern.compile(bindTableTag + "\\((.+?)\\)");
         Matcher matcher = pattern.matcher(query);
         while(matcher.find()) {
@@ -108,9 +129,13 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
         }
 
         List<BaseColumnDef> columns = new ArrayList<BaseColumnDef>();
-        for (String column : columnsArrys) {
+        for (int i=0 ; i < columnsArrys.length ; i++) {
+            String column = columnsArrys[i];
             for (BaseColumnDef columnDef : inkStream.getStatement().getColumns()) {
                 if (columnDef.getName().equals(column)) {
+                    if (columnDef.isPk()) {
+                        pkColumnsIndexs.add(i);
+                    }
                     columns.add(columnDef);
                     break;
                 }
@@ -127,6 +152,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
                 LOG.error("ERROR InsertRedisBolt : redisExecute : " + tuple.toString());
             }
         } finally {
+            System.out.println("ACK #######################################################################");
             collector.ack(tuple);
         }
     }
@@ -172,33 +198,37 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
     }
 
     public boolean redisExecute(Tuple input) {
-        String key = inkStream.getName();
+        String key = generationRedisMainKey(input);
+        ShardedJedis shardedJedis = null;
+        try {
+            shardedJedis = getJedisResource();
+            if (shardedJedis == null) return false;
 
-        ShardedJedis shardedJedis = getJedisResource();
-        if (shardedJedis == null) return false;
+            StatementTypeEnum queryType = statement.getType();
 
-        StatementTypeEnum queryType = statement.getType();
-
-        for (int i=0;i<columns.size();i++) {
-            BaseColumnDef columnDef  = columns.get(i);
-            String columnKey = columnDef.getName();
-            if (StatementTypeEnum.INSERT.equals(queryType) || StatementTypeEnum.UPSERT.equals(queryType)) {
-                shardedJedis.hset(key, columnKey, (String) input.getValue(i));
-            } else if (StatementTypeEnum.UPDATE.equals(queryType)) {
-                if (ColumnDataTypeEnum.DOUBLE.equals(columnDef.getType()) || ColumnDataTypeEnum.FLOAT.equals(columnDef.getType()) || ColumnDataTypeEnum.INTEGER.equals(columnDef.getType())) {
-                    shardedJedis.hincrBy(key, columnKey, (Long)input.getValue(i));
-                } else if (ColumnDataTypeEnum.OBJECT.equals(columnDef.getType()) || ColumnDataTypeEnum.STRING.equals(columnDef.getType())) {
+            for (int i = 0; i < columns.size(); i++) {
+                BaseColumnDef columnDef = columns.get(i);
+                String columnKey = columnDef.getName();
+                if (StatementTypeEnum.INSERT.equals(queryType) || StatementTypeEnum.UPSERT.equals(queryType)) {
                     shardedJedis.hset(key, columnKey, (String) input.getValue(i));
+                } else if (StatementTypeEnum.UPDATE.equals(queryType)) {
+                    if (ColumnDataTypeEnum.DOUBLE.equals(columnDef.getType()) || ColumnDataTypeEnum.FLOAT.equals(columnDef.getType()) || ColumnDataTypeEnum.INTEGER.equals(columnDef.getType())) {
+                        shardedJedis.hincrBy(key, columnKey, (Long) input.getValue(i));
+                    } else if (ColumnDataTypeEnum.OBJECT.equals(columnDef.getType()) || ColumnDataTypeEnum.STRING.equals(columnDef.getType())) {
+                        shardedJedis.hset(key, columnKey, (String) input.getValue(i));
+                    } else {
+                        continue;
+                    }
+                } else if (StatementTypeEnum.DELETE.equals(queryType)) {
+                    shardedJedis.hdel(key, columnDef.getName());
                 } else {
-                    continue;
+                    return false;
                 }
-            } else if (StatementTypeEnum.DELETE.equals(queryType)) {
-                shardedJedis.hdel(key, columnDef.getName());
-            } else {
-                return false;
             }
-        }
 
+        } finally {
+            shardedJedisPool.returnResource(shardedJedis);
+        }
         return true;
     }
 
