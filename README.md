@@ -267,7 +267,7 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 11. create source SOURCE_NAME 
 > : create source TSQL.  
 > : fields : CATALOG|URL|DRIVER|ID|PW|VHOST|PORT|TOPIC|CLUSTER|INITIALPOOLSIZE|MAXPOOLSIZE|MINPOOLSIZE      
-> : catalogs : KAFKA|RABBITMQ|HDFS|ELASTICSEARCH|JDBC|PHOENIX    
+> : catalogs : KAFKA|RABBITMQ|HDFS|ELASTICSEARCH|JDBC|PHOENIX|REDIS    
 > : ex> 
 
 		create source kafka meta (
@@ -301,6 +301,19 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 			, MAXPOOLSIZE '20'
 			, MINPOOLSIZE '1'
 			);   
+			
+		create source elasticsearch meta (
+			CATALOG 'ELASTICSEARCH'
+			, URL '127.0.0.1'
+			, PORT '9300'
+			, CLUSTER 'log-elasrch-test'
+			);
+			
+		create source redis meta (
+			CATALOG 'REDIS'
+			, URL '127.0.0.1:31284'
+			, PW 'test'
+			);
 			
 12. use NAME :   
 > : other ink daemon use.    
