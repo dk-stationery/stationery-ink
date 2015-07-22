@@ -152,7 +152,6 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
                 LOG.error("ERROR InsertRedisBolt : redisExecute : " + tuple.toString());
             }
         } finally {
-            System.out.println("ACK #######################################################################");
             collector.ack(tuple);
         }
     }
