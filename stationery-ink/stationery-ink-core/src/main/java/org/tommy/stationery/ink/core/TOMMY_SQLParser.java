@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:46:29 org/tommy/stationery/ink/core/TOMMY_SQL.g 2015-06-15 13:21:20
+// $ANTLR 3.3 Nov 30, 2010 12:46:29 org/tommy/stationery/ink/core/TOMMY_SQL.g 2015-07-22 14:28:07
 
     package org.tommy.stationery.ink.core;
 
@@ -140,7 +140,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "create_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:102:1: create_statement : ( show_system_statement | commit_statement | use_statement | snapshot_job_statement | kill_job_statement | set_statement | show_sources_statement | show_streams_statement | show_cluster_statement | show_jobs_statement | update_statement | upsert_statement | lookup_statement | select_statement | create_stream_statement | create_source_statement | show_stream_statement | show_source_statement | drop_stream_statement | drop_source_statement | drop_job_statement | show_job_statement | delete_statement )+ ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:102:1: create_statement : ( show_system_statement | commit_statement | use_statement | snapshot_job_statement | kill_job_statement | set_statement | show_sources_statement | show_streams_statement | show_cluster_statement | show_jobs_statement | insert_statement | update_statement | upsert_statement | lookup_statement | select_statement | create_stream_statement | create_source_statement | show_stream_statement | show_source_statement | drop_stream_statement | drop_source_statement | drop_job_statement | show_job_statement | delete_statement )+ ;
     public final create_statement_return create_statement() throws RecognitionException {
         create_statement_return retval = new create_statement_return();
         retval.start = input.LT(1);
@@ -167,45 +167,47 @@ public class TOMMY_SQLParser extends Parser {
 
         show_jobs_statement_return show_jobs_statement10 = null;
 
-        update_statement_return update_statement11 = null;
+        insert_statement_return insert_statement11 = null;
 
-        upsert_statement_return upsert_statement12 = null;
+        update_statement_return update_statement12 = null;
 
-        lookup_statement_return lookup_statement13 = null;
+        upsert_statement_return upsert_statement13 = null;
 
-        select_statement_return select_statement14 = null;
+        lookup_statement_return lookup_statement14 = null;
 
-        create_stream_statement_return create_stream_statement15 = null;
+        select_statement_return select_statement15 = null;
 
-        create_source_statement_return create_source_statement16 = null;
+        create_stream_statement_return create_stream_statement16 = null;
 
-        show_stream_statement_return show_stream_statement17 = null;
+        create_source_statement_return create_source_statement17 = null;
 
-        show_source_statement_return show_source_statement18 = null;
+        show_stream_statement_return show_stream_statement18 = null;
 
-        drop_stream_statement_return drop_stream_statement19 = null;
+        show_source_statement_return show_source_statement19 = null;
 
-        drop_source_statement_return drop_source_statement20 = null;
+        drop_stream_statement_return drop_stream_statement20 = null;
 
-        drop_job_statement_return drop_job_statement21 = null;
+        drop_source_statement_return drop_source_statement21 = null;
 
-        show_job_statement_return show_job_statement22 = null;
+        drop_job_statement_return drop_job_statement22 = null;
 
-        delete_statement_return delete_statement23 = null;
+        show_job_statement_return show_job_statement23 = null;
+
+        delete_statement_return delete_statement24 = null;
 
 
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:5: ( ( show_system_statement | commit_statement | use_statement | snapshot_job_statement | kill_job_statement | set_statement | show_sources_statement | show_streams_statement | show_cluster_statement | show_jobs_statement | update_statement | upsert_statement | lookup_statement | select_statement | create_stream_statement | create_source_statement | show_stream_statement | show_source_statement | drop_stream_statement | drop_source_statement | drop_job_statement | show_job_statement | delete_statement )+ )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:7: ( show_system_statement | commit_statement | use_statement | snapshot_job_statement | kill_job_statement | set_statement | show_sources_statement | show_streams_statement | show_cluster_statement | show_jobs_statement | update_statement | upsert_statement | lookup_statement | select_statement | create_stream_statement | create_source_statement | show_stream_statement | show_source_statement | drop_stream_statement | drop_source_statement | drop_job_statement | show_job_statement | delete_statement )+
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:5: ( ( show_system_statement | commit_statement | use_statement | snapshot_job_statement | kill_job_statement | set_statement | show_sources_statement | show_streams_statement | show_cluster_statement | show_jobs_statement | insert_statement | update_statement | upsert_statement | lookup_statement | select_statement | create_stream_statement | create_source_statement | show_stream_statement | show_source_statement | drop_stream_statement | drop_source_statement | drop_job_statement | show_job_statement | delete_statement )+ )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:7: ( show_system_statement | commit_statement | use_statement | snapshot_job_statement | kill_job_statement | set_statement | show_sources_statement | show_streams_statement | show_cluster_statement | show_jobs_statement | insert_statement | update_statement | upsert_statement | lookup_statement | select_statement | create_stream_statement | create_source_statement | show_stream_statement | show_source_statement | drop_stream_statement | drop_source_statement | drop_job_statement | show_job_statement | delete_statement )+
             {
             root_0 = (Object)adaptor.nil();
 
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:7: ( show_system_statement | commit_statement | use_statement | snapshot_job_statement | kill_job_statement | set_statement | show_sources_statement | show_streams_statement | show_cluster_statement | show_jobs_statement | update_statement | upsert_statement | lookup_statement | select_statement | create_stream_statement | create_source_statement | show_stream_statement | show_source_statement | drop_stream_statement | drop_source_statement | drop_job_statement | show_job_statement | delete_statement )+
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:7: ( show_system_statement | commit_statement | use_statement | snapshot_job_statement | kill_job_statement | set_statement | show_sources_statement | show_streams_statement | show_cluster_statement | show_jobs_statement | insert_statement | update_statement | upsert_statement | lookup_statement | select_statement | create_stream_statement | create_source_statement | show_stream_statement | show_source_statement | drop_stream_statement | drop_source_statement | drop_job_statement | show_job_statement | delete_statement )+
             int cnt1=0;
             loop1:
             do {
-                int alt1=24;
+                int alt1=25;
                 alt1 = dfa1.predict(input);
                 switch (alt1) {
             	case 1 :
@@ -329,158 +331,170 @@ public class TOMMY_SQLParser extends Parser {
             	    }
             	    break;
             	case 11 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:206: update_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:206: insert_statement
             	    {
-            	    pushFollow(FOLLOW_update_statement_in_create_statement617);
-            	    update_statement11=update_statement();
+            	    pushFollow(FOLLOW_insert_statement_in_create_statement617);
+            	    insert_statement11=insert_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, update_statement11.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, insert_statement11.getTree());
 
             	    }
             	    break;
             	case 12 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:223: upsert_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:223: update_statement
             	    {
-            	    pushFollow(FOLLOW_upsert_statement_in_create_statement619);
-            	    upsert_statement12=upsert_statement();
+            	    pushFollow(FOLLOW_update_statement_in_create_statement619);
+            	    update_statement12=update_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, upsert_statement12.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, update_statement12.getTree());
 
             	    }
             	    break;
             	case 13 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:240: lookup_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:240: upsert_statement
             	    {
-            	    pushFollow(FOLLOW_lookup_statement_in_create_statement621);
-            	    lookup_statement13=lookup_statement();
+            	    pushFollow(FOLLOW_upsert_statement_in_create_statement621);
+            	    upsert_statement13=upsert_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, lookup_statement13.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, upsert_statement13.getTree());
 
             	    }
             	    break;
             	case 14 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:257: select_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:257: lookup_statement
             	    {
-            	    pushFollow(FOLLOW_select_statement_in_create_statement623);
-            	    select_statement14=select_statement();
+            	    pushFollow(FOLLOW_lookup_statement_in_create_statement623);
+            	    lookup_statement14=lookup_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, select_statement14.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, lookup_statement14.getTree());
 
             	    }
             	    break;
             	case 15 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:274: create_stream_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:274: select_statement
             	    {
-            	    pushFollow(FOLLOW_create_stream_statement_in_create_statement625);
-            	    create_stream_statement15=create_stream_statement();
+            	    pushFollow(FOLLOW_select_statement_in_create_statement625);
+            	    select_statement15=select_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, create_stream_statement15.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, select_statement15.getTree());
 
             	    }
             	    break;
             	case 16 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:298: create_source_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:291: create_stream_statement
             	    {
-            	    pushFollow(FOLLOW_create_source_statement_in_create_statement627);
-            	    create_source_statement16=create_source_statement();
+            	    pushFollow(FOLLOW_create_stream_statement_in_create_statement627);
+            	    create_stream_statement16=create_stream_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, create_source_statement16.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, create_stream_statement16.getTree());
 
             	    }
             	    break;
             	case 17 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:322: show_stream_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:315: create_source_statement
             	    {
-            	    pushFollow(FOLLOW_show_stream_statement_in_create_statement629);
-            	    show_stream_statement17=show_stream_statement();
+            	    pushFollow(FOLLOW_create_source_statement_in_create_statement629);
+            	    create_source_statement17=create_source_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, show_stream_statement17.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, create_source_statement17.getTree());
 
             	    }
             	    break;
             	case 18 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:344: show_source_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:339: show_stream_statement
             	    {
-            	    pushFollow(FOLLOW_show_source_statement_in_create_statement631);
-            	    show_source_statement18=show_source_statement();
+            	    pushFollow(FOLLOW_show_stream_statement_in_create_statement631);
+            	    show_stream_statement18=show_stream_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, show_source_statement18.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, show_stream_statement18.getTree());
 
             	    }
             	    break;
             	case 19 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:366: drop_stream_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:361: show_source_statement
             	    {
-            	    pushFollow(FOLLOW_drop_stream_statement_in_create_statement633);
-            	    drop_stream_statement19=drop_stream_statement();
+            	    pushFollow(FOLLOW_show_source_statement_in_create_statement633);
+            	    show_source_statement19=show_source_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, drop_stream_statement19.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, show_source_statement19.getTree());
 
             	    }
             	    break;
             	case 20 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:388: drop_source_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:383: drop_stream_statement
             	    {
-            	    pushFollow(FOLLOW_drop_source_statement_in_create_statement635);
-            	    drop_source_statement20=drop_source_statement();
+            	    pushFollow(FOLLOW_drop_stream_statement_in_create_statement635);
+            	    drop_stream_statement20=drop_stream_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, drop_source_statement20.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, drop_stream_statement20.getTree());
 
             	    }
             	    break;
             	case 21 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:410: drop_job_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:405: drop_source_statement
             	    {
-            	    pushFollow(FOLLOW_drop_job_statement_in_create_statement637);
-            	    drop_job_statement21=drop_job_statement();
+            	    pushFollow(FOLLOW_drop_source_statement_in_create_statement637);
+            	    drop_source_statement21=drop_source_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, drop_job_statement21.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, drop_source_statement21.getTree());
 
             	    }
             	    break;
             	case 22 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:429: show_job_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:427: drop_job_statement
             	    {
-            	    pushFollow(FOLLOW_show_job_statement_in_create_statement639);
-            	    show_job_statement22=show_job_statement();
+            	    pushFollow(FOLLOW_drop_job_statement_in_create_statement639);
+            	    drop_job_statement22=drop_job_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, show_job_statement22.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, drop_job_statement22.getTree());
 
             	    }
             	    break;
             	case 23 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:448: delete_statement
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:446: show_job_statement
             	    {
-            	    pushFollow(FOLLOW_delete_statement_in_create_statement641);
-            	    delete_statement23=delete_statement();
+            	    pushFollow(FOLLOW_show_job_statement_in_create_statement641);
+            	    show_job_statement23=show_job_statement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, delete_statement23.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, show_job_statement23.getTree());
+
+            	    }
+            	    break;
+            	case 24 :
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:103:465: delete_statement
+            	    {
+            	    pushFollow(FOLLOW_delete_statement_in_create_statement643);
+            	    delete_statement24=delete_statement();
+
+            	    state._fsp--;
+            	    if (state.failed) return retval;
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, delete_statement24.getTree());
 
             	    }
             	    break;
@@ -547,7 +561,7 @@ public class TOMMY_SQLParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            n=(Token)match(input,NAME,FOLLOW_NAME_in_use_name_def675); if (state.failed) return retval;
+            n=(Token)match(input,NAME,FOLLOW_NAME_in_use_name_def677); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
@@ -591,13 +605,13 @@ public class TOMMY_SQLParser extends Parser {
 
         Object root_0 = null;
 
-        Token USE24=null;
-        Token SEMICOLON25=null;
+        Token USE25=null;
+        Token SEMICOLON26=null;
         set_name_def_return column = null;
 
 
-        Object USE24_tree=null;
-        Object SEMICOLON25_tree=null;
+        Object USE25_tree=null;
+        Object SEMICOLON26_tree=null;
 
         try {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:115:5: ( USE column= set_name_def SEMICOLON )
@@ -605,21 +619,21 @@ public class TOMMY_SQLParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            USE24=(Token)match(input,USE,FOLLOW_USE_in_use_statement694); if (state.failed) return retval;
+            USE25=(Token)match(input,USE,FOLLOW_USE_in_use_statement696); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            USE24_tree = (Object)adaptor.create(USE24);
-            adaptor.addChild(root_0, USE24_tree);
+            USE25_tree = (Object)adaptor.create(USE25);
+            adaptor.addChild(root_0, USE25_tree);
             }
-            pushFollow(FOLLOW_set_name_def_in_use_statement698);
+            pushFollow(FOLLOW_set_name_def_in_use_statement700);
             column=set_name_def();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, column.getTree());
-            SEMICOLON25=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_use_statement700); if (state.failed) return retval;
+            SEMICOLON26=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_use_statement702); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON25_tree = (Object)adaptor.create(SEMICOLON25);
-            adaptor.addChild(root_0, SEMICOLON25_tree);
+            SEMICOLON26_tree = (Object)adaptor.create(SEMICOLON26);
+            adaptor.addChild(root_0, SEMICOLON26_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -679,7 +693,7 @@ public class TOMMY_SQLParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            n=(Token)match(input,NAME,FOLLOW_NAME_in_set_name_def732); if (state.failed) return retval;
+            n=(Token)match(input,NAME,FOLLOW_NAME_in_set_name_def734); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
@@ -734,7 +748,7 @@ public class TOMMY_SQLParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            n=(Token)match(input,NAME,FOLLOW_NAME_in_set_value_def760); if (state.failed) return retval;
+            n=(Token)match(input,NAME,FOLLOW_NAME_in_set_value_def762); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
@@ -778,21 +792,21 @@ public class TOMMY_SQLParser extends Parser {
 
         Object root_0 = null;
 
-        Token SET26=null;
-        Token EQUAL27=null;
-        Token SINGLE_QUOTE28=null;
+        Token SET27=null;
+        Token EQUAL28=null;
         Token SINGLE_QUOTE29=null;
-        Token SEMICOLON30=null;
+        Token SINGLE_QUOTE30=null;
+        Token SEMICOLON31=null;
         set_name_def_return column = null;
 
         set_value_def_return value = null;
 
 
-        Object SET26_tree=null;
-        Object EQUAL27_tree=null;
-        Object SINGLE_QUOTE28_tree=null;
+        Object SET27_tree=null;
+        Object EQUAL28_tree=null;
         Object SINGLE_QUOTE29_tree=null;
-        Object SEMICOLON30_tree=null;
+        Object SINGLE_QUOTE30_tree=null;
+        Object SEMICOLON31_tree=null;
 
         try {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:137:5: ( SET column= set_name_def EQUAL SINGLE_QUOTE value= set_value_def SINGLE_QUOTE SEMICOLON )
@@ -800,42 +814,42 @@ public class TOMMY_SQLParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            SET26=(Token)match(input,SET,FOLLOW_SET_in_set_statement780); if (state.failed) return retval;
+            SET27=(Token)match(input,SET,FOLLOW_SET_in_set_statement782); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SET26_tree = (Object)adaptor.create(SET26);
-            adaptor.addChild(root_0, SET26_tree);
+            SET27_tree = (Object)adaptor.create(SET27);
+            adaptor.addChild(root_0, SET27_tree);
             }
-            pushFollow(FOLLOW_set_name_def_in_set_statement784);
+            pushFollow(FOLLOW_set_name_def_in_set_statement786);
             column=set_name_def();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, column.getTree());
-            EQUAL27=(Token)match(input,EQUAL,FOLLOW_EQUAL_in_set_statement786); if (state.failed) return retval;
+            EQUAL28=(Token)match(input,EQUAL,FOLLOW_EQUAL_in_set_statement788); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            EQUAL27_tree = (Object)adaptor.create(EQUAL27);
-            adaptor.addChild(root_0, EQUAL27_tree);
+            EQUAL28_tree = (Object)adaptor.create(EQUAL28);
+            adaptor.addChild(root_0, EQUAL28_tree);
             }
-            SINGLE_QUOTE28=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_set_statement788); if (state.failed) return retval;
+            SINGLE_QUOTE29=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_set_statement790); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SINGLE_QUOTE28_tree = (Object)adaptor.create(SINGLE_QUOTE28);
-            adaptor.addChild(root_0, SINGLE_QUOTE28_tree);
+            SINGLE_QUOTE29_tree = (Object)adaptor.create(SINGLE_QUOTE29);
+            adaptor.addChild(root_0, SINGLE_QUOTE29_tree);
             }
-            pushFollow(FOLLOW_set_value_def_in_set_statement792);
+            pushFollow(FOLLOW_set_value_def_in_set_statement794);
             value=set_value_def();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, value.getTree());
-            SINGLE_QUOTE29=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_set_statement794); if (state.failed) return retval;
+            SINGLE_QUOTE30=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_set_statement796); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SINGLE_QUOTE29_tree = (Object)adaptor.create(SINGLE_QUOTE29);
-            adaptor.addChild(root_0, SINGLE_QUOTE29_tree);
+            SINGLE_QUOTE30_tree = (Object)adaptor.create(SINGLE_QUOTE30);
+            adaptor.addChild(root_0, SINGLE_QUOTE30_tree);
             }
-            SEMICOLON30=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_set_statement796); if (state.failed) return retval;
+            SEMICOLON31=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_set_statement798); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON30_tree = (Object)adaptor.create(SEMICOLON30);
-            adaptor.addChild(root_0, SEMICOLON30_tree);
+            SEMICOLON31_tree = (Object)adaptor.create(SEMICOLON31);
+            adaptor.addChild(root_0, SEMICOLON31_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -888,15 +902,15 @@ public class TOMMY_SQLParser extends Parser {
 
         Token n=null;
         Token b=null;
-        Token LSQUARE31=null;
-        Token COLON32=null;
-        Token RSQUARE33=null;
+        Token LSQUARE32=null;
+        Token COLON33=null;
+        Token RSQUARE34=null;
 
         Object n_tree=null;
         Object b_tree=null;
-        Object LSQUARE31_tree=null;
-        Object COLON32_tree=null;
-        Object RSQUARE33_tree=null;
+        Object LSQUARE32_tree=null;
+        Object COLON33_tree=null;
+        Object RSQUARE34_tree=null;
 
         try {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:152:5: ( LSQUARE n= NAME COLON b= NAME RSQUARE )
@@ -904,30 +918,30 @@ public class TOMMY_SQLParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            LSQUARE31=(Token)match(input,LSQUARE,FOLLOW_LSQUARE_in_dml_table_name826); if (state.failed) return retval;
+            LSQUARE32=(Token)match(input,LSQUARE,FOLLOW_LSQUARE_in_dml_table_name828); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            LSQUARE31_tree = (Object)adaptor.create(LSQUARE31);
-            adaptor.addChild(root_0, LSQUARE31_tree);
+            LSQUARE32_tree = (Object)adaptor.create(LSQUARE32);
+            adaptor.addChild(root_0, LSQUARE32_tree);
             }
-            n=(Token)match(input,NAME,FOLLOW_NAME_in_dml_table_name830); if (state.failed) return retval;
+            n=(Token)match(input,NAME,FOLLOW_NAME_in_dml_table_name832); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
             }
-            COLON32=(Token)match(input,COLON,FOLLOW_COLON_in_dml_table_name832); if (state.failed) return retval;
+            COLON33=(Token)match(input,COLON,FOLLOW_COLON_in_dml_table_name834); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            COLON32_tree = (Object)adaptor.create(COLON32);
-            adaptor.addChild(root_0, COLON32_tree);
+            COLON33_tree = (Object)adaptor.create(COLON33);
+            adaptor.addChild(root_0, COLON33_tree);
             }
-            b=(Token)match(input,NAME,FOLLOW_NAME_in_dml_table_name836); if (state.failed) return retval;
+            b=(Token)match(input,NAME,FOLLOW_NAME_in_dml_table_name838); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             b_tree = (Object)adaptor.create(b);
             adaptor.addChild(root_0, b_tree);
             }
-            RSQUARE33=(Token)match(input,RSQUARE,FOLLOW_RSQUARE_in_dml_table_name838); if (state.failed) return retval;
+            RSQUARE34=(Token)match(input,RSQUARE,FOLLOW_RSQUARE_in_dml_table_name840); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            RSQUARE33_tree = (Object)adaptor.create(RSQUARE33);
-            adaptor.addChild(root_0, RSQUARE33_tree);
+            RSQUARE34_tree = (Object)adaptor.create(RSQUARE34);
+            adaptor.addChild(root_0, RSQUARE34_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -975,14 +989,14 @@ public class TOMMY_SQLParser extends Parser {
         Object root_0 = null;
 
         Token n=null;
-        Token COLON34=null;
-        Token NAME35=null;
-        Token RSQUARE36=null;
+        Token COLON35=null;
+        Token NAME36=null;
+        Token RSQUARE37=null;
 
         Object n_tree=null;
-        Object COLON34_tree=null;
-        Object NAME35_tree=null;
-        Object RSQUARE36_tree=null;
+        Object COLON35_tree=null;
+        Object NAME36_tree=null;
+        Object RSQUARE37_tree=null;
 
         try {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:161:5: (n= LSQUARE COLON NAME RSQUARE )
@@ -990,25 +1004,25 @@ public class TOMMY_SQLParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            n=(Token)match(input,LSQUARE,FOLLOW_LSQUARE_in_dml_bind_column_name865); if (state.failed) return retval;
+            n=(Token)match(input,LSQUARE,FOLLOW_LSQUARE_in_dml_bind_column_name867); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
             }
-            COLON34=(Token)match(input,COLON,FOLLOW_COLON_in_dml_bind_column_name867); if (state.failed) return retval;
+            COLON35=(Token)match(input,COLON,FOLLOW_COLON_in_dml_bind_column_name869); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            COLON34_tree = (Object)adaptor.create(COLON34);
-            adaptor.addChild(root_0, COLON34_tree);
+            COLON35_tree = (Object)adaptor.create(COLON35);
+            adaptor.addChild(root_0, COLON35_tree);
             }
-            NAME35=(Token)match(input,NAME,FOLLOW_NAME_in_dml_bind_column_name869); if (state.failed) return retval;
+            NAME36=(Token)match(input,NAME,FOLLOW_NAME_in_dml_bind_column_name871); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            NAME35_tree = (Object)adaptor.create(NAME35);
-            adaptor.addChild(root_0, NAME35_tree);
+            NAME36_tree = (Object)adaptor.create(NAME36);
+            adaptor.addChild(root_0, NAME36_tree);
             }
-            RSQUARE36=(Token)match(input,RSQUARE,FOLLOW_RSQUARE_in_dml_bind_column_name871); if (state.failed) return retval;
+            RSQUARE37=(Token)match(input,RSQUARE,FOLLOW_RSQUARE_in_dml_bind_column_name873); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            RSQUARE36_tree = (Object)adaptor.create(RSQUARE36);
-            adaptor.addChild(root_0, RSQUARE36_tree);
+            RSQUARE37_tree = (Object)adaptor.create(RSQUARE37);
+            adaptor.addChild(root_0, RSQUARE37_tree);
             }
             if ( state.backtracking==0 ) {
                retval.ret = n.getText();
@@ -1051,12 +1065,12 @@ public class TOMMY_SQLParser extends Parser {
         Object root_0 = null;
 
         Token n=null;
-        Token NAME37=null;
         Token NAME38=null;
+        Token NAME39=null;
 
         Object n_tree=null;
-        Object NAME37_tree=null;
         Object NAME38_tree=null;
+        Object NAME39_tree=null;
 
         try {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:166:5: (n= ( NAME ( NAME )* ) )
@@ -1067,10 +1081,10 @@ public class TOMMY_SQLParser extends Parser {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:166:10: ( NAME ( NAME )* )
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:166:11: NAME ( NAME )*
             {
-            NAME37=(Token)match(input,NAME,FOLLOW_NAME_in_dml_lookup_where898); if (state.failed) return retval;
+            NAME38=(Token)match(input,NAME,FOLLOW_NAME_in_dml_lookup_where900); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            NAME37_tree = (Object)adaptor.create(NAME37);
-            adaptor.addChild(root_0, NAME37_tree);
+            NAME38_tree = (Object)adaptor.create(NAME38);
+            adaptor.addChild(root_0, NAME38_tree);
             }
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:166:16: ( NAME )*
             loop2:
@@ -1089,10 +1103,10 @@ public class TOMMY_SQLParser extends Parser {
             	case 1 :
             	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:166:17: NAME
             	    {
-            	    NAME38=(Token)match(input,NAME,FOLLOW_NAME_in_dml_lookup_where901); if (state.failed) return retval;
+            	    NAME39=(Token)match(input,NAME,FOLLOW_NAME_in_dml_lookup_where903); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    NAME38_tree = (Object)adaptor.create(NAME38);
-            	    adaptor.addChild(root_0, NAME38_tree);
+            	    NAME39_tree = (Object)adaptor.create(NAME39);
+            	    adaptor.addChild(root_0, NAME39_tree);
             	    }
 
             	    }
@@ -1147,12 +1161,12 @@ public class TOMMY_SQLParser extends Parser {
         Object root_0 = null;
 
         Token n=null;
-        Token NAME39=null;
         Token NAME40=null;
+        Token NAME41=null;
 
         Object n_tree=null;
-        Object NAME39_tree=null;
         Object NAME40_tree=null;
+        Object NAME41_tree=null;
 
         try {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:170:5: (n= ( NAME ( NAME )* ) )
@@ -1163,10 +1177,10 @@ public class TOMMY_SQLParser extends Parser {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:170:10: ( NAME ( NAME )* )
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:170:11: NAME ( NAME )*
             {
-            NAME39=(Token)match(input,NAME,FOLLOW_NAME_in_dml_select_body931); if (state.failed) return retval;
+            NAME40=(Token)match(input,NAME,FOLLOW_NAME_in_dml_select_body933); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            NAME39_tree = (Object)adaptor.create(NAME39);
-            adaptor.addChild(root_0, NAME39_tree);
+            NAME40_tree = (Object)adaptor.create(NAME40);
+            adaptor.addChild(root_0, NAME40_tree);
             }
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:170:16: ( NAME )*
             loop3:
@@ -1185,10 +1199,10 @@ public class TOMMY_SQLParser extends Parser {
             	case 1 :
             	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:170:17: NAME
             	    {
-            	    NAME40=(Token)match(input,NAME,FOLLOW_NAME_in_dml_select_body934); if (state.failed) return retval;
+            	    NAME41=(Token)match(input,NAME,FOLLOW_NAME_in_dml_select_body936); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    NAME40_tree = (Object)adaptor.create(NAME40);
-            	    adaptor.addChild(root_0, NAME40_tree);
+            	    NAME41_tree = (Object)adaptor.create(NAME41);
+            	    adaptor.addChild(root_0, NAME41_tree);
             	    }
 
             	    }
@@ -1329,10 +1343,10 @@ public class TOMMY_SQLParser extends Parser {
         Object root_0 = null;
 
         Token n=null;
-        Token SEMICOLON41=null;
+        Token SEMICOLON42=null;
 
         Object n_tree=null;
-        Object SEMICOLON41_tree=null;
+        Object SEMICOLON42_tree=null;
 
         try {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:178:5: ( (n=~ ( '\\r' | '\\n' | ';' ) )+ SEMICOLON )
@@ -1463,10 +1477,10 @@ public class TOMMY_SQLParser extends Parser {
                 cnt5++;
             } while (true);
 
-            SEMICOLON41=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_dml_lookup_select_where_body21011); if (state.failed) return retval;
+            SEMICOLON42=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_dml_lookup_select_where_body21013); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON41_tree = (Object)adaptor.create(SEMICOLON41);
-            adaptor.addChild(root_0, SEMICOLON41_tree);
+            SEMICOLON42_tree = (Object)adaptor.create(SEMICOLON42);
+            adaptor.addChild(root_0, SEMICOLON42_tree);
             }
             if ( state.backtracking==0 ) {
               retval.ret = input.toString(retval.start,input.LT(-1));
@@ -1507,17 +1521,17 @@ public class TOMMY_SQLParser extends Parser {
 
         Object root_0 = null;
 
-        Token LOOKUP42=null;
-        Token WHERE43=null;
-        Token SEMICOLON44=null;
+        Token LOOKUP43=null;
+        Token WHERE44=null;
+        Token SEMICOLON45=null;
         dml_lookup_select_where_body_return body1 = null;
 
         dml_lookup_select_where_body2_return body2 = null;
 
 
-        Object LOOKUP42_tree=null;
-        Object WHERE43_tree=null;
-        Object SEMICOLON44_tree=null;
+        Object LOOKUP43_tree=null;
+        Object WHERE44_tree=null;
+        Object SEMICOLON45_tree=null;
 
         try {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:182:5: ( LOOKUP body1= dml_lookup_select_where_body ( WHERE body2= dml_lookup_select_where_body2 | SEMICOLON ) )
@@ -1525,12 +1539,12 @@ public class TOMMY_SQLParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            LOOKUP42=(Token)match(input,LOOKUP,FOLLOW_LOOKUP_in_lookup_statement1030); if (state.failed) return retval;
+            LOOKUP43=(Token)match(input,LOOKUP,FOLLOW_LOOKUP_in_lookup_statement1032); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            LOOKUP42_tree = (Object)adaptor.create(LOOKUP42);
-            adaptor.addChild(root_0, LOOKUP42_tree);
+            LOOKUP43_tree = (Object)adaptor.create(LOOKUP43);
+            adaptor.addChild(root_0, LOOKUP43_tree);
             }
-            pushFollow(FOLLOW_dml_lookup_select_where_body_in_lookup_statement1036);
+            pushFollow(FOLLOW_dml_lookup_select_where_body_in_lookup_statement1038);
             body1=dml_lookup_select_where_body();
 
             state._fsp--;
@@ -1561,12 +1575,12 @@ public class TOMMY_SQLParser extends Parser {
                 case 1 :
                     // org/tommy/stationery/ink/core/TOMMY_SQL.g:182:52: WHERE body2= dml_lookup_select_where_body2
                     {
-                    WHERE43=(Token)match(input,WHERE,FOLLOW_WHERE_in_lookup_statement1039); if (state.failed) return retval;
+                    WHERE44=(Token)match(input,WHERE,FOLLOW_WHERE_in_lookup_statement1041); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    WHERE43_tree = (Object)adaptor.create(WHERE43);
-                    adaptor.addChild(root_0, WHERE43_tree);
+                    WHERE44_tree = (Object)adaptor.create(WHERE44);
+                    adaptor.addChild(root_0, WHERE44_tree);
                     }
-                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_lookup_statement1045);
+                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_lookup_statement1047);
                     body2=dml_lookup_select_where_body2();
 
                     state._fsp--;
@@ -1578,10 +1592,10 @@ public class TOMMY_SQLParser extends Parser {
                 case 2 :
                     // org/tommy/stationery/ink/core/TOMMY_SQL.g:182:96: SEMICOLON
                     {
-                    SEMICOLON44=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_lookup_statement1047); if (state.failed) return retval;
+                    SEMICOLON45=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_lookup_statement1049); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SEMICOLON44_tree = (Object)adaptor.create(SEMICOLON44);
-                    adaptor.addChild(root_0, SEMICOLON44_tree);
+                    SEMICOLON45_tree = (Object)adaptor.create(SEMICOLON45);
+                    adaptor.addChild(root_0, SEMICOLON45_tree);
                     }
 
                     }
@@ -1636,17 +1650,17 @@ public class TOMMY_SQLParser extends Parser {
 
         Object root_0 = null;
 
-        Token SELECT45=null;
-        Token WHERE46=null;
-        Token SEMICOLON47=null;
+        Token SELECT46=null;
+        Token WHERE47=null;
+        Token SEMICOLON48=null;
         dml_lookup_select_where_body_return body1 = null;
 
         dml_lookup_select_where_body2_return body2 = null;
 
 
-        Object SELECT45_tree=null;
-        Object WHERE46_tree=null;
-        Object SEMICOLON47_tree=null;
+        Object SELECT46_tree=null;
+        Object WHERE47_tree=null;
+        Object SEMICOLON48_tree=null;
 
         try {
             // org/tommy/stationery/ink/core/TOMMY_SQL.g:195:5: ( SELECT body1= dml_lookup_select_where_body ( WHERE body2= dml_lookup_select_where_body2 | SEMICOLON ) )
@@ -1654,12 +1668,12 @@ public class TOMMY_SQLParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            SELECT45=(Token)match(input,SELECT,FOLLOW_SELECT_in_select_statement1071); if (state.failed) return retval;
+            SELECT46=(Token)match(input,SELECT,FOLLOW_SELECT_in_select_statement1073); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SELECT45_tree = (Object)adaptor.create(SELECT45);
-            adaptor.addChild(root_0, SELECT45_tree);
+            SELECT46_tree = (Object)adaptor.create(SELECT46);
+            adaptor.addChild(root_0, SELECT46_tree);
             }
-            pushFollow(FOLLOW_dml_lookup_select_where_body_in_select_statement1077);
+            pushFollow(FOLLOW_dml_lookup_select_where_body_in_select_statement1079);
             body1=dml_lookup_select_where_body();
 
             state._fsp--;
@@ -1690,12 +1704,12 @@ public class TOMMY_SQLParser extends Parser {
                 case 1 :
                     // org/tommy/stationery/ink/core/TOMMY_SQL.g:195:52: WHERE body2= dml_lookup_select_where_body2
                     {
-                    WHERE46=(Token)match(input,WHERE,FOLLOW_WHERE_in_select_statement1080); if (state.failed) return retval;
+                    WHERE47=(Token)match(input,WHERE,FOLLOW_WHERE_in_select_statement1082); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    WHERE46_tree = (Object)adaptor.create(WHERE46);
-                    adaptor.addChild(root_0, WHERE46_tree);
+                    WHERE47_tree = (Object)adaptor.create(WHERE47);
+                    adaptor.addChild(root_0, WHERE47_tree);
                     }
-                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_select_statement1086);
+                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_select_statement1088);
                     body2=dml_lookup_select_where_body2();
 
                     state._fsp--;
@@ -1707,10 +1721,10 @@ public class TOMMY_SQLParser extends Parser {
                 case 2 :
                     // org/tommy/stationery/ink/core/TOMMY_SQL.g:195:96: SEMICOLON
                     {
-                    SEMICOLON47=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_select_statement1088); if (state.failed) return retval;
+                    SEMICOLON48=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_select_statement1090); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SEMICOLON47_tree = (Object)adaptor.create(SEMICOLON47);
-                    adaptor.addChild(root_0, SEMICOLON47_tree);
+                    SEMICOLON48_tree = (Object)adaptor.create(SEMICOLON48);
+                    adaptor.addChild(root_0, SEMICOLON48_tree);
                     }
 
                     }
@@ -1753,60 +1767,60 @@ public class TOMMY_SQLParser extends Parser {
     }
     // $ANTLR end "select_statement"
 
-    public static class upsert_statement_return extends ParserRuleReturnScope {
+    public static class insert_statement_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
-    // $ANTLR start "upsert_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:208:1: upsert_statement : UPSERT INTO body1= dml_lookup_select_where_body ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON ) ;
-    public final upsert_statement_return upsert_statement() throws RecognitionException {
-        upsert_statement_return retval = new upsert_statement_return();
+    // $ANTLR start "insert_statement"
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:207:1: insert_statement : INSERT INTO body1= dml_lookup_select_where_body ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON ) ;
+    public final insert_statement_return insert_statement() throws RecognitionException {
+        insert_statement_return retval = new insert_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token UPSERT48=null;
-        Token INTO49=null;
-        Token VALUES50=null;
-        Token INCREASE51=null;
-        Token VALUES52=null;
-        Token SEMICOLON53=null;
+        Token INSERT49=null;
+        Token INTO50=null;
+        Token VALUES51=null;
+        Token INCREASE52=null;
+        Token VALUES53=null;
+        Token SEMICOLON54=null;
         dml_lookup_select_where_body_return body1 = null;
 
         dml_lookup_select_where_body2_return body2 = null;
 
 
-        Object UPSERT48_tree=null;
-        Object INTO49_tree=null;
-        Object VALUES50_tree=null;
-        Object INCREASE51_tree=null;
-        Object VALUES52_tree=null;
-        Object SEMICOLON53_tree=null;
+        Object INSERT49_tree=null;
+        Object INTO50_tree=null;
+        Object VALUES51_tree=null;
+        Object INCREASE52_tree=null;
+        Object VALUES53_tree=null;
+        Object SEMICOLON54_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:209:5: ( UPSERT INTO body1= dml_lookup_select_where_body ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON ) )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:209:7: UPSERT INTO body1= dml_lookup_select_where_body ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:208:5: ( INSERT INTO body1= dml_lookup_select_where_body ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON ) )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:208:7: INSERT INTO body1= dml_lookup_select_where_body ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON )
             {
             root_0 = (Object)adaptor.nil();
 
-            UPSERT48=(Token)match(input,UPSERT,FOLLOW_UPSERT_in_upsert_statement1112); if (state.failed) return retval;
+            INSERT49=(Token)match(input,INSERT,FOLLOW_INSERT_in_insert_statement1113); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            UPSERT48_tree = (Object)adaptor.create(UPSERT48);
-            adaptor.addChild(root_0, UPSERT48_tree);
+            INSERT49_tree = (Object)adaptor.create(INSERT49);
+            adaptor.addChild(root_0, INSERT49_tree);
             }
-            INTO49=(Token)match(input,INTO,FOLLOW_INTO_in_upsert_statement1114); if (state.failed) return retval;
+            INTO50=(Token)match(input,INTO,FOLLOW_INTO_in_insert_statement1115); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            INTO49_tree = (Object)adaptor.create(INTO49);
-            adaptor.addChild(root_0, INTO49_tree);
+            INTO50_tree = (Object)adaptor.create(INTO50);
+            adaptor.addChild(root_0, INTO50_tree);
             }
-            pushFollow(FOLLOW_dml_lookup_select_where_body_in_upsert_statement1120);
+            pushFollow(FOLLOW_dml_lookup_select_where_body_in_insert_statement1121);
             body1=dml_lookup_select_where_body();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, body1.getTree());
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:209:56: ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:208:56: ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON )
             int alt8=3;
             switch ( input.LA(1) ) {
             case VALUES:
@@ -1834,14 +1848,14 @@ public class TOMMY_SQLParser extends Parser {
 
             switch (alt8) {
                 case 1 :
-                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:209:57: VALUES body2= dml_lookup_select_where_body2
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:208:57: VALUES body2= dml_lookup_select_where_body2
                     {
-                    VALUES50=(Token)match(input,VALUES,FOLLOW_VALUES_in_upsert_statement1123); if (state.failed) return retval;
+                    VALUES51=(Token)match(input,VALUES,FOLLOW_VALUES_in_insert_statement1124); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    VALUES50_tree = (Object)adaptor.create(VALUES50);
-                    adaptor.addChild(root_0, VALUES50_tree);
+                    VALUES51_tree = (Object)adaptor.create(VALUES51);
+                    adaptor.addChild(root_0, VALUES51_tree);
                     }
-                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_upsert_statement1129);
+                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_insert_statement1130);
                     body2=dml_lookup_select_where_body2();
 
                     state._fsp--;
@@ -1851,19 +1865,19 @@ public class TOMMY_SQLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:209:102: INCREASE VALUES body2= dml_lookup_select_where_body2
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:208:102: INCREASE VALUES body2= dml_lookup_select_where_body2
                     {
-                    INCREASE51=(Token)match(input,INCREASE,FOLLOW_INCREASE_in_upsert_statement1131); if (state.failed) return retval;
+                    INCREASE52=(Token)match(input,INCREASE,FOLLOW_INCREASE_in_insert_statement1132); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    INCREASE51_tree = (Object)adaptor.create(INCREASE51);
-                    adaptor.addChild(root_0, INCREASE51_tree);
+                    INCREASE52_tree = (Object)adaptor.create(INCREASE52);
+                    adaptor.addChild(root_0, INCREASE52_tree);
                     }
-                    VALUES52=(Token)match(input,VALUES,FOLLOW_VALUES_in_upsert_statement1133); if (state.failed) return retval;
+                    VALUES53=(Token)match(input,VALUES,FOLLOW_VALUES_in_insert_statement1134); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    VALUES52_tree = (Object)adaptor.create(VALUES52);
-                    adaptor.addChild(root_0, VALUES52_tree);
+                    VALUES53_tree = (Object)adaptor.create(VALUES53);
+                    adaptor.addChild(root_0, VALUES53_tree);
                     }
-                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_upsert_statement1139);
+                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_insert_statement1140);
                     body2=dml_lookup_select_where_body2();
 
                     state._fsp--;
@@ -1873,12 +1887,181 @@ public class TOMMY_SQLParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:209:156: SEMICOLON
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:208:156: SEMICOLON
                     {
-                    SEMICOLON53=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_upsert_statement1141); if (state.failed) return retval;
+                    SEMICOLON54=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_insert_statement1142); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SEMICOLON53_tree = (Object)adaptor.create(SEMICOLON53);
-                    adaptor.addChild(root_0, SEMICOLON53_tree);
+                    SEMICOLON54_tree = (Object)adaptor.create(SEMICOLON54);
+                    adaptor.addChild(root_0, SEMICOLON54_tree);
+                    }
+
+                    }
+                    break;
+
+            }
+
+            if ( state.backtracking==0 ) {
+
+                      if (body1 != null) {
+
+                          QueryParser esperParser = new QueryParser();
+                          BaseStatement statement = esperParser.parseWithoutInsertEPL(input.toString(retval.start,input.LT(-1)));
+                          statement.setQuery(input.toString(retval.start,input.LT(-1)));
+                          statement.setType(StatementTypeEnum.valueOf("INSERT"));
+                          statements.add(statement);
+                      }
+
+
+            }
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( state.backtracking==0 ) {
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end "insert_statement"
+
+    public static class upsert_statement_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start "upsert_statement"
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:222:1: upsert_statement : UPSERT INTO body1= dml_lookup_select_where_body ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON ) ;
+    public final upsert_statement_return upsert_statement() throws RecognitionException {
+        upsert_statement_return retval = new upsert_statement_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        Token UPSERT55=null;
+        Token INTO56=null;
+        Token VALUES57=null;
+        Token INCREASE58=null;
+        Token VALUES59=null;
+        Token SEMICOLON60=null;
+        dml_lookup_select_where_body_return body1 = null;
+
+        dml_lookup_select_where_body2_return body2 = null;
+
+
+        Object UPSERT55_tree=null;
+        Object INTO56_tree=null;
+        Object VALUES57_tree=null;
+        Object INCREASE58_tree=null;
+        Object VALUES59_tree=null;
+        Object SEMICOLON60_tree=null;
+
+        try {
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:223:5: ( UPSERT INTO body1= dml_lookup_select_where_body ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON ) )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:223:7: UPSERT INTO body1= dml_lookup_select_where_body ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON )
+            {
+            root_0 = (Object)adaptor.nil();
+
+            UPSERT55=(Token)match(input,UPSERT,FOLLOW_UPSERT_in_upsert_statement1166); if (state.failed) return retval;
+            if ( state.backtracking==0 ) {
+            UPSERT55_tree = (Object)adaptor.create(UPSERT55);
+            adaptor.addChild(root_0, UPSERT55_tree);
+            }
+            INTO56=(Token)match(input,INTO,FOLLOW_INTO_in_upsert_statement1168); if (state.failed) return retval;
+            if ( state.backtracking==0 ) {
+            INTO56_tree = (Object)adaptor.create(INTO56);
+            adaptor.addChild(root_0, INTO56_tree);
+            }
+            pushFollow(FOLLOW_dml_lookup_select_where_body_in_upsert_statement1174);
+            body1=dml_lookup_select_where_body();
+
+            state._fsp--;
+            if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, body1.getTree());
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:223:56: ( VALUES body2= dml_lookup_select_where_body2 | INCREASE VALUES body2= dml_lookup_select_where_body2 | SEMICOLON )
+            int alt9=3;
+            switch ( input.LA(1) ) {
+            case VALUES:
+                {
+                alt9=1;
+                }
+                break;
+            case INCREASE:
+                {
+                alt9=2;
+                }
+                break;
+            case SEMICOLON:
+                {
+                alt9=3;
+                }
+                break;
+            default:
+                if (state.backtracking>0) {state.failed=true; return retval;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 9, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt9) {
+                case 1 :
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:223:57: VALUES body2= dml_lookup_select_where_body2
+                    {
+                    VALUES57=(Token)match(input,VALUES,FOLLOW_VALUES_in_upsert_statement1177); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) {
+                    VALUES57_tree = (Object)adaptor.create(VALUES57);
+                    adaptor.addChild(root_0, VALUES57_tree);
+                    }
+                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_upsert_statement1183);
+                    body2=dml_lookup_select_where_body2();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, body2.getTree());
+
+                    }
+                    break;
+                case 2 :
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:223:102: INCREASE VALUES body2= dml_lookup_select_where_body2
+                    {
+                    INCREASE58=(Token)match(input,INCREASE,FOLLOW_INCREASE_in_upsert_statement1185); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) {
+                    INCREASE58_tree = (Object)adaptor.create(INCREASE58);
+                    adaptor.addChild(root_0, INCREASE58_tree);
+                    }
+                    VALUES59=(Token)match(input,VALUES,FOLLOW_VALUES_in_upsert_statement1187); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) {
+                    VALUES59_tree = (Object)adaptor.create(VALUES59);
+                    adaptor.addChild(root_0, VALUES59_tree);
+                    }
+                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_upsert_statement1193);
+                    body2=dml_lookup_select_where_body2();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, body2.getTree());
+
+                    }
+                    break;
+                case 3 :
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:223:156: SEMICOLON
+                    {
+                    SEMICOLON60=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_upsert_statement1195); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) {
+                    SEMICOLON60_tree = (Object)adaptor.create(SEMICOLON60);
+                    adaptor.addChild(root_0, SEMICOLON60_tree);
                     }
 
                     }
@@ -1928,18 +2111,18 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "update_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:223:1: update_statement : UPDATE body1= dml_lookup_select_where_body ( SET body2= dml_lookup_select_where_body2 | SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 | SEMICOLON ) ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:237:1: update_statement : UPDATE body1= dml_lookup_select_where_body ( SET body2= dml_lookup_select_where_body2 | SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 | SEMICOLON ) ;
     public final update_statement_return update_statement() throws RecognitionException {
         update_statement_return retval = new update_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token UPDATE54=null;
-        Token SET55=null;
-        Token SET56=null;
-        Token WHERE57=null;
-        Token SEMICOLON58=null;
+        Token UPDATE61=null;
+        Token SET62=null;
+        Token SET63=null;
+        Token WHERE64=null;
+        Token SEMICOLON65=null;
         dml_lookup_select_where_body_return body1 = null;
 
         dml_lookup_select_where_body2_return body2 = null;
@@ -1949,42 +2132,42 @@ public class TOMMY_SQLParser extends Parser {
         dml_lookup_select_where_body2_return body4 = null;
 
 
-        Object UPDATE54_tree=null;
-        Object SET55_tree=null;
-        Object SET56_tree=null;
-        Object WHERE57_tree=null;
-        Object SEMICOLON58_tree=null;
+        Object UPDATE61_tree=null;
+        Object SET62_tree=null;
+        Object SET63_tree=null;
+        Object WHERE64_tree=null;
+        Object SEMICOLON65_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:224:5: ( UPDATE body1= dml_lookup_select_where_body ( SET body2= dml_lookup_select_where_body2 | SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 | SEMICOLON ) )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:224:7: UPDATE body1= dml_lookup_select_where_body ( SET body2= dml_lookup_select_where_body2 | SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 | SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:5: ( UPDATE body1= dml_lookup_select_where_body ( SET body2= dml_lookup_select_where_body2 | SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 | SEMICOLON ) )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:7: UPDATE body1= dml_lookup_select_where_body ( SET body2= dml_lookup_select_where_body2 | SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 | SEMICOLON )
             {
             root_0 = (Object)adaptor.nil();
 
-            UPDATE54=(Token)match(input,UPDATE,FOLLOW_UPDATE_in_update_statement1165); if (state.failed) return retval;
+            UPDATE61=(Token)match(input,UPDATE,FOLLOW_UPDATE_in_update_statement1219); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            UPDATE54_tree = (Object)adaptor.create(UPDATE54);
-            adaptor.addChild(root_0, UPDATE54_tree);
+            UPDATE61_tree = (Object)adaptor.create(UPDATE61);
+            adaptor.addChild(root_0, UPDATE61_tree);
             }
-            pushFollow(FOLLOW_dml_lookup_select_where_body_in_update_statement1171);
+            pushFollow(FOLLOW_dml_lookup_select_where_body_in_update_statement1225);
             body1=dml_lookup_select_where_body();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, body1.getTree());
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:224:51: ( SET body2= dml_lookup_select_where_body2 | SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 | SEMICOLON )
-            int alt9=3;
-            alt9 = dfa9.predict(input);
-            switch (alt9) {
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:51: ( SET body2= dml_lookup_select_where_body2 | SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 | SEMICOLON )
+            int alt10=3;
+            alt10 = dfa10.predict(input);
+            switch (alt10) {
                 case 1 :
-                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:224:52: SET body2= dml_lookup_select_where_body2
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:52: SET body2= dml_lookup_select_where_body2
                     {
-                    SET55=(Token)match(input,SET,FOLLOW_SET_in_update_statement1174); if (state.failed) return retval;
+                    SET62=(Token)match(input,SET,FOLLOW_SET_in_update_statement1228); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SET55_tree = (Object)adaptor.create(SET55);
-                    adaptor.addChild(root_0, SET55_tree);
+                    SET62_tree = (Object)adaptor.create(SET62);
+                    adaptor.addChild(root_0, SET62_tree);
                     }
-                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_update_statement1180);
+                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_update_statement1234);
                     body2=dml_lookup_select_where_body2();
 
                     state._fsp--;
@@ -1994,25 +2177,25 @@ public class TOMMY_SQLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:224:96: SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:96: SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2
                     {
-                    SET56=(Token)match(input,SET,FOLLOW_SET_in_update_statement1184); if (state.failed) return retval;
+                    SET63=(Token)match(input,SET,FOLLOW_SET_in_update_statement1238); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SET56_tree = (Object)adaptor.create(SET56);
-                    adaptor.addChild(root_0, SET56_tree);
+                    SET63_tree = (Object)adaptor.create(SET63);
+                    adaptor.addChild(root_0, SET63_tree);
                     }
-                    pushFollow(FOLLOW_dml_lookup_select_where_body_in_update_statement1190);
+                    pushFollow(FOLLOW_dml_lookup_select_where_body_in_update_statement1244);
                     body3=dml_lookup_select_where_body();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, body3.getTree());
-                    WHERE57=(Token)match(input,WHERE,FOLLOW_WHERE_in_update_statement1192); if (state.failed) return retval;
+                    WHERE64=(Token)match(input,WHERE,FOLLOW_WHERE_in_update_statement1246); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    WHERE57_tree = (Object)adaptor.create(WHERE57);
-                    adaptor.addChild(root_0, WHERE57_tree);
+                    WHERE64_tree = (Object)adaptor.create(WHERE64);
+                    adaptor.addChild(root_0, WHERE64_tree);
                     }
-                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_update_statement1196);
+                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_update_statement1250);
                     body4=dml_lookup_select_where_body2();
 
                     state._fsp--;
@@ -2022,12 +2205,12 @@ public class TOMMY_SQLParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:224:179: SEMICOLON
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:179: SEMICOLON
                     {
-                    SEMICOLON58=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_update_statement1198); if (state.failed) return retval;
+                    SEMICOLON65=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_update_statement1252); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SEMICOLON58_tree = (Object)adaptor.create(SEMICOLON58);
-                    adaptor.addChild(root_0, SEMICOLON58_tree);
+                    SEMICOLON65_tree = (Object)adaptor.create(SEMICOLON65);
+                    adaptor.addChild(root_0, SEMICOLON65_tree);
                     }
 
                     }
@@ -2077,80 +2260,80 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "delete_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:1: delete_statement : DELETE FROM body1= dml_lookup_select_where_body ( WHERE body2= dml_lookup_select_where_body2 | SEMICOLON ) ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:252:1: delete_statement : DELETE FROM body1= dml_lookup_select_where_body ( WHERE body2= dml_lookup_select_where_body2 | SEMICOLON ) ;
     public final delete_statement_return delete_statement() throws RecognitionException {
         delete_statement_return retval = new delete_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token DELETE59=null;
-        Token FROM60=null;
-        Token WHERE61=null;
-        Token SEMICOLON62=null;
+        Token DELETE66=null;
+        Token FROM67=null;
+        Token WHERE68=null;
+        Token SEMICOLON69=null;
         dml_lookup_select_where_body_return body1 = null;
 
         dml_lookup_select_where_body2_return body2 = null;
 
 
-        Object DELETE59_tree=null;
-        Object FROM60_tree=null;
-        Object WHERE61_tree=null;
-        Object SEMICOLON62_tree=null;
+        Object DELETE66_tree=null;
+        Object FROM67_tree=null;
+        Object WHERE68_tree=null;
+        Object SEMICOLON69_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:239:5: ( DELETE FROM body1= dml_lookup_select_where_body ( WHERE body2= dml_lookup_select_where_body2 | SEMICOLON ) )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:239:7: DELETE FROM body1= dml_lookup_select_where_body ( WHERE body2= dml_lookup_select_where_body2 | SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:253:5: ( DELETE FROM body1= dml_lookup_select_where_body ( WHERE body2= dml_lookup_select_where_body2 | SEMICOLON ) )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:253:7: DELETE FROM body1= dml_lookup_select_where_body ( WHERE body2= dml_lookup_select_where_body2 | SEMICOLON )
             {
             root_0 = (Object)adaptor.nil();
 
-            DELETE59=(Token)match(input,DELETE,FOLLOW_DELETE_in_delete_statement1222); if (state.failed) return retval;
+            DELETE66=(Token)match(input,DELETE,FOLLOW_DELETE_in_delete_statement1276); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            DELETE59_tree = (Object)adaptor.create(DELETE59);
-            adaptor.addChild(root_0, DELETE59_tree);
+            DELETE66_tree = (Object)adaptor.create(DELETE66);
+            adaptor.addChild(root_0, DELETE66_tree);
             }
-            FROM60=(Token)match(input,FROM,FOLLOW_FROM_in_delete_statement1224); if (state.failed) return retval;
+            FROM67=(Token)match(input,FROM,FOLLOW_FROM_in_delete_statement1278); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            FROM60_tree = (Object)adaptor.create(FROM60);
-            adaptor.addChild(root_0, FROM60_tree);
+            FROM67_tree = (Object)adaptor.create(FROM67);
+            adaptor.addChild(root_0, FROM67_tree);
             }
-            pushFollow(FOLLOW_dml_lookup_select_where_body_in_delete_statement1230);
+            pushFollow(FOLLOW_dml_lookup_select_where_body_in_delete_statement1284);
             body1=dml_lookup_select_where_body();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, body1.getTree());
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:239:56: ( WHERE body2= dml_lookup_select_where_body2 | SEMICOLON )
-            int alt10=2;
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:253:56: ( WHERE body2= dml_lookup_select_where_body2 | SEMICOLON )
+            int alt11=2;
             switch ( input.LA(1) ) {
             case WHERE:
                 {
-                alt10=1;
+                alt11=1;
                 }
                 break;
             case SEMICOLON:
                 {
-                alt10=2;
+                alt11=2;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 10, 0, input);
+                    new NoViableAltException("", 11, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt10) {
+            switch (alt11) {
                 case 1 :
-                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:239:57: WHERE body2= dml_lookup_select_where_body2
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:253:57: WHERE body2= dml_lookup_select_where_body2
                     {
-                    WHERE61=(Token)match(input,WHERE,FOLLOW_WHERE_in_delete_statement1233); if (state.failed) return retval;
+                    WHERE68=(Token)match(input,WHERE,FOLLOW_WHERE_in_delete_statement1287); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    WHERE61_tree = (Object)adaptor.create(WHERE61);
-                    adaptor.addChild(root_0, WHERE61_tree);
+                    WHERE68_tree = (Object)adaptor.create(WHERE68);
+                    adaptor.addChild(root_0, WHERE68_tree);
                     }
-                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_delete_statement1239);
+                    pushFollow(FOLLOW_dml_lookup_select_where_body2_in_delete_statement1293);
                     body2=dml_lookup_select_where_body2();
 
                     state._fsp--;
@@ -2160,12 +2343,12 @@ public class TOMMY_SQLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:239:101: SEMICOLON
+                    // org/tommy/stationery/ink/core/TOMMY_SQL.g:253:101: SEMICOLON
                     {
-                    SEMICOLON62=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_delete_statement1241); if (state.failed) return retval;
+                    SEMICOLON69=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_delete_statement1295); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SEMICOLON62_tree = (Object)adaptor.create(SEMICOLON62);
-                    adaptor.addChild(root_0, SEMICOLON62_tree);
+                    SEMICOLON69_tree = (Object)adaptor.create(SEMICOLON69);
+                    adaptor.addChild(root_0, SEMICOLON69_tree);
                     }
 
                     }
@@ -2215,7 +2398,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "ddl_table_name"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:252:1: ddl_table_name returns [BaseTableDef ret] : n= NAME ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:266:1: ddl_table_name returns [BaseTableDef ret] : n= NAME ;
     public final ddl_table_name_return ddl_table_name() throws RecognitionException {
         ddl_table_name_return retval = new ddl_table_name_return();
         retval.start = input.LT(1);
@@ -2227,12 +2410,12 @@ public class TOMMY_SQLParser extends Parser {
         Object n_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:253:5: (n= NAME )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:253:9: n= NAME
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:267:5: (n= NAME )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:267:9: n= NAME
             {
             root_0 = (Object)adaptor.nil();
 
-            n=(Token)match(input,NAME,FOLLOW_NAME_in_ddl_table_name1273); if (state.failed) return retval;
+            n=(Token)match(input,NAME,FOLLOW_NAME_in_ddl_table_name1327); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
@@ -2274,7 +2457,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "ddl_column_pk"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:260:1: ddl_column_pk returns [boolean ret] : n= 'PARTITION_KEY' ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:274:1: ddl_column_pk returns [boolean ret] : n= 'PARTITION_KEY' ;
     public final ddl_column_pk_return ddl_column_pk() throws RecognitionException {
         ddl_column_pk_return retval = new ddl_column_pk_return();
         retval.start = input.LT(1);
@@ -2286,12 +2469,12 @@ public class TOMMY_SQLParser extends Parser {
         Object n_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:261:5: (n= 'PARTITION_KEY' )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:262:9: n= 'PARTITION_KEY'
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:275:5: (n= 'PARTITION_KEY' )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:276:9: n= 'PARTITION_KEY'
             {
             root_0 = (Object)adaptor.nil();
 
-            n=(Token)match(input,69,FOLLOW_69_in_ddl_column_pk1306); if (state.failed) return retval;
+            n=(Token)match(input,69,FOLLOW_69_in_ddl_column_pk1360); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
@@ -2329,7 +2512,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "ddl_column_comment"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:265:1: ddl_column_comment returns [String ret] : SINGLE_QUOTE n= NAME SINGLE_QUOTE ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:279:1: ddl_column_comment returns [String ret] : SINGLE_QUOTE n= NAME SINGLE_QUOTE ;
     public final ddl_column_comment_return ddl_column_comment() throws RecognitionException {
         ddl_column_comment_return retval = new ddl_column_comment_return();
         retval.start = input.LT(1);
@@ -2337,33 +2520,33 @@ public class TOMMY_SQLParser extends Parser {
         Object root_0 = null;
 
         Token n=null;
-        Token SINGLE_QUOTE63=null;
-        Token SINGLE_QUOTE64=null;
+        Token SINGLE_QUOTE70=null;
+        Token SINGLE_QUOTE71=null;
 
         Object n_tree=null;
-        Object SINGLE_QUOTE63_tree=null;
-        Object SINGLE_QUOTE64_tree=null;
+        Object SINGLE_QUOTE70_tree=null;
+        Object SINGLE_QUOTE71_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:266:5: ( SINGLE_QUOTE n= NAME SINGLE_QUOTE )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:266:9: SINGLE_QUOTE n= NAME SINGLE_QUOTE
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:280:5: ( SINGLE_QUOTE n= NAME SINGLE_QUOTE )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:280:9: SINGLE_QUOTE n= NAME SINGLE_QUOTE
             {
             root_0 = (Object)adaptor.nil();
 
-            SINGLE_QUOTE63=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_ddl_column_comment1331); if (state.failed) return retval;
+            SINGLE_QUOTE70=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_ddl_column_comment1385); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SINGLE_QUOTE63_tree = (Object)adaptor.create(SINGLE_QUOTE63);
-            adaptor.addChild(root_0, SINGLE_QUOTE63_tree);
+            SINGLE_QUOTE70_tree = (Object)adaptor.create(SINGLE_QUOTE70);
+            adaptor.addChild(root_0, SINGLE_QUOTE70_tree);
             }
-            n=(Token)match(input,NAME,FOLLOW_NAME_in_ddl_column_comment1335); if (state.failed) return retval;
+            n=(Token)match(input,NAME,FOLLOW_NAME_in_ddl_column_comment1389); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
             }
-            SINGLE_QUOTE64=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_ddl_column_comment1337); if (state.failed) return retval;
+            SINGLE_QUOTE71=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_ddl_column_comment1391); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SINGLE_QUOTE64_tree = (Object)adaptor.create(SINGLE_QUOTE64);
-            adaptor.addChild(root_0, SINGLE_QUOTE64_tree);
+            SINGLE_QUOTE71_tree = (Object)adaptor.create(SINGLE_QUOTE71);
+            adaptor.addChild(root_0, SINGLE_QUOTE71_tree);
             }
             if ( state.backtracking==0 ) {
                retval.ret = n.getText();
@@ -2398,7 +2581,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "ddl_column_name"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:269:1: ddl_column_name returns [String ret] : n= NAME ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:283:1: ddl_column_name returns [String ret] : n= NAME ;
     public final ddl_column_name_return ddl_column_name() throws RecognitionException {
         ddl_column_name_return retval = new ddl_column_name_return();
         retval.start = input.LT(1);
@@ -2410,12 +2593,12 @@ public class TOMMY_SQLParser extends Parser {
         Object n_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:270:5: (n= NAME )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:270:9: n= NAME
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:284:5: (n= NAME )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:284:9: n= NAME
             {
             root_0 = (Object)adaptor.nil();
 
-            n=(Token)match(input,NAME,FOLLOW_NAME_in_ddl_column_name1364); if (state.failed) return retval;
+            n=(Token)match(input,NAME,FOLLOW_NAME_in_ddl_column_name1418); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
@@ -2453,7 +2636,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "ddl_column_type"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:273:1: ddl_column_type returns [ColumnDataTypeEnum ret] : n= ( 'STRING' | 'INTEGER' | 'FLOAT' | 'DOUBLE' ) ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:287:1: ddl_column_type returns [ColumnDataTypeEnum ret] : n= ( 'STRING' | 'INTEGER' | 'FLOAT' | 'DOUBLE' ) ;
     public final ddl_column_type_return ddl_column_type() throws RecognitionException {
         ddl_column_type_return retval = new ddl_column_type_return();
         retval.start = input.LT(1);
@@ -2465,8 +2648,8 @@ public class TOMMY_SQLParser extends Parser {
         Object n_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:274:5: (n= ( 'STRING' | 'INTEGER' | 'FLOAT' | 'DOUBLE' ) )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:274:9: n= ( 'STRING' | 'INTEGER' | 'FLOAT' | 'DOUBLE' )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:288:5: (n= ( 'STRING' | 'INTEGER' | 'FLOAT' | 'DOUBLE' ) )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:288:9: n= ( 'STRING' | 'INTEGER' | 'FLOAT' | 'DOUBLE' )
             {
             root_0 = (Object)adaptor.nil();
 
@@ -2516,26 +2699,26 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "ddl_column_defs"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:278:1: ddl_column_defs returns [List<BaseColumnDef> ret] : v= column_def ( COMMA v= column_def )* ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:292:1: ddl_column_defs returns [List<BaseColumnDef> ret] : v= column_def ( COMMA v= column_def )* ;
     public final ddl_column_defs_return ddl_column_defs() throws RecognitionException {
         ddl_column_defs_return retval = new ddl_column_defs_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token COMMA65=null;
+        Token COMMA72=null;
         column_def_return v = null;
 
 
-        Object COMMA65_tree=null;
+        Object COMMA72_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:279:5: (v= column_def ( COMMA v= column_def )* )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:280:9: v= column_def ( COMMA v= column_def )*
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:293:5: (v= column_def ( COMMA v= column_def )* )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:294:9: v= column_def ( COMMA v= column_def )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_column_def_in_ddl_column_defs1434);
+            pushFollow(FOLLOW_column_def_in_ddl_column_defs1488);
             v=column_def();
 
             state._fsp--;
@@ -2547,29 +2730,29 @@ public class TOMMY_SQLParser extends Parser {
                           retval.ret.add(v.ret);
 
             }
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:283:11: ( COMMA v= column_def )*
-            loop11:
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:297:11: ( COMMA v= column_def )*
+            loop12:
             do {
-                int alt11=2;
+                int alt12=2;
                 switch ( input.LA(1) ) {
                 case COMMA:
                     {
-                    alt11=1;
+                    alt12=1;
                     }
                     break;
 
                 }
 
-                switch (alt11) {
+                switch (alt12) {
             	case 1 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:283:12: COMMA v= column_def
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:297:12: COMMA v= column_def
             	    {
-            	    COMMA65=(Token)match(input,COMMA,FOLLOW_COMMA_in_ddl_column_defs1439); if (state.failed) return retval;
+            	    COMMA72=(Token)match(input,COMMA,FOLLOW_COMMA_in_ddl_column_defs1493); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    COMMA65_tree = (Object)adaptor.create(COMMA65);
-            	    adaptor.addChild(root_0, COMMA65_tree);
+            	    COMMA72_tree = (Object)adaptor.create(COMMA72);
+            	    adaptor.addChild(root_0, COMMA72_tree);
             	    }
-            	    pushFollow(FOLLOW_column_def_in_ddl_column_defs1445);
+            	    pushFollow(FOLLOW_column_def_in_ddl_column_defs1499);
             	    v=column_def();
 
             	    state._fsp--;
@@ -2583,7 +2766,7 @@ public class TOMMY_SQLParser extends Parser {
             	    break;
 
             	default :
-            	    break loop11;
+            	    break loop12;
                 }
             } while (true);
 
@@ -2617,7 +2800,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "column_def"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:286:1: column_def returns [BaseColumnDef ret] : c= ddl_column_name dt= ddl_column_type (pk= ddl_column_pk )* (cmt= ddl_column_comment )* ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:300:1: column_def returns [BaseColumnDef ret] : c= ddl_column_name dt= ddl_column_type (pk= ddl_column_pk )* (cmt= ddl_column_comment )* ;
     public final column_def_return column_def() throws RecognitionException {
         column_def_return retval = new column_def_return();
         retval.start = input.LT(1);
@@ -2635,41 +2818,41 @@ public class TOMMY_SQLParser extends Parser {
 
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:287:5: (c= ddl_column_name dt= ddl_column_type (pk= ddl_column_pk )* (cmt= ddl_column_comment )* )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:287:9: c= ddl_column_name dt= ddl_column_type (pk= ddl_column_pk )* (cmt= ddl_column_comment )*
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:301:5: (c= ddl_column_name dt= ddl_column_type (pk= ddl_column_pk )* (cmt= ddl_column_comment )* )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:301:9: c= ddl_column_name dt= ddl_column_type (pk= ddl_column_pk )* (cmt= ddl_column_comment )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_ddl_column_name_in_column_def1475);
+            pushFollow(FOLLOW_ddl_column_name_in_column_def1529);
             c=ddl_column_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, c.getTree());
-            pushFollow(FOLLOW_ddl_column_type_in_column_def1479);
+            pushFollow(FOLLOW_ddl_column_type_in_column_def1533);
             dt=ddl_column_type();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, dt.getTree());
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:287:46: (pk= ddl_column_pk )*
-            loop12:
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:301:46: (pk= ddl_column_pk )*
+            loop13:
             do {
-                int alt12=2;
+                int alt13=2;
                 switch ( input.LA(1) ) {
                 case 69:
                     {
-                    alt12=1;
+                    alt13=1;
                     }
                     break;
 
                 }
 
-                switch (alt12) {
+                switch (alt13) {
             	case 1 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:287:47: pk= ddl_column_pk
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:301:47: pk= ddl_column_pk
             	    {
-            	    pushFollow(FOLLOW_ddl_column_pk_in_column_def1484);
+            	    pushFollow(FOLLOW_ddl_column_pk_in_column_def1538);
             	    pk=ddl_column_pk();
 
             	    state._fsp--;
@@ -2680,28 +2863,28 @@ public class TOMMY_SQLParser extends Parser {
             	    break;
 
             	default :
-            	    break loop12;
+            	    break loop13;
                 }
             } while (true);
 
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:287:66: (cmt= ddl_column_comment )*
-            loop13:
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:301:66: (cmt= ddl_column_comment )*
+            loop14:
             do {
-                int alt13=2;
+                int alt14=2;
                 switch ( input.LA(1) ) {
                 case SINGLE_QUOTE:
                     {
-                    alt13=1;
+                    alt14=1;
                     }
                     break;
 
                 }
 
-                switch (alt13) {
+                switch (alt14) {
             	case 1 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:287:67: cmt= ddl_column_comment
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:301:67: cmt= ddl_column_comment
             	    {
-            	    pushFollow(FOLLOW_ddl_column_comment_in_column_def1491);
+            	    pushFollow(FOLLOW_ddl_column_comment_in_column_def1545);
             	    cmt=ddl_column_comment();
 
             	    state._fsp--;
@@ -2712,7 +2895,7 @@ public class TOMMY_SQLParser extends Parser {
             	    break;
 
             	default :
-            	    break loop13;
+            	    break loop14;
                 }
             } while (true);
 
@@ -2751,7 +2934,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "stream_meta_name"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:294:1: stream_meta_name returns [String ret] : n= ( 'TOPIC' | 'COMMENT' ) ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:308:1: stream_meta_name returns [String ret] : n= ( 'TOPIC' | 'COMMENT' ) ;
     public final stream_meta_name_return stream_meta_name() throws RecognitionException {
         stream_meta_name_return retval = new stream_meta_name_return();
         retval.start = input.LT(1);
@@ -2763,8 +2946,8 @@ public class TOMMY_SQLParser extends Parser {
         Object n_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:295:5: (n= ( 'TOPIC' | 'COMMENT' ) )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:295:9: n= ( 'TOPIC' | 'COMMENT' )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:309:5: (n= ( 'TOPIC' | 'COMMENT' ) )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:309:9: n= ( 'TOPIC' | 'COMMENT' )
             {
             root_0 = (Object)adaptor.nil();
 
@@ -2813,7 +2996,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "stream_meta_value"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:298:1: stream_meta_value returns [String ret] : SINGLE_QUOTE n= NAME SINGLE_QUOTE ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:312:1: stream_meta_value returns [String ret] : SINGLE_QUOTE n= NAME SINGLE_QUOTE ;
     public final stream_meta_value_return stream_meta_value() throws RecognitionException {
         stream_meta_value_return retval = new stream_meta_value_return();
         retval.start = input.LT(1);
@@ -2821,33 +3004,33 @@ public class TOMMY_SQLParser extends Parser {
         Object root_0 = null;
 
         Token n=null;
-        Token SINGLE_QUOTE66=null;
-        Token SINGLE_QUOTE67=null;
+        Token SINGLE_QUOTE73=null;
+        Token SINGLE_QUOTE74=null;
 
         Object n_tree=null;
-        Object SINGLE_QUOTE66_tree=null;
-        Object SINGLE_QUOTE67_tree=null;
+        Object SINGLE_QUOTE73_tree=null;
+        Object SINGLE_QUOTE74_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:299:5: ( SINGLE_QUOTE n= NAME SINGLE_QUOTE )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:299:9: SINGLE_QUOTE n= NAME SINGLE_QUOTE
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:313:5: ( SINGLE_QUOTE n= NAME SINGLE_QUOTE )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:313:9: SINGLE_QUOTE n= NAME SINGLE_QUOTE
             {
             root_0 = (Object)adaptor.nil();
 
-            SINGLE_QUOTE66=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_stream_meta_value1558); if (state.failed) return retval;
+            SINGLE_QUOTE73=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_stream_meta_value1612); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SINGLE_QUOTE66_tree = (Object)adaptor.create(SINGLE_QUOTE66);
-            adaptor.addChild(root_0, SINGLE_QUOTE66_tree);
+            SINGLE_QUOTE73_tree = (Object)adaptor.create(SINGLE_QUOTE73);
+            adaptor.addChild(root_0, SINGLE_QUOTE73_tree);
             }
-            n=(Token)match(input,NAME,FOLLOW_NAME_in_stream_meta_value1562); if (state.failed) return retval;
+            n=(Token)match(input,NAME,FOLLOW_NAME_in_stream_meta_value1616); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
             }
-            SINGLE_QUOTE67=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_stream_meta_value1564); if (state.failed) return retval;
+            SINGLE_QUOTE74=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_stream_meta_value1618); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SINGLE_QUOTE67_tree = (Object)adaptor.create(SINGLE_QUOTE67);
-            adaptor.addChild(root_0, SINGLE_QUOTE67_tree);
+            SINGLE_QUOTE74_tree = (Object)adaptor.create(SINGLE_QUOTE74);
+            adaptor.addChild(root_0, SINGLE_QUOTE74_tree);
             }
             if ( state.backtracking==0 ) {
                retval.ret = n.getText();
@@ -2882,7 +3065,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "stream_meta_def"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:302:1: stream_meta_def returns [BaseMetaDef ret] : c= stream_meta_name dt= stream_meta_value ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:316:1: stream_meta_def returns [BaseMetaDef ret] : c= stream_meta_name dt= stream_meta_value ;
     public final stream_meta_def_return stream_meta_def() throws RecognitionException {
         stream_meta_def_return retval = new stream_meta_def_return();
         retval.start = input.LT(1);
@@ -2896,18 +3079,18 @@ public class TOMMY_SQLParser extends Parser {
 
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:303:5: (c= stream_meta_name dt= stream_meta_value )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:303:9: c= stream_meta_name dt= stream_meta_value
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:317:5: (c= stream_meta_name dt= stream_meta_value )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:317:9: c= stream_meta_name dt= stream_meta_value
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_stream_meta_name_in_stream_meta_def1591);
+            pushFollow(FOLLOW_stream_meta_name_in_stream_meta_def1645);
             c=stream_meta_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, c.getTree());
-            pushFollow(FOLLOW_stream_meta_value_in_stream_meta_def1595);
+            pushFollow(FOLLOW_stream_meta_value_in_stream_meta_def1649);
             dt=stream_meta_value();
 
             state._fsp--;
@@ -2946,26 +3129,26 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "ddl_stream_meta_defs"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:307:1: ddl_stream_meta_defs returns [List<BaseMetaDef> ret] : v= stream_meta_def ( COMMA v= stream_meta_def )* ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:321:1: ddl_stream_meta_defs returns [List<BaseMetaDef> ret] : v= stream_meta_def ( COMMA v= stream_meta_def )* ;
     public final ddl_stream_meta_defs_return ddl_stream_meta_defs() throws RecognitionException {
         ddl_stream_meta_defs_return retval = new ddl_stream_meta_defs_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token COMMA68=null;
+        Token COMMA75=null;
         stream_meta_def_return v = null;
 
 
-        Object COMMA68_tree=null;
+        Object COMMA75_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:308:10: (v= stream_meta_def ( COMMA v= stream_meta_def )* )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:309:14: v= stream_meta_def ( COMMA v= stream_meta_def )*
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:322:10: (v= stream_meta_def ( COMMA v= stream_meta_def )* )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:323:14: v= stream_meta_def ( COMMA v= stream_meta_def )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_stream_meta_def_in_ddl_stream_meta_defs1648);
+            pushFollow(FOLLOW_stream_meta_def_in_ddl_stream_meta_defs1702);
             v=stream_meta_def();
 
             state._fsp--;
@@ -2977,29 +3160,29 @@ public class TOMMY_SQLParser extends Parser {
                                retval.ret.add(v.ret);
 
             }
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:312:16: ( COMMA v= stream_meta_def )*
-            loop14:
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:326:16: ( COMMA v= stream_meta_def )*
+            loop15:
             do {
-                int alt14=2;
+                int alt15=2;
                 switch ( input.LA(1) ) {
                 case COMMA:
                     {
-                    alt14=1;
+                    alt15=1;
                     }
                     break;
 
                 }
 
-                switch (alt14) {
+                switch (alt15) {
             	case 1 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:312:17: COMMA v= stream_meta_def
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:326:17: COMMA v= stream_meta_def
             	    {
-            	    COMMA68=(Token)match(input,COMMA,FOLLOW_COMMA_in_ddl_stream_meta_defs1653); if (state.failed) return retval;
+            	    COMMA75=(Token)match(input,COMMA,FOLLOW_COMMA_in_ddl_stream_meta_defs1707); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    COMMA68_tree = (Object)adaptor.create(COMMA68);
-            	    adaptor.addChild(root_0, COMMA68_tree);
+            	    COMMA75_tree = (Object)adaptor.create(COMMA75);
+            	    adaptor.addChild(root_0, COMMA75_tree);
             	    }
-            	    pushFollow(FOLLOW_stream_meta_def_in_ddl_stream_meta_defs1659);
+            	    pushFollow(FOLLOW_stream_meta_def_in_ddl_stream_meta_defs1713);
             	    v=stream_meta_def();
 
             	    state._fsp--;
@@ -3013,7 +3196,7 @@ public class TOMMY_SQLParser extends Parser {
             	    break;
 
             	default :
-            	    break loop14;
+            	    break loop15;
                 }
             } while (true);
 
@@ -3046,21 +3229,21 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "create_stream_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:315:1: create_stream_statement : CREATE STREAM table_name= ddl_table_name LPAREN columns= ddl_column_defs RPAREN META LPAREN metas= ddl_stream_meta_defs RPAREN SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:329:1: create_stream_statement : CREATE STREAM table_name= ddl_table_name LPAREN columns= ddl_column_defs RPAREN META LPAREN metas= ddl_stream_meta_defs RPAREN SEMICOLON ;
     public final create_stream_statement_return create_stream_statement() throws RecognitionException {
         create_stream_statement_return retval = new create_stream_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token CREATE69=null;
-        Token STREAM70=null;
-        Token LPAREN71=null;
-        Token RPAREN72=null;
-        Token META73=null;
-        Token LPAREN74=null;
-        Token RPAREN75=null;
-        Token SEMICOLON76=null;
+        Token CREATE76=null;
+        Token STREAM77=null;
+        Token LPAREN78=null;
+        Token RPAREN79=null;
+        Token META80=null;
+        Token LPAREN81=null;
+        Token RPAREN82=null;
+        Token SEMICOLON83=null;
         ddl_table_name_return table_name = null;
 
         ddl_column_defs_return columns = null;
@@ -3068,78 +3251,78 @@ public class TOMMY_SQLParser extends Parser {
         ddl_stream_meta_defs_return metas = null;
 
 
-        Object CREATE69_tree=null;
-        Object STREAM70_tree=null;
-        Object LPAREN71_tree=null;
-        Object RPAREN72_tree=null;
-        Object META73_tree=null;
-        Object LPAREN74_tree=null;
-        Object RPAREN75_tree=null;
-        Object SEMICOLON76_tree=null;
+        Object CREATE76_tree=null;
+        Object STREAM77_tree=null;
+        Object LPAREN78_tree=null;
+        Object RPAREN79_tree=null;
+        Object META80_tree=null;
+        Object LPAREN81_tree=null;
+        Object RPAREN82_tree=null;
+        Object SEMICOLON83_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:316:5: ( CREATE STREAM table_name= ddl_table_name LPAREN columns= ddl_column_defs RPAREN META LPAREN metas= ddl_stream_meta_defs RPAREN SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:316:7: CREATE STREAM table_name= ddl_table_name LPAREN columns= ddl_column_defs RPAREN META LPAREN metas= ddl_stream_meta_defs RPAREN SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:330:5: ( CREATE STREAM table_name= ddl_table_name LPAREN columns= ddl_column_defs RPAREN META LPAREN metas= ddl_stream_meta_defs RPAREN SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:330:7: CREATE STREAM table_name= ddl_table_name LPAREN columns= ddl_column_defs RPAREN META LPAREN metas= ddl_stream_meta_defs RPAREN SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            CREATE69=(Token)match(input,CREATE,FOLLOW_CREATE_in_create_stream_statement1686); if (state.failed) return retval;
+            CREATE76=(Token)match(input,CREATE,FOLLOW_CREATE_in_create_stream_statement1740); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CREATE69_tree = (Object)adaptor.create(CREATE69);
-            adaptor.addChild(root_0, CREATE69_tree);
+            CREATE76_tree = (Object)adaptor.create(CREATE76);
+            adaptor.addChild(root_0, CREATE76_tree);
             }
-            STREAM70=(Token)match(input,STREAM,FOLLOW_STREAM_in_create_stream_statement1688); if (state.failed) return retval;
+            STREAM77=(Token)match(input,STREAM,FOLLOW_STREAM_in_create_stream_statement1742); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STREAM70_tree = (Object)adaptor.create(STREAM70);
-            adaptor.addChild(root_0, STREAM70_tree);
+            STREAM77_tree = (Object)adaptor.create(STREAM77);
+            adaptor.addChild(root_0, STREAM77_tree);
             }
-            pushFollow(FOLLOW_ddl_table_name_in_create_stream_statement1692);
+            pushFollow(FOLLOW_ddl_table_name_in_create_stream_statement1746);
             table_name=ddl_table_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, table_name.getTree());
-            LPAREN71=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_create_stream_statement1702); if (state.failed) return retval;
+            LPAREN78=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_create_stream_statement1756); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            LPAREN71_tree = (Object)adaptor.create(LPAREN71);
-            adaptor.addChild(root_0, LPAREN71_tree);
+            LPAREN78_tree = (Object)adaptor.create(LPAREN78);
+            adaptor.addChild(root_0, LPAREN78_tree);
             }
-            pushFollow(FOLLOW_ddl_column_defs_in_create_stream_statement1706);
+            pushFollow(FOLLOW_ddl_column_defs_in_create_stream_statement1760);
             columns=ddl_column_defs();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, columns.getTree());
-            RPAREN72=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_create_stream_statement1708); if (state.failed) return retval;
+            RPAREN79=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_create_stream_statement1762); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            RPAREN72_tree = (Object)adaptor.create(RPAREN72);
-            adaptor.addChild(root_0, RPAREN72_tree);
+            RPAREN79_tree = (Object)adaptor.create(RPAREN79);
+            adaptor.addChild(root_0, RPAREN79_tree);
             }
-            META73=(Token)match(input,META,FOLLOW_META_in_create_stream_statement1710); if (state.failed) return retval;
+            META80=(Token)match(input,META,FOLLOW_META_in_create_stream_statement1764); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            META73_tree = (Object)adaptor.create(META73);
-            adaptor.addChild(root_0, META73_tree);
+            META80_tree = (Object)adaptor.create(META80);
+            adaptor.addChild(root_0, META80_tree);
             }
-            LPAREN74=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_create_stream_statement1712); if (state.failed) return retval;
+            LPAREN81=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_create_stream_statement1766); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            LPAREN74_tree = (Object)adaptor.create(LPAREN74);
-            adaptor.addChild(root_0, LPAREN74_tree);
+            LPAREN81_tree = (Object)adaptor.create(LPAREN81);
+            adaptor.addChild(root_0, LPAREN81_tree);
             }
-            pushFollow(FOLLOW_ddl_stream_meta_defs_in_create_stream_statement1716);
+            pushFollow(FOLLOW_ddl_stream_meta_defs_in_create_stream_statement1770);
             metas=ddl_stream_meta_defs();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, metas.getTree());
-            RPAREN75=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_create_stream_statement1718); if (state.failed) return retval;
+            RPAREN82=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_create_stream_statement1772); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            RPAREN75_tree = (Object)adaptor.create(RPAREN75);
-            adaptor.addChild(root_0, RPAREN75_tree);
+            RPAREN82_tree = (Object)adaptor.create(RPAREN82);
+            adaptor.addChild(root_0, RPAREN82_tree);
             }
-            SEMICOLON76=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_create_stream_statement1720); if (state.failed) return retval;
+            SEMICOLON83=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_create_stream_statement1774); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON76_tree = (Object)adaptor.create(SEMICOLON76);
-            adaptor.addChild(root_0, SEMICOLON76_tree);
+            SEMICOLON83_tree = (Object)adaptor.create(SEMICOLON83);
+            adaptor.addChild(root_0, SEMICOLON83_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -3182,49 +3365,49 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "drop_stream_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:330:1: drop_stream_statement : DROP STREAM table_name= ddl_table_name SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:344:1: drop_stream_statement : DROP STREAM table_name= ddl_table_name SEMICOLON ;
     public final drop_stream_statement_return drop_stream_statement() throws RecognitionException {
         drop_stream_statement_return retval = new drop_stream_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token DROP77=null;
-        Token STREAM78=null;
-        Token SEMICOLON79=null;
+        Token DROP84=null;
+        Token STREAM85=null;
+        Token SEMICOLON86=null;
         ddl_table_name_return table_name = null;
 
 
-        Object DROP77_tree=null;
-        Object STREAM78_tree=null;
-        Object SEMICOLON79_tree=null;
+        Object DROP84_tree=null;
+        Object STREAM85_tree=null;
+        Object SEMICOLON86_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:331:5: ( DROP STREAM table_name= ddl_table_name SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:331:7: DROP STREAM table_name= ddl_table_name SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:345:5: ( DROP STREAM table_name= ddl_table_name SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:345:7: DROP STREAM table_name= ddl_table_name SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            DROP77=(Token)match(input,DROP,FOLLOW_DROP_in_drop_stream_statement1743); if (state.failed) return retval;
+            DROP84=(Token)match(input,DROP,FOLLOW_DROP_in_drop_stream_statement1797); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            DROP77_tree = (Object)adaptor.create(DROP77);
-            adaptor.addChild(root_0, DROP77_tree);
+            DROP84_tree = (Object)adaptor.create(DROP84);
+            adaptor.addChild(root_0, DROP84_tree);
             }
-            STREAM78=(Token)match(input,STREAM,FOLLOW_STREAM_in_drop_stream_statement1745); if (state.failed) return retval;
+            STREAM85=(Token)match(input,STREAM,FOLLOW_STREAM_in_drop_stream_statement1799); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STREAM78_tree = (Object)adaptor.create(STREAM78);
-            adaptor.addChild(root_0, STREAM78_tree);
+            STREAM85_tree = (Object)adaptor.create(STREAM85);
+            adaptor.addChild(root_0, STREAM85_tree);
             }
-            pushFollow(FOLLOW_ddl_table_name_in_drop_stream_statement1749);
+            pushFollow(FOLLOW_ddl_table_name_in_drop_stream_statement1803);
             table_name=ddl_table_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, table_name.getTree());
-            SEMICOLON79=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_drop_stream_statement1751); if (state.failed) return retval;
+            SEMICOLON86=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_drop_stream_statement1805); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON79_tree = (Object)adaptor.create(SEMICOLON79);
-            adaptor.addChild(root_0, SEMICOLON79_tree);
+            SEMICOLON86_tree = (Object)adaptor.create(SEMICOLON86);
+            adaptor.addChild(root_0, SEMICOLON86_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -3265,49 +3448,49 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "show_stream_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:342:1: show_stream_statement : SHOW STREAM table_name= ddl_table_name SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:356:1: show_stream_statement : SHOW STREAM table_name= ddl_table_name SEMICOLON ;
     public final show_stream_statement_return show_stream_statement() throws RecognitionException {
         show_stream_statement_return retval = new show_stream_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token SHOW80=null;
-        Token STREAM81=null;
-        Token SEMICOLON82=null;
+        Token SHOW87=null;
+        Token STREAM88=null;
+        Token SEMICOLON89=null;
         ddl_table_name_return table_name = null;
 
 
-        Object SHOW80_tree=null;
-        Object STREAM81_tree=null;
-        Object SEMICOLON82_tree=null;
+        Object SHOW87_tree=null;
+        Object STREAM88_tree=null;
+        Object SEMICOLON89_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:343:5: ( SHOW STREAM table_name= ddl_table_name SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:343:7: SHOW STREAM table_name= ddl_table_name SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:357:5: ( SHOW STREAM table_name= ddl_table_name SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:357:7: SHOW STREAM table_name= ddl_table_name SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            SHOW80=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_stream_statement1774); if (state.failed) return retval;
+            SHOW87=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_stream_statement1828); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SHOW80_tree = (Object)adaptor.create(SHOW80);
-            adaptor.addChild(root_0, SHOW80_tree);
+            SHOW87_tree = (Object)adaptor.create(SHOW87);
+            adaptor.addChild(root_0, SHOW87_tree);
             }
-            STREAM81=(Token)match(input,STREAM,FOLLOW_STREAM_in_show_stream_statement1776); if (state.failed) return retval;
+            STREAM88=(Token)match(input,STREAM,FOLLOW_STREAM_in_show_stream_statement1830); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STREAM81_tree = (Object)adaptor.create(STREAM81);
-            adaptor.addChild(root_0, STREAM81_tree);
+            STREAM88_tree = (Object)adaptor.create(STREAM88);
+            adaptor.addChild(root_0, STREAM88_tree);
             }
-            pushFollow(FOLLOW_ddl_table_name_in_show_stream_statement1780);
+            pushFollow(FOLLOW_ddl_table_name_in_show_stream_statement1834);
             table_name=ddl_table_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, table_name.getTree());
-            SEMICOLON82=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_stream_statement1782); if (state.failed) return retval;
+            SEMICOLON89=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_stream_statement1836); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON82_tree = (Object)adaptor.create(SEMICOLON82);
-            adaptor.addChild(root_0, SEMICOLON82_tree);
+            SEMICOLON89_tree = (Object)adaptor.create(SEMICOLON89);
+            adaptor.addChild(root_0, SEMICOLON89_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -3348,41 +3531,41 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "show_streams_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:354:1: show_streams_statement : SHOW STREAMS SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:368:1: show_streams_statement : SHOW STREAMS SEMICOLON ;
     public final show_streams_statement_return show_streams_statement() throws RecognitionException {
         show_streams_statement_return retval = new show_streams_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token SHOW83=null;
-        Token STREAMS84=null;
-        Token SEMICOLON85=null;
+        Token SHOW90=null;
+        Token STREAMS91=null;
+        Token SEMICOLON92=null;
 
-        Object SHOW83_tree=null;
-        Object STREAMS84_tree=null;
-        Object SEMICOLON85_tree=null;
+        Object SHOW90_tree=null;
+        Object STREAMS91_tree=null;
+        Object SEMICOLON92_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:355:5: ( SHOW STREAMS SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:355:7: SHOW STREAMS SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:369:5: ( SHOW STREAMS SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:369:7: SHOW STREAMS SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            SHOW83=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_streams_statement1805); if (state.failed) return retval;
+            SHOW90=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_streams_statement1859); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SHOW83_tree = (Object)adaptor.create(SHOW83);
-            adaptor.addChild(root_0, SHOW83_tree);
+            SHOW90_tree = (Object)adaptor.create(SHOW90);
+            adaptor.addChild(root_0, SHOW90_tree);
             }
-            STREAMS84=(Token)match(input,STREAMS,FOLLOW_STREAMS_in_show_streams_statement1807); if (state.failed) return retval;
+            STREAMS91=(Token)match(input,STREAMS,FOLLOW_STREAMS_in_show_streams_statement1861); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STREAMS84_tree = (Object)adaptor.create(STREAMS84);
-            adaptor.addChild(root_0, STREAMS84_tree);
+            STREAMS91_tree = (Object)adaptor.create(STREAMS91);
+            adaptor.addChild(root_0, STREAMS91_tree);
             }
-            SEMICOLON85=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_streams_statement1809); if (state.failed) return retval;
+            SEMICOLON92=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_streams_statement1863); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON85_tree = (Object)adaptor.create(SEMICOLON85);
-            adaptor.addChild(root_0, SEMICOLON85_tree);
+            SEMICOLON92_tree = (Object)adaptor.create(SEMICOLON92);
+            adaptor.addChild(root_0, SEMICOLON92_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -3422,49 +3605,49 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "kill_job_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:365:1: kill_job_statement : KILL JOB table_name= ddl_table_name SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:379:1: kill_job_statement : KILL JOB table_name= ddl_table_name SEMICOLON ;
     public final kill_job_statement_return kill_job_statement() throws RecognitionException {
         kill_job_statement_return retval = new kill_job_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token KILL86=null;
-        Token JOB87=null;
-        Token SEMICOLON88=null;
+        Token KILL93=null;
+        Token JOB94=null;
+        Token SEMICOLON95=null;
         ddl_table_name_return table_name = null;
 
 
-        Object KILL86_tree=null;
-        Object JOB87_tree=null;
-        Object SEMICOLON88_tree=null;
+        Object KILL93_tree=null;
+        Object JOB94_tree=null;
+        Object SEMICOLON95_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:366:5: ( KILL JOB table_name= ddl_table_name SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:366:7: KILL JOB table_name= ddl_table_name SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:380:5: ( KILL JOB table_name= ddl_table_name SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:380:7: KILL JOB table_name= ddl_table_name SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            KILL86=(Token)match(input,KILL,FOLLOW_KILL_in_kill_job_statement1832); if (state.failed) return retval;
+            KILL93=(Token)match(input,KILL,FOLLOW_KILL_in_kill_job_statement1886); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            KILL86_tree = (Object)adaptor.create(KILL86);
-            adaptor.addChild(root_0, KILL86_tree);
+            KILL93_tree = (Object)adaptor.create(KILL93);
+            adaptor.addChild(root_0, KILL93_tree);
             }
-            JOB87=(Token)match(input,JOB,FOLLOW_JOB_in_kill_job_statement1834); if (state.failed) return retval;
+            JOB94=(Token)match(input,JOB,FOLLOW_JOB_in_kill_job_statement1888); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            JOB87_tree = (Object)adaptor.create(JOB87);
-            adaptor.addChild(root_0, JOB87_tree);
+            JOB94_tree = (Object)adaptor.create(JOB94);
+            adaptor.addChild(root_0, JOB94_tree);
             }
-            pushFollow(FOLLOW_ddl_table_name_in_kill_job_statement1838);
+            pushFollow(FOLLOW_ddl_table_name_in_kill_job_statement1892);
             table_name=ddl_table_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, table_name.getTree());
-            SEMICOLON88=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_kill_job_statement1840); if (state.failed) return retval;
+            SEMICOLON95=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_kill_job_statement1894); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON88_tree = (Object)adaptor.create(SEMICOLON88);
-            adaptor.addChild(root_0, SEMICOLON88_tree);
+            SEMICOLON95_tree = (Object)adaptor.create(SEMICOLON95);
+            adaptor.addChild(root_0, SEMICOLON95_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -3505,34 +3688,34 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "commit_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:377:1: commit_statement : COMMIT SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:391:1: commit_statement : COMMIT SEMICOLON ;
     public final commit_statement_return commit_statement() throws RecognitionException {
         commit_statement_return retval = new commit_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token COMMIT89=null;
-        Token SEMICOLON90=null;
+        Token COMMIT96=null;
+        Token SEMICOLON97=null;
 
-        Object COMMIT89_tree=null;
-        Object SEMICOLON90_tree=null;
+        Object COMMIT96_tree=null;
+        Object SEMICOLON97_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:378:5: ( COMMIT SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:378:7: COMMIT SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:392:5: ( COMMIT SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:392:7: COMMIT SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            COMMIT89=(Token)match(input,COMMIT,FOLLOW_COMMIT_in_commit_statement1863); if (state.failed) return retval;
+            COMMIT96=(Token)match(input,COMMIT,FOLLOW_COMMIT_in_commit_statement1917); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            COMMIT89_tree = (Object)adaptor.create(COMMIT89);
-            adaptor.addChild(root_0, COMMIT89_tree);
+            COMMIT96_tree = (Object)adaptor.create(COMMIT96);
+            adaptor.addChild(root_0, COMMIT96_tree);
             }
-            SEMICOLON90=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_commit_statement1865); if (state.failed) return retval;
+            SEMICOLON97=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_commit_statement1919); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON90_tree = (Object)adaptor.create(SEMICOLON90);
-            adaptor.addChild(root_0, SEMICOLON90_tree);
+            SEMICOLON97_tree = (Object)adaptor.create(SEMICOLON97);
+            adaptor.addChild(root_0, SEMICOLON97_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -3569,7 +3752,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "source_meta_name"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:384:1: source_meta_name returns [String ret] : n= ( 'CATALOG' | 'URL' | 'DRIVER' | 'ID' | 'PW' | 'VHOST' | 'PORT' | 'TOPIC' | 'CLUSTER' | 'INITIALPOOLSIZE' | 'MAXPOOLSIZE' | 'MINPOOLSIZE' ) ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:398:1: source_meta_name returns [String ret] : n= ( 'CATALOG' | 'URL' | 'DRIVER' | 'ID' | 'PW' | 'VHOST' | 'PORT' | 'TOPIC' | 'CLUSTER' | 'INITIALPOOLSIZE' | 'MAXPOOLSIZE' | 'MINPOOLSIZE' ) ;
     public final source_meta_name_return source_meta_name() throws RecognitionException {
         source_meta_name_return retval = new source_meta_name_return();
         retval.start = input.LT(1);
@@ -3581,8 +3764,8 @@ public class TOMMY_SQLParser extends Parser {
         Object n_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:385:5: (n= ( 'CATALOG' | 'URL' | 'DRIVER' | 'ID' | 'PW' | 'VHOST' | 'PORT' | 'TOPIC' | 'CLUSTER' | 'INITIALPOOLSIZE' | 'MAXPOOLSIZE' | 'MINPOOLSIZE' ) )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:385:9: n= ( 'CATALOG' | 'URL' | 'DRIVER' | 'ID' | 'PW' | 'VHOST' | 'PORT' | 'TOPIC' | 'CLUSTER' | 'INITIALPOOLSIZE' | 'MAXPOOLSIZE' | 'MINPOOLSIZE' )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:399:5: (n= ( 'CATALOG' | 'URL' | 'DRIVER' | 'ID' | 'PW' | 'VHOST' | 'PORT' | 'TOPIC' | 'CLUSTER' | 'INITIALPOOLSIZE' | 'MAXPOOLSIZE' | 'MINPOOLSIZE' ) )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:399:9: n= ( 'CATALOG' | 'URL' | 'DRIVER' | 'ID' | 'PW' | 'VHOST' | 'PORT' | 'TOPIC' | 'CLUSTER' | 'INITIALPOOLSIZE' | 'MAXPOOLSIZE' | 'MINPOOLSIZE' )
             {
             root_0 = (Object)adaptor.nil();
 
@@ -3631,7 +3814,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "source_meta_value"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:388:1: source_meta_value returns [String ret] : SINGLE_QUOTE n= NAME ( NAME | COMMA )* SINGLE_QUOTE ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:402:1: source_meta_value returns [String ret] : SINGLE_QUOTE n= NAME ( NAME | COMMA )* SINGLE_QUOTE ;
     public final source_meta_value_return source_meta_value() throws RecognitionException {
         source_meta_value_return retval = new source_meta_value_return();
         retval.start = input.LT(1);
@@ -3639,53 +3822,53 @@ public class TOMMY_SQLParser extends Parser {
         Object root_0 = null;
 
         Token n=null;
-        Token SINGLE_QUOTE91=null;
-        Token set92=null;
-        Token SINGLE_QUOTE93=null;
+        Token SINGLE_QUOTE98=null;
+        Token set99=null;
+        Token SINGLE_QUOTE100=null;
 
         Object n_tree=null;
-        Object SINGLE_QUOTE91_tree=null;
-        Object set92_tree=null;
-        Object SINGLE_QUOTE93_tree=null;
+        Object SINGLE_QUOTE98_tree=null;
+        Object set99_tree=null;
+        Object SINGLE_QUOTE100_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:389:5: ( SINGLE_QUOTE n= NAME ( NAME | COMMA )* SINGLE_QUOTE )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:389:9: SINGLE_QUOTE n= NAME ( NAME | COMMA )* SINGLE_QUOTE
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:403:5: ( SINGLE_QUOTE n= NAME ( NAME | COMMA )* SINGLE_QUOTE )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:403:9: SINGLE_QUOTE n= NAME ( NAME | COMMA )* SINGLE_QUOTE
             {
             root_0 = (Object)adaptor.nil();
 
-            SINGLE_QUOTE91=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_source_meta_value1942); if (state.failed) return retval;
+            SINGLE_QUOTE98=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_source_meta_value1996); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SINGLE_QUOTE91_tree = (Object)adaptor.create(SINGLE_QUOTE91);
-            adaptor.addChild(root_0, SINGLE_QUOTE91_tree);
+            SINGLE_QUOTE98_tree = (Object)adaptor.create(SINGLE_QUOTE98);
+            adaptor.addChild(root_0, SINGLE_QUOTE98_tree);
             }
-            n=(Token)match(input,NAME,FOLLOW_NAME_in_source_meta_value1946); if (state.failed) return retval;
+            n=(Token)match(input,NAME,FOLLOW_NAME_in_source_meta_value2000); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             n_tree = (Object)adaptor.create(n);
             adaptor.addChild(root_0, n_tree);
             }
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:389:29: ( NAME | COMMA )*
-            loop15:
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:403:29: ( NAME | COMMA )*
+            loop16:
             do {
-                int alt15=2;
+                int alt16=2;
                 switch ( input.LA(1) ) {
                 case COMMA:
                 case NAME:
                     {
-                    alt15=1;
+                    alt16=1;
                     }
                     break;
 
                 }
 
-                switch (alt15) {
+                switch (alt16) {
             	case 1 :
             	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:
             	    {
-            	    set92=(Token)input.LT(1);
+            	    set99=(Token)input.LT(1);
             	    if ( input.LA(1)==COMMA||input.LA(1)==NAME ) {
             	        input.consume();
-            	        if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set92));
+            	        if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set99));
             	        state.errorRecovery=false;state.failed=false;
             	    }
             	    else {
@@ -3699,14 +3882,14 @@ public class TOMMY_SQLParser extends Parser {
             	    break;
 
             	default :
-            	    break loop15;
+            	    break loop16;
                 }
             } while (true);
 
-            SINGLE_QUOTE93=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_source_meta_value1955); if (state.failed) return retval;
+            SINGLE_QUOTE100=(Token)match(input,SINGLE_QUOTE,FOLLOW_SINGLE_QUOTE_in_source_meta_value2009); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SINGLE_QUOTE93_tree = (Object)adaptor.create(SINGLE_QUOTE93);
-            adaptor.addChild(root_0, SINGLE_QUOTE93_tree);
+            SINGLE_QUOTE100_tree = (Object)adaptor.create(SINGLE_QUOTE100);
+            adaptor.addChild(root_0, SINGLE_QUOTE100_tree);
             }
             if ( state.backtracking==0 ) {
                retval.ret = n.getText();
@@ -3741,7 +3924,7 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "source_meta_def"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:392:1: source_meta_def returns [BaseMetaDef ret] : c= source_meta_name dt= source_meta_value ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:406:1: source_meta_def returns [BaseMetaDef ret] : c= source_meta_name dt= source_meta_value ;
     public final source_meta_def_return source_meta_def() throws RecognitionException {
         source_meta_def_return retval = new source_meta_def_return();
         retval.start = input.LT(1);
@@ -3755,18 +3938,18 @@ public class TOMMY_SQLParser extends Parser {
 
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:393:5: (c= source_meta_name dt= source_meta_value )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:393:9: c= source_meta_name dt= source_meta_value
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:407:5: (c= source_meta_name dt= source_meta_value )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:407:9: c= source_meta_name dt= source_meta_value
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_source_meta_name_in_source_meta_def1982);
+            pushFollow(FOLLOW_source_meta_name_in_source_meta_def2036);
             c=source_meta_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, c.getTree());
-            pushFollow(FOLLOW_source_meta_value_in_source_meta_def1986);
+            pushFollow(FOLLOW_source_meta_value_in_source_meta_def2040);
             dt=source_meta_value();
 
             state._fsp--;
@@ -3805,26 +3988,26 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "ddl_source_meta_defs"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:397:1: ddl_source_meta_defs returns [List<BaseMetaDef> ret] : v= source_meta_def ( COMMA v= source_meta_def )* ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:411:1: ddl_source_meta_defs returns [List<BaseMetaDef> ret] : v= source_meta_def ( COMMA v= source_meta_def )* ;
     public final ddl_source_meta_defs_return ddl_source_meta_defs() throws RecognitionException {
         ddl_source_meta_defs_return retval = new ddl_source_meta_defs_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token COMMA94=null;
+        Token COMMA101=null;
         source_meta_def_return v = null;
 
 
-        Object COMMA94_tree=null;
+        Object COMMA101_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:398:10: (v= source_meta_def ( COMMA v= source_meta_def )* )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:399:14: v= source_meta_def ( COMMA v= source_meta_def )*
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:412:10: (v= source_meta_def ( COMMA v= source_meta_def )* )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:413:14: v= source_meta_def ( COMMA v= source_meta_def )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_source_meta_def_in_ddl_source_meta_defs2039);
+            pushFollow(FOLLOW_source_meta_def_in_ddl_source_meta_defs2093);
             v=source_meta_def();
 
             state._fsp--;
@@ -3836,29 +4019,29 @@ public class TOMMY_SQLParser extends Parser {
                                retval.ret.add(v.ret);
 
             }
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:402:16: ( COMMA v= source_meta_def )*
-            loop16:
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:416:16: ( COMMA v= source_meta_def )*
+            loop17:
             do {
-                int alt16=2;
+                int alt17=2;
                 switch ( input.LA(1) ) {
                 case COMMA:
                     {
-                    alt16=1;
+                    alt17=1;
                     }
                     break;
 
                 }
 
-                switch (alt16) {
+                switch (alt17) {
             	case 1 :
-            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:402:17: COMMA v= source_meta_def
+            	    // org/tommy/stationery/ink/core/TOMMY_SQL.g:416:17: COMMA v= source_meta_def
             	    {
-            	    COMMA94=(Token)match(input,COMMA,FOLLOW_COMMA_in_ddl_source_meta_defs2044); if (state.failed) return retval;
+            	    COMMA101=(Token)match(input,COMMA,FOLLOW_COMMA_in_ddl_source_meta_defs2098); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    COMMA94_tree = (Object)adaptor.create(COMMA94);
-            	    adaptor.addChild(root_0, COMMA94_tree);
+            	    COMMA101_tree = (Object)adaptor.create(COMMA101);
+            	    adaptor.addChild(root_0, COMMA101_tree);
             	    }
-            	    pushFollow(FOLLOW_source_meta_def_in_ddl_source_meta_defs2050);
+            	    pushFollow(FOLLOW_source_meta_def_in_ddl_source_meta_defs2104);
             	    v=source_meta_def();
 
             	    state._fsp--;
@@ -3872,7 +4055,7 @@ public class TOMMY_SQLParser extends Parser {
             	    break;
 
             	default :
-            	    break loop16;
+            	    break loop17;
                 }
             } while (true);
 
@@ -3905,78 +4088,78 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "create_source_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:405:1: create_source_statement : CREATE SOURCE table_name= ddl_table_name META LPAREN metas= ddl_source_meta_defs RPAREN SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:419:1: create_source_statement : CREATE SOURCE table_name= ddl_table_name META LPAREN metas= ddl_source_meta_defs RPAREN SEMICOLON ;
     public final create_source_statement_return create_source_statement() throws RecognitionException {
         create_source_statement_return retval = new create_source_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token CREATE95=null;
-        Token SOURCE96=null;
-        Token META97=null;
-        Token LPAREN98=null;
-        Token RPAREN99=null;
-        Token SEMICOLON100=null;
+        Token CREATE102=null;
+        Token SOURCE103=null;
+        Token META104=null;
+        Token LPAREN105=null;
+        Token RPAREN106=null;
+        Token SEMICOLON107=null;
         ddl_table_name_return table_name = null;
 
         ddl_source_meta_defs_return metas = null;
 
 
-        Object CREATE95_tree=null;
-        Object SOURCE96_tree=null;
-        Object META97_tree=null;
-        Object LPAREN98_tree=null;
-        Object RPAREN99_tree=null;
-        Object SEMICOLON100_tree=null;
+        Object CREATE102_tree=null;
+        Object SOURCE103_tree=null;
+        Object META104_tree=null;
+        Object LPAREN105_tree=null;
+        Object RPAREN106_tree=null;
+        Object SEMICOLON107_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:406:5: ( CREATE SOURCE table_name= ddl_table_name META LPAREN metas= ddl_source_meta_defs RPAREN SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:406:7: CREATE SOURCE table_name= ddl_table_name META LPAREN metas= ddl_source_meta_defs RPAREN SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:420:5: ( CREATE SOURCE table_name= ddl_table_name META LPAREN metas= ddl_source_meta_defs RPAREN SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:420:7: CREATE SOURCE table_name= ddl_table_name META LPAREN metas= ddl_source_meta_defs RPAREN SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            CREATE95=(Token)match(input,CREATE,FOLLOW_CREATE_in_create_source_statement2077); if (state.failed) return retval;
+            CREATE102=(Token)match(input,CREATE,FOLLOW_CREATE_in_create_source_statement2131); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CREATE95_tree = (Object)adaptor.create(CREATE95);
-            adaptor.addChild(root_0, CREATE95_tree);
+            CREATE102_tree = (Object)adaptor.create(CREATE102);
+            adaptor.addChild(root_0, CREATE102_tree);
             }
-            SOURCE96=(Token)match(input,SOURCE,FOLLOW_SOURCE_in_create_source_statement2079); if (state.failed) return retval;
+            SOURCE103=(Token)match(input,SOURCE,FOLLOW_SOURCE_in_create_source_statement2133); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SOURCE96_tree = (Object)adaptor.create(SOURCE96);
-            adaptor.addChild(root_0, SOURCE96_tree);
+            SOURCE103_tree = (Object)adaptor.create(SOURCE103);
+            adaptor.addChild(root_0, SOURCE103_tree);
             }
-            pushFollow(FOLLOW_ddl_table_name_in_create_source_statement2083);
+            pushFollow(FOLLOW_ddl_table_name_in_create_source_statement2137);
             table_name=ddl_table_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, table_name.getTree());
-            META97=(Token)match(input,META,FOLLOW_META_in_create_source_statement2085); if (state.failed) return retval;
+            META104=(Token)match(input,META,FOLLOW_META_in_create_source_statement2139); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            META97_tree = (Object)adaptor.create(META97);
-            adaptor.addChild(root_0, META97_tree);
+            META104_tree = (Object)adaptor.create(META104);
+            adaptor.addChild(root_0, META104_tree);
             }
-            LPAREN98=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_create_source_statement2087); if (state.failed) return retval;
+            LPAREN105=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_create_source_statement2141); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            LPAREN98_tree = (Object)adaptor.create(LPAREN98);
-            adaptor.addChild(root_0, LPAREN98_tree);
+            LPAREN105_tree = (Object)adaptor.create(LPAREN105);
+            adaptor.addChild(root_0, LPAREN105_tree);
             }
-            pushFollow(FOLLOW_ddl_source_meta_defs_in_create_source_statement2091);
+            pushFollow(FOLLOW_ddl_source_meta_defs_in_create_source_statement2145);
             metas=ddl_source_meta_defs();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, metas.getTree());
-            RPAREN99=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_create_source_statement2093); if (state.failed) return retval;
+            RPAREN106=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_create_source_statement2147); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            RPAREN99_tree = (Object)adaptor.create(RPAREN99);
-            adaptor.addChild(root_0, RPAREN99_tree);
+            RPAREN106_tree = (Object)adaptor.create(RPAREN106);
+            adaptor.addChild(root_0, RPAREN106_tree);
             }
-            SEMICOLON100=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_create_source_statement2095); if (state.failed) return retval;
+            SEMICOLON107=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_create_source_statement2149); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON100_tree = (Object)adaptor.create(SEMICOLON100);
-            adaptor.addChild(root_0, SEMICOLON100_tree);
+            SEMICOLON107_tree = (Object)adaptor.create(SEMICOLON107);
+            adaptor.addChild(root_0, SEMICOLON107_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -4019,49 +4202,49 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "drop_source_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:419:1: drop_source_statement : DROP SOURCE table_name= ddl_table_name SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:433:1: drop_source_statement : DROP SOURCE table_name= ddl_table_name SEMICOLON ;
     public final drop_source_statement_return drop_source_statement() throws RecognitionException {
         drop_source_statement_return retval = new drop_source_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token DROP101=null;
-        Token SOURCE102=null;
-        Token SEMICOLON103=null;
+        Token DROP108=null;
+        Token SOURCE109=null;
+        Token SEMICOLON110=null;
         ddl_table_name_return table_name = null;
 
 
-        Object DROP101_tree=null;
-        Object SOURCE102_tree=null;
-        Object SEMICOLON103_tree=null;
+        Object DROP108_tree=null;
+        Object SOURCE109_tree=null;
+        Object SEMICOLON110_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:420:5: ( DROP SOURCE table_name= ddl_table_name SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:420:7: DROP SOURCE table_name= ddl_table_name SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:434:5: ( DROP SOURCE table_name= ddl_table_name SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:434:7: DROP SOURCE table_name= ddl_table_name SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            DROP101=(Token)match(input,DROP,FOLLOW_DROP_in_drop_source_statement2118); if (state.failed) return retval;
+            DROP108=(Token)match(input,DROP,FOLLOW_DROP_in_drop_source_statement2172); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            DROP101_tree = (Object)adaptor.create(DROP101);
-            adaptor.addChild(root_0, DROP101_tree);
+            DROP108_tree = (Object)adaptor.create(DROP108);
+            adaptor.addChild(root_0, DROP108_tree);
             }
-            SOURCE102=(Token)match(input,SOURCE,FOLLOW_SOURCE_in_drop_source_statement2120); if (state.failed) return retval;
+            SOURCE109=(Token)match(input,SOURCE,FOLLOW_SOURCE_in_drop_source_statement2174); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SOURCE102_tree = (Object)adaptor.create(SOURCE102);
-            adaptor.addChild(root_0, SOURCE102_tree);
+            SOURCE109_tree = (Object)adaptor.create(SOURCE109);
+            adaptor.addChild(root_0, SOURCE109_tree);
             }
-            pushFollow(FOLLOW_ddl_table_name_in_drop_source_statement2124);
+            pushFollow(FOLLOW_ddl_table_name_in_drop_source_statement2178);
             table_name=ddl_table_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, table_name.getTree());
-            SEMICOLON103=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_drop_source_statement2126); if (state.failed) return retval;
+            SEMICOLON110=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_drop_source_statement2180); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON103_tree = (Object)adaptor.create(SEMICOLON103);
-            adaptor.addChild(root_0, SEMICOLON103_tree);
+            SEMICOLON110_tree = (Object)adaptor.create(SEMICOLON110);
+            adaptor.addChild(root_0, SEMICOLON110_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -4102,49 +4285,49 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "show_source_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:431:1: show_source_statement : SHOW SOURCE table_name= ddl_table_name SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:445:1: show_source_statement : SHOW SOURCE table_name= ddl_table_name SEMICOLON ;
     public final show_source_statement_return show_source_statement() throws RecognitionException {
         show_source_statement_return retval = new show_source_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token SHOW104=null;
-        Token SOURCE105=null;
-        Token SEMICOLON106=null;
+        Token SHOW111=null;
+        Token SOURCE112=null;
+        Token SEMICOLON113=null;
         ddl_table_name_return table_name = null;
 
 
-        Object SHOW104_tree=null;
-        Object SOURCE105_tree=null;
-        Object SEMICOLON106_tree=null;
+        Object SHOW111_tree=null;
+        Object SOURCE112_tree=null;
+        Object SEMICOLON113_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:432:5: ( SHOW SOURCE table_name= ddl_table_name SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:432:7: SHOW SOURCE table_name= ddl_table_name SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:446:5: ( SHOW SOURCE table_name= ddl_table_name SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:446:7: SHOW SOURCE table_name= ddl_table_name SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            SHOW104=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_source_statement2149); if (state.failed) return retval;
+            SHOW111=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_source_statement2203); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SHOW104_tree = (Object)adaptor.create(SHOW104);
-            adaptor.addChild(root_0, SHOW104_tree);
+            SHOW111_tree = (Object)adaptor.create(SHOW111);
+            adaptor.addChild(root_0, SHOW111_tree);
             }
-            SOURCE105=(Token)match(input,SOURCE,FOLLOW_SOURCE_in_show_source_statement2151); if (state.failed) return retval;
+            SOURCE112=(Token)match(input,SOURCE,FOLLOW_SOURCE_in_show_source_statement2205); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SOURCE105_tree = (Object)adaptor.create(SOURCE105);
-            adaptor.addChild(root_0, SOURCE105_tree);
+            SOURCE112_tree = (Object)adaptor.create(SOURCE112);
+            adaptor.addChild(root_0, SOURCE112_tree);
             }
-            pushFollow(FOLLOW_ddl_table_name_in_show_source_statement2155);
+            pushFollow(FOLLOW_ddl_table_name_in_show_source_statement2209);
             table_name=ddl_table_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, table_name.getTree());
-            SEMICOLON106=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_source_statement2157); if (state.failed) return retval;
+            SEMICOLON113=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_source_statement2211); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON106_tree = (Object)adaptor.create(SEMICOLON106);
-            adaptor.addChild(root_0, SEMICOLON106_tree);
+            SEMICOLON113_tree = (Object)adaptor.create(SEMICOLON113);
+            adaptor.addChild(root_0, SEMICOLON113_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -4185,41 +4368,41 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "show_sources_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:443:1: show_sources_statement : SHOW SOURCES SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:457:1: show_sources_statement : SHOW SOURCES SEMICOLON ;
     public final show_sources_statement_return show_sources_statement() throws RecognitionException {
         show_sources_statement_return retval = new show_sources_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token SHOW107=null;
-        Token SOURCES108=null;
-        Token SEMICOLON109=null;
+        Token SHOW114=null;
+        Token SOURCES115=null;
+        Token SEMICOLON116=null;
 
-        Object SHOW107_tree=null;
-        Object SOURCES108_tree=null;
-        Object SEMICOLON109_tree=null;
+        Object SHOW114_tree=null;
+        Object SOURCES115_tree=null;
+        Object SEMICOLON116_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:444:5: ( SHOW SOURCES SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:444:7: SHOW SOURCES SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:458:5: ( SHOW SOURCES SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:458:7: SHOW SOURCES SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            SHOW107=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_sources_statement2180); if (state.failed) return retval;
+            SHOW114=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_sources_statement2234); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SHOW107_tree = (Object)adaptor.create(SHOW107);
-            adaptor.addChild(root_0, SHOW107_tree);
+            SHOW114_tree = (Object)adaptor.create(SHOW114);
+            adaptor.addChild(root_0, SHOW114_tree);
             }
-            SOURCES108=(Token)match(input,SOURCES,FOLLOW_SOURCES_in_show_sources_statement2182); if (state.failed) return retval;
+            SOURCES115=(Token)match(input,SOURCES,FOLLOW_SOURCES_in_show_sources_statement2236); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SOURCES108_tree = (Object)adaptor.create(SOURCES108);
-            adaptor.addChild(root_0, SOURCES108_tree);
+            SOURCES115_tree = (Object)adaptor.create(SOURCES115);
+            adaptor.addChild(root_0, SOURCES115_tree);
             }
-            SEMICOLON109=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_sources_statement2184); if (state.failed) return retval;
+            SEMICOLON116=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_sources_statement2238); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON109_tree = (Object)adaptor.create(SEMICOLON109);
-            adaptor.addChild(root_0, SEMICOLON109_tree);
+            SEMICOLON116_tree = (Object)adaptor.create(SEMICOLON116);
+            adaptor.addChild(root_0, SEMICOLON116_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -4259,49 +4442,49 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "drop_job_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:454:1: drop_job_statement : DROP JOB table_name= ddl_table_name SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:468:1: drop_job_statement : DROP JOB table_name= ddl_table_name SEMICOLON ;
     public final drop_job_statement_return drop_job_statement() throws RecognitionException {
         drop_job_statement_return retval = new drop_job_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token DROP110=null;
-        Token JOB111=null;
-        Token SEMICOLON112=null;
+        Token DROP117=null;
+        Token JOB118=null;
+        Token SEMICOLON119=null;
         ddl_table_name_return table_name = null;
 
 
-        Object DROP110_tree=null;
-        Object JOB111_tree=null;
-        Object SEMICOLON112_tree=null;
+        Object DROP117_tree=null;
+        Object JOB118_tree=null;
+        Object SEMICOLON119_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:455:5: ( DROP JOB table_name= ddl_table_name SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:455:7: DROP JOB table_name= ddl_table_name SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:469:5: ( DROP JOB table_name= ddl_table_name SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:469:7: DROP JOB table_name= ddl_table_name SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            DROP110=(Token)match(input,DROP,FOLLOW_DROP_in_drop_job_statement2207); if (state.failed) return retval;
+            DROP117=(Token)match(input,DROP,FOLLOW_DROP_in_drop_job_statement2261); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            DROP110_tree = (Object)adaptor.create(DROP110);
-            adaptor.addChild(root_0, DROP110_tree);
+            DROP117_tree = (Object)adaptor.create(DROP117);
+            adaptor.addChild(root_0, DROP117_tree);
             }
-            JOB111=(Token)match(input,JOB,FOLLOW_JOB_in_drop_job_statement2209); if (state.failed) return retval;
+            JOB118=(Token)match(input,JOB,FOLLOW_JOB_in_drop_job_statement2263); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            JOB111_tree = (Object)adaptor.create(JOB111);
-            adaptor.addChild(root_0, JOB111_tree);
+            JOB118_tree = (Object)adaptor.create(JOB118);
+            adaptor.addChild(root_0, JOB118_tree);
             }
-            pushFollow(FOLLOW_ddl_table_name_in_drop_job_statement2213);
+            pushFollow(FOLLOW_ddl_table_name_in_drop_job_statement2267);
             table_name=ddl_table_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, table_name.getTree());
-            SEMICOLON112=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_drop_job_statement2215); if (state.failed) return retval;
+            SEMICOLON119=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_drop_job_statement2269); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON112_tree = (Object)adaptor.create(SEMICOLON112);
-            adaptor.addChild(root_0, SEMICOLON112_tree);
+            SEMICOLON119_tree = (Object)adaptor.create(SEMICOLON119);
+            adaptor.addChild(root_0, SEMICOLON119_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -4342,49 +4525,49 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "show_job_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:466:1: show_job_statement : SHOW JOB table_name= ddl_table_name SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:480:1: show_job_statement : SHOW JOB table_name= ddl_table_name SEMICOLON ;
     public final show_job_statement_return show_job_statement() throws RecognitionException {
         show_job_statement_return retval = new show_job_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token SHOW113=null;
-        Token JOB114=null;
-        Token SEMICOLON115=null;
+        Token SHOW120=null;
+        Token JOB121=null;
+        Token SEMICOLON122=null;
         ddl_table_name_return table_name = null;
 
 
-        Object SHOW113_tree=null;
-        Object JOB114_tree=null;
-        Object SEMICOLON115_tree=null;
+        Object SHOW120_tree=null;
+        Object JOB121_tree=null;
+        Object SEMICOLON122_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:467:5: ( SHOW JOB table_name= ddl_table_name SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:467:7: SHOW JOB table_name= ddl_table_name SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:481:5: ( SHOW JOB table_name= ddl_table_name SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:481:7: SHOW JOB table_name= ddl_table_name SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            SHOW113=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_job_statement2238); if (state.failed) return retval;
+            SHOW120=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_job_statement2292); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SHOW113_tree = (Object)adaptor.create(SHOW113);
-            adaptor.addChild(root_0, SHOW113_tree);
+            SHOW120_tree = (Object)adaptor.create(SHOW120);
+            adaptor.addChild(root_0, SHOW120_tree);
             }
-            JOB114=(Token)match(input,JOB,FOLLOW_JOB_in_show_job_statement2240); if (state.failed) return retval;
+            JOB121=(Token)match(input,JOB,FOLLOW_JOB_in_show_job_statement2294); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            JOB114_tree = (Object)adaptor.create(JOB114);
-            adaptor.addChild(root_0, JOB114_tree);
+            JOB121_tree = (Object)adaptor.create(JOB121);
+            adaptor.addChild(root_0, JOB121_tree);
             }
-            pushFollow(FOLLOW_ddl_table_name_in_show_job_statement2244);
+            pushFollow(FOLLOW_ddl_table_name_in_show_job_statement2298);
             table_name=ddl_table_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, table_name.getTree());
-            SEMICOLON115=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_job_statement2246); if (state.failed) return retval;
+            SEMICOLON122=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_job_statement2300); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON115_tree = (Object)adaptor.create(SEMICOLON115);
-            adaptor.addChild(root_0, SEMICOLON115_tree);
+            SEMICOLON122_tree = (Object)adaptor.create(SEMICOLON122);
+            adaptor.addChild(root_0, SEMICOLON122_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -4425,41 +4608,41 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "show_jobs_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:478:1: show_jobs_statement : SHOW JOBS SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:492:1: show_jobs_statement : SHOW JOBS SEMICOLON ;
     public final show_jobs_statement_return show_jobs_statement() throws RecognitionException {
         show_jobs_statement_return retval = new show_jobs_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token SHOW116=null;
-        Token JOBS117=null;
-        Token SEMICOLON118=null;
+        Token SHOW123=null;
+        Token JOBS124=null;
+        Token SEMICOLON125=null;
 
-        Object SHOW116_tree=null;
-        Object JOBS117_tree=null;
-        Object SEMICOLON118_tree=null;
+        Object SHOW123_tree=null;
+        Object JOBS124_tree=null;
+        Object SEMICOLON125_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:479:5: ( SHOW JOBS SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:479:7: SHOW JOBS SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:493:5: ( SHOW JOBS SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:493:7: SHOW JOBS SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            SHOW116=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_jobs_statement2269); if (state.failed) return retval;
+            SHOW123=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_jobs_statement2323); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SHOW116_tree = (Object)adaptor.create(SHOW116);
-            adaptor.addChild(root_0, SHOW116_tree);
+            SHOW123_tree = (Object)adaptor.create(SHOW123);
+            adaptor.addChild(root_0, SHOW123_tree);
             }
-            JOBS117=(Token)match(input,JOBS,FOLLOW_JOBS_in_show_jobs_statement2271); if (state.failed) return retval;
+            JOBS124=(Token)match(input,JOBS,FOLLOW_JOBS_in_show_jobs_statement2325); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            JOBS117_tree = (Object)adaptor.create(JOBS117);
-            adaptor.addChild(root_0, JOBS117_tree);
+            JOBS124_tree = (Object)adaptor.create(JOBS124);
+            adaptor.addChild(root_0, JOBS124_tree);
             }
-            SEMICOLON118=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_jobs_statement2273); if (state.failed) return retval;
+            SEMICOLON125=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_jobs_statement2327); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON118_tree = (Object)adaptor.create(SEMICOLON118);
-            adaptor.addChild(root_0, SEMICOLON118_tree);
+            SEMICOLON125_tree = (Object)adaptor.create(SEMICOLON125);
+            adaptor.addChild(root_0, SEMICOLON125_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -4499,41 +4682,41 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "show_cluster_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:489:1: show_cluster_statement : SHOW CLUSTER SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:503:1: show_cluster_statement : SHOW CLUSTER SEMICOLON ;
     public final show_cluster_statement_return show_cluster_statement() throws RecognitionException {
         show_cluster_statement_return retval = new show_cluster_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token SHOW119=null;
-        Token CLUSTER120=null;
-        Token SEMICOLON121=null;
+        Token SHOW126=null;
+        Token CLUSTER127=null;
+        Token SEMICOLON128=null;
 
-        Object SHOW119_tree=null;
-        Object CLUSTER120_tree=null;
-        Object SEMICOLON121_tree=null;
+        Object SHOW126_tree=null;
+        Object CLUSTER127_tree=null;
+        Object SEMICOLON128_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:490:5: ( SHOW CLUSTER SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:490:7: SHOW CLUSTER SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:504:5: ( SHOW CLUSTER SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:504:7: SHOW CLUSTER SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            SHOW119=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_cluster_statement2296); if (state.failed) return retval;
+            SHOW126=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_cluster_statement2350); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SHOW119_tree = (Object)adaptor.create(SHOW119);
-            adaptor.addChild(root_0, SHOW119_tree);
+            SHOW126_tree = (Object)adaptor.create(SHOW126);
+            adaptor.addChild(root_0, SHOW126_tree);
             }
-            CLUSTER120=(Token)match(input,CLUSTER,FOLLOW_CLUSTER_in_show_cluster_statement2298); if (state.failed) return retval;
+            CLUSTER127=(Token)match(input,CLUSTER,FOLLOW_CLUSTER_in_show_cluster_statement2352); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CLUSTER120_tree = (Object)adaptor.create(CLUSTER120);
-            adaptor.addChild(root_0, CLUSTER120_tree);
+            CLUSTER127_tree = (Object)adaptor.create(CLUSTER127);
+            adaptor.addChild(root_0, CLUSTER127_tree);
             }
-            SEMICOLON121=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_cluster_statement2300); if (state.failed) return retval;
+            SEMICOLON128=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_cluster_statement2354); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON121_tree = (Object)adaptor.create(SEMICOLON121);
-            adaptor.addChild(root_0, SEMICOLON121_tree);
+            SEMICOLON128_tree = (Object)adaptor.create(SEMICOLON128);
+            adaptor.addChild(root_0, SEMICOLON128_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -4573,41 +4756,41 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "show_system_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:500:1: show_system_statement : SHOW SYSTEM SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:514:1: show_system_statement : SHOW SYSTEM SEMICOLON ;
     public final show_system_statement_return show_system_statement() throws RecognitionException {
         show_system_statement_return retval = new show_system_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token SHOW122=null;
-        Token SYSTEM123=null;
-        Token SEMICOLON124=null;
+        Token SHOW129=null;
+        Token SYSTEM130=null;
+        Token SEMICOLON131=null;
 
-        Object SHOW122_tree=null;
-        Object SYSTEM123_tree=null;
-        Object SEMICOLON124_tree=null;
+        Object SHOW129_tree=null;
+        Object SYSTEM130_tree=null;
+        Object SEMICOLON131_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:501:5: ( SHOW SYSTEM SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:501:7: SHOW SYSTEM SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:515:5: ( SHOW SYSTEM SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:515:7: SHOW SYSTEM SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            SHOW122=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_system_statement2323); if (state.failed) return retval;
+            SHOW129=(Token)match(input,SHOW,FOLLOW_SHOW_in_show_system_statement2377); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SHOW122_tree = (Object)adaptor.create(SHOW122);
-            adaptor.addChild(root_0, SHOW122_tree);
+            SHOW129_tree = (Object)adaptor.create(SHOW129);
+            adaptor.addChild(root_0, SHOW129_tree);
             }
-            SYSTEM123=(Token)match(input,SYSTEM,FOLLOW_SYSTEM_in_show_system_statement2325); if (state.failed) return retval;
+            SYSTEM130=(Token)match(input,SYSTEM,FOLLOW_SYSTEM_in_show_system_statement2379); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SYSTEM123_tree = (Object)adaptor.create(SYSTEM123);
-            adaptor.addChild(root_0, SYSTEM123_tree);
+            SYSTEM130_tree = (Object)adaptor.create(SYSTEM130);
+            adaptor.addChild(root_0, SYSTEM130_tree);
             }
-            SEMICOLON124=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_system_statement2327); if (state.failed) return retval;
+            SEMICOLON131=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_show_system_statement2381); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON124_tree = (Object)adaptor.create(SEMICOLON124);
-            adaptor.addChild(root_0, SEMICOLON124_tree);
+            SEMICOLON131_tree = (Object)adaptor.create(SEMICOLON131);
+            adaptor.addChild(root_0, SEMICOLON131_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -4647,49 +4830,49 @@ public class TOMMY_SQLParser extends Parser {
     };
 
     // $ANTLR start "snapshot_job_statement"
-    // org/tommy/stationery/ink/core/TOMMY_SQL.g:511:1: snapshot_job_statement : SNAPSHOT JOB table_name= ddl_table_name SEMICOLON ;
+    // org/tommy/stationery/ink/core/TOMMY_SQL.g:525:1: snapshot_job_statement : SNAPSHOT JOB table_name= ddl_table_name SEMICOLON ;
     public final snapshot_job_statement_return snapshot_job_statement() throws RecognitionException {
         snapshot_job_statement_return retval = new snapshot_job_statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token SNAPSHOT125=null;
-        Token JOB126=null;
-        Token SEMICOLON127=null;
+        Token SNAPSHOT132=null;
+        Token JOB133=null;
+        Token SEMICOLON134=null;
         ddl_table_name_return table_name = null;
 
 
-        Object SNAPSHOT125_tree=null;
-        Object JOB126_tree=null;
-        Object SEMICOLON127_tree=null;
+        Object SNAPSHOT132_tree=null;
+        Object JOB133_tree=null;
+        Object SEMICOLON134_tree=null;
 
         try {
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:512:5: ( SNAPSHOT JOB table_name= ddl_table_name SEMICOLON )
-            // org/tommy/stationery/ink/core/TOMMY_SQL.g:512:7: SNAPSHOT JOB table_name= ddl_table_name SEMICOLON
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:526:5: ( SNAPSHOT JOB table_name= ddl_table_name SEMICOLON )
+            // org/tommy/stationery/ink/core/TOMMY_SQL.g:526:7: SNAPSHOT JOB table_name= ddl_table_name SEMICOLON
             {
             root_0 = (Object)adaptor.nil();
 
-            SNAPSHOT125=(Token)match(input,SNAPSHOT,FOLLOW_SNAPSHOT_in_snapshot_job_statement2350); if (state.failed) return retval;
+            SNAPSHOT132=(Token)match(input,SNAPSHOT,FOLLOW_SNAPSHOT_in_snapshot_job_statement2404); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SNAPSHOT125_tree = (Object)adaptor.create(SNAPSHOT125);
-            adaptor.addChild(root_0, SNAPSHOT125_tree);
+            SNAPSHOT132_tree = (Object)adaptor.create(SNAPSHOT132);
+            adaptor.addChild(root_0, SNAPSHOT132_tree);
             }
-            JOB126=(Token)match(input,JOB,FOLLOW_JOB_in_snapshot_job_statement2352); if (state.failed) return retval;
+            JOB133=(Token)match(input,JOB,FOLLOW_JOB_in_snapshot_job_statement2406); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            JOB126_tree = (Object)adaptor.create(JOB126);
-            adaptor.addChild(root_0, JOB126_tree);
+            JOB133_tree = (Object)adaptor.create(JOB133);
+            adaptor.addChild(root_0, JOB133_tree);
             }
-            pushFollow(FOLLOW_ddl_table_name_in_snapshot_job_statement2356);
+            pushFollow(FOLLOW_ddl_table_name_in_snapshot_job_statement2410);
             table_name=ddl_table_name();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, table_name.getTree());
-            SEMICOLON127=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_snapshot_job_statement2358); if (state.failed) return retval;
+            SEMICOLON134=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_snapshot_job_statement2412); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SEMICOLON127_tree = (Object)adaptor.create(SEMICOLON127);
-            adaptor.addChild(root_0, SEMICOLON127_tree);
+            SEMICOLON134_tree = (Object)adaptor.create(SEMICOLON134);
+            adaptor.addChild(root_0, SEMICOLON134_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -4724,8 +4907,8 @@ public class TOMMY_SQLParser extends Parser {
     }
     // $ANTLR end "snapshot_job_statement"
 
-    // $ANTLR start synpred29_TOMMY_SQL
-    public final void synpred29_TOMMY_SQL_fragment() throws RecognitionException {
+    // $ANTLR start synpred30_TOMMY_SQL
+    public final void synpred30_TOMMY_SQL_fragment() throws RecognitionException {
         Token n=null;
 
         // org/tommy/stationery/ink/core/TOMMY_SQL.g:174:9: (n=~ ( '\\r' | '\\n' | ';' ) )
@@ -4745,18 +4928,18 @@ public class TOMMY_SQLParser extends Parser {
 
         }
     }
-    // $ANTLR end synpred29_TOMMY_SQL
+    // $ANTLR end synpred30_TOMMY_SQL
 
-    // $ANTLR start synpred38_TOMMY_SQL
-    public final void synpred38_TOMMY_SQL_fragment() throws RecognitionException {
+    // $ANTLR start synpred41_TOMMY_SQL
+    public final void synpred41_TOMMY_SQL_fragment() throws RecognitionException {
         dml_lookup_select_where_body2_return body2 = null;
 
 
-        // org/tommy/stationery/ink/core/TOMMY_SQL.g:224:52: ( SET body2= dml_lookup_select_where_body2 )
-        // org/tommy/stationery/ink/core/TOMMY_SQL.g:224:52: SET body2= dml_lookup_select_where_body2
+        // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:52: ( SET body2= dml_lookup_select_where_body2 )
+        // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:52: SET body2= dml_lookup_select_where_body2
         {
-        match(input,SET,FOLLOW_SET_in_synpred38_TOMMY_SQL1174); if (state.failed) return ;
-        pushFollow(FOLLOW_dml_lookup_select_where_body2_in_synpred38_TOMMY_SQL1180);
+        match(input,SET,FOLLOW_SET_in_synpred41_TOMMY_SQL1228); if (state.failed) return ;
+        pushFollow(FOLLOW_dml_lookup_select_where_body2_in_synpred41_TOMMY_SQL1234);
         body2=dml_lookup_select_where_body2();
 
         state._fsp--;
@@ -4764,26 +4947,26 @@ public class TOMMY_SQLParser extends Parser {
 
         }
     }
-    // $ANTLR end synpred38_TOMMY_SQL
+    // $ANTLR end synpred41_TOMMY_SQL
 
-    // $ANTLR start synpred39_TOMMY_SQL
-    public final void synpred39_TOMMY_SQL_fragment() throws RecognitionException {
+    // $ANTLR start synpred42_TOMMY_SQL
+    public final void synpred42_TOMMY_SQL_fragment() throws RecognitionException {
         dml_lookup_select_where_body_return body3 = null;
 
         dml_lookup_select_where_body2_return body4 = null;
 
 
-        // org/tommy/stationery/ink/core/TOMMY_SQL.g:224:96: ( SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 )
-        // org/tommy/stationery/ink/core/TOMMY_SQL.g:224:96: SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2
+        // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:96: ( SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 )
+        // org/tommy/stationery/ink/core/TOMMY_SQL.g:238:96: SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2
         {
-        match(input,SET,FOLLOW_SET_in_synpred39_TOMMY_SQL1184); if (state.failed) return ;
-        pushFollow(FOLLOW_dml_lookup_select_where_body_in_synpred39_TOMMY_SQL1190);
+        match(input,SET,FOLLOW_SET_in_synpred42_TOMMY_SQL1238); if (state.failed) return ;
+        pushFollow(FOLLOW_dml_lookup_select_where_body_in_synpred42_TOMMY_SQL1244);
         body3=dml_lookup_select_where_body();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,WHERE,FOLLOW_WHERE_in_synpred39_TOMMY_SQL1192); if (state.failed) return ;
-        pushFollow(FOLLOW_dml_lookup_select_where_body2_in_synpred39_TOMMY_SQL1196);
+        match(input,WHERE,FOLLOW_WHERE_in_synpred42_TOMMY_SQL1246); if (state.failed) return ;
+        pushFollow(FOLLOW_dml_lookup_select_where_body2_in_synpred42_TOMMY_SQL1250);
         body4=dml_lookup_select_where_body2();
 
         state._fsp--;
@@ -4791,15 +4974,15 @@ public class TOMMY_SQLParser extends Parser {
 
         }
     }
-    // $ANTLR end synpred39_TOMMY_SQL
+    // $ANTLR end synpred42_TOMMY_SQL
 
     // Delegated rules
 
-    public final boolean synpred29_TOMMY_SQL() {
+    public final boolean synpred41_TOMMY_SQL() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred29_TOMMY_SQL_fragment(); // can never throw exception
+            synpred41_TOMMY_SQL_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -4809,11 +4992,11 @@ public class TOMMY_SQLParser extends Parser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred39_TOMMY_SQL() {
+    public final boolean synpred30_TOMMY_SQL() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred39_TOMMY_SQL_fragment(); // can never throw exception
+            synpred30_TOMMY_SQL_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -4823,11 +5006,11 @@ public class TOMMY_SQLParser extends Parser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred38_TOMMY_SQL() {
+    public final boolean synpred42_TOMMY_SQL() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred38_TOMMY_SQL_fragment(); // can never throw exception
+            synpred42_TOMMY_SQL_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -4841,29 +5024,27 @@ public class TOMMY_SQLParser extends Parser {
 
     protected DFA1 dfa1 = new DFA1(this);
     protected DFA4 dfa4 = new DFA4(this);
-    protected DFA9 dfa9 = new DFA9(this);
+    protected DFA10 dfa10 = new DFA10(this);
     static final String DFA1_eotS =
-        "\34\uffff";
+        "\35\uffff";
     static final String DFA1_eofS =
-        "\1\1\33\uffff";
+        "\1\1\34\uffff";
     static final String DFA1_minS =
-        "\1\5\1\uffff\1\4\11\uffff\2\15\16\uffff";
+        "\1\5\1\uffff\1\4\12\uffff\2\15\16\uffff";
     static final String DFA1_maxS =
-        "\1\73\1\uffff\1\67\11\uffff\1\21\1\25\16\uffff";
+        "\1\73\1\uffff\1\67\12\uffff\1\21\1\25\16\uffff";
     static final String DFA1_acceptS =
-        "\1\uffff\1\30\1\uffff\1\2\1\3\1\4\1\5\1\6\1\13\1\14\1\15\1\16\2"+
-        "\uffff\1\27\1\1\1\7\1\10\1\11\1\12\1\21\1\22\1\26\1\17\1\20\1\23"+
-        "\1\24\1\25";
+        "\1\uffff\1\31\1\uffff\1\2\1\3\1\4\1\5\1\6\1\13\1\14\1\15\1\16\1"+
+        "\17\2\uffff\1\30\1\1\1\7\1\10\1\11\1\12\1\22\1\23\1\27\1\20\1\21"+
+        "\1\24\1\25\1\26";
     static final String DFA1_specialS =
-        "\34\uffff}>";
+        "\35\uffff}>";
     static final String[] DFA1_transitionS = {
-            "\1\16\1\13\2\uffff\1\12\1\uffff\1\11\1\14\6\uffff\1\15\1\2\37"+
-            "\uffff\1\10\1\7\2\uffff\1\6\1\5\1\4\1\3",
+            "\1\17\1\14\2\uffff\1\13\1\10\1\12\1\15\6\uffff\1\16\1\2\37\uffff"+
+            "\1\11\1\7\2\uffff\1\6\1\5\1\4\1\3",
             "",
-            "\1\17\10\uffff\1\24\1\21\2\uffff\1\25\1\20\2\uffff\1\26\40"+
-            "\uffff\1\22\1\23",
-            "",
-            "",
+            "\1\20\10\uffff\1\25\1\22\2\uffff\1\26\1\21\2\uffff\1\27\40"+
+            "\uffff\1\23\1\24",
             "",
             "",
             "",
@@ -4871,8 +5052,11 @@ public class TOMMY_SQLParser extends Parser {
             "",
             "",
             "",
-            "\1\27\3\uffff\1\30",
-            "\1\31\3\uffff\1\32\3\uffff\1\33",
+            "",
+            "",
+            "",
+            "\1\30\3\uffff\1\31",
+            "\1\32\3\uffff\1\33\3\uffff\1\34",
             "",
             "",
             "",
@@ -4919,7 +5103,7 @@ public class TOMMY_SQLParser extends Parser {
             this.transition = DFA1_transition;
         }
         public String getDescription() {
-            return "()+ loopback of 103:7: ( show_system_statement | commit_statement | use_statement | snapshot_job_statement | kill_job_statement | set_statement | show_sources_statement | show_streams_statement | show_cluster_statement | show_jobs_statement | update_statement | upsert_statement | lookup_statement | select_statement | create_stream_statement | create_source_statement | show_stream_statement | show_source_statement | drop_stream_statement | drop_source_statement | drop_job_statement | show_job_statement | delete_statement )+";
+            return "()+ loopback of 103:7: ( show_system_statement | commit_statement | use_statement | snapshot_job_statement | kill_job_statement | set_statement | show_sources_statement | show_streams_statement | show_cluster_statement | show_jobs_statement | insert_statement | update_statement | upsert_statement | lookup_statement | select_statement | create_stream_statement | create_source_statement | show_stream_statement | show_source_statement | drop_stream_statement | drop_source_statement | drop_job_statement | show_job_statement | delete_statement )+";
         }
     }
     static final String DFA4_eotS =
@@ -4939,12 +5123,12 @@ public class TOMMY_SQLParser extends Parser {
     static final String DFA4_acceptS =
         "\2\uffff\1\2\3\uffff\1\1\143\uffff";
     static final String DFA4_specialS =
-        "\5\uffff\1\34\1\uffff\1\12\5\uffff\1\26\4\uffff\1\11\1\5\5\uffff"+
-        "\1\21\4\uffff\1\10\1\uffff\1\32\3\uffff\1\24\1\uffff\1\36\10\uffff"+
-        "\1\37\1\uffff\1\15\4\uffff\1\40\4\uffff\1\4\1\uffff\1\33\1\31\1"+
-        "\uffff\1\2\3\uffff\1\3\1\35\1\0\5\uffff\1\7\5\uffff\1\27\1\uffff"+
-        "\1\25\1\uffff\1\6\4\uffff\1\23\1\1\1\20\1\14\5\uffff\1\30\1\16\1"+
-        "\17\1\uffff\1\13\1\22}>";
+        "\5\uffff\1\36\1\uffff\1\30\5\uffff\1\37\4\uffff\1\20\1\34\5\uffff"+
+        "\1\23\4\uffff\1\13\1\uffff\1\17\3\uffff\1\24\1\uffff\1\27\10\uffff"+
+        "\1\10\1\uffff\1\26\4\uffff\1\3\4\uffff\1\21\1\uffff\1\0\1\2\1\uffff"+
+        "\1\11\3\uffff\1\15\1\22\1\4\5\uffff\1\35\5\uffff\1\14\1\uffff\1"+
+        "\1\1\uffff\1\33\4\uffff\1\5\1\31\1\32\1\16\5\uffff\1\12\1\25\1\6"+
+        "\1\uffff\1\40\1\7}>";
     static final String[] DFA4_transitionS = {
             "\4\6\1\1\32\6\1\2\15\6\1\4\1\3\2\6\1\5\15\6\2\uffff\22\6",
             "\4\13\1\7\32\13\1\6\15\13\1\11\1\10\2\13\1\12\15\13\2\uffff"+
@@ -5160,13 +5344,73 @@ public class TOMMY_SQLParser extends Parser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA4_61 = input.LA(1);
+
+                         
+                        int index4_61 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_61);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA4_84 = input.LA(1);
+
+                         
+                        int index4_84 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_84);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA4_62 = input.LA(1);
+
+                         
+                        int index4_62 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_62);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA4_54 = input.LA(1);
+
+                         
+                        int index4_54 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_54);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
                         int LA4_70 = input.LA(1);
 
                          
                         int index4_70 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -5174,224 +5418,29 @@ public class TOMMY_SQLParser extends Parser {
                         input.seek(index4_70);
                         if ( s>=0 ) return s;
                         break;
-                    case 1 : 
-                        int LA4_92 = input.LA(1);
-
-                         
-                        int index4_92 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_92);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA4_64 = input.LA(1);
-
-                         
-                        int index4_64 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_64);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA4_68 = input.LA(1);
-
-                         
-                        int index4_68 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_68);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA4_59 = input.LA(1);
-
-                         
-                        int index4_59 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_59);
-                        if ( s>=0 ) return s;
-                        break;
                     case 5 : 
-                        int LA4_19 = input.LA(1);
+                        int LA4_91 = input.LA(1);
 
                          
-                        int index4_19 = input.index();
+                        int index4_91 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index4_19);
+                        input.seek(index4_91);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA4_86 = input.LA(1);
-
-                         
-                        int index4_86 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_86);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA4_76 = input.LA(1);
-
-                         
-                        int index4_76 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_76);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA4_30 = input.LA(1);
-
-                         
-                        int index4_30 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_30);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
-                        int LA4_18 = input.LA(1);
-
-                         
-                        int index4_18 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_18);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA4_7 = input.LA(1);
-
-                         
-                        int index4_7 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_7);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 11 : 
-                        int LA4_104 = input.LA(1);
-
-                         
-                        int index4_104 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_104);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 12 : 
-                        int LA4_94 = input.LA(1);
-
-                         
-                        int index4_94 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_94);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 13 : 
-                        int LA4_49 = input.LA(1);
-
-                         
-                        int index4_49 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_49);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 14 : 
-                        int LA4_101 = input.LA(1);
-
-                         
-                        int index4_101 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_101);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 15 : 
                         int LA4_102 = input.LA(1);
 
                          
                         int index4_102 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -5399,44 +5448,14 @@ public class TOMMY_SQLParser extends Parser {
                         input.seek(index4_102);
                         if ( s>=0 ) return s;
                         break;
-                    case 16 : 
-                        int LA4_93 = input.LA(1);
-
-                         
-                        int index4_93 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_93);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 17 : 
-                        int LA4_25 = input.LA(1);
-
-                         
-                        int index4_25 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_25);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 18 : 
+                    case 7 : 
                         int LA4_105 = input.LA(1);
 
                          
                         int index4_105 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -5444,19 +5463,184 @@ public class TOMMY_SQLParser extends Parser {
                         input.seek(index4_105);
                         if ( s>=0 ) return s;
                         break;
-                    case 19 : 
-                        int LA4_91 = input.LA(1);
+                    case 8 : 
+                        int LA4_47 = input.LA(1);
 
                          
-                        int index4_91 = input.index();
+                        int index4_47 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index4_91);
+                        input.seek(index4_47);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA4_64 = input.LA(1);
+
+                         
+                        int index4_64 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_64);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 10 : 
+                        int LA4_100 = input.LA(1);
+
+                         
+                        int index4_100 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_100);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 11 : 
+                        int LA4_30 = input.LA(1);
+
+                         
+                        int index4_30 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_30);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 12 : 
+                        int LA4_82 = input.LA(1);
+
+                         
+                        int index4_82 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_82);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 13 : 
+                        int LA4_68 = input.LA(1);
+
+                         
+                        int index4_68 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_68);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
+                        int LA4_94 = input.LA(1);
+
+                         
+                        int index4_94 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_94);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 15 : 
+                        int LA4_32 = input.LA(1);
+
+                         
+                        int index4_32 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_32);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 16 : 
+                        int LA4_18 = input.LA(1);
+
+                         
+                        int index4_18 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_18);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 17 : 
+                        int LA4_59 = input.LA(1);
+
+                         
+                        int index4_59 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_59);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 18 : 
+                        int LA4_69 = input.LA(1);
+
+                         
+                        int index4_69 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_69);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 19 : 
+                        int LA4_25 = input.LA(1);
+
+                         
+                        int index4_25 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_25);
                         if ( s>=0 ) return s;
                         break;
                     case 20 : 
@@ -5466,7 +5650,7 @@ public class TOMMY_SQLParser extends Parser {
                         int index4_36 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -5475,148 +5659,43 @@ public class TOMMY_SQLParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 21 : 
-                        int LA4_84 = input.LA(1);
+                        int LA4_101 = input.LA(1);
 
                          
-                        int index4_84 = input.index();
+                        int index4_101 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index4_84);
+                        input.seek(index4_101);
                         if ( s>=0 ) return s;
                         break;
                     case 22 : 
-                        int LA4_13 = input.LA(1);
+                        int LA4_49 = input.LA(1);
 
                          
-                        int index4_13 = input.index();
+                        int index4_49 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index4_13);
+                        input.seek(index4_49);
                         if ( s>=0 ) return s;
                         break;
                     case 23 : 
-                        int LA4_82 = input.LA(1);
-
-                         
-                        int index4_82 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_82);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 24 : 
-                        int LA4_100 = input.LA(1);
-
-                         
-                        int index4_100 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_100);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 25 : 
-                        int LA4_62 = input.LA(1);
-
-                         
-                        int index4_62 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_62);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 26 : 
-                        int LA4_32 = input.LA(1);
-
-                         
-                        int index4_32 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_32);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 27 : 
-                        int LA4_61 = input.LA(1);
-
-                         
-                        int index4_61 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_61);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 28 : 
-                        int LA4_5 = input.LA(1);
-
-                         
-                        int index4_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 29 : 
-                        int LA4_69 = input.LA(1);
-
-                         
-                        int index4_69 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index4_69);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 30 : 
                         int LA4_38 = input.LA(1);
 
                          
                         int index4_38 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -5624,34 +5703,139 @@ public class TOMMY_SQLParser extends Parser {
                         input.seek(index4_38);
                         if ( s>=0 ) return s;
                         break;
-                    case 31 : 
-                        int LA4_47 = input.LA(1);
+                    case 24 : 
+                        int LA4_7 = input.LA(1);
 
                          
-                        int index4_47 = input.index();
+                        int index4_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index4_47);
+                        input.seek(index4_7);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 25 : 
+                        int LA4_92 = input.LA(1);
+
+                         
+                        int index4_92 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_92);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 26 : 
+                        int LA4_93 = input.LA(1);
+
+                         
+                        int index4_93 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_93);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 27 : 
+                        int LA4_86 = input.LA(1);
+
+                         
+                        int index4_86 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_86);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 28 : 
+                        int LA4_19 = input.LA(1);
+
+                         
+                        int index4_19 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_19);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 29 : 
+                        int LA4_76 = input.LA(1);
+
+                         
+                        int index4_76 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_76);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 30 : 
+                        int LA4_5 = input.LA(1);
+
+                         
+                        int index4_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 31 : 
+                        int LA4_13 = input.LA(1);
+
+                         
+                        int index4_13 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index4_13);
                         if ( s>=0 ) return s;
                         break;
                     case 32 : 
-                        int LA4_54 = input.LA(1);
+                        int LA4_104 = input.LA(1);
 
                          
-                        int index4_54 = input.index();
+                        int index4_104 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred29_TOMMY_SQL()) ) {s = 6;}
+                        if ( (synpred30_TOMMY_SQL()) ) {s = 6;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index4_54);
+                        input.seek(index4_104);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -5662,19 +5846,19 @@ public class TOMMY_SQLParser extends Parser {
             throw nvae;
         }
     }
-    static final String DFA9_eotS =
+    static final String DFA10_eotS =
         "\12\uffff";
-    static final String DFA9_eofS =
+    static final String DFA10_eofS =
         "\12\uffff";
-    static final String DFA9_minS =
+    static final String DFA10_minS =
         "\1\43\1\4\1\uffff\1\4\1\uffff\3\4\1\0\1\uffff";
-    static final String DFA9_maxS =
+    static final String DFA10_maxS =
         "\1\65\1\126\1\uffff\1\126\1\uffff\3\126\1\0\1\uffff";
-    static final String DFA9_acceptS =
+    static final String DFA10_acceptS =
         "\2\uffff\1\3\1\uffff\1\1\4\uffff\1\2";
-    static final String DFA9_specialS =
+    static final String DFA10_specialS =
         "\10\uffff\1\0\1\uffff}>";
-    static final String[] DFA9_transitionS = {
+    static final String[] DFA10_transitionS = {
             "\1\2\21\uffff\1\1",
             "\37\3\1\uffff\37\3\2\uffff\22\3",
             "",
@@ -5687,260 +5871,270 @@ public class TOMMY_SQLParser extends Parser {
             ""
     };
 
-    static final short[] DFA9_eot = DFA.unpackEncodedString(DFA9_eotS);
-    static final short[] DFA9_eof = DFA.unpackEncodedString(DFA9_eofS);
-    static final char[] DFA9_min = DFA.unpackEncodedStringToUnsignedChars(DFA9_minS);
-    static final char[] DFA9_max = DFA.unpackEncodedStringToUnsignedChars(DFA9_maxS);
-    static final short[] DFA9_accept = DFA.unpackEncodedString(DFA9_acceptS);
-    static final short[] DFA9_special = DFA.unpackEncodedString(DFA9_specialS);
-    static final short[][] DFA9_transition;
+    static final short[] DFA10_eot = DFA.unpackEncodedString(DFA10_eotS);
+    static final short[] DFA10_eof = DFA.unpackEncodedString(DFA10_eofS);
+    static final char[] DFA10_min = DFA.unpackEncodedStringToUnsignedChars(DFA10_minS);
+    static final char[] DFA10_max = DFA.unpackEncodedStringToUnsignedChars(DFA10_maxS);
+    static final short[] DFA10_accept = DFA.unpackEncodedString(DFA10_acceptS);
+    static final short[] DFA10_special = DFA.unpackEncodedString(DFA10_specialS);
+    static final short[][] DFA10_transition;
 
     static {
-        int numStates = DFA9_transitionS.length;
-        DFA9_transition = new short[numStates][];
+        int numStates = DFA10_transitionS.length;
+        DFA10_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA9_transition[i] = DFA.unpackEncodedString(DFA9_transitionS[i]);
+            DFA10_transition[i] = DFA.unpackEncodedString(DFA10_transitionS[i]);
         }
     }
 
-    class DFA9 extends DFA {
+    class DFA10 extends DFA {
 
-        public DFA9(BaseRecognizer recognizer) {
+        public DFA10(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 9;
-            this.eot = DFA9_eot;
-            this.eof = DFA9_eof;
-            this.min = DFA9_min;
-            this.max = DFA9_max;
-            this.accept = DFA9_accept;
-            this.special = DFA9_special;
-            this.transition = DFA9_transition;
+            this.decisionNumber = 10;
+            this.eot = DFA10_eot;
+            this.eof = DFA10_eof;
+            this.min = DFA10_min;
+            this.max = DFA10_max;
+            this.accept = DFA10_accept;
+            this.special = DFA10_special;
+            this.transition = DFA10_transition;
         }
         public String getDescription() {
-            return "224:51: ( SET body2= dml_lookup_select_where_body2 | SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 | SEMICOLON )";
+            return "238:51: ( SET body2= dml_lookup_select_where_body2 | SET body3= dml_lookup_select_where_body WHERE body4= dml_lookup_select_where_body2 | SEMICOLON )";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA9_8 = input.LA(1);
+                        int LA10_8 = input.LA(1);
 
                          
-                        int index9_8 = input.index();
+                        int index10_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred38_TOMMY_SQL()) ) {s = 4;}
+                        if ( (synpred41_TOMMY_SQL()) ) {s = 4;}
 
-                        else if ( (synpred39_TOMMY_SQL()) ) {s = 9;}
+                        else if ( (synpred42_TOMMY_SQL()) ) {s = 9;}
 
                          
-                        input.seek(index9_8);
+                        input.seek(index10_8);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 9, _s, input);
+                new NoViableAltException(getDescription(), 10, _s, input);
             error(nvae);
             throw nvae;
         }
     }
  
 
-    public static final BitSet FOLLOW_show_system_statement_in_create_statement597 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_commit_statement_in_create_statement599 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_use_statement_in_create_statement601 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_snapshot_job_statement_in_create_statement603 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_kill_job_statement_in_create_statement605 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_set_statement_in_create_statement607 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_show_sources_statement_in_create_statement609 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_show_streams_statement_in_create_statement611 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_show_cluster_statement_in_create_statement613 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_show_jobs_statement_in_create_statement615 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_update_statement_in_create_statement617 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_upsert_statement_in_create_statement619 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_lookup_statement_in_create_statement621 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_select_statement_in_create_statement623 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_create_stream_statement_in_create_statement625 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_create_source_statement_in_create_statement627 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_show_stream_statement_in_create_statement629 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_show_source_statement_in_create_statement631 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_drop_stream_statement_in_create_statement633 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_drop_source_statement_in_create_statement635 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_drop_job_statement_in_create_statement637 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_show_job_statement_in_create_statement639 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_delete_statement_in_create_statement641 = new BitSet(new long[]{0x0F30000000181A62L});
-    public static final BitSet FOLLOW_NAME_in_use_name_def675 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_USE_in_use_statement694 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_set_name_def_in_use_statement698 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_use_statement700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NAME_in_set_name_def732 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NAME_in_set_value_def760 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SET_in_set_statement780 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_set_name_def_in_set_statement784 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_EQUAL_in_set_statement786 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_SINGLE_QUOTE_in_set_statement788 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_set_value_def_in_set_statement792 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_SINGLE_QUOTE_in_set_statement794 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_set_statement796 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LSQUARE_in_dml_table_name826 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_NAME_in_dml_table_name830 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_COLON_in_dml_table_name832 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_NAME_in_dml_table_name836 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_RSQUARE_in_dml_table_name838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LSQUARE_in_dml_bind_column_name865 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_COLON_in_dml_bind_column_name867 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_NAME_in_dml_bind_column_name869 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_RSQUARE_in_dml_bind_column_name871 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NAME_in_dml_lookup_where898 = new BitSet(new long[]{0x1000000000000002L});
-    public static final BitSet FOLLOW_NAME_in_dml_lookup_where901 = new BitSet(new long[]{0x1000000000000002L});
-    public static final BitSet FOLLOW_NAME_in_dml_select_body931 = new BitSet(new long[]{0x1000000000000002L});
-    public static final BitSet FOLLOW_NAME_in_dml_select_body934 = new BitSet(new long[]{0x1000000000000002L});
-    public static final BitSet FOLLOW_set_in_dml_lookup_select_where_body963 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF2L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_set_in_dml_lookup_select_where_body2999 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_SEMICOLON_in_dml_lookup_select_where_body21011 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LOOKUP_in_lookup_statement1030 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_lookup_statement1036 = new BitSet(new long[]{0x0000000800000100L});
-    public static final BitSet FOLLOW_WHERE_in_lookup_statement1039 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_lookup_statement1045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SEMICOLON_in_lookup_statement1047 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SELECT_in_select_statement1071 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_select_statement1077 = new BitSet(new long[]{0x0000000800000100L});
-    public static final BitSet FOLLOW_WHERE_in_select_statement1080 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_select_statement1086 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SEMICOLON_in_select_statement1088 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_UPSERT_in_upsert_statement1112 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_INTO_in_upsert_statement1114 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_upsert_statement1120 = new BitSet(new long[]{0x0006000800000000L});
-    public static final BitSet FOLLOW_VALUES_in_upsert_statement1123 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_upsert_statement1129 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INCREASE_in_upsert_statement1131 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_VALUES_in_upsert_statement1133 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_upsert_statement1139 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SEMICOLON_in_upsert_statement1141 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_UPDATE_in_update_statement1165 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_update_statement1171 = new BitSet(new long[]{0x0020000800000000L});
-    public static final BitSet FOLLOW_SET_in_update_statement1174 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_update_statement1180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SET_in_update_statement1184 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_update_statement1190 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_WHERE_in_update_statement1192 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_update_statement1196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SEMICOLON_in_update_statement1198 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DELETE_in_delete_statement1222 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_FROM_in_delete_statement1224 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_delete_statement1230 = new BitSet(new long[]{0x0000000800000100L});
-    public static final BitSet FOLLOW_WHERE_in_delete_statement1233 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_delete_statement1239 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SEMICOLON_in_delete_statement1241 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NAME_in_ddl_table_name1273 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_ddl_column_pk1306 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SINGLE_QUOTE_in_ddl_column_comment1331 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_NAME_in_ddl_column_comment1335 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_SINGLE_QUOTE_in_ddl_column_comment1337 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NAME_in_ddl_column_name1364 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_ddl_column_type1391 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_column_def_in_ddl_column_defs1434 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_COMMA_in_ddl_column_defs1439 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_column_def_in_ddl_column_defs1445 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_ddl_column_name_in_column_def1475 = new BitSet(new long[]{0x0000000000000000L,0x00000000000003C0L});
-    public static final BitSet FOLLOW_ddl_column_type_in_column_def1479 = new BitSet(new long[]{0x0000000100000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_ddl_column_pk_in_column_def1484 = new BitSet(new long[]{0x0000000100000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_ddl_column_comment_in_column_def1491 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_set_in_stream_meta_name1529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SINGLE_QUOTE_in_stream_meta_value1558 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_NAME_in_stream_meta_value1562 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_SINGLE_QUOTE_in_stream_meta_value1564 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stream_meta_name_in_stream_meta_def1591 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_stream_meta_value_in_stream_meta_def1595 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stream_meta_def_in_ddl_stream_meta_defs1648 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_COMMA_in_ddl_stream_meta_defs1653 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000C00L});
-    public static final BitSet FOLLOW_stream_meta_def_in_ddl_stream_meta_defs1659 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_CREATE_in_create_stream_statement1686 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_STREAM_in_create_stream_statement1688 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_table_name_in_create_stream_statement1692 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_LPAREN_in_create_stream_statement1702 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_column_defs_in_create_stream_statement1706 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_RPAREN_in_create_stream_statement1708 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_META_in_create_stream_statement1710 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_LPAREN_in_create_stream_statement1712 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000C00L});
-    public static final BitSet FOLLOW_ddl_stream_meta_defs_in_create_stream_statement1716 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_RPAREN_in_create_stream_statement1718 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_create_stream_statement1720 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DROP_in_drop_stream_statement1743 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_STREAM_in_drop_stream_statement1745 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_table_name_in_drop_stream_statement1749 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_drop_stream_statement1751 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHOW_in_show_stream_statement1774 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_STREAM_in_show_stream_statement1776 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_table_name_in_show_stream_statement1780 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_show_stream_statement1782 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHOW_in_show_streams_statement1805 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_STREAMS_in_show_streams_statement1807 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_show_streams_statement1809 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_KILL_in_kill_job_statement1832 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_JOB_in_kill_job_statement1834 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_table_name_in_kill_job_statement1838 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_kill_job_statement1840 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_COMMIT_in_commit_statement1863 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_commit_statement1865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_source_meta_name1893 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SINGLE_QUOTE_in_source_meta_value1942 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_NAME_in_source_meta_value1946 = new BitSet(new long[]{0x1000001100000000L});
-    public static final BitSet FOLLOW_set_in_source_meta_value1948 = new BitSet(new long[]{0x1000001100000000L});
-    public static final BitSet FOLLOW_SINGLE_QUOTE_in_source_meta_value1955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_source_meta_name_in_source_meta_def1982 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_source_meta_value_in_source_meta_def1986 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_source_meta_def_in_ddl_source_meta_defs2039 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_COMMA_in_ddl_source_meta_defs2044 = new BitSet(new long[]{0x0000000000000000L,0x00000000007FF400L});
-    public static final BitSet FOLLOW_source_meta_def_in_ddl_source_meta_defs2050 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_CREATE_in_create_source_statement2077 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SOURCE_in_create_source_statement2079 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_table_name_in_create_source_statement2083 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_META_in_create_source_statement2085 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_LPAREN_in_create_source_statement2087 = new BitSet(new long[]{0x0000000000000000L,0x00000000007FF400L});
-    public static final BitSet FOLLOW_ddl_source_meta_defs_in_create_source_statement2091 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_RPAREN_in_create_source_statement2093 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_create_source_statement2095 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DROP_in_drop_source_statement2118 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SOURCE_in_drop_source_statement2120 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_table_name_in_drop_source_statement2124 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_drop_source_statement2126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHOW_in_show_source_statement2149 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SOURCE_in_show_source_statement2151 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_table_name_in_show_source_statement2155 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_show_source_statement2157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHOW_in_show_sources_statement2180 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_SOURCES_in_show_sources_statement2182 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_show_sources_statement2184 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DROP_in_drop_job_statement2207 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_JOB_in_drop_job_statement2209 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_table_name_in_drop_job_statement2213 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_drop_job_statement2215 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHOW_in_show_job_statement2238 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_JOB_in_show_job_statement2240 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_table_name_in_show_job_statement2244 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_show_job_statement2246 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHOW_in_show_jobs_statement2269 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_JOBS_in_show_jobs_statement2271 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_show_jobs_statement2273 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHOW_in_show_cluster_statement2296 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_CLUSTER_in_show_cluster_statement2298 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_show_cluster_statement2300 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHOW_in_show_system_statement2323 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_SYSTEM_in_show_system_statement2325 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_show_system_statement2327 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SNAPSHOT_in_snapshot_job_statement2350 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_JOB_in_snapshot_job_statement2352 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_ddl_table_name_in_snapshot_job_statement2356 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_snapshot_job_statement2358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_synpred29_TOMMY_SQL963 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SET_in_synpred38_TOMMY_SQL1174 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_synpred38_TOMMY_SQL1180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SET_in_synpred39_TOMMY_SQL1184 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_synpred39_TOMMY_SQL1190 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_WHERE_in_synpred39_TOMMY_SQL1192 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
-    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_synpred39_TOMMY_SQL1196 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_show_system_statement_in_create_statement597 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_commit_statement_in_create_statement599 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_use_statement_in_create_statement601 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_snapshot_job_statement_in_create_statement603 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_kill_job_statement_in_create_statement605 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_set_statement_in_create_statement607 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_show_sources_statement_in_create_statement609 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_show_streams_statement_in_create_statement611 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_show_cluster_statement_in_create_statement613 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_show_jobs_statement_in_create_statement615 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_insert_statement_in_create_statement617 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_update_statement_in_create_statement619 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_upsert_statement_in_create_statement621 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_lookup_statement_in_create_statement623 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_select_statement_in_create_statement625 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_create_stream_statement_in_create_statement627 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_create_source_statement_in_create_statement629 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_show_stream_statement_in_create_statement631 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_show_source_statement_in_create_statement633 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_drop_stream_statement_in_create_statement635 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_drop_source_statement_in_create_statement637 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_drop_job_statement_in_create_statement639 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_show_job_statement_in_create_statement641 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_delete_statement_in_create_statement643 = new BitSet(new long[]{0x0F30000000181E62L});
+    public static final BitSet FOLLOW_NAME_in_use_name_def677 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_USE_in_use_statement696 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_set_name_def_in_use_statement700 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_use_statement702 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NAME_in_set_name_def734 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NAME_in_set_value_def762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SET_in_set_statement782 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_set_name_def_in_set_statement786 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_EQUAL_in_set_statement788 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_SINGLE_QUOTE_in_set_statement790 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_set_value_def_in_set_statement794 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_SINGLE_QUOTE_in_set_statement796 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_set_statement798 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LSQUARE_in_dml_table_name828 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_NAME_in_dml_table_name832 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_COLON_in_dml_table_name834 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_NAME_in_dml_table_name838 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_RSQUARE_in_dml_table_name840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LSQUARE_in_dml_bind_column_name867 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_COLON_in_dml_bind_column_name869 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_NAME_in_dml_bind_column_name871 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_RSQUARE_in_dml_bind_column_name873 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NAME_in_dml_lookup_where900 = new BitSet(new long[]{0x1000000000000002L});
+    public static final BitSet FOLLOW_NAME_in_dml_lookup_where903 = new BitSet(new long[]{0x1000000000000002L});
+    public static final BitSet FOLLOW_NAME_in_dml_select_body933 = new BitSet(new long[]{0x1000000000000002L});
+    public static final BitSet FOLLOW_NAME_in_dml_select_body936 = new BitSet(new long[]{0x1000000000000002L});
+    public static final BitSet FOLLOW_set_in_dml_lookup_select_where_body965 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF2L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_set_in_dml_lookup_select_where_body21001 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_SEMICOLON_in_dml_lookup_select_where_body21013 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LOOKUP_in_lookup_statement1032 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_lookup_statement1038 = new BitSet(new long[]{0x0000000800000100L});
+    public static final BitSet FOLLOW_WHERE_in_lookup_statement1041 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_lookup_statement1047 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMICOLON_in_lookup_statement1049 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SELECT_in_select_statement1073 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_select_statement1079 = new BitSet(new long[]{0x0000000800000100L});
+    public static final BitSet FOLLOW_WHERE_in_select_statement1082 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_select_statement1088 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMICOLON_in_select_statement1090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INSERT_in_insert_statement1113 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_INTO_in_insert_statement1115 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_insert_statement1121 = new BitSet(new long[]{0x0006000800000000L});
+    public static final BitSet FOLLOW_VALUES_in_insert_statement1124 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_insert_statement1130 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INCREASE_in_insert_statement1132 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_VALUES_in_insert_statement1134 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_insert_statement1140 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMICOLON_in_insert_statement1142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_UPSERT_in_upsert_statement1166 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_INTO_in_upsert_statement1168 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_upsert_statement1174 = new BitSet(new long[]{0x0006000800000000L});
+    public static final BitSet FOLLOW_VALUES_in_upsert_statement1177 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_upsert_statement1183 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INCREASE_in_upsert_statement1185 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_VALUES_in_upsert_statement1187 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_upsert_statement1193 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMICOLON_in_upsert_statement1195 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_UPDATE_in_update_statement1219 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_update_statement1225 = new BitSet(new long[]{0x0020000800000000L});
+    public static final BitSet FOLLOW_SET_in_update_statement1228 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_update_statement1234 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SET_in_update_statement1238 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_update_statement1244 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_WHERE_in_update_statement1246 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_update_statement1250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMICOLON_in_update_statement1252 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DELETE_in_delete_statement1276 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_FROM_in_delete_statement1278 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_delete_statement1284 = new BitSet(new long[]{0x0000000800000100L});
+    public static final BitSet FOLLOW_WHERE_in_delete_statement1287 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_delete_statement1293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMICOLON_in_delete_statement1295 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NAME_in_ddl_table_name1327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_ddl_column_pk1360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SINGLE_QUOTE_in_ddl_column_comment1385 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_NAME_in_ddl_column_comment1389 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_SINGLE_QUOTE_in_ddl_column_comment1391 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NAME_in_ddl_column_name1418 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_ddl_column_type1445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_column_def_in_ddl_column_defs1488 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_COMMA_in_ddl_column_defs1493 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_column_def_in_ddl_column_defs1499 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_ddl_column_name_in_column_def1529 = new BitSet(new long[]{0x0000000000000000L,0x00000000000003C0L});
+    public static final BitSet FOLLOW_ddl_column_type_in_column_def1533 = new BitSet(new long[]{0x0000000100000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_ddl_column_pk_in_column_def1538 = new BitSet(new long[]{0x0000000100000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_ddl_column_comment_in_column_def1545 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_set_in_stream_meta_name1583 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SINGLE_QUOTE_in_stream_meta_value1612 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_NAME_in_stream_meta_value1616 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_SINGLE_QUOTE_in_stream_meta_value1618 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stream_meta_name_in_stream_meta_def1645 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_stream_meta_value_in_stream_meta_def1649 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stream_meta_def_in_ddl_stream_meta_defs1702 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_COMMA_in_ddl_stream_meta_defs1707 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000C00L});
+    public static final BitSet FOLLOW_stream_meta_def_in_ddl_stream_meta_defs1713 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_CREATE_in_create_stream_statement1740 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_STREAM_in_create_stream_statement1742 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_table_name_in_create_stream_statement1746 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_LPAREN_in_create_stream_statement1756 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_column_defs_in_create_stream_statement1760 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_RPAREN_in_create_stream_statement1762 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_META_in_create_stream_statement1764 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_LPAREN_in_create_stream_statement1766 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000C00L});
+    public static final BitSet FOLLOW_ddl_stream_meta_defs_in_create_stream_statement1770 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_RPAREN_in_create_stream_statement1772 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_create_stream_statement1774 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DROP_in_drop_stream_statement1797 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_STREAM_in_drop_stream_statement1799 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_table_name_in_drop_stream_statement1803 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_drop_stream_statement1805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHOW_in_show_stream_statement1828 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_STREAM_in_show_stream_statement1830 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_table_name_in_show_stream_statement1834 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_show_stream_statement1836 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHOW_in_show_streams_statement1859 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_STREAMS_in_show_streams_statement1861 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_show_streams_statement1863 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_KILL_in_kill_job_statement1886 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_JOB_in_kill_job_statement1888 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_table_name_in_kill_job_statement1892 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_kill_job_statement1894 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_COMMIT_in_commit_statement1917 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_commit_statement1919 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_source_meta_name1947 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SINGLE_QUOTE_in_source_meta_value1996 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_NAME_in_source_meta_value2000 = new BitSet(new long[]{0x1000001100000000L});
+    public static final BitSet FOLLOW_set_in_source_meta_value2002 = new BitSet(new long[]{0x1000001100000000L});
+    public static final BitSet FOLLOW_SINGLE_QUOTE_in_source_meta_value2009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_source_meta_name_in_source_meta_def2036 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_source_meta_value_in_source_meta_def2040 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_source_meta_def_in_ddl_source_meta_defs2093 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_COMMA_in_ddl_source_meta_defs2098 = new BitSet(new long[]{0x0000000000000000L,0x00000000007FF400L});
+    public static final BitSet FOLLOW_source_meta_def_in_ddl_source_meta_defs2104 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_CREATE_in_create_source_statement2131 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SOURCE_in_create_source_statement2133 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_table_name_in_create_source_statement2137 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_META_in_create_source_statement2139 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_LPAREN_in_create_source_statement2141 = new BitSet(new long[]{0x0000000000000000L,0x00000000007FF400L});
+    public static final BitSet FOLLOW_ddl_source_meta_defs_in_create_source_statement2145 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_RPAREN_in_create_source_statement2147 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_create_source_statement2149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DROP_in_drop_source_statement2172 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SOURCE_in_drop_source_statement2174 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_table_name_in_drop_source_statement2178 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_drop_source_statement2180 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHOW_in_show_source_statement2203 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SOURCE_in_show_source_statement2205 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_table_name_in_show_source_statement2209 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_show_source_statement2211 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHOW_in_show_sources_statement2234 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_SOURCES_in_show_sources_statement2236 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_show_sources_statement2238 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DROP_in_drop_job_statement2261 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_JOB_in_drop_job_statement2263 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_table_name_in_drop_job_statement2267 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_drop_job_statement2269 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHOW_in_show_job_statement2292 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_JOB_in_show_job_statement2294 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_table_name_in_show_job_statement2298 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_show_job_statement2300 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHOW_in_show_jobs_statement2323 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_JOBS_in_show_jobs_statement2325 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_show_jobs_statement2327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHOW_in_show_cluster_statement2350 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_CLUSTER_in_show_cluster_statement2352 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_show_cluster_statement2354 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHOW_in_show_system_statement2377 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_SYSTEM_in_show_system_statement2379 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_show_system_statement2381 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SNAPSHOT_in_snapshot_job_statement2404 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_JOB_in_snapshot_job_statement2406 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_ddl_table_name_in_snapshot_job_statement2410 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_SEMICOLON_in_snapshot_job_statement2412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_synpred30_TOMMY_SQL965 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SET_in_synpred41_TOMMY_SQL1228 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_synpred41_TOMMY_SQL1234 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SET_in_synpred42_TOMMY_SQL1238 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body_in_synpred42_TOMMY_SQL1244 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_WHERE_in_synpred42_TOMMY_SQL1246 = new BitSet(new long[]{0xFFFFFFF7FFFFFFF0L,0x00000000007FFFE7L});
+    public static final BitSet FOLLOW_dml_lookup_select_where_body2_in_synpred42_TOMMY_SQL1250 = new BitSet(new long[]{0x0000000000000002L});
 
 }
