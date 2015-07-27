@@ -13,6 +13,7 @@ import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.InsertJDBCBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.elasticsearch.InsertElasticSearchBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.hdfs.bolt.InsertHdfsBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.redis.InsertRedisBolt;
+import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.rest.InsertRestBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.lookup.LookupJDBCBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.stream.EsperBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.stream.SpoutParserBolt;
@@ -228,6 +229,8 @@ public class BoltBuilder {
                 bolt = new InsertElasticSearchBolt();
             } else if (SourceCatalogEnum.REDIS.getName().equals(inkSource.getCatalog())) {
                 bolt = new InsertRedisBolt();
+            } else if (SourceCatalogEnum.REST.getName().equals(inkSource.getCatalog())) {
+                bolt = new InsertRestBolt();
             } else {
                 throw new InkException(MessageEnum.CATALOG_INVALID);
             }
