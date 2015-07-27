@@ -38,20 +38,6 @@ import java.util.regex.Pattern;
  */
 public class InsertRedisBolt implements IRichBolt, IBucketBolt {
 
-    public static enum RedisCommand {
-        INSERT_HSET("INSERT_HSET"),
-        UPDATE_HSET("UPDATE_HSET")
-        ;
-        private String name;
-
-        public String getName() {
-            return name;
-        }
-        private RedisCommand(String name) {
-            this.name = name;
-        }
-    }
-
     private ShardedJedisPool shardedJedisPool;
     private static final Logger LOG = LoggerFactory.getLogger(InsertRedisBolt.class);
     private OutputCollector collector;
