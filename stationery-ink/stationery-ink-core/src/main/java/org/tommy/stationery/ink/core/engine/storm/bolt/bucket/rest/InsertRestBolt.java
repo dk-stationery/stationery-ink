@@ -53,6 +53,7 @@ public class InsertRestBolt implements IRichBolt, IBucketBolt {
     private static class RestInfo {
         private RestCmd cmd;
         private String url;
+        private String body;
         private List<BaseBindColumnDef> columns;
 
         public String getUrl() {
@@ -77,6 +78,14 @@ public class InsertRestBolt implements IRichBolt, IBucketBolt {
 
         public void setColumns(List<BaseBindColumnDef> columns) {
             this.columns = columns;
+        }
+
+        public String getBody() {
+            return body;
+        }
+
+        public void setBody(String body) {
+            this.body = body;
         }
     }
 
@@ -128,21 +137,33 @@ public class InsertRestBolt implements IRichBolt, IBucketBolt {
         Future<Response> fureRet = null;
         for (RestInfo restInfo : restInfos) {
             String url = restInfo.getUrl();
+            String body = restInfo.getBody();
             for (BaseBindColumnDef bindColumn : restInfo.getColumns()) {
                 url = url.replace("[:" + bindColumn.getName() + "]", tuple.getStringByField(bindColumn.getName()));
+                if (body != null) {
+                    body = body.replace("[:" + bindColumn.getName() + "]", tuple.getStringByField(bindColumn.getName()));
+                }
             }
 
+            AsyncHttpClient.BoundRequestBuilder boundRequestBuilder = null;
             if (RestCmd.PUT.equals(restInfo.getCmd())) {
-                fureRet = asyncHttpClient.preparePut(url).execute();
+                boundRequestBuilder = asyncHttpClient.preparePut(url);
             } else if (RestCmd.GET.equals(restInfo.getCmd())) {
-                fureRet = asyncHttpClient.prepareGet(url).execute();
+                boundRequestBuilder = asyncHttpClient.prepareGet(url);
             } else if (RestCmd.DELETE.equals(restInfo.getCmd())) {
-                fureRet = asyncHttpClient.prepareDelete(url).execute();
+                boundRequestBuilder = asyncHttpClient.prepareDelete(url);
             } else if (RestCmd.POST.equals(restInfo.getCmd())) {
-                fureRet = asyncHttpClient.preparePost(url).execute();
+                boundRequestBuilder = asyncHttpClient.preparePost(url);
             } else {
                 break;
             }
+
+            if (body != null) {
+                fureRet = boundRequestBuilder.setBody(body).execute();
+            } else {
+                fureRet = boundRequestBuilder.execute();
+            }
+
             fureRet.get();
         }
     }
@@ -152,21 +173,27 @@ public class InsertRestBolt implements IRichBolt, IBucketBolt {
         Matcher matcher = pattern.matcher(statement.getQuery());
         String[] columnsArrys = null;
         while(matcher.find()) {
-            columnsArrys = matcher.group(2).replace(" ", "").replace("'", "").split(",");
+            String columnsStr = matcher.group(2).replace(" ", "");
+            columnsArrys = columnsStr.split(",(?=([^\']*\'[^\']*\')*[^\']*$)", -1);
         }
 
-        if (columnsArrys.length < 2 && columnsArrys.length % 2 != 0) {
+        for (int i=0;i<columnsArrys.length;i++) {
+            columnsArrys[i] = columnsArrys[i].substring(1, columnsArrys[i].length()-1);
+        }
+
+        if (columnsArrys.length < 3 && columnsArrys.length % 3 != 0) {
             throw new Exception("invalid rest format");
         }
 
         Pattern p = Pattern.compile("\\[\\:(.+?)\\]");
-        for (int i=0;i<columnsArrys.length/2;i++) {
+        for (int i=0;i<columnsArrys.length/3;i++) {
             RestInfo restInfo = new RestInfo();
-            restInfo.setCmd(RestCmd.valueOf(columnsArrys[i * 2]));
-            restInfo.setUrl(columnsArrys[i * 2 + 1]);
+            restInfo.setCmd(RestCmd.valueOf(columnsArrys[i * 3]));
+            restInfo.setUrl(columnsArrys[i * 3 + 1]);
+            restInfo.setBody("".equals(columnsArrys[i * 3 + 2]) ? null : columnsArrys[i * 3 + 2]);
 
             List<BaseBindColumnDef> columns = new ArrayList<BaseBindColumnDef>();
-            String valQuery = columnsArrys[i * 2 + 1];
+            String valQuery = columnsArrys[i * 3 + 1];
             Matcher m = p.matcher (valQuery);
             while (m.find())
             {
