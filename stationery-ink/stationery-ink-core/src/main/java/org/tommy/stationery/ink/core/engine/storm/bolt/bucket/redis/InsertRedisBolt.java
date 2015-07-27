@@ -139,6 +139,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
             }
         } finally {
             collector.ack(tuple);
+            collector.emit(streamId, tuple.getValues());
         }
     }
 

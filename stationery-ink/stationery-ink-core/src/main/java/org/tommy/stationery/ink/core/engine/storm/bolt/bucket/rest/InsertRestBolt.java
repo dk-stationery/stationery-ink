@@ -6,7 +6,9 @@ import backtype.storm.topology.IRichBolt;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Tuple;
 import com.ning.http.client.AsyncHttpClient;
+import com.ning.http.client.AsyncHttpClientConfig;
 import com.ning.http.client.Response;
+import com.ning.http.client.providers.grizzly.GrizzlyAsyncHttpProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tommy.stationery.ink.config.InkConfig;
@@ -23,11 +25,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by kun7788 on 15. 7. 27..
  */
 public class InsertRestBolt implements IRichBolt, IBucketBolt {
+    private static final Logger LOG = LoggerFactory.getLogger(InsertRestBolt.class);
 
     private static enum RestCmd {
         PUT("PUT"),
@@ -48,6 +53,7 @@ public class InsertRestBolt implements IRichBolt, IBucketBolt {
     private static class RestInfo {
         private RestCmd cmd;
         private String url;
+        private List<BaseBindColumnDef> columns;
 
         public String getUrl() {
             return url;
@@ -64,9 +70,16 @@ public class InsertRestBolt implements IRichBolt, IBucketBolt {
         public void setCmd(RestCmd cmd) {
             this.cmd = cmd;
         }
+
+        public List<BaseBindColumnDef> getColumns() {
+            return columns;
+        }
+
+        public void setColumns(List<BaseBindColumnDef> columns) {
+            this.columns = columns;
+        }
     }
 
-    private static final Logger LOG = LoggerFactory.getLogger(InsertRestBolt.class);
     private OutputCollector collector;
     private Source inkSource;
     private Stream inkStream;
@@ -85,7 +98,9 @@ public class InsertRestBolt implements IRichBolt, IBucketBolt {
         } catch (Exception e) {
 
         }
-        asyncHttpClient = new AsyncHttpClient();
+
+        AsyncHttpClientConfig config = new AsyncHttpClientConfig.Builder().build();
+        asyncHttpClient = new AsyncHttpClient(new GrizzlyAsyncHttpProvider(config), config);
     }
 
     @Override
@@ -98,6 +113,7 @@ public class InsertRestBolt implements IRichBolt, IBucketBolt {
             e.printStackTrace();
         } finally {
             collector.ack(tuple);
+            collector.emit(streamId, tuple.getValues());
         }
     }
 
@@ -111,14 +127,19 @@ public class InsertRestBolt implements IRichBolt, IBucketBolt {
     private void restCall(Tuple tuple) throws ExecutionException, InterruptedException {
         Future<Response> fureRet = null;
         for (RestInfo restInfo : restInfos) {
+            String url = restInfo.getUrl();
+            for (BaseBindColumnDef bindColumn : restInfo.getColumns()) {
+                url = url.replace("[:" + bindColumn.getName() + "]", tuple.getStringByField(bindColumn.getName()));
+            }
+
             if (RestCmd.PUT.equals(restInfo.getCmd())) {
-                fureRet = asyncHttpClient.preparePut(restInfo.getUrl()).execute();
+                fureRet = asyncHttpClient.preparePut(url).execute();
             } else if (RestCmd.GET.equals(restInfo.getCmd())) {
-                fureRet = asyncHttpClient.prepareGet(restInfo.getUrl()).execute();
+                fureRet = asyncHttpClient.prepareGet(url).execute();
             } else if (RestCmd.DELETE.equals(restInfo.getCmd())) {
-                fureRet = asyncHttpClient.prepareDelete(restInfo.getUrl()).execute();
+                fureRet = asyncHttpClient.prepareDelete(url).execute();
             } else if (RestCmd.POST.equals(restInfo.getCmd())) {
-                fureRet = asyncHttpClient.preparePost(restInfo.getUrl()).execute();
+                fureRet = asyncHttpClient.preparePost(url).execute();
             } else {
                 break;
             }
@@ -127,15 +148,34 @@ public class InsertRestBolt implements IRichBolt, IBucketBolt {
     }
 
     private void preparedRest() throws Exception {
-        List<BaseBindColumnDef> baseBindColumnDefs = statement.getBindColumns();
-        if (baseBindColumnDefs.size() < 2) {
+        Pattern pattern = Pattern.compile("values(\\s*)\\((.+?)\\)");
+        Matcher matcher = pattern.matcher(statement.getQuery());
+        String[] columnsArrys = null;
+        while(matcher.find()) {
+            columnsArrys = matcher.group(2).replace(" ", "").replace("'", "").split(",");
+        }
+
+        if (columnsArrys.length < 2 && columnsArrys.length % 2 != 0) {
             throw new Exception("invalid rest format");
         }
 
-        for (int i=0;i<baseBindColumnDefs.size();i++) {
+        Pattern p = Pattern.compile("\\[\\:(.+?)\\]");
+        for (int i=0;i<columnsArrys.length/2;i++) {
             RestInfo restInfo = new RestInfo();
-            restInfo.setCmd(RestCmd.valueOf(baseBindColumnDefs.get(i*2).getName()));
-            restInfo.setUrl(baseBindColumnDefs.get(i * 2 + 1).getName());
+            restInfo.setCmd(RestCmd.valueOf(columnsArrys[i * 2]));
+            restInfo.setUrl(columnsArrys[i * 2 + 1]);
+
+            List<BaseBindColumnDef> columns = new ArrayList<BaseBindColumnDef>();
+            String valQuery = columnsArrys[i * 2 + 1];
+            Matcher m = p.matcher (valQuery);
+            while (m.find())
+            {
+                String bindName = m.group(1);
+                BaseBindColumnDef bindColumn = new BaseBindColumnDef();
+                bindColumn.setName(bindName);
+                columns.add(bindColumn);
+            }
+            restInfo.setColumns(columns);
             restInfos.add(restInfo);
         }
     }

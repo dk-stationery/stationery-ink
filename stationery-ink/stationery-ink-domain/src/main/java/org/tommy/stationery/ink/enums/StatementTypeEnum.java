@@ -31,7 +31,8 @@ public enum StatementTypeEnum {
     INSERT("INSERT", GroupTypeEnum.DML, SubGroupTypeEnum.BUCKET, GroupTypeAuthEnum.READ_WRITE_DEPLOY),
     UPSERT("UPSERT", GroupTypeEnum.DML, SubGroupTypeEnum.BUCKET, GroupTypeAuthEnum.READ_WRITE_DEPLOY),
     UPDATE("UPDATE", GroupTypeEnum.DML, SubGroupTypeEnum.BUCKET, GroupTypeAuthEnum.READ_WRITE_DEPLOY),
-    DELETE("DELETE", GroupTypeEnum.DML, SubGroupTypeEnum.BUCKET, GroupTypeAuthEnum.READ_WRITE_DEPLOY)
+    DELETE("DELETE", GroupTypeEnum.DML, SubGroupTypeEnum.BUCKET, GroupTypeAuthEnum.READ_WRITE_DEPLOY),
+    REST("REST", GroupTypeEnum.DML, SubGroupTypeEnum.BUCKET, GroupTypeAuthEnum.READ_WRITE_DEPLOY)
     ;
 
     private String name;

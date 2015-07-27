@@ -29,6 +29,7 @@
         <elastic.search.version>1.1.2</elastic.search.version>
         <postgresql.version>9.3-1100-jdbc41</postgresql.version>
         <async.httpclient.version>1.9.29</async.httpclient.version>
+        <grizzly.version>2.3.21</grizzly.version>
     </properties>
 
     <parent>

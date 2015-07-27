@@ -3,6 +3,8 @@ package org.tommy.stationery.ink.core.parser;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
+import org.tommy.stationery.ink.core.TOMMY_SQLLexer;
+import org.tommy.stationery.ink.core.TOMMY_SQLParser;
 import org.tommy.stationery.ink.domain.BaseStatement;
 
 import java.util.List;
