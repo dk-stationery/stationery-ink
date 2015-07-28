@@ -263,11 +263,15 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 			host STRING PARTITION_KEY 
 			, path STRING PARTITION_KEY 
 			, payload.message STRING  ) meta (TOPIC 'dmp_app_log');  
+			
+		create stream rest (
+			dummy STRING) meta (TOPIC 'rest');    
+			    
 
 11. create source SOURCE_NAME 
 > : create source TSQL.  
 > : fields : CATALOG|URL|DRIVER|ID|PW|VHOST|PORT|TOPIC|CLUSTER|INITIALPOOLSIZE|MAXPOOLSIZE|MINPOOLSIZE      
-> : catalogs : KAFKA|RABBITMQ|HDFS|ELASTICSEARCH|JDBC|PHOENIX|REDIS    
+> : catalogs : KAFKA|RABBITMQ|HDFS|ELASTICSEARCH|JDBC|PHOENIX|REDIS|REST    
 > : ex> 
 
 		create source kafka meta (
@@ -315,6 +319,10 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 			, PW 'test'
 			);
 			
+		create source rest meta (
+			CATALOG 'REST'
+			);
+			
 12. use NAME :   
 > : other ink daemon use.    
 > : ex> use SA;    
@@ -360,6 +368,13 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 			[test_click:phoenix]
 		where
 			PAYLOAD_CTSA = '[:ACCOUNTID]' AND PAYLOAD_CTSU = '[:UNIQUE_ID]';  
+
+4. rest :
+> : rest api syntax. (arg[0] : operation, arg[1] : rest url, arg[2] : body data)   
+> : ex>   
+
+		rest into [rest:rest] values('GET|POST|PUT|DELETE', 'http://www.testrest.com/rest?data=[:data]', '{"a":"[:data1]"}');
+		   
 
 
 #### SET TSQL :  
