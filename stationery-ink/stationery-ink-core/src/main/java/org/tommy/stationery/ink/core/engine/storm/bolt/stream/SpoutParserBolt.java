@@ -97,15 +97,12 @@ public class SpoutParserBolt implements IRichBolt {
 
                 valuse.add(TypeConversionUtil.convertion(val, type));
             }
-
-
-
             collector.emit(tuple, valuse);
-            collector.ack(tuple);
 		} catch (Exception e) {
             logger.error(e.getMessage());
-            collector.fail(tuple);
-		}
+		} finally {
+            collector.ack(tuple);
+        }
 	}
 
 	@Override
