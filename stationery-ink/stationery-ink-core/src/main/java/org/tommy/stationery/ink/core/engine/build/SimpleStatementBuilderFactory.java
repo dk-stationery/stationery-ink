@@ -35,6 +35,10 @@ public class SimpleStatementBuilderFactory {
                     break;
                 }
             }
+
+            if (engineTypeEnum == null) {
+                engineTypeEnum = EngineTypeEnum.valueOf(configProperties.getDefaultInkConfig().getString(SettingEnum.ENGINE));
+            }
         }
 
         if (engineTypeEnum == null) {
