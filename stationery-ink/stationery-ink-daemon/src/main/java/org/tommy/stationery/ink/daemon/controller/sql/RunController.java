@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.tommy.stationery.ink.daemon.config.ParametersConfig;
 import org.tommy.stationery.ink.daemon.service.metastore.AuthService;
 import org.tommy.stationery.ink.daemon.service.metastore.StatementBuilderService;
 import org.tommy.stationery.ink.daemon.util.MultiTenantProxyUtil;
@@ -50,6 +51,9 @@ public class RunController {
     @Autowired
     SessionUtil sessionUtil;
 
+    @Autowired
+    ParametersConfig parametersConfig;
+
     @RequestMapping("/getDatabaseMetaData")
     public Object getDatabaseMetaData() throws SQLException {
         Connection connection = dataSource.getConnection();
@@ -59,9 +63,17 @@ public class RunController {
 
     @RequestMapping(value = "/run", method = RequestMethod.POST)
     public Object run(@RequestParam(value = "sessionId", required = true) String sessionId, @RequestParam(value = "user", required = true) String user, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "sql", required = true) String sql) throws Exception {
-        Auth auth = authService.getInkAuth(new Auth(user, password));
-        if (auth == null) {
-            throw new InkException(MessageEnum.INVALID_AUTH_INFO);
+        //auth check
+        String isEnableAuth = ParametersConfig.StringValue(parametersConfig.getConfig().get("auth").get("enable"));
+        Auth auth = null;
+        if ("false".equals(isEnableAuth)) {
+            auth = new Auth();
+            auth.setAuthgrant(StatementTypeEnum.GroupTypeAuthEnum.READ_WRITE_DEPLOY.getName());
+        } else {
+            auth = authService.getInkAuth(new Auth(user, password));
+            if (auth == null) {
+                throw new InkException(MessageEnum.INVALID_AUTH_INFO);
+            }
         }
 
         if (";".equals(sql.substring(sql.length() - 1, sql.length())) == false) {

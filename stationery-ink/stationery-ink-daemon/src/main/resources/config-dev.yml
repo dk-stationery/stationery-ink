@@ -9,9 +9,7 @@ phoenix:
     minPoolSize: 1
 
 auth:
-    api:
-        id: #################################
-        password: #################################
+    enable: false
 
 daemon_id:
     name: SA
