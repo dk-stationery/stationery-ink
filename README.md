@@ -134,10 +134,8 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
     			minPoolSize: 10
 
 		auth:
-    			api:
-        			id: api user id (ex.test_user)
-        			password: api password (ex.test_pw)
-
+    			enable: false | true
+        			
 		redis:
     			host: Redis connection url (Ex. cache40.rc2.test.cc,cache42.rc2.test.cc,cache176.rc2.test.cc,cache177.rc2.test.cc,cache178.rc2.test.cc)
     			password: Redis password (Ex. test_redis_pw)
