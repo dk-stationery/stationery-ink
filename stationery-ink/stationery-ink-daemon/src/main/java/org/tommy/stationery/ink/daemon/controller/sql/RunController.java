@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.tommy.stationery.ink.daemon.config.ParametersConfig;
 import org.tommy.stationery.ink.daemon.service.metastore.AuthService;
 import org.tommy.stationery.ink.daemon.service.metastore.StatementBuilderService;
 import org.tommy.stationery.ink.daemon.util.MultiTenantProxyUtil;
@@ -21,10 +20,6 @@ import org.tommy.stationery.ink.enums.MessageEnum;
 import org.tommy.stationery.ink.enums.StatementTypeEnum;
 import org.tommy.stationery.ink.exception.InkException;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +27,7 @@ import java.util.List;
  * Created by kun7788 on 15. 1. 28..
  */
 @RestController
-@RequestMapping("/sql")
+@RequestMapping(value = "/sql", method = {RequestMethod.POST, RequestMethod.GET})
 public class RunController {
     private static final Logger logger = LoggerFactory.getLogger(RunController.class);
 
@@ -43,32 +38,17 @@ public class RunController {
     StatementBuilderService statementBuilderService;
 
     @Autowired
-    DataSource dataSource;
-
-    @Autowired
     MultiTenantProxyUtil multiTenantProxyUtil;
 
     @Autowired
     SessionUtil sessionUtil;
 
-    @Autowired
-    ParametersConfig parametersConfig;
-
-    @RequestMapping("/getDatabaseMetaData")
-    public Object getDatabaseMetaData() throws SQLException {
-        Connection connection = dataSource.getConnection();
-        DatabaseMetaData dmd = connection.getMetaData();
-        return dmd;
-    }
-
-    @RequestMapping(value = "/run", method = RequestMethod.POST)
+    @RequestMapping("/run")
     public Object run(@RequestParam(value = "sessionId", required = true) String sessionId, @RequestParam(value = "user", required = true) String user, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "sql", required = true) String sql) throws Exception {
         //auth check
-        String isEnableAuth = ParametersConfig.StringValue(parametersConfig.getConfig().get("auth").get("enable"));
         Auth auth = null;
-        if ("false".equals(isEnableAuth)) {
-            auth = new Auth();
-            auth.setAuthgrant(StatementTypeEnum.GroupTypeAuthEnum.READ_WRITE_DEPLOY.getName());
+        if (authService.isEnableAuth() == false) {
+            auth = authService.superGrantUserAuth();
         } else {
             auth = authService.getInkAuth(new Auth(user, password));
             if (auth == null) {

@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by kun7788 on 15. 3. 12..
  */
 @RestController
-@RequestMapping("/dump/api")
+@RequestMapping(value = "/dump/api", method = {RequestMethod.POST, RequestMethod.GET})
 public class DumpApiController {
 
     private static final Logger logger = LoggerFactory.getLogger(DumpApiController.class);
@@ -27,14 +27,14 @@ public class DumpApiController {
     private JsonSerde jsonSerde = new JsonSerde();
     private Map<String, List<Dump>> localDump = new HashMap<String, List<Dump>>(1000);
 
-    @RequestMapping(value = "/clear", method = RequestMethod.POST)
+    @RequestMapping("/clear")
     public String clear(@RequestParam(value = "jobName", required = true) String jobName) throws Exception {
         localDump.put(jobName, new ArrayList<Dump>());
         logger.info("dump clear : " + jobName);
         return "SUCCEED";
     }
 
-    @RequestMapping(value = "/flush", method = RequestMethod.POST)
+    @RequestMapping("/flush")
     public String flush(@RequestParam(value = "jobName", required = true) String jobName, @RequestParam(value = "dump", required = true) String dump) throws Exception {
         logger.info("dump flush ============ " + dump);
         List<Dump> deserializedDump = (List<Dump>)jsonSerde.deserialize(dump, new TypeReference<List<Dump>>() {});
@@ -54,7 +54,7 @@ public class DumpApiController {
         return "SUCCEED";
     }
 
-    @RequestMapping(value = "/dump", method = RequestMethod.POST)
+    @RequestMapping("/dump")
     public List<Dump> dump(@RequestParam(value = "jobName", required = true) String jobName) throws Exception {
         logger.info("dump dump : " + jobName);
         List<Dump> dump = localDump.get(jobName);

@@ -46,12 +46,12 @@ public class MultiTenantProxyUtil {
             String inkDaemonName = selectedUseStatement.getUseDef().getName();
             tenant.setName(inkDaemonName);
 
-            String myInkDeamenName = parametersConfig.StringValue(parametersConfig.getConfig().get("daemon_id"));
-            List<Map<String, String>> tenantInfos = parametersConfig.ListValue(parametersConfig.getConfig().get("multi_tenants"));
+            String myInkDeamenName = parametersConfig.StringValueOf(ParametersConfig.DAEMON_ID);
+            List<Map<String, String>> tenantInfos = parametersConfig.ListValueOf(ParametersConfig.MULTI_TENANTS);
             if (tenantInfos == null || tenantInfos.size() <= 0) {return null;}
             for (Map<String, String> tenantInfo : tenantInfos) {
-                if (inkDaemonName.equals(tenantInfo.get("name")) && !myInkDeamenName.equals(tenantInfo.get("name"))) {
-                    tenant.setUrl(tenantInfo.get("url"));
+                if (inkDaemonName.equals(tenantInfo.get(ParametersConfig.TENANT_NAME)) && !myInkDeamenName.equals(tenantInfo.get(ParametersConfig.TENANT_NAME))) {
+                    tenant.setUrl(tenantInfo.get(ParametersConfig.TENANT_URL));
                     return tenant;
                 }
             }
@@ -70,10 +70,10 @@ public class MultiTenantProxyUtil {
         try {
             HttpPost post = new HttpPost(url);
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-            nameValuePairs.add(new BasicNameValuePair("sessionId", sessionId));
-            nameValuePairs.add(new BasicNameValuePair("user", user));
-            nameValuePairs.add(new BasicNameValuePair("password", password));
-            nameValuePairs.add(new BasicNameValuePair("sql", sql.replace("\n", "")));
+            nameValuePairs.add(new BasicNameValuePair(ParametersConfig.SESSION_ID, sessionId));
+            nameValuePairs.add(new BasicNameValuePair(ParametersConfig.USER, user));
+            nameValuePairs.add(new BasicNameValuePair(ParametersConfig.PASSWORD, password));
+            nameValuePairs.add(new BasicNameValuePair(ParametersConfig.SQL, sql.replace("\n", "")));
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             HttpResponse response = client.execute(post);

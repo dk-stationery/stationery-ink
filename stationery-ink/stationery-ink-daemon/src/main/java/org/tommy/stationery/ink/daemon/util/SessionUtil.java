@@ -22,7 +22,7 @@ import java.util.Map;
 
 @Component
 public class SessionUtil {
-
+    private final static String COMMIT_QUERY = "commit;";
     private Map<String, Session> sessions = new HashMap<String, Session>();
 
     @Autowired
@@ -33,7 +33,7 @@ public class SessionUtil {
             throw new InkException(MessageEnum.EMPTY_SQL_COMMIT);
         }
 
-        if ("commit;".equals(sql)) {
+        if (COMMIT_QUERY.equals(sql)) {
             Session session = sessions.get(sessionId);
             if ((session.getLifeTime() + Integer.valueOf(configProperties.getString(SettingEnum.SESSION_TIME_OUT))) < System.currentTimeMillis()) {
                 sessions.remove(sessionId);
