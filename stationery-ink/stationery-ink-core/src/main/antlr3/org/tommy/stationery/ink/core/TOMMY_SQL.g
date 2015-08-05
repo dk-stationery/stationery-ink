@@ -8,6 +8,7 @@ options {
 
 tokens
 {
+    PLUGINS='plugins';
     REST='rest';
     SYSTEM='system';
     DELETE='delete';
@@ -222,7 +223,7 @@ rest_statement
     ;
 
 insert_statement
-    : INSERT INTO body1 = dml_lookup_select_where_body (VALUES body2 = dml_lookup_select_where_body2|INCREASE VALUES body2 = dml_lookup_select_where_body2|SEMICOLON)
+    : INSERT INTO body1 = dml_lookup_select_where_body (VALUES body2 = dml_lookup_select_where_body2|VALUES body2 = dml_lookup_select_where_body2 PLUGINS body3 = dml_lookup_select_where_body2|SEMICOLON)
     {
         if (body1 != null) {
 
@@ -237,7 +238,7 @@ insert_statement
     ;
 
 upsert_statement
-    : UPSERT INTO body1 = dml_lookup_select_where_body (VALUES body2 = dml_lookup_select_where_body2|INCREASE VALUES body2 = dml_lookup_select_where_body2|SEMICOLON)
+    : UPSERT INTO body1 = dml_lookup_select_where_body (VALUES body2 = dml_lookup_select_where_body2|INCREASE VALUES body2 = dml_lookup_select_where_body2|VALUES body2 = dml_lookup_select_where_body2 PLUGINS body3 = dml_lookup_select_where_body2|SEMICOLON)
     {
         if (body1 != null) {
 
@@ -252,7 +253,7 @@ upsert_statement
     ;
 
 update_statement
-    : UPDATE body1 = dml_lookup_select_where_body (SET body2 = dml_lookup_select_where_body2 | SET body3 = dml_lookup_select_where_body WHERE body4=dml_lookup_select_where_body2|SEMICOLON)
+    : UPDATE body1 = dml_lookup_select_where_body (SET body2 = dml_lookup_select_where_body2 | SET body3 = dml_lookup_select_where_body2 WHERE body4=dml_lookup_select_where_body2|SET body2 = dml_lookup_select_where_body2 PLUGINS body3 = dml_lookup_select_where_body2|SET body3 = dml_lookup_select_where_body2 WHERE body4=dml_lookup_select_where_body2 PLUGINS body5 = dml_lookup_select_where_body2|SEMICOLON)
     {
         if (body1 != null) {
 
@@ -267,7 +268,7 @@ update_statement
     ;
 
 delete_statement
-    : DELETE FROM body1 = dml_lookup_select_where_body (WHERE body2 = dml_lookup_select_where_body2|SEMICOLON)
+    : DELETE FROM body1 = dml_lookup_select_where_body (WHERE body2 = dml_lookup_select_where_body2|WHERE body2 = dml_lookup_select_where_body2 PLUGINS body3 = dml_lookup_select_where_body2|SEMICOLON)
     {
         if (body1 != null) {
             QueryParser esperParser = new QueryParser();

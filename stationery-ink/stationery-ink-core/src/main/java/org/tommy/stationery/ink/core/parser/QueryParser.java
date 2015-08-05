@@ -38,7 +38,7 @@ public class QueryParser {
         BaseStatement statement = new BaseStatement();
         String dressedSql = dressQuery(sql);
         statement.setBindColumns(parseBindColumns(sql));
-        statement.setColumns(parseColumns(dressedSql.replace("lookup ", "select "))); //FOR USING ESPER PARSER!!
+        statement.setColumns(parseColumns(dressedSql.replace("lookup ", "select ").replaceAll("plugins(\\s*)\\((.+?)\\)", ""))); //FOR USING ESPER PARSER!!
         statement.setBindTables(parseBindTables(sql));
         statement.setDressQuery(dressedSql);
         return statement;
@@ -61,7 +61,6 @@ public class QueryParser {
             dressedSql = dressedSql.substring(0, dressedSql.length() - 1);
         }
 
-       //dressedSql = dressedSql.replaceAll("\\[\\:(.+?)\\]", "$1");
         dressedSql = dressedSql.replaceAll("\\[(.+?)\\:(.+?)\\]", "$1");
         return dressedSql;
     }
@@ -69,7 +68,6 @@ public class QueryParser {
     private List<BaseBindColumnDef> parseBindColumns(String sql) {
         List<BaseBindColumnDef> bindColumns = new ArrayList<BaseBindColumnDef>();
 
-        //Pattern p = Pattern.compile("\\[\\:([\\d\\w]+)\\]");
         Pattern p = Pattern.compile("\\[\\:(.+?)\\]");
 
         Matcher m = p.matcher (sql);

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.core.engine.storm.bolt.GenericBoltUtils;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.IBucketBolt;
+import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.redis.plugins.RedisPlugin;
 import org.tommy.stationery.ink.core.util.MetaFinderUtil;
 import org.tommy.stationery.ink.domain.BaseColumnDef;
 import org.tommy.stationery.ink.domain.BaseStatement;
@@ -37,7 +38,7 @@ import java.util.regex.Pattern;
  * Created by kun7788 on 15. 7. 21..
  */
 public class InsertRedisBolt implements IRichBolt, IBucketBolt {
-
+    private static String PLUGIN_PACKAGE_NAME = "org.tommy.stationery.ink.core.engine.storm.bolt.bucket.redis.plugins";
     private ShardedJedisPool shardedJedisPool;
     private static final Logger LOG = LoggerFactory.getLogger(InsertRedisBolt.class);
     private OutputCollector collector;
@@ -50,6 +51,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
     private JsonSerde jsonSerde;
     private List<BaseColumnDef> columns;
     private List<Integer> pkColumnsIndexs = new ArrayList<Integer>();
+    private List<RedisPlugin> plugins = new ArrayList<RedisPlugin>();
 
     private List<JedisShardInfo> generateShardInfo(String hosts, String password, int timeout) {
         List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
@@ -65,6 +67,20 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
             shards.add(si);
         }
         return shards;
+    }
+
+    private List<RedisPlugin> redisPlugins(List<String> pluginNames) {
+        for (String pluginName: pluginNames) {
+            Class klass = null;
+            try {
+                klass = Class.forName(PLUGIN_PACKAGE_NAME + "." + pluginName);
+                RedisPlugin plugin = (RedisPlugin)klass.newInstance();
+                plugins.add(plugin);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return plugins;
     }
 
     private ShardedJedisPool shardedJedisPool() {
@@ -90,7 +106,28 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
         this.collector = outputCollector;
         this.columns = extractColumns();
+        plugins = redisPlugins(extractPluginNames());
         shardedJedisPool = shardedJedisPool();
+    }
+
+    private List<String> extractPluginNames() {
+        String query = statement.getQuery();
+        Pattern pattern = Pattern.compile("plugins(\\s*)\\((.+?)\\)");
+        Matcher matcher = pattern.matcher(query);
+
+        String[] pluginNamesArr = null;
+        while(matcher.find()) {
+            pluginNamesArr = matcher.group(2).replace(" ", "").replace("'", "").split(",");
+        }
+
+        List<String> pluginNames = new ArrayList<String>();
+        if (pluginNamesArr != null) {
+            for (int i = 0; i < pluginNamesArr.length; i++) {
+                pluginNames.add(pluginNamesArr[i]);
+            }
+        }
+
+        return pluginNames;
     }
 
     private String generationRedisMainKey(Tuple tuple) {
@@ -115,15 +152,17 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
         }
 
         List<BaseColumnDef> columns = new ArrayList<BaseColumnDef>();
-        for (int i=0 ; i < columnsArrys.length ; i++) {
-            String column = columnsArrys[i];
-            for (BaseColumnDef columnDef : inkStream.getStatement().getColumns()) {
-                if (columnDef.getName().equals(column)) {
-                    if (columnDef.isPk()) {
-                        pkColumnsIndexs.add(i);
+        if (columnsArrys != null) {
+            for (int i = 0; i < columnsArrys.length; i++) {
+                String column = columnsArrys[i];
+                for (BaseColumnDef columnDef : inkStream.getStatement().getColumns()) {
+                    if (columnDef.getName().equals(column)) {
+                        if (columnDef.isPk()) {
+                            pkColumnsIndexs.add(i);
+                        }
+                        columns.add(columnDef);
+                        break;
                     }
-                    columns.add(columnDef);
-                    break;
                 }
             }
         }
@@ -137,6 +176,13 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
             if (ret == false) {
                 LOG.error("ERROR InsertRedisBolt : redisExecute : " + tuple.toString());
             }
+
+            //excute plugin.
+            for (RedisPlugin plugin : plugins) {
+                plugin.execute(shardedJedisPool, getJedisResource(), tuple);
+            }
+        } catch(Exception ex) {
+
         } finally {
             collector.ack(tuple);
             collector.emit(streamId, tuple.getValues());
@@ -184,6 +230,8 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
     }
 
     public boolean redisExecute(Tuple input) {
+        if (columns.size() == 0) return true;
+
         String key = generationRedisMainKey(input);
         ShardedJedis shardedJedis = null;
         try {
