@@ -40,11 +40,11 @@ public class GmpRedisLoader implements RedisPlugin {
 
             if ("session.start".equals(tuple.getStringByField("event.name"))) {
                 LOG.info("event.name : session.start : CACHE..");
-                String aceFlat = gmpRedisSerdeHelper.genAccFlat(appVlaues, "session.acc", tuple, "session.ts", "session.length");
+                String aceFlat = gmpRedisSerdeHelper.genAccFlat(appVlaues, "session.acc", tuple, "session.ts", "session_length");
                 if (aceFlat != null) {
                     appVlaues.put("session.acc", aceFlat);
                 }
-                String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(appVlaues, "session.history", tuple, "session.ts", "session.length", 7);
+                String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(appVlaues, "session.history", tuple, "session.ts", "session_length", 7);
                 if (historyFlat != null) {
                     appVlaues.put("session.history", historyFlat);
                 }
@@ -52,11 +52,11 @@ public class GmpRedisLoader implements RedisPlugin {
 
             if ("iap".equals(tuple.getStringByField("event.name"))) {
                 LOG.info("event.name : iap : REDIS CACHE..");
-                String aceFlat = gmpRedisSerdeHelper.genAccFlat(appVlaues, "purchase.acc", tuple, "purchase.ts", "purchase.length");
+                String aceFlat = gmpRedisSerdeHelper.genAccFlat(appVlaues, "purchase.acc", tuple, "purchase.ts", "purchase_length");
                 if (aceFlat != null) {
                     appVlaues.put("purchase.acc", aceFlat);
                 }
-                String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(appVlaues, "purchase.history", tuple, "purchase.ts", "purchase.length", 7);
+                String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(appVlaues, "purchase.history", tuple, "purchase.ts", "purchase_length", 7);
                 if (historyFlat != null) {
                     appVlaues.put("purchase.history", historyFlat);
                 }
