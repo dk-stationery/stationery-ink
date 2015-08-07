@@ -75,6 +75,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
             try {
                 klass = Class.forName(PLUGIN_PACKAGE_NAME + "." + pluginName);
                 RedisPlugin plugin = (RedisPlugin)klass.newInstance();
+                plugin.prepare();
                 plugins.add(plugin);
             } catch (Exception e) {
                 e.printStackTrace();
