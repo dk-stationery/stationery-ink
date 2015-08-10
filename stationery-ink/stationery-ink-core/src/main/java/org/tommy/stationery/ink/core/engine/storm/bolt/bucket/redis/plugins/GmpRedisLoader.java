@@ -43,10 +43,12 @@ public class GmpRedisLoader implements RedisPlugin {
                 if (aceFlat != null) {
                     appVlaues.put("session.acc", aceFlat);
                 }
+                LOG.info("REDIS : session.acc : " + APP_UID_KEY + " : " + aceFlat);
                 String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(appVlaues, "session.history", tuple, "session.ts", "session_length", "session_cnt", 7);
                 if (historyFlat != null) {
                     appVlaues.put("session.history", historyFlat);
                 }
+                LOG.info("REDIS : session.history : " + APP_UID_KEY + " : " + historyFlat);
             }
             if ("iap".equals(tuple.getStringByField("event.name"))) {
                 LOG.info("event.name : iap : REDIS CACHE..");
@@ -54,10 +56,12 @@ public class GmpRedisLoader implements RedisPlugin {
                 if (aceFlat != null) {
                     appVlaues.put("purchase.acc", aceFlat);
                 }
+                LOG.info("REDIS : purchase.acc : " + APP_UID_KEY + " : " + aceFlat);
                 String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(appVlaues, "purchase.history", tuple, "purchase.ts", "purchase_length", "purchase_cnt", 7);
                 if (historyFlat != null) {
                     appVlaues.put("purchase.history", historyFlat);
                 }
+                LOG.info("REDIS : purchase.history : " + APP_UID_KEY + " : " + historyFlat);
             }
             shardedJedis.hmset(APP_UID_KEY, appVlaues);
             LOG.info("GmpRedisLoader APP_UID_KEY : " + APP_UID_KEY);
