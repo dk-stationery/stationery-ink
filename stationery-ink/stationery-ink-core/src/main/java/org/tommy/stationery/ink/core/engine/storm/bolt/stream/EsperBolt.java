@@ -421,7 +421,7 @@ public class EsperBolt extends BaseRichBolt implements UpdateListener
                     val = event.get(fields.get(idx));
                     //if (val == null) return null;
                 } catch (Exception ex) {
-
+                    System.out.println("toTuple =====> exception" + ex.getMessage());
                 }
                 tuple.add(val);
             }

@@ -7,8 +7,13 @@ import backtype.storm.tuple.Tuple;
  */
 public class TupleUtil {
 
-    public static String getValue(Tuple tuple, String field) {
+    public static String getStringValue(Tuple tuple, String field) {
         if (tuple.getFields().contains(field) == false) return null;
         return tuple.getStringByField(field);
+    }
+
+    public static Long getLongValue(Tuple tuple, String field) {
+        if (tuple.getFields().contains(field) == false) return null;
+        return (Long)tuple.getValueByField(field);
     }
 }

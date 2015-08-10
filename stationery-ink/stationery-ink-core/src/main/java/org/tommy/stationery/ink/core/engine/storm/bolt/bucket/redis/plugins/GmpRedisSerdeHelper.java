@@ -33,13 +33,13 @@ public class GmpRedisSerdeHelper {
         }
     }
 
-    private String MapToString(NavigableMap<Long, Map<String, Long>> map, Long date, Long sum) {
+    private String MapToString(NavigableMap<Long, Map<String, Long>> map, Long date, Long sum, Long cnt) {
         boolean isFirstOp = false;
         if (map.containsKey(date) == false) {
             isFirstOp = true;
             Map<String, Long> subMap = new HashMap<String, Long>();
             subMap.put("sum", sum);
-            subMap.put("count", 1l);
+            subMap.put("count", cnt);
             map.put(date, subMap);
         }
 
@@ -47,7 +47,7 @@ public class GmpRedisSerdeHelper {
         String str = map.entrySet().parallelStream().map(v -> {
             if (finalIsFirstOp == false && v.getKey().equals(date)) {
                 v.getValue().put("sum", v.getValue().get("sum") + sum);
-                v.getValue().put("count", v.getValue().get("count") + 1);
+                v.getValue().put("count", v.getValue().get("count") + cnt);
             }
             return v;
         }).map(v -> {
@@ -79,33 +79,33 @@ public class GmpRedisSerdeHelper {
     }
 
 
-    public String genAccFlat(Map<String, String> appVlaues, String keyName, Tuple tuple, String tsField, String sumField) {
+    public String genAccFlat(Map<String, String> appVlaues, String keyName, Tuple tuple, String tsField, String sumField, String cntField) {
         //first,last,sum,count|,,,,
         String accFlat = "";
         if (appVlaues.containsKey(keyName)) {
             String sessionAcc = appVlaues.get(keyName);
             String[] sessionAccArr = sessionAcc.split("\\,");
-            if (TupleUtil.getValue(tuple, tsField) == null || TupleUtil.getValue(tuple, sumField) == null) {
+            if (TupleUtil.getStringValue(tuple, tsField) == null || TupleUtil.getLongValue(tuple, sumField) == null || TupleUtil.getLongValue(tuple, cntField) == null) {
                 return null;
             }
-            accFlat = sessionAccArr[0] + "," + tuple.getStringByField(tsField) + "," + (Long.valueOf(sessionAccArr[2]) + Long.valueOf(tuple.getStringByField(sumField)) + "," + (Long.valueOf(sessionAccArr[3]) + 1));
+            accFlat = sessionAccArr[0] + "," + tuple.getStringByField(tsField) + "," + (Long.valueOf(sessionAccArr[2]) + TupleUtil.getLongValue(tuple, sumField)) + "," + (Long.valueOf(sessionAccArr[3]) + TupleUtil.getLongValue(tuple, cntField));
         } else {
-            accFlat = tuple.getStringByField(tsField) + "," + tuple.getStringByField(tsField) + "," + tuple.getStringByField(sumField) + ",1";
+            accFlat = tuple.getStringByField(tsField) + "," + tuple.getStringByField(tsField) + "," + TupleUtil.getLongValue(tuple, sumField) + "," + TupleUtil.getLongValue(tuple, cntField);
         }
         return accFlat;
     }
 
-    public String genHistoryFlat(Map<String, String> appVlaues, String keyName, Tuple tuple, String tsField, String sumField, int limitSize) {
+    public String genHistoryFlat(Map<String, String> appVlaues, String keyName, Tuple tuple, String tsField, String sumField, String cntField, int limitSize) {
         String historyFlat = "";
         if (appVlaues.containsKey(keyName)) {
             String sessionHistory = appVlaues.get(keyName);
             NavigableMap<Long, Map<String, Long>> map = StringToMap(sessionHistory, 0, sessionHistoryIndexs, limitSize);
-            if (TupleUtil.getValue(tuple, tsField) == null || TupleUtil.getValue(tuple, sumField) == null) {
+            if (TupleUtil.getStringValue(tuple, tsField) == null || TupleUtil.getLongValue(tuple, sumField) == null  || TupleUtil.getLongValue(tuple, cntField) == null) {
                 return null;
             }
-            historyFlat = MapToString(map, Long.valueOf(tuple.getStringByField(tsField)), Long.valueOf((tuple.getStringByField(sumField))));
+            historyFlat = MapToString(map, Long.valueOf(tuple.getStringByField(tsField)), TupleUtil.getLongValue(tuple, sumField), TupleUtil.getLongValue(tuple, cntField));
         } else {
-            historyFlat = tuple.getStringByField(tsField) + "," + tuple.getStringByField(sumField) + ",1";
+            historyFlat = tuple.getStringByField(tsField) + "," + TupleUtil.getLongValue(tuple, sumField) + "," + TupleUtil.getLongValue(tuple, cntField);
         }
         return historyFlat;
     }
