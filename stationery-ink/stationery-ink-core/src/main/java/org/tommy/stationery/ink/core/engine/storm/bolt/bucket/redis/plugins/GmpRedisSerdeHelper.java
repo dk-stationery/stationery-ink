@@ -2,6 +2,9 @@ package org.tommy.stationery.ink.core.engine.storm.bolt.bucket.redis.plugins;
 
 import backtype.storm.tuple.Tuple;
 import org.tommy.stationery.ink.core.engine.utils.TupleUtil;
+import redis.clients.jedis.ShardedJedis;
+import redis.clients.jedis.ShardedJedisPool;
+import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,6 +15,23 @@ import java.util.stream.Collectors;
 public class GmpRedisSerdeHelper {
 
     Map<String, Integer> sessionHistoryIndexs = new HashMap<String, Integer>();
+
+    public ShardedJedis getJedisResource(ShardedJedisPool shardedJedisPool) {
+        ShardedJedis shardedJedis = null;
+        try {
+            shardedJedis = shardedJedisPool.getResource();
+        } catch (JedisConnectionException ex) {
+            if (shardedJedis != null) {
+                shardedJedisPool.returnBrokenResource(shardedJedis);
+                shardedJedis = shardedJedisPool.getResource();
+            }
+        } catch (Exception ex) {
+            if (shardedJedisPool != null) {
+                shardedJedisPool.returnResource(shardedJedis);
+            }
+        }
+        return shardedJedis;
+    }
 
     public GmpRedisSerdeHelper() {
         sessionHistoryIndexs.put("date", 0);

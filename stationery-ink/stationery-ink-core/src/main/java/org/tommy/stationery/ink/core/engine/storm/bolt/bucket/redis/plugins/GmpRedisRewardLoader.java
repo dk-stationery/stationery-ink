@@ -55,8 +55,11 @@ public class GmpRedisRewardLoader implements RedisPlugin  {
     }
 
     @Override
-    public boolean execute(ShardedJedisPool shardedJedisPool, ShardedJedis shardedJedis, Tuple tuple) throws Exception {
+    public boolean execute(ShardedJedisPool shardedJedisPool, Tuple tuple) throws Exception {
+        ShardedJedis shardedJedis = null;
         try {
+            shardedJedis = gmpRedisSerdeHelper.getJedisResource(shardedJedisPool);
+
             String eventName = tuple.getStringByField("event.name");
             String version = tuple.getStringByField("redis_cache_version");
             String callBackProxyServerUrl = tuple.getStringByField("callback_proxy_server_url");

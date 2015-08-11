@@ -180,7 +180,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
 
             //excute plugin.
             for (RedisPlugin plugin : plugins) {
-                plugin.execute(shardedJedisPool, getJedisResource(), tuple);
+                plugin.execute(shardedJedisPool, tuple);
             }
         } catch(Exception ex) {
 

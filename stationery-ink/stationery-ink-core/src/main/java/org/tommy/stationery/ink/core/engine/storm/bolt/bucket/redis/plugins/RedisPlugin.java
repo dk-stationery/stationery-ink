@@ -1,7 +1,6 @@
 package org.tommy.stationery.ink.core.engine.storm.bolt.bucket.redis.plugins;
 
 import backtype.storm.tuple.Tuple;
-import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
 /**
@@ -9,5 +8,5 @@ import redis.clients.jedis.ShardedJedisPool;
  */
 public interface RedisPlugin {
     public void prepare();
-    public boolean execute(ShardedJedisPool shardedJedisPool, ShardedJedis shardedJedis , Tuple tuple)  throws Exception;
+    public boolean execute(ShardedJedisPool shardedJedisPool, Tuple tuple)  throws Exception;
 }
