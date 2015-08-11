@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.tommy.stationery.ink.core.engine.utils.TupleUtil;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
+import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +37,7 @@ public class GmpRedisSumLoader implements RedisPlugin {
                 globalValues.put("gender", TupleUtil.getStringValue(tuple, "user.gender") == null ? "U" : TupleUtil.getStringValue(tuple, "user.gender"));
                 globalValues.put("agegrp", gmpRedisSerdeHelper.getAgeGroup(TupleUtil.getStringValue(tuple, "age_band")));
                 shardedJedis.hmset(GLOBAL_KEY, globalValues);
+                shardedJedis.expire(GLOBAL_KEY, 2592000);
             }
 
             String APP_UID_KEY = String.format("%s:%s:%s", TupleUtil.getStringValue(tuple, "app.client_id"), TupleUtil.getStringValue(tuple, "user.account_id"), version);
@@ -45,6 +47,7 @@ public class GmpRedisSumLoader implements RedisPlugin {
                     String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(sessionHistoryReal, tuple, "session.ts", "session_length", "session_cnt", 7);
                     if (historyFlat != null) {
                         shardedJedis.hset(APP_UID_KEY, "session.history.real", historyFlat);
+                        shardedJedis.expire(APP_UID_KEY, 2592000);
                         LOG.info("REDIS : session.history.real : " + APP_UID_KEY + " : " + historyFlat);
                         LOG.info("event.name : session.start : REDIS CACHED");
                     }
@@ -56,13 +59,19 @@ public class GmpRedisSumLoader implements RedisPlugin {
                     String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(purchaseHistoryReal, tuple, "purchase.ts", "purchase_length", "purchase_cnt", 7);
                     if (historyFlat != null) {
                         shardedJedis.hset(APP_UID_KEY, "purchase.history.real", historyFlat);
+                        shardedJedis.expire(APP_UID_KEY, 2592000);
                         LOG.info("REDIS : purchase.history.real : " + APP_UID_KEY + " : " + historyFlat);
                         LOG.info("event.name : purchase.start : REDIS CACHED");
                     }
                 }
                 break;
             }
-        } catch(Exception ex) {
+        } catch (JedisConnectionException ex) {
+            if (shardedJedis != null) {
+                shardedJedisPool.returnBrokenResource(shardedJedis);
+                shardedJedis = null;
+            }
+        } catch (Exception ex) {
             LOG.info("GmpRedisSumLoader ERROR : " + ex.getMessage());
         } finally {
             if (shardedJedis != null)

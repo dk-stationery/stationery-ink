@@ -1,11 +1,18 @@
 package org.tommy.stationery.ink.core.engine.storm.bolt.bucket.redis.plugins;
 
 import backtype.storm.tuple.Tuple;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.tommy.stationery.ink.core.engine.utils.TupleUtil;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,14 +30,40 @@ public class GmpRedisSerdeHelper {
         } catch (JedisConnectionException ex) {
             if (shardedJedis != null) {
                 shardedJedisPool.returnBrokenResource(shardedJedis);
+                shardedJedis = null;
                 shardedJedis = shardedJedisPool.getResource();
             }
-        } catch (Exception ex) {
+        }  catch (Exception ex) {
             if (shardedJedisPool != null) {
                 shardedJedisPool.returnResource(shardedJedis);
             }
         }
         return shardedJedis;
+    }
+
+    public void callbackHttp(String callBackProxyServerUrl) {
+        StringBuilder lines = new StringBuilder();
+        // HttpClient 생성
+        HttpClient httpclient = new DefaultHttpClient();
+        try {
+            // HttpGet생성
+            HttpGet httpget = new HttpGet(callBackProxyServerUrl);
+            HttpResponse response = httpclient.execute(httpget);
+            HttpEntity entity = response.getEntity();
+
+            if (entity != null) {
+                BufferedReader rd = new BufferedReader(new InputStreamReader(
+                        response.getEntity().getContent()));
+                String line = "";
+                while ((line = rd.readLine()) != null) {
+                    lines.append(line);
+                }
+            }
+            httpget.abort();
+            httpclient.getConnectionManager().shutdown();
+        } catch (Exception ex) {
+
+        }
     }
 
     public GmpRedisSerdeHelper() {
