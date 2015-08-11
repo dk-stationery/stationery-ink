@@ -64,7 +64,7 @@ public class GmpRedisSerdeHelper {
         }
 
         final boolean finalIsFirstOp = isFirstOp;
-        String str = map.entrySet().parallelStream().map(v -> {
+        String str = map.entrySet().stream().map(v -> {
             if (finalIsFirstOp == false && v.getKey().equals(date)) {
                 v.getValue().put("sum", v.getValue().get("sum") + sum);
                 v.getValue().put("count", v.getValue().get("count") + cnt);
@@ -85,7 +85,7 @@ public class GmpRedisSerdeHelper {
             strLists = strLists.subList(0, limitSize-1);
         }
 
-        strLists.parallelStream().map(k -> {
+        strLists.stream().map(k -> {
             String[] vals = k.split("\\,");
             return vals;
         }).forEach(k -> {
@@ -99,15 +99,16 @@ public class GmpRedisSerdeHelper {
     }
 
 
-    public String genAccFlat(Map<String, String> appVlaues, String keyName, Tuple tuple, String tsField, String sumField, String cntField) {
+    public String genAccFlat(String sessionAcc, Tuple tuple, String tsField, String sumField, String cntField) {
         //first,last,sum,count|,,,,
-        String accFlat = "";
-        if (appVlaues.containsKey(keyName)) {
-            String sessionAcc = appVlaues.get(keyName);
+        String accFlat = null;
+
+        if (TupleUtil.getStringValue(tuple, tsField) == null || TupleUtil.getLongValue(tuple, sumField) == null || TupleUtil.getLongValue(tuple, cntField) == null) {
+            return accFlat;
+        }
+
+        if (sessionAcc != null) {
             String[] sessionAccArr = sessionAcc.split("\\,");
-            if (TupleUtil.getStringValue(tuple, tsField) == null || TupleUtil.getLongValue(tuple, sumField) == null || TupleUtil.getLongValue(tuple, cntField) == null) {
-                return null;
-            }
             accFlat = sessionAccArr[0] + "," + tuple.getStringByField(tsField) + "," + (Long.valueOf(sessionAccArr[2]) + TupleUtil.getLongValue(tuple, sumField)) + "," + (Long.valueOf(sessionAccArr[3]) + TupleUtil.getLongValue(tuple, cntField));
         } else {
             accFlat = tuple.getStringByField(tsField) + "," + tuple.getStringByField(tsField) + "," + TupleUtil.getLongValue(tuple, sumField) + "," + TupleUtil.getLongValue(tuple, cntField);
@@ -115,14 +116,15 @@ public class GmpRedisSerdeHelper {
         return accFlat;
     }
 
-    public String genHistoryFlat(Map<String, String> appVlaues, String keyName, Tuple tuple, String tsField, String sumField, String cntField, int limitSize) {
-        String historyFlat = "";
-        if (appVlaues.containsKey(keyName)) {
-            String sessionHistory = appVlaues.get(keyName);
+    public String genHistoryFlat(String sessionHistory, Tuple tuple, String tsField, String sumField, String cntField, int limitSize) {
+        String historyFlat = null;
+
+        if (TupleUtil.getStringValue(tuple, tsField) == null || TupleUtil.getLongValue(tuple, sumField) == null  || TupleUtil.getLongValue(tuple, cntField) == null) {
+            return historyFlat;
+        }
+
+        if (sessionHistory != null) {
             NavigableMap<Long, Map<String, Long>> map = StringToMap(sessionHistory, 0, sessionHistoryIndexs, limitSize);
-            if (TupleUtil.getStringValue(tuple, tsField) == null || TupleUtil.getLongValue(tuple, sumField) == null  || TupleUtil.getLongValue(tuple, cntField) == null) {
-                return null;
-            }
             historyFlat = MapToString(map, Long.valueOf(tuple.getStringByField(tsField)), TupleUtil.getLongValue(tuple, sumField), TupleUtil.getLongValue(tuple, cntField));
         } else {
             historyFlat = tuple.getStringByField(tsField) + "," + TupleUtil.getLongValue(tuple, sumField) + "," + TupleUtil.getLongValue(tuple, cntField);

@@ -22,7 +22,7 @@ public class GmpRedisSumLoader implements RedisPlugin {
     }
 
 
-    public boolean execute(ShardedJedisPool shardedJedisPool, Tuple tuple) throws Exception {
+    public synchronized boolean execute(ShardedJedisPool shardedJedisPool, Tuple tuple) throws Exception {
         ShardedJedis shardedJedis = null;
         try {
             shardedJedis = gmpRedisSerdeHelper.getJedisResource(shardedJedisPool);
@@ -39,43 +39,29 @@ public class GmpRedisSumLoader implements RedisPlugin {
             }
 
             String APP_UID_KEY = String.format("%s:%s:%s", TupleUtil.getStringValue(tuple, "app.client_id"), TupleUtil.getStringValue(tuple, "user.account_id"), version);
-            Map<String, String> appVlaues = shardedJedis.hgetAll(APP_UID_KEY);
-
             switch(eventName) {
                 case "session.start": {
-                    LOG.info("event.name : session.start : CACHE..");
-
-                    String aceFlat = gmpRedisSerdeHelper.genAccFlat(appVlaues, "session.acc", tuple, "session.ts", "session_length", "session_cnt");
-                    if (aceFlat != null) {
-                        appVlaues.put("session.acc", aceFlat);
-                    }
-                    LOG.info("REDIS : session.acc : " + APP_UID_KEY + " : " + aceFlat);
-                    String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(appVlaues, "session.history", tuple, "session.ts", "session_length", "session_cnt", 7);
+                    String sessionHistoryReal = shardedJedis.hget(APP_UID_KEY, "session.history.real");
+                    String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(sessionHistoryReal, tuple, "session.ts", "session_length", "session_cnt", 7);
                     if (historyFlat != null) {
-                        appVlaues.put("session.history", historyFlat);
+                        shardedJedis.hset(APP_UID_KEY, "session.history.real", historyFlat);
+                        LOG.info("REDIS : session.history.real : " + APP_UID_KEY + " : " + historyFlat);
+                        LOG.info("event.name : session.start : REDIS CACHED");
                     }
-                    LOG.info("REDIS : session.history : " + APP_UID_KEY + " : " + historyFlat);
                 }
                 break;
                 case "iap": {
                     LOG.info("event.name : iap : REDIS CACHE..");
-                    String aceFlat = gmpRedisSerdeHelper.genAccFlat(appVlaues, "purchase.acc", tuple, "purchase.ts", "purchase_length", "purchase_cnt");
-                    if (aceFlat != null) {
-                        appVlaues.put("purchase.acc", aceFlat);
-                    }
-                    LOG.info("REDIS : purchase.acc : " + APP_UID_KEY + " : " + aceFlat);
-                    String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(appVlaues, "purchase.history", tuple, "purchase.ts", "purchase_length", "purchase_cnt", 7);
+                    String purchaseHistoryReal = shardedJedis.hget(APP_UID_KEY, "purchase.history.real");
+                    String historyFlat = gmpRedisSerdeHelper.genHistoryFlat(purchaseHistoryReal, tuple, "purchase.ts", "purchase_length", "purchase_cnt", 7);
                     if (historyFlat != null) {
-                        appVlaues.put("purchase.history", historyFlat);
+                        shardedJedis.hset(APP_UID_KEY, "purchase.history.real", historyFlat);
+                        LOG.info("REDIS : purchase.history.real : " + APP_UID_KEY + " : " + historyFlat);
+                        LOG.info("event.name : purchase.start : REDIS CACHED");
                     }
-                    LOG.info("REDIS : purchase.history : " + APP_UID_KEY + " : " + historyFlat);
                 }
                 break;
             }
-
-            shardedJedis.hmset(APP_UID_KEY, appVlaues);
-            LOG.info("GmpRedisSumLoader appVlaues : " + appVlaues);
-            LOG.info("GmpRedisSumLoader APP_UID_KEY : " + APP_UID_KEY);
         } catch(Exception ex) {
             LOG.info("GmpRedisSumLoader ERROR : " + ex.getMessage());
         } finally {
