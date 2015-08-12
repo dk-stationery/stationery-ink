@@ -97,7 +97,7 @@ public class RedisHelper {
             shardedJedis = getJedisResource();
             Long ret = shardedJedis.hset(key, field, value);
             shardedJedis.expire(key, expireTime);
-            LOG.info("* key : " + key + " ,field" + field + " , val : " + value + " = CACHED(HSET)");
+            LOG.info("* key : " + key + " ,field : " + field + " , val : " + value + " = CACHED(HSET)");
             return ret;
         } catch (JedisConnectionException ex) {
             if (shardedJedis != null) {

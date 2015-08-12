@@ -107,8 +107,8 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
         this.collector = outputCollector;
         this.columns = extractColumns();
-        plugins = redisPlugins(extractPluginNames());
         shardedJedisPool = shardedJedisPool();
+        plugins = redisPlugins(extractPluginNames());
     }
 
     private List<String> extractPluginNames() {
