@@ -75,7 +75,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
             try {
                 klass = Class.forName(PLUGIN_PACKAGE_NAME + "." + pluginName);
                 RedisPlugin plugin = (RedisPlugin)klass.newInstance();
-                plugin.prepare();
+                plugin.prepare(shardedJedisPool);
                 plugins.add(plugin);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -180,7 +180,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
 
             //excute plugin.
             for (RedisPlugin plugin : plugins) {
-                plugin.execute(shardedJedisPool, tuple);
+                plugin.execute(tuple);
             }
         } catch(Exception ex) {
 
