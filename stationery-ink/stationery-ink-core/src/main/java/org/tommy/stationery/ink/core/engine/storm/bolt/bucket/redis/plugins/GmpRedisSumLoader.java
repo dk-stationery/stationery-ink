@@ -100,8 +100,6 @@ public class GmpRedisSumLoader implements RedisPlugin {
             LOG.info("APP_UID_CACHE_KEY ERROR : " + ex.getMessage());
         }
 
-        Map<String, String> val = redisHelper.HALLGET(genAppUidCacheKey(tuple));
-        LOG.info("REDIS GLOBAL_CACHE_KEY =========> " + val);
         return true;
     }
 }
