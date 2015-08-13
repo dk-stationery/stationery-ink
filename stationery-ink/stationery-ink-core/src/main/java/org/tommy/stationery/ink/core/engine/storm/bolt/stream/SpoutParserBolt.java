@@ -28,6 +28,7 @@ public class SpoutParserBolt implements IRichBolt {
 
     private static final long serialVersionUID = -1757538850700317883L;
 
+    private static String _PAYLOAD_ = "_PAYLOAD_";
     public static Logger logger = LoggerFactory.getLogger(SpoutParserBolt.class);
 	private ObjectMapper objectMapper;
 	private OutputCollector collector;
@@ -58,18 +59,23 @@ public class SpoutParserBolt implements IRichBolt {
 	}
 
     public void logging(Map<String, String> mTuple, String timeKey) {
-        if (mTuple != null) logger.info("*INK_TIME  : " + (mTuple.get(timeKey) != null ? mTuple.get(timeKey) : "empty"));
+        if (mTuple != null && mTuple.get(timeKey)  != null) {
+            logger.info("*INK_TIME  : " + mTuple.get(timeKey));
+        }
     }
 
 	@Override
 	public void execute(Tuple tuple) {
 		try {
             Map<String, String> mTuple = null;
+            String payload = null;
             if ("bytes".equals(ROOT_NAME)) {
-                mTuple = getDecodedJsonTuple(Bytes.toString(tuple.getBinaryByField(ROOT_NAME)));
+                payload = Bytes.toString(tuple.getBinaryByField(ROOT_NAME));
+                mTuple = getDecodedJsonTuple(payload);
                 logging(mTuple, "@timestamp");
             } else {
-                mTuple = getDecodedJsonTuple(tuple.getStringByField(ROOT_NAME));
+                payload = tuple.getStringByField(ROOT_NAME);
+                mTuple = getDecodedJsonTuple(payload);
                 logging(mTuple, "timestamp");
             }
 
@@ -81,7 +87,14 @@ public class SpoutParserBolt implements IRichBolt {
 			Values valuse = new Values();
 
             for (BaseColumnDef columnDef : inkStream.getStatement().getColumns()) {
-                String val = mTuple.get(columnDef.getName());
+                String val = null;
+
+                if (_PAYLOAD_.equals(columnDef.getName())) {
+                    val = payload;
+                } else {
+                    val = mTuple.get(columnDef.getName());
+                }
+
                 ColumnDataTypeEnum type = ColumnDataTypeEnum.valueOf(columnDef.getType().getName());
                 if (type == null) {
                     type = ColumnDataTypeEnum.STRING;
@@ -97,7 +110,6 @@ public class SpoutParserBolt implements IRichBolt {
 
                 valuse.add(TypeConversionUtil.convertion(val, type));
             }
-
             collector.emit(tuple, valuse);
 		} catch (Exception e) {
             logger.error(e.getMessage());
@@ -153,7 +165,7 @@ public class SpoutParserBolt implements IRichBolt {
 			if (subNode.isValueNode()) {
 				m.put(parentFieldName + fieldName, subNode.asText());
 			} else if (subNode.isContainerNode()) {
-				iterateNode(subNode, fieldName + ".", m);
+				iterateNode(subNode, parentFieldName + fieldName + ".", m);
 			}
 		}
 	}

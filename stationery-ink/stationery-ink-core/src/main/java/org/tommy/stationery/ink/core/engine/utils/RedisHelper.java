@@ -111,6 +111,23 @@ public class RedisHelper {
         return null;
     }
 
+    public Map<String, String> HALLGET(String key) {
+        ShardedJedis shardedJedis = null;
+        try {
+            shardedJedis = getJedisResource();
+            return shardedJedis.hgetAll(key);
+        } catch (JedisConnectionException ex) {
+            if (shardedJedis != null) {
+                shardedJedisPool.returnBrokenResource(shardedJedis);
+                shardedJedis = null;
+            }
+        } finally {
+            if (shardedJedis != null)
+                shardedJedisPool.returnResource(shardedJedis);
+        }
+        return null;
+    }
+
     public String HGET(String key, String field) {
         ShardedJedis shardedJedis = null;
         try {
