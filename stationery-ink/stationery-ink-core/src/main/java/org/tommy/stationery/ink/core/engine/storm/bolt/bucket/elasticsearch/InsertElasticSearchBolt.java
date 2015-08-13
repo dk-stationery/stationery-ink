@@ -7,8 +7,6 @@ import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Tuple;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.ImmutableSettings;
-import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,8 +68,8 @@ public class InsertElasticSearchBolt implements IRichBolt, IBucketBolt {
         String elasticSearchHost = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.URL).getValue();
         Integer elasticSearchPort =  Integer.valueOf(MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.PORT).getValue());
         String elasticSearchCluster =  MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.CLUSTER).getValue();
-        Settings settings = ImmutableSettings.settingsBuilder().put("cluster.name", elasticSearchCluster).build();
-        client = new TransportClient(settings).addTransportAddress(new InetSocketTransportAddress(elasticSearchHost, elasticSearchPort));
+        //Settings settings = ImmutableSettings.settingsBuilder().put("cluster.name", elasticSearchCluster).build();
+        client = new TransportClient().addTransportAddress(new InetSocketTransportAddress(elasticSearchHost, elasticSearchPort));
 
         esIndexName = MetaFinderUtil.findMeta(inkStream.getStatement().getMetas(), MetaFieldEnum.TOPIC).getValue();
         esType = inkConfig.getString(SettingEnum.JOB_NAME);
