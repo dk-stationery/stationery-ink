@@ -17,7 +17,9 @@ public class GmpElasticLoader implements ElasticPlugin {
 
     @Override
     public synchronized boolean execute(Tuple tuple) throws Exception {
-        System.out.println("============ GmpElasticLoader ==========");
+        String payload = tuple.getStringByField("_PAYLOAD_");
+
+        System.out.println("============ GmpElasticLoader ==========" + payload);
         return true;
     }
 }
