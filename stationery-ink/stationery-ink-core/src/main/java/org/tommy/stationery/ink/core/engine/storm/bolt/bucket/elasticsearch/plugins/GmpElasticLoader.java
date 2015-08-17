@@ -51,7 +51,10 @@ public class GmpElasticLoader implements ElasticPlugin {
         });
 
         String eventName = log.event.name;
+        if (eventName == null) return false;
+
         String dt = log.dt;
+        if (dt == null) return false;
 
         BulkRequestBuilder bulkRequestBuilder = client.prepareBulk();
 
@@ -61,42 +64,46 @@ public class GmpElasticLoader implements ElasticPlugin {
                     .setScript(CTX_SOURCE + "user_key=user_key;").setUpsert("user_key", log.user_key));
         }
 
-        if (log.device != null) {
+        if (log.user_key != null && log.device != null) {
             bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
                     .addScriptParam("device", log.device)
                     .setScript(CTX_SOURCE + "device=device;").setUpsert("device", log.device));
         }
 
-        if ("app.install".equals(log.event)) {
+        if ("app.install".equals(eventName) && log.user_key != null && dt != null) {
             String appKey = log.app.get("key");
             bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
                     .addScriptParam("dt", dt)
                     .setScript(CTX_SOURCE + appKey + "=dt;").setUpsert("dt", dt));
         }
 
-        String gender = log.event.profile.get("gender").toString();
-        String agegrp = log.event.profile.get("agegrp").toString();
-        if (gender != null && agegrp != null) {
-            bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
-                    .addScriptParam("gender", gender)
-                    .addScriptParam("agegrp", agegrp)
-                    .setScript(CTX_SOURCE + "gender=gender;" + CTX_SOURCE + "agegrp=agegrp;").setUpsert("gender", gender, "agegrp", agegrp));
+        if ("profile".equals(eventName)) {
+            if (log.event.profile == null) return false;
+            String gender = log.event.profile.get("gender") == null ? null : log.event.profile.get("gender").toString();
+            String agegrp = log.event.profile.get("agegrp") == null ? null : log.event.profile.get("agegrp").toString();
+            if (gender != null && agegrp != null) {
+                bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
+                        .addScriptParam("gender", gender)
+                        .addScriptParam("agegrp", agegrp)
+                        .setScript(CTX_SOURCE + "gender=gender;" + CTX_SOURCE + "agegrp=agegrp;").setUpsert("gender", gender, "agegrp", agegrp));
+            }
         }
 
+        if (log.app != null && log.event != null && log.event.user_status != null) {
+            String appKey = log.app.get("key")  == null ? null : log.app.get("key");
+            Object user_status = log.event.user_status;
 
-        String appKey = log.app.get("key");
-        Object user_status = log.event.user_status;
+            if (appKey != null && user_status != null) {
+                bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
+                        .addScriptParam("user_status", user_status)
+                        .setScript(CTX_SOURCE + appKey + ".user_status=user_status;").setUpsert(appKey + ".user_status", user_status));
 
-        if (appKey != null && user_status != null) {
-            bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
-                    .addScriptParam("user_status", user_status)
-                    .setScript(CTX_SOURCE + appKey + ".user_status=user_status;").setUpsert(appKey + ".user_status", user_status));
-
-            String user_id = log.app.get("user_id");
-            if (user_id != null) {
-                bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, "user", log.user_key)
-                        .addScriptParam("user_id", user_id)
-                        .setScript(CTX_SOURCE + appKey + ".user_id=user_id;").setUpsert(appKey + ".user_id", user_id));
+                String user_id = log.app.get("user_id");
+                if (user_id != null) {
+                    bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, "user", log.user_key)
+                            .addScriptParam("user_id", user_id)
+                            .setScript(CTX_SOURCE + appKey + ".user_id=user_id;").setUpsert(appKey + ".user_id", user_id));
+                }
             }
         }
 
