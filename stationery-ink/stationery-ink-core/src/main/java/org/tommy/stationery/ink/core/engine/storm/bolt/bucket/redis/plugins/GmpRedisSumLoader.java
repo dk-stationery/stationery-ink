@@ -27,13 +27,13 @@ public class GmpRedisSumLoader implements RedisPlugin {
     }
 
     public String genGlobalCacheKey(Tuple tuple) {
-        String globalCacheKey = String.format("GLOBAL:%s:%s", TupleUtil.getStringValue(tuple, "uid"), tuple.getStringByField("redis_cache_version"));
+        String globalCacheKey = String.format("GLOBAL:%s:%s", TupleUtil.getStringValue(tuple, "user_key"), tuple.getStringByField("redis_cache_version"));
         LOG.info("* GLOBAL_CACHE_KEY : " + globalCacheKey);
         return globalCacheKey;
     }
 
     public String genAppUidCacheKey(Tuple tuple) {
-        String appUidCacheKey = String.format("%s:%s:%s", TupleUtil.getStringValue(tuple, "app.id"), TupleUtil.getStringValue(tuple, "uid"), tuple.getStringByField("redis_cache_version"));
+        String appUidCacheKey = String.format("%s:%s:%s", TupleUtil.getStringValue(tuple, "app.key"), TupleUtil.getStringValue(tuple, "user_key"), tuple.getStringByField("redis_cache_version"));
         LOG.info("* APP_UID_CACHE_KEY : " + appUidCacheKey);
         return appUidCacheKey;
     }
@@ -59,7 +59,7 @@ public class GmpRedisSumLoader implements RedisPlugin {
             //app.installed
             if ("app.install".equals(eventName)) {
                 String appInstalledReal = redisHelper.HGET(GLOBAL_CACHE_KEY, "app.installed");
-                String appInstallFlat = redisSerdeHelper.genClientIdAndDtHistoryFlat(appInstalledReal, tuple, "dt", "app.client_id", 100);
+                String appInstallFlat = redisSerdeHelper.genClientIdAndDtHistoryFlat(appInstalledReal, tuple, "dt", "app.key", 100);
                 if (appInstallFlat != null) {
                     redisHelper.HSET(GLOBAL_CACHE_KEY, "app.installed", appInstallFlat, GLOBAL_CACHE_EXPIRE_TIME);
                 }
@@ -67,7 +67,7 @@ public class GmpRedisSumLoader implements RedisPlugin {
 
             //app.active
             String appActiveReal = redisHelper.HGET(GLOBAL_CACHE_KEY, "app.active");
-            String appActiveFlat = redisSerdeHelper.genClientIdAndDtHistoryFlat(appActiveReal, tuple, "dt", "app.client_id", 100);
+            String appActiveFlat = redisSerdeHelper.genClientIdAndDtHistoryFlat(appActiveReal, tuple, "dt", "app.key", 100);
             if (appActiveFlat != null) {
                 redisHelper.HSET(GLOBAL_CACHE_KEY, "app.active", appActiveFlat, GLOBAL_CACHE_EXPIRE_TIME);
             }

@@ -156,7 +156,7 @@ public class ProtocolDummy {
 
     public static void main(String[] args) throws Exception {
 
-        for (int i=0;i<100;i++) {
+        for (int i=0;i<100000;i++) {
 
             ObjectMapper objectMapper1 = new ObjectMapper();
             String str1 = objectMapper1.writeValueAsString(protocol("g", "app.status_update"));
