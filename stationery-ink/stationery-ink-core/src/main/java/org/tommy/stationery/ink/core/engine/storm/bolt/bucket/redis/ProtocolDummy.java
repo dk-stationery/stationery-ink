@@ -7,7 +7,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -59,6 +58,8 @@ public class ProtocolDummy {
         return "iOS";
     }
 
+    public static int ran = 0;
+
     public static String randEventName() {
         String[] events = new String[]{"session.start", "session.stop", "campaign.vimp", "campaign.click", "app.install", "app.update", "app.status_update", "conversion", "iap"};
         return events[0];
@@ -74,11 +75,11 @@ public class ProtocolDummy {
         return events[0];
     }
 
-    public static void main(String[] args) throws Exception {
+    public static Map<String, Object> protocol(String userPrefix, String eventName) {
         String seedString = "asaa";
 
         Map<String, Object> protocol = new HashMap<String, Object>();
-        protocol.put("uid", "1");
+        protocol.put("user_key", userPrefix + (ran++));
         protocol.put("dt", "20150705");
         Map<String, String> device = new HashMap<String, String>();
         device.put("id", randIMMutableStringVal(seedString));
@@ -97,7 +98,7 @@ public class ProtocolDummy {
         app.put("user_id", "user_id1");
         app.put("package_name", "com.daumkakao.gmp.tester" + randStringChar());
         app.put("version", "1.0");
-        app.put("client_id", randIMMutableStringVal(seedString + "client_id"));
+        app.put("key", "appkey_aa3");
         protocol.put("app", app);
 
         Map<String, String> sdk = new HashMap<String, String>();
@@ -125,11 +126,9 @@ public class ProtocolDummy {
 
 
         Map<String, Object> event = new HashMap<String, Object>();
-        event.put("name", "session.start");
+        event.put("name", eventName);
         event.put("profile", profile);
         event.put("iap", iap);
-        protocol.put("event", event);
-
 
         if ("campaign.vimp".equals(event.get("name")) || "campaign.click".equals(event.get("name")) || "iap".equals(event.get("name")) || "conversion".equals(event.get("name"))) {
             Map<String, String> ask = new HashMap<String, String>();
@@ -143,23 +142,26 @@ public class ProtocolDummy {
         if ("app.status_update".equals(event.get("name"))) {
             Map<String, String> userStatus = new HashMap<String, String>();
             userStatus.put("user_id", randIMMutableStringVal(seedString) + "_user_id");
-
+            userStatus.put("dia", "5");
+            event.put("user_status", userStatus);
         }
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        String str = objectMapper.writeValueAsString(protocol);
-
-        Map<String, Object> aa = objectMapper.readValue(str, new TypeReference<HashMap<String, Object>>() {
-        });
+        protocol.put("event", event);
 
 
-        System.out.println(((Map<String, Object>) ((Map<String, Object>) aa.get("event")).get("profile")).get("gender"));
 
 
-        System.out.println(str);
-        System.out.println(((Map<String, Object>)aa.get("event")).get("name"));
+        return protocol;
+    }
+
+    public static void main(String[] args) throws Exception {
+
         for (int i=0;i<100;i++) {
-            ProtocolDummy.call("http://fox614.dakao.io/internal/collect/sdk_event?log="+ URLEncoder.encode(str));
+
+            ObjectMapper objectMapper1 = new ObjectMapper();
+            String str1 = objectMapper1.writeValueAsString(protocol("g", "app.status_update"));
+
+            ProtocolDummy.call("http://fox614.dakao.io/internal/collect/sdk_event?log="+ URLEncoder.encode(str1));
             //ProtocolDummy.call("http://localhost:8080/internal/collect/sdk_event?log="+ URLEncoder.encode(str));
         }
     }

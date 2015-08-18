@@ -5,13 +5,18 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.client.Client;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by kun7788 on 15. 8. 13..
  */
 public class GmpElasticLoader implements ElasticPlugin {
+    private static final Logger LOG = LoggerFactory.getLogger(GmpElasticLoader.class);
+
     private static class Event {
         public String name;
         public Map<String, Object> ask;
@@ -33,7 +38,7 @@ public class GmpElasticLoader implements ElasticPlugin {
 
     Client client;
 
-    private static String APP_INDEX_NAME = "test-apps";
+    private static String APP_INDEX_NAME = "test-apps2";
     private static String APP_INDEX_TYPE = "user";
     private static String CTX_SOURCE = "ctx._source.";
     private ObjectMapper objectMapper = new ObjectMapper();
@@ -47,6 +52,7 @@ public class GmpElasticLoader implements ElasticPlugin {
     @Override
     public synchronized boolean execute(Tuple tuple) throws Exception {
         String payload = tuple.getStringByField("_PAYLOAD_");
+
         Log log = objectMapper.readValue(payload, new TypeReference<Log>() {
         });
 
@@ -56,54 +62,63 @@ public class GmpElasticLoader implements ElasticPlugin {
         String dt = log.dt;
         if (dt == null) return false;
 
+
         BulkRequestBuilder bulkRequestBuilder = client.prepareBulk();
 
         if (log.user_key != null) {
             bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
-                    .addScriptParam("user_key", log.user_key)
-                    .setScript(CTX_SOURCE + "user_key=user_key;").setUpsert("user_key", log.user_key));
+                    .setDoc("user_key", log.user_key).setDocAsUpsert(true));
         }
 
         if (log.user_key != null && log.device != null) {
             bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
-                    .addScriptParam("device", log.device)
-                    .setScript(CTX_SOURCE + "device=device;").setUpsert("device", log.device));
+                    .setDoc("device", log.device).setDocAsUpsert(true));
         }
 
         if ("app.install".equals(eventName) && log.user_key != null && dt != null) {
             String appKey = log.app.get("key");
+
+            Map<String, Map<String, Object>> root = new HashMap<String, Map<String, Object>>();
+            Map<String, Object> v = new HashMap<>();
+            v.put(appKey, dt);
+            root.put("installed_apps", v);
+
             bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
-                    .addScriptParam("dt", dt)
-                    .setScript(CTX_SOURCE + appKey + "=dt;").setUpsert("dt", dt));
+                    .setDoc(root).setDocAsUpsert(true));
         }
 
         if ("profile".equals(eventName)) {
             if (log.event.profile == null) return false;
             String gender = log.event.profile.get("gender") == null ? null : log.event.profile.get("gender").toString();
             String agegrp = log.event.profile.get("agegrp") == null ? null : log.event.profile.get("agegrp").toString();
+
             if (gender != null && agegrp != null) {
+
+                Map<String, Map<String, Object>> root = new HashMap<String, Map<String, Object>>();
+                Map<String, Object> v = new HashMap<>();
+                v.put("gender", gender);
+                v.put("agegrp", agegrp);
+                root.put("profile", v);
+
                 bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
-                        .addScriptParam("gender", gender)
-                        .addScriptParam("agegrp", agegrp)
-                        .setScript(CTX_SOURCE + "gender=gender;" + CTX_SOURCE + "agegrp=agegrp;").setUpsert("gender", gender, "agegrp", agegrp));
+                        .setDoc(root).setDocAsUpsert(true));
             }
         }
 
-        if (log.app != null && log.event != null && log.event.user_status != null) {
+        if ("app.status_update".equals(eventName) && log.app != null && log.event != null && log.event.user_status != null) {
+
             String appKey = log.app.get("key")  == null ? null : log.app.get("key");
             Object user_status = log.event.user_status;
 
             if (appKey != null && user_status != null) {
-                bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
-                        .addScriptParam("user_status", user_status)
-                        .setScript(CTX_SOURCE + appKey + ".user_status=user_status;").setUpsert(appKey + ".user_status", user_status));
 
-                String user_id = log.app.get("user_id");
-                if (user_id != null) {
-                    bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, "user", log.user_key)
-                            .addScriptParam("user_id", user_id)
-                            .setScript(CTX_SOURCE + appKey + ".user_id=user_id;").setUpsert(appKey + ".user_id", user_id));
-                }
+                Map<String, Map<String, Object>> root = new HashMap<String, Map<String, Object>>();
+                Map<String, Object> v = new HashMap<>();
+                v.put("user_status", user_status);
+                root.put(appKey, v);
+
+                bulkRequestBuilder.add(client.prepareUpdate(APP_INDEX_NAME, APP_INDEX_TYPE, log.user_key)
+                        .setDoc(root).setDocAsUpsert(true));
             }
         }
 
