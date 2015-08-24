@@ -79,8 +79,8 @@ public class ProtocolDummy {
         String seedString = "asaa";
 
         Map<String, Object> protocol = new HashMap<String, Object>();
-        protocol.put("user_key", userPrefix + (ran++));
-        protocol.put("dt", "20150705");
+        protocol.put("user_key", userPrefix + /*(ran++ % 10)*/ "1");
+        protocol.put("dt", "20150709");
         Map<String, String> device = new HashMap<String, String>();
         device.put("id", randIMMutableStringVal(seedString));
         device.put("ifa", randIMMutableStringVal(randIMMutableStringVal(seedString)));
@@ -156,12 +156,14 @@ public class ProtocolDummy {
 
     public static void main(String[] args) throws Exception {
 
-        for (int i=0;i<100000;i++) {
+        for (int i=0;i<1000;i++) {
 
             ObjectMapper objectMapper1 = new ObjectMapper();
-            String str1 = objectMapper1.writeValueAsString(protocol("g", "app.status_update"));
+            String str1 = objectMapper1.writeValueAsString(protocol("g", "session.start"));
 
-            ProtocolDummy.call("http://fox614.dakao.io/internal/collect/sdk_event?log="+ URLEncoder.encode(str1));
+            //System.out.println(str1);
+            ProtocolDummy.call("http://fox614.dakao.io/internal/collect/sdk_event?log=" + URLEncoder.encode(str1));
+
             //ProtocolDummy.call("http://localhost:8080/internal/collect/sdk_event?log="+ URLEncoder.encode(str));
         }
     }

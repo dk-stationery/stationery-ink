@@ -81,7 +81,7 @@ public class CoordinateConfig {
 				brokerHost
 				, topicMeta.getValue()
 				, "/brokers"
-				, inkConfig.getString(SettingEnum.JOB_NAME)+"_"+topicMeta.getValue()/*+ "_VERSION_" + System.currentTimeMillis()*/
+				, inkConfig.getString(SettingEnum.JOB_NAME)+"_"+topicMeta.getValue() +  "_VERSION_" + System.currentTimeMillis()
 		);
 		
 		spoutConfig.bufferSizeBytes = 10485760;

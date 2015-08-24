@@ -27,20 +27,19 @@ public class GmpRedisSumLoader implements RedisPlugin {
     }
 
     public String genGlobalCacheKey(Tuple tuple) {
-        String globalCacheKey = String.format("GLOBAL:%s:%s", TupleUtil.getStringValue(tuple, "user_key"), tuple.getStringByField("redis_cache_version"));
+        String globalCacheKey = String.format("GLOBAL:%s:%s", TupleUtil.getStringValue(tuple, "user_key"), TupleUtil.getStringValue(tuple, "redis_cache_version"));
         LOG.info("* GLOBAL_CACHE_KEY : " + globalCacheKey);
         return globalCacheKey;
     }
 
     public String genAppUidCacheKey(Tuple tuple) {
-        String appUidCacheKey = String.format("%s:%s:%s", TupleUtil.getStringValue(tuple, "app.key"), TupleUtil.getStringValue(tuple, "user_key"), tuple.getStringByField("redis_cache_version"));
+        String appUidCacheKey = String.format("%s:%s:%s", TupleUtil.getStringValue(tuple, "app.key"), TupleUtil.getStringValue(tuple, "user_key"), TupleUtil.getStringValue(tuple, "redis_cache_version"));
         LOG.info("* APP_UID_CACHE_KEY : " + appUidCacheKey);
         return appUidCacheKey;
     }
 
     public synchronized boolean execute(Tuple tuple) throws Exception {
         String eventName = tuple.getStringByField("event.name");
-
         try {
             Map<String, String> globalValues = new HashMap<String, String>();
             String GLOBAL_CACHE_KEY = genGlobalCacheKey(tuple);
@@ -80,6 +79,7 @@ public class GmpRedisSumLoader implements RedisPlugin {
                 case "session.start": {
                     String APP_UID_CACHE_KEY = genAppUidCacheKey(tuple);
                     String sessionHistoryReal = redisHelper.HGET(APP_UID_CACHE_KEY, "session.history.real");
+
                     String historyFlat = redisSerdeHelper.genHistoryFlat(sessionHistoryReal, tuple, "dt", "session_sum", "session_cnt", 7);
                     if (historyFlat != null) {
                         redisHelper.HSET(APP_UID_CACHE_KEY, "session.history.real", historyFlat, APP_CACHE_EXPIRE_TIME);

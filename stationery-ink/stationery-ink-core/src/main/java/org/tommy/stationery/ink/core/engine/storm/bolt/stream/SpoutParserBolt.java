@@ -80,7 +80,6 @@ public class SpoutParserBolt implements IRichBolt {
             }
 
             if (mTuple == null) {
-                collector.ack(tuple);
                 return;
             }
 

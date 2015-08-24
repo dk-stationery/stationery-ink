@@ -1,5 +1,10 @@
 package org.tommy.stationery.ink.core.engine.storm.bolt.bucket.redis;
 
+import org.apache.commons.pool.impl.GenericObjectPool;
+import redis.clients.jedis.JedisShardInfo;
+import redis.clients.jedis.ShardedJedis;
+import redis.clients.jedis.ShardedJedisPool;
+
 import java.util.*;
 
 /**
@@ -8,31 +13,33 @@ import java.util.*;
 public class Test1 {
     private static Map<String, Integer> appInstalledIndexs = new HashMap<String, Integer>();
 
-    public static NavigableMap<Long, Map<String, String>> StringToMapV2(String str, int keyNameIndex, Map<String, Integer> indexs, int limitSize) {
-        NavigableMap<Long, Map<String, String>> map = new TreeMap<Long, Map<String, String>>();
+    public static List<JedisShardInfo> generateShardInfo(String hosts, String password, int timeout) {
+        List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
+        for (String hostname : hosts.split(",")) {
+            int port = hostname.indexOf(":") == -1 ? 6379 : Integer.parseInt(hostname.split(":")[1]);
+            String host = hostname.indexOf(":") == -1 ? hostname : hostname.split(":")[0];
 
-        List<String> strLists = Arrays.asList(str.split("\\|"));
-        if (strLists.size() > limitSize) {
-            strLists = strLists.subList(0, limitSize-1);
+            System.out.println(host + " : " + port);
+            JedisShardInfo si = new JedisShardInfo(host, port);
+            si.setTimeout(timeout);
+            shards.add(si);
         }
-
-        strLists.stream().map(k -> {
-            String[] vals = k.split("\\,");
-            return vals;
-        }).forEach(k -> {
-            Map<String, String> data = new HashMap<String, String>();
-            indexs.entrySet().forEach(e -> {
-                data.put(e.getKey(), k[e.getValue()]);
-            });
-            map.put(Long.valueOf(k[keyNameIndex]), data);
-        });
-        return map.descendingMap();
+        return shards;
     }
 
-    public static void main(String[] args) {
-        appInstalledIndexs.put("clientId", 0);
-        appInstalledIndexs.put("date", 1);
 
-       // String appInstalledFlat = Test1.MapToStringV2(map, TupleUtil.getLongValue(tuple, tsField), TupleUtil.getStringValue(tuple, clientIdField));
+    public static void main(String[] args) {
+        List<JedisShardInfo> shards = generateShardInfo(
+                "puma047.dakao.io:6379"
+                , null
+                , 10000
+        );
+        GenericObjectPool.Config config = new GenericObjectPool.Config();
+        config.whenExhaustedAction = GenericObjectPool.WHEN_EXHAUSTED_GROW;
+        config.maxActive = 20;
+        ShardedJedisPool shardedJedisPool = new ShardedJedisPool(config, shards);
+
+        ShardedJedis shardedJedis = shardedJedisPool.getResource();
+        System.out.println(shardedJedis.hgetAll("appkey_aa3:g1:v61"));
     }
 }

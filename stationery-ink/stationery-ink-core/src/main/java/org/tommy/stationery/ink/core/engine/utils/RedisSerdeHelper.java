@@ -159,10 +159,18 @@ public class RedisSerdeHelper {
     public String genHistoryFlat(String sessionHistory, Tuple tuple, String tsField, String sumField, String cntField, int limitSize) {
         String historyFlat = null;
 
+        System.out.println("AAAAA-1 ======== " + tuple.getValues());
+        System.out.println("AAAAA-1-0 ======== " + tuple.getFields());
+        System.out.println("AAAAA-1-1 ========" + tsField + " , " + TupleUtil.getStringValue(tuple, tsField));
+        System.out.println("AAAAA-1-2 ========" + sumField + " , " + TupleUtil.getLongValue(tuple, sumField));
+        System.out.println("AAAAA-1-3 ========" + cntField + " , " + TupleUtil.getLongValue(tuple, cntField));
+
         if (TupleUtil.getStringValue(tuple, tsField) == null || TupleUtil.getLongValue(tuple, sumField) == null  || TupleUtil.getLongValue(tuple, cntField) == null) {
             return historyFlat;
         }
+        System.out.println("AAAAA-2 ========");
         if (sessionHistory != null) {
+            System.out.println("AAAAA-3 ========");
             NavigableMap<Long, Map<String, Long>> map = StringToMap(sessionHistory, 0, sessionHistoryIndexs, limitSize);
             historyFlat = MapToString(map, TupleUtil.getLongValue(tuple, tsField), TupleUtil.getLongValue(tuple, sumField), TupleUtil.getLongValue(tuple, cntField));
         } else {
