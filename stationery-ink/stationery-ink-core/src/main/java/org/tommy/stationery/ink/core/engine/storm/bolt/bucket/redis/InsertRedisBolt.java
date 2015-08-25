@@ -38,7 +38,6 @@ import java.util.regex.Pattern;
  * Created by kun7788 on 15. 7. 21..
  */
 public class InsertRedisBolt implements IRichBolt, IBucketBolt {
-    private static String PLUGIN_PACKAGE_NAME = "org.tommy.stationery.ink.core.engine.storm.bolt.bucket.redis.plugins";
     private ShardedJedisPool shardedJedisPool;
     private static final Logger LOG = LoggerFactory.getLogger(InsertRedisBolt.class);
     private OutputCollector collector;
@@ -73,7 +72,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
         for (String pluginName: pluginNames) {
             Class klass = null;
             try {
-                klass = Class.forName(PLUGIN_PACKAGE_NAME + "." + pluginName);
+                klass = Class.forName(pluginName);
                 RedisPlugin plugin = (RedisPlugin)klass.newInstance();
                 plugin.prepare(shardedJedisPool);
                 plugins.add(plugin);
@@ -183,7 +182,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
                 plugin.execute(tuple);
             }
         } catch(Exception ex) {
-
+            LOG.error("* InsertRedisBolt ERROR : " + ex.getMessage());
         } finally {
             collector.ack(tuple);
             collector.emit(streamId, tuple.getValues());

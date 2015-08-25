@@ -36,7 +36,6 @@ public class InsertElasticSearchBolt implements IRichBolt, IBucketBolt {
 
     private static final Logger LOG = LoggerFactory.getLogger(InsertElasticSearchBolt.class);
 
-    private static String PLUGIN_PACKAGE_NAME = "org.tommy.stationery.ink.core.engine.storm.bolt.bucket.elasticsearch.plugins";
     private OutputCollector collector;
     private Client client;
     private Source inkSource;
@@ -133,7 +132,7 @@ public class InsertElasticSearchBolt implements IRichBolt, IBucketBolt {
         for (String pluginName: pluginNames) {
             Class klass = null;
             try {
-                klass = Class.forName(PLUGIN_PACKAGE_NAME + "." + pluginName);
+                klass = Class.forName(pluginName);
                 ElasticPlugin plugin = (ElasticPlugin)klass.newInstance();
                 plugin.prepare(client);
                 plugins.add(plugin);
