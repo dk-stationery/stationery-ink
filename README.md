@@ -474,7 +474,6 @@ ex>
 
 ![GitHub Logo](/screenshot3.png)
 ![GitHub Logo](/screenshot2.png)
-![GitHub Logo](/screenshot8.png)
 ![GitHub Logo](/screenshot4.png)
 ![GitHub Logo](/screenshot5.png)
 ![GitHub Logo](/screenshot6.png)
