@@ -354,6 +354,18 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 			[:DT]
 			,[:MKRSEQ] 
 			,[:SCORE] );  
+		
+		//attach plugin.	
+		upsert into [TEST_REPORT:phoenix](
+			DT
+			,MKRSEQ
+			,SCORE
+		) values( 
+			[:DT]
+			,[:MKRSEQ] 
+			,[:SCORE] ) 	
+		plugins('org.tommy.plugin.processor.ink.TestProcessor');
+		
 
 3. lookup :  
 > : lookup - generic sql select syntax.  
