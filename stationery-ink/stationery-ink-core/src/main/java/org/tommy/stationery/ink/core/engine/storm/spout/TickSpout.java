@@ -47,6 +47,10 @@ public class TickSpout  extends BaseRichSpout {
 
     @Override
     public void nextTuple() {
+        if (Integer.MAX_VALUE >= tickCnt) {
+            tickCnt = 0;
+            LOG.info("tickCnt is reset (cause exceed max_value)");
+        }
         tickCnt++;
         List<Object> tuples = new ArrayList<Object>();
         String body = "{\"str\":" + "{\"tickCnt\":" + "\"" + tickCnt + "\"}}";
