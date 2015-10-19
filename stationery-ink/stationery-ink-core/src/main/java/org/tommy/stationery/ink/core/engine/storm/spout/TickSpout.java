@@ -7,6 +7,8 @@ import backtype.storm.topology.base.BaseRichSpout;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.utils.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tommy.stationery.ink.core.util.MetaFinderUtil;
 import org.tommy.stationery.ink.domain.BaseMetaDef;
 import org.tommy.stationery.ink.domain.meta.Stream;
@@ -21,6 +23,8 @@ import java.util.Map;
  * Created by tommy on 2015. 10. 19..
  */
 public class TickSpout  extends BaseRichSpout {
+
+    private static final Logger LOG = LoggerFactory.getLogger(TickSpout.class);
 
     private SpoutOutputCollector collector;
     private int tickSEC;
@@ -45,9 +49,9 @@ public class TickSpout  extends BaseRichSpout {
     public void nextTuple() {
         tickCnt++;
         List<Object> tuples = new ArrayList<Object>();
-        Map<String, String> tuple = new HashMap<String, String>();
-        tuple.put("str", "{" + "\"tickCnt\":" + "\"" + tickCnt + "\"");
-        tuples.add(tuple);
+        String body = "{\"str\":" + "{\"tickCnt\":" + "\"" + tickCnt + "\"}}";
+        tuples.add(body);
+        LOG.info(body);
         collector.emit(tuples);
         Utils.sleep(tickCnt * 1000);
     }
