@@ -6,6 +6,7 @@ package org.tommy.stationery.ink.enums;
 public enum SourceCatalogEnum {
     KAFKA("KAFKA"),
     RABBITMQ("RABBITMQ"),
+    TICK("TICK"),
     HDFS("HDFS"),
     ELASTICSEARCH("ELASTICSEARCH"),
     JDBC("JDBC"),

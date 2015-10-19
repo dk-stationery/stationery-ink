@@ -15,6 +15,7 @@ public enum MetaFieldEnum {
     MINPOOLSIZE("MINPOOLSIZE"),
     VHOST("VHOST"),
     CLUSTER("CLUSTER"),
+    TICKSEC("TICKSEC"),
     PORT("PORT");
     private String name;
 

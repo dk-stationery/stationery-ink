@@ -17,6 +17,7 @@ import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.rest.InsertRestBol
 import org.tommy.stationery.ink.core.engine.storm.bolt.lookup.LookupJDBCBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.stream.EsperBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.stream.SpoutParserBolt;
+import org.tommy.stationery.ink.core.engine.storm.spout.TickSpout;
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.core.util.LinqQuery;
 import org.tommy.stationery.ink.domain.BaseColumnDef;
@@ -130,6 +131,9 @@ public class BoltBuilder {
                         //spout
                         spout = new RabbitMQSpout(new StringScheme());
                         stormTopologyBuilder.addConfigurations(spoutComponentId, CoordinateConfig.RabbitMqSpoutConfig(inkStream, inkSource).asMap());
+                    } else if (SourceCatalogEnum.TICK.getName().equals(inkSource.getCatalog())) {
+                        //spout
+                        spout = new TickSpout(inkStream);
                     } else {
                         throw new InkException(MessageEnum.CATALOG_INVALID);
                     }
