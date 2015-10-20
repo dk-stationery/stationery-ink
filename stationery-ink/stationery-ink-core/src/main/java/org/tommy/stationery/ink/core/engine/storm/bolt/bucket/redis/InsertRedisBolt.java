@@ -51,6 +51,8 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
     private List<BaseColumnDef> columns;
     private List<Integer> pkColumnsIndexs = new ArrayList<Integer>();
     private List<RedisPlugin> plugins = new ArrayList<RedisPlugin>();
+    private Map stormConf;
+    private TopologyContext topologyContext;
 
     private List<JedisShardInfo> generateShardInfo(String hosts, String password, int timeout) {
         List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
@@ -74,7 +76,7 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
             try {
                 klass = Class.forName(pluginName);
                 RedisPlugin plugin = (RedisPlugin)klass.newInstance();
-                plugin.prepare(shardedJedisPool);
+                plugin.prepare(shardedJedisPool, stormConf, topologyContext);
                 plugins.add(plugin);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -107,6 +109,8 @@ public class InsertRedisBolt implements IRichBolt, IBucketBolt {
         this.collector = outputCollector;
         this.columns = extractColumns();
         shardedJedisPool = shardedJedisPool();
+        stormConf = map;
+        this.topologyContext = topologyContext;
         plugins = redisPlugins(extractPluginNames());
     }
 

@@ -51,6 +51,8 @@ public class InsertElasticSearchBolt implements IRichBolt, IBucketBolt {
     private String esType;
     private JsonSerde jsonSerde;
     private List<ElasticPlugin> plugins = new ArrayList<ElasticPlugin>();
+    private Map stormConf;
+    private TopologyContext topologyContext;
 
     @Override
     public void setting(String streamId, InkConfig inkConfig, List<String> previousEmitFileds, BaseStatement statement, Stream inkStream, Source inkSource) {
@@ -65,6 +67,8 @@ public class InsertElasticSearchBolt implements IRichBolt, IBucketBolt {
     @Override
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
         this.collector = outputCollector;
+        stormConf = map;
+        this.topologyContext = topologyContext;
 
         this.jsonSerde = new JsonSerde();
         String elasticSearchHost = MetaFinderUtil.findMeta(inkSource.getStatement().getMetas(), MetaFieldEnum.URL).getValue();
@@ -137,7 +141,7 @@ public class InsertElasticSearchBolt implements IRichBolt, IBucketBolt {
             try {
                 klass = Class.forName(pluginName);
                 ElasticPlugin plugin = (ElasticPlugin)klass.newInstance();
-                plugin.prepare(client);
+                plugin.prepare(client, stormConf, topologyContext);
                 plugins.add(plugin);
             } catch (Exception e) {
                 e.printStackTrace();
