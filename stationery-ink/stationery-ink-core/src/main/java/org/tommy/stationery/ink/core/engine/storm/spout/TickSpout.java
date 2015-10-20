@@ -19,10 +19,7 @@ import org.tommy.stationery.ink.enums.MetaFieldEnum;
 import storm.kafka.SpoutConfig;
 import storm.kafka.ZkState;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by tommy on 2015. 10. 19..
@@ -73,7 +70,6 @@ public class TickSpout  extends BaseRichSpout {
                         "name", stateConf.get(Config.TOPOLOGY_NAME)))
                 .put("txid", lastCompletedOffset)
                 .build();
-
         zkState.writeJSON(path, data);
 
         return lastCompletedOffset;
@@ -85,14 +81,8 @@ public class TickSpout  extends BaseRichSpout {
         this.topologyContext = topologyContext;
 
         stateConf = new HashMap(map);
-        List<String> zkServers = spoutConfig.zkServers;
-        if (zkServers == null) {
-            zkServers = (List<String>) map.get(Config.STORM_ZOOKEEPER_SERVERS);
-        }
-        Integer zkPort = spoutConfig.zkPort;
-        if (zkPort == null) {
-            zkPort = ((Number) map.get(Config.STORM_ZOOKEEPER_PORT)).intValue();
-        }
+        List<String> zkServers = (List<String>) map.get(Config.STORM_ZOOKEEPER_SERVERS);
+        Integer zkPort = ((Number) map.get(Config.STORM_ZOOKEEPER_PORT)).intValue();
         stateConf.put(Config.TRANSACTIONAL_ZOOKEEPER_SERVERS, zkServers);
         stateConf.put(Config.TRANSACTIONAL_ZOOKEEPER_PORT, zkPort);
         stateConf.put(Config.TRANSACTIONAL_ZOOKEEPER_ROOT, spoutConfig.zkRoot);
@@ -107,7 +97,10 @@ public class TickSpout  extends BaseRichSpout {
         String body = "{\"str\":" + "{\"txid\":\"" + offset + "\"}}";
         tuples.add(body);
         LOG.info(body);
+        LOG.info(body);
         collector.emit(tuples);
-        Utils.sleep(tickSEC * 1000 + Time.currentTimeMillis());
+
+        int random = (int) (Math.random() * 1500);
+        Utils.sleep(tickSEC * 1000 + random);
     }
 }

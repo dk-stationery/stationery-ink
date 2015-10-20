@@ -279,10 +279,10 @@ public class BoltBuilder {
 
         //last add debug bolt if isDebug = true
         if (isLast == true) {
-            String debugComponenetId = generateComponentId(generatePrefix(BOLT_NAME_PREFIX), "DEBUG", "CONSOLE");;
+            /*String debugComponenetId = generateComponentId(generatePrefix(BOLT_NAME_PREFIX), "DEBUG", "CONSOLE");;
             DumpAndLogBolt logConsoleBolt = new DumpAndLogBolt(DEFAULT_STREAM, inkConfig);
             stormTopologyBuilder.addBolt(debugComponenetId, logConsoleBolt, DUMP_AND_LOG_BOLT_THREAD_CNT);
-            stormTopologyBuilder.connect(previousComponentId, debugComponenetId, null);
+            stormTopologyBuilder.connect(previousComponentId, debugComponenetId, null);*/
         }
         return stormTopologyBuilder;
     }
