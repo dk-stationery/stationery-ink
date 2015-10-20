@@ -90,4 +90,22 @@ public class CoordinateConfig {
         //spoutConfig.startOffsetTime = kafka.api.OffsetRequest.LatestTime();
 		return spoutConfig;
 	}
+
+	public static SpoutConfig TickSpoutConfig(InkConfig inkConfig, Stream inkStream, Source inkSource) throws Exception {
+		//kafka zookeeper config
+		Map conf = new HashMap();
+		conf.put(Config.STORM_ZOOKEEPER_SESSION_TIMEOUT, 10000l);
+		conf.put(Config.STORM_ZOOKEEPER_RETRY_TIMES, 4);
+		conf.put(Config.STORM_ZOOKEEPER_RETRY_INTERVAL, 2000);
+
+		//setup spout config
+		SpoutConfig spoutConfig = new SpoutConfig(
+				null
+				, null
+				, "/brokers"
+				, inkConfig.getString(SettingEnum.JOB_NAME)/*+ "_VERSION_" + System.currentTimeMillis()*/
+		);
+
+		return spoutConfig;
+	}
 }

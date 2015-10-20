@@ -133,7 +133,7 @@ public class BoltBuilder {
                         stormTopologyBuilder.addConfigurations(spoutComponentId, CoordinateConfig.RabbitMqSpoutConfig(inkStream, inkSource).asMap());
                     } else if (SourceCatalogEnum.TICK.getName().equals(inkSource.getCatalog())) {
                         //spout
-                        spout = new TickSpout(inkStream);
+                        spout = new TickSpout(inkStream, CoordinateConfig.TickSpoutConfig(inkConfig, inkStream, inkSource));
                     } else {
                         throw new InkException(MessageEnum.CATALOG_INVALID);
                     }

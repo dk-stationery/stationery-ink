@@ -324,7 +324,7 @@ column_def returns [BaseColumnDef ret]
 
 //////////////////////////////////////////////////////////////////////////////
 stream_meta_name returns [String ret]
-    :   n=('TOPIC'|'COMMENT'|'TICKSEC') { $ret = n.getText(); }
+    :   n=('TOPIC'|'COMMENT'|'TICKSEC'|'TXID') { $ret = n.getText(); }
     ;
 
 stream_meta_value returns [String ret]
