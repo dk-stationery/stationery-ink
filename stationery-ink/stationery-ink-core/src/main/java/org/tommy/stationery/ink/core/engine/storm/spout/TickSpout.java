@@ -97,10 +97,10 @@ public class TickSpout  extends BaseRichSpout {
         String body = "{\"str\":" + "{\"txid\":\"" + offset + "\"}}";
         tuples.add(body);
         LOG.info(body);
-        LOG.info(body);
         collector.emit(tuples);
 
-        int random = (int) (Math.random() * 1500);
-        Utils.sleep(tickSEC * 1000 + random);
+        long waitMicrosec = tickSEC * 1000 + (int) (Math.random() * 1500);
+        LOG.info("waitMicrosec : " + waitMicrosec);
+        Utils.sleep(waitMicrosec);
     }
 }
