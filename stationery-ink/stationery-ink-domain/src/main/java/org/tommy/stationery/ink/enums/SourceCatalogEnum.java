@@ -4,6 +4,7 @@ package org.tommy.stationery.ink.enums;
  * Created by kun7788 on 15. 1. 23..
  */
 public enum SourceCatalogEnum {
+    DUMMY("DUMMY"),
     KAFKA("KAFKA"),
     RABBITMQ("RABBITMQ"),
     TICK("TICK"),

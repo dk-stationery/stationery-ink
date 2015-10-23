@@ -10,6 +10,7 @@ import org.tommy.stationery.ink.core.config.CoordinateConfig;
 import org.tommy.stationery.ink.core.engine.storm.bolt.DumpAndLogBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.IBucketBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.InsertJDBCBolt;
+import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.dummy.InsertDummyBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.elasticsearch.InsertElasticSearchBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.hdfs.bolt.InsertHdfsBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.redis.InsertRedisBolt;
@@ -235,6 +236,8 @@ public class BoltBuilder {
                 bolt = new InsertRedisBolt();
             } else if (SourceCatalogEnum.REST.getName().equals(inkSource.getCatalog())) {
                 bolt = new InsertRestBolt();
+            } else if (SourceCatalogEnum.DUMMY.getName().equals(inkSource.getCatalog())) {
+                bolt = new InsertDummyBolt();
             } else {
                 throw new InkException(MessageEnum.CATALOG_INVALID);
             }

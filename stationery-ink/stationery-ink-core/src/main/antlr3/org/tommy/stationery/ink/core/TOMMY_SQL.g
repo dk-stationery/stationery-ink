@@ -303,7 +303,7 @@ ddl_column_name returns [String ret]
     ;
 
 ddl_column_type returns [ColumnDataTypeEnum ret]
-    :   n=('STRING'|'INTEGER'|'FLOAT'|'DOUBLE') {
+    :   n=('STRING'|'INTEGER'|'FLOAT'|'DOUBLE'|'LONG') {
         $ret = ColumnDataTypeEnum.valueOf(n.getText()); }
     ;
 
