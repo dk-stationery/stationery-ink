@@ -81,15 +81,12 @@ public class CoordinateConfig {
 				brokerHost
 				, topicMeta.getValue()
 				, "/brokers"
-				, inkConfig.getString(SettingEnum.JOB_NAME)/*+"_"+topicMeta.getValue() +  "_VERSION_" + System.currentTimeMillis()*/
+				, inkConfig.getString(SettingEnum.JOB_NAME)+"_"+topicMeta.getValue() +  "_VERSION_" + System.currentTimeMillis()
 		);
 		
-		spoutConfig.bufferSizeBytes = 1024;//10485760;
-		spoutConfig.fetchSizeBytes= 1024;//10485760;
-		//spoutConfig.forceFromStart = false;
-		//spoutConfig.startOffsetTime = kafka.api.OffsetRequest.EarliestTime();
-        //spoutConfig.forceFromStart = false;
-        spoutConfig.startOffsetTime = kafka.api.OffsetRequest.LatestTime();
+		spoutConfig.bufferSizeBytes = 10485760;
+		spoutConfig.fetchSizeBytes= 10485760;
+        //spoutConfig.startOffsetTime = kafka.api.OffsetRequest.LatestTime();
 		return spoutConfig;
 	}
 
