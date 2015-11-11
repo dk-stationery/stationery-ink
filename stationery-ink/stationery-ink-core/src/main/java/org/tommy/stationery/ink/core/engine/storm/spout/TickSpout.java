@@ -9,7 +9,7 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.utils.Time;
 import backtype.storm.utils.Utils;
-import org.apache.storm.guava.collect.ImmutableMap;
+import org.apache.storm.shade.com.google.common.collect.ImmutableMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tommy.stationery.ink.core.util.MetaFinderUtil;
