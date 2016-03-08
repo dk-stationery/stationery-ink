@@ -38,9 +38,12 @@ public class InkJmsSpout extends JmsSpout {
     public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
         Map _conf = new HashMap<>();
         try {
+            //casting issue hack.
             Object timeout = conf.get("topology.message.timeout.secs");
             Integer topologyTimeout = timeout == null ? 30 : ((Long)timeout).intValue();
             _conf.put("topology.message.timeout.secs", topologyTimeout);
+            super.setRecoveryPeriod(topologyTimeout * 1000 * 2);
+
             BaseMetaDef urlMeta = Linq4j.asEnumerable(inkSource.getStatement().getMetas()).where(LinqQuery.META_URL_FILTER).toList().get(0);
             BaseMetaDef topicMeta = Linq4j.asEnumerable(inkStream.getStatement().getMetas()).where(LinqQuery.META_TOPIC_FILTER).toList().get(0);
             BaseMetaDef typeMeta = Linq4j.asEnumerable(inkStream.getStatement().getMetas()).where(LinqQuery.META_TYPE_FILTER).toList().get(0);
