@@ -267,14 +267,17 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 			
 		create stream rest (
 			dummy STRING) meta (TOPIC 'rest');    
-			    
+			 
+		create stream dmp_app_jms_log ( 
+			_PAYLOAD_ STRING) meta (TOPIC 'dmp_app_log', TYPE 'topic|queue');  
+			
 		*important!!! if you use _PAYLOAD_ by field name, INK translated whole json data named _PAYLOAD_ in just one column. 
 			
 			
 11. create source SOURCE_NAME 
 > : create source TSQL.  
 > : fields : CATALOG|URL|DRIVER|ID|PW|VHOST|PORT|TOPIC|CLUSTER|INITIALPOOLSIZE|MAXPOOLSIZE|MINPOOLSIZE      
-> : catalogs : KAFKA|RABBITMQ|HDFS|ELASTICSEARCH|JDBC|PHOENIX|REDIS|REST|TICK    
+> : catalogs : KAFKA|JMS|RABBITMQ|HDFS|ELASTICSEARCH|JDBC|PHOENIX|REDIS|REST|TICK    
 > : ex> 
 
 		create source kafka meta (
