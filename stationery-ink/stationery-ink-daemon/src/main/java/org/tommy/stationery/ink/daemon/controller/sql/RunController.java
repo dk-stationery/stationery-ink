@@ -84,6 +84,7 @@ public class RunController {
             }
 
         } catch (Exception ex) {
+            ex.printStackTrace();
             String msg = (ex.getMessage() == null ? "UNKNOWN ERROR" : ex.getMessage());
             logger.info("Exception : " + msg);
 
