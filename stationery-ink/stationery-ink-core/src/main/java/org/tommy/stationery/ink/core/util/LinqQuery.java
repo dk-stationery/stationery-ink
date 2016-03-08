@@ -131,6 +131,16 @@ public class LinqQuery {
         }
     };
 
+    public static final Predicate1<BaseMetaDef> META_TYPE_FILTER = new Predicate1<BaseMetaDef>() {
+        @Override
+        public boolean apply(BaseMetaDef metaDef) {
+            if ("TYPE".equals(metaDef.getName()) && metaDef.getValue() != null) {
+                return true;
+            }
+            return false;
+        }
+    };
+
     public static final Predicate1<BaseMetaDef> META_PORT_FILTER = new Predicate1<BaseMetaDef>() {
         @Override
         public boolean apply(BaseMetaDef metaDef) {

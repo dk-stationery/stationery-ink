@@ -16,6 +16,7 @@ public enum MetaFieldEnum {
     VHOST("VHOST"),
     CLUSTER("CLUSTER"),
     TICKSEC("TICKSEC"),
+    TYPE("TYPE"),
     TXID("TXID"),
     PORT("PORT");
     private String name;
