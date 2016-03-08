@@ -87,7 +87,7 @@ public class CoordinateConfig {
 		spoutConfig.bufferSizeBytes = 10485760;
 		spoutConfig.fetchSizeBytes= 10485760;
 		//EarliestTime: -1 , LatestTime: -2
-        spoutConfig.startOffsetTime = -2;
+        spoutConfig.startOffsetTime = -1;
 		return spoutConfig;
 	}
 
