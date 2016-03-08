@@ -86,7 +86,8 @@ public class CoordinateConfig {
 		
 		spoutConfig.bufferSizeBytes = 10485760;
 		spoutConfig.fetchSizeBytes= 10485760;
-        spoutConfig.startOffsetTime = kafka.api.OffsetRequest.LatestTime();
+		//EarliestTime: -1 , LatestTime: -2
+        spoutConfig.startOffsetTime = -2;
 		return spoutConfig;
 	}
 
