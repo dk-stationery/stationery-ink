@@ -256,7 +256,7 @@ In the api server 'nohup java -Dserver.port = 8080 -Dconfig = config-production.
 > : display resultset job executed to TSQL.  
 > : ex> snapshot job testjob;  
 
-10. create stream STREAM_NAME (STREAM_COLUMN STRING|INTEGER|LONG|FLOAT|DOUBLE (PARTITION_KEY) (COMMENT), ...)  meta (TOPIC 'STREAM_QUEUE_CHANNEL_NAME'|TICKSEC 'TICK_SECONDS BY_TICK_SPOUT', TXID 'TRANSACTION_ID_FOR_TICK_SPOUT') :  
+10. create stream STREAM_NAME (STREAM_COLUMN STRING|INTEGER|LONG|FLOAT|DOUBLE (PARTITION_KEY) (COMMENT), ...)  meta (TOPIC 'STREAM_QUEUE_CHANNEL_NAME'|TICKSEC 'TICK_SECONDS BY_TICK_SPOUT', TXID 'TRANSACTION_ID_FOR_TICK_SPOUT', TYPE 'topic|queue') :  
 > : create stream TSQL.  
 > : ex> 
 
