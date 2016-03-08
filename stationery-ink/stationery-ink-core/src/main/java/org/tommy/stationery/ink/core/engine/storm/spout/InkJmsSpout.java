@@ -34,13 +34,12 @@ public class InkJmsSpout extends JmsSpout {
         try {
             BaseMetaDef urlMeta = Linq4j.asEnumerable(inkSource.getStatement().getMetas()).where(LinqQuery.META_URL_FILTER).toList().get(0);
             BaseMetaDef topicMeta = Linq4j.asEnumerable(inkStream.getStatement().getMetas()).where(LinqQuery.META_TOPIC_FILTER).toList().get(0);
-
             setJmsProvider(new InkJmsProvider(urlMeta.getValue(), topicMeta.getValue(), "topic"));
+            setJmsTupleProducer(new InkJsonTupleProducer());
+            setJmsAcknowledgeMode(Session.AUTO_ACKNOWLEDGE);
+            setDistributed(false);
         } catch (JMSException e) {
         }
-        setJmsTupleProducer(new InkJsonTupleProducer());
-        setJmsAcknowledgeMode(Session.AUTO_ACKNOWLEDGE);
-        setDistributed(false);
         super.open(conf, context, collector);
     }
 }
