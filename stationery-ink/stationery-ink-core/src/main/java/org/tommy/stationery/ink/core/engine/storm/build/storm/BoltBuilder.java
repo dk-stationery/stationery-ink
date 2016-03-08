@@ -7,7 +7,6 @@ import net.hydromatic.linq4j.Linq4j;
 import org.jsoup.helper.StringUtil;
 import org.tommy.stationery.ink.config.InkConfig;
 import org.tommy.stationery.ink.core.config.CoordinateConfig;
-import org.tommy.stationery.ink.core.engine.storm.bolt.DumpAndLogBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.IBucketBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.InsertJDBCBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.dummy.InsertDummyBolt;
@@ -18,6 +17,7 @@ import org.tommy.stationery.ink.core.engine.storm.bolt.bucket.rest.InsertRestBol
 import org.tommy.stationery.ink.core.engine.storm.bolt.lookup.LookupJDBCBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.stream.EsperBolt;
 import org.tommy.stationery.ink.core.engine.storm.bolt.stream.SpoutParserBolt;
+import org.tommy.stationery.ink.core.engine.storm.spout.InkJmsSpout;
 import org.tommy.stationery.ink.core.engine.storm.spout.TickSpout;
 import org.tommy.stationery.ink.core.provider.SimpleMetaStoreProviderImp;
 import org.tommy.stationery.ink.core.util.LinqQuery;
@@ -125,8 +125,10 @@ public class BoltBuilder {
 
                 boolean isRegistAlready = stormTopologyBuilder.isRegistAlready(spoutComponentId);
                 if (isRegistAlready == false) {
-                    if (SourceCatalogEnum.KAFKA.getName().equals(inkSource.getCatalog())) {
-
+                    if (SourceCatalogEnum.JMS.getName().equals(inkSource.getCatalog())) {
+                        //spout
+                        spout = new InkJmsSpout(inkConfig, inkStream, inkSource);
+                    } else if (SourceCatalogEnum.KAFKA.getName().equals(inkSource.getCatalog())) {
                         //spout
                         spout = new KafkaSpout(CoordinateConfig.KafkaSpoutConfig(inkConfig, inkStream, inkSource));
                     } else if (SourceCatalogEnum.RABBITMQ.getName().equals(inkSource.getCatalog())) {

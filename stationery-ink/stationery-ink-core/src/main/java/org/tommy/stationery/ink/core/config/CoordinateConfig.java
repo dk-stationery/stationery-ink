@@ -66,9 +66,9 @@ public class CoordinateConfig {
 	public static  SpoutConfig KafkaSpoutConfig(InkConfig inkConfig, Stream inkStream, Source inkSource) throws Exception {
 		//kafka zookeeper config
 		Map conf = new HashMap();
-        conf.put(Config.STORM_ZOOKEEPER_SESSION_TIMEOUT, 10000l);
-        conf.put(Config.STORM_ZOOKEEPER_RETRY_TIMES, 4);
-        conf.put(Config.STORM_ZOOKEEPER_RETRY_INTERVAL, 2000);
+		conf.put(Config.STORM_ZOOKEEPER_SESSION_TIMEOUT, 10000l);
+		conf.put(Config.STORM_ZOOKEEPER_RETRY_TIMES, 4);
+		conf.put(Config.STORM_ZOOKEEPER_RETRY_INTERVAL, 2000);
 
 		BaseMetaDef urlMeta = Linq4j.asEnumerable(inkSource.getStatement().getMetas()).where(LinqQuery.META_URL_FILTER).toList().get(0);
 		BaseMetaDef topicMeta = Linq4j.asEnumerable(inkStream.getStatement().getMetas()).where(LinqQuery.META_TOPIC_FILTER).toList().get(0);
