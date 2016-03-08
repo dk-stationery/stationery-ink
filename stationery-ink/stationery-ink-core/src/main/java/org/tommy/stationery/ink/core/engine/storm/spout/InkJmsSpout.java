@@ -12,6 +12,7 @@ import org.tommy.stationery.ink.domain.meta.Stream;
 
 import javax.jms.JMSException;
 import javax.jms.Session;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -36,6 +37,9 @@ public class InkJmsSpout extends JmsSpout {
     @Override
     public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
         try {
+            Object timeout = conf.get("topology.message.timeout.secs");
+            Integer topologyTimeout = timeout == null ? 30 : ((Long)timeout).intValue();
+            conf.put("topology.message.timeout.secs", topologyTimeout);
             BaseMetaDef urlMeta = Linq4j.asEnumerable(inkSource.getStatement().getMetas()).where(LinqQuery.META_URL_FILTER).toList().get(0);
             BaseMetaDef topicMeta = Linq4j.asEnumerable(inkStream.getStatement().getMetas()).where(LinqQuery.META_TOPIC_FILTER).toList().get(0);
             BaseMetaDef typeMeta = Linq4j.asEnumerable(inkStream.getStatement().getMetas()).where(LinqQuery.META_TYPE_FILTER).toList().get(0);
