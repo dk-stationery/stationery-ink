@@ -33,8 +33,10 @@ public class InkJmsSpout extends JmsSpout {
     public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
         try {
             BaseMetaDef urlMeta = Linq4j.asEnumerable(inkSource.getStatement().getMetas()).where(LinqQuery.META_URL_FILTER).toList().get(0);
+            //topic:name, queue:name
             BaseMetaDef topicMeta = Linq4j.asEnumerable(inkStream.getStatement().getMetas()).where(LinqQuery.META_TOPIC_FILTER).toList().get(0);
-            setJmsProvider(new InkJmsProvider(urlMeta.getValue(), topicMeta.getValue(), "topic"));
+            String[] topicMetas = topicMeta.getValue().split("\\:");
+            setJmsProvider(new InkJmsProvider(urlMeta.getValue(), topicMetas[1], topicMetas[0]));
             setJmsTupleProducer(new InkJsonTupleProducer());
             setJmsAcknowledgeMode(Session.AUTO_ACKNOWLEDGE);
             setDistributed(false);
