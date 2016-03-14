@@ -10,11 +10,13 @@ import javax.jms.*;
  * Created by tommy on 2016. 3. 8..
  */
 public class InkJmsProvider implements JmsProvider {
-    private ConnectionFactory connectionFactory;
+    private ActiveMQConnectionFactory connectionFactory;
     private Destination destination;
 
     public InkJmsProvider(String url, String topic, String destinationBean) throws JMSException {
         connectionFactory = new ActiveMQConnectionFactory(url);//"tcp://localhost:61616";
+        connectionFactory.setWatchTopicAdvisories(false);
+
         Connection connection = connectionFactory.createConnection();
         connection.start();
         ActiveMQSession session = (ActiveMQSession) connection.createSession(false, Session.AUTO_ACKNOWLEDGE);

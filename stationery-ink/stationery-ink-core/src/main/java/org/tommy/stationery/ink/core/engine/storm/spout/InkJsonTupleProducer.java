@@ -19,7 +19,7 @@ public class InkJsonTupleProducer implements JmsTupleProducer {
             String json = ((TextMessage) msg).getText();
             return new Values(json);
         } else {
-            return null;
+            return new Values((msg != null ? msg.toString() : ""));
         }
     }
 
